@@ -1,0 +1,173 @@
+.main {
+    min-height: 100vh;
+}
+
+.hero {
+    padding-top: calc(var(--header-height) + 80px);
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    text-align: center;
+    padding-bottom: 5rem;
+}
+
+.title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--gray-medium);
+    margin-bottom: 3rem;
+}
+
+.searchContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.searchInput {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1.2rem 1.5rem;
+    color: white;
+    font-size: 1rem;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--accent-gold);
+}
+
+.searchIcon {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.5;
+}
+
+.gallerySection {
+    padding: 5rem 0;
+    background-color: var(--primary-white);
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    border-bottom: 1px solid var(--gray-light);
+    padding-bottom: 1rem;
+}
+
+.tab,
+.tabActive {
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-medium);
+}
+
+.tabActive {
+    color: var(--primary-black);
+    position: relative;
+}
+
+.tabActive::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-black);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.card {
+    transition: all 0.4s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.imageContainer {
+    position: relative;
+    aspect-ratio: 3/4;
+    background-color: var(--gray-light);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+}
+
+.portraitPlaceholder {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+    /* En producción aquí iría una <Image /> de Next.js */
+}
+
+.cardType {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--primary-black);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+}
+
+.cardContent {
+    text-align: center;
+}
+
+.name {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.dates {
+    color: var(--gray-medium);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.memorialBtn {
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--gray-light);
+    padding-bottom: 2px;
+}
+
+.memorialBtn:hover {
+    color: var(--accent-gold);
+    border-color: var(--accent-gold);
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .tabs {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}

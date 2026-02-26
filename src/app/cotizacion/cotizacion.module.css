@@ -1,0 +1,203 @@
+.main {
+    min-height: 100vh;
+    padding-top: calc(var(--header-height) + 40px);
+    background-color: var(--gray-light);
+}
+
+.stepperContainer {
+    margin-bottom: 3rem;
+}
+
+.stepper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    color: var(--gray-medium);
+}
+
+.stepNumber {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--gray-medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    background-color: var(--primary-white);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+.stepLabel {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+}
+
+.activeStep {
+    color: var(--primary-black);
+}
+
+.activeStep .stepNumber {
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    border-color: var(--primary-black);
+}
+
+.connector {
+    position: absolute;
+    top: 20px;
+    left: calc(50% + 25px);
+    width: calc(100% - 10px);
+    height: 1px;
+    background-color: var(--gray-medium);
+    z-index: 1;
+}
+
+.formSection {
+    padding-bottom: 5rem;
+}
+
+.formCard {
+    background-color: var(--primary-white);
+    padding: 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--gray-medium);
+    margin-bottom: 3rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid var(--gray-light);
+    padding: 0.8rem 0;
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input:focus {
+    border-color: var(--primary-black);
+}
+
+.servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.serviceCard {
+    padding: 2rem;
+    border: 1px solid var(--gray-light);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.serviceCard:hover {
+    border-color: var(--accent-gold);
+    transform: translateY(-5px);
+}
+
+.serviceCard h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.serviceCard p {
+    font-size: 0.85rem;
+    color: var(--gray-medium);
+    margin-bottom: 1.5rem;
+}
+
+.selectBtn {
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--gray-medium);
+    border-bottom: 1px solid transparent;
+}
+
+.selectBtn:hover {
+    color: var(--primary-black);
+    border-color: var(--primary-black);
+}
+
+.navigation {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nextBtn {
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    padding: 1rem 3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-left: auto;
+}
+
+.backBtn {
+    color: var(--gray-medium);
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+
+    .grid,
+    .servicesGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .formCard {
+        padding: 2rem;
+    }
+}
