@@ -78,8 +78,8 @@ export default function CotizacionPage() {
                                         <button className={styles.selectBtn}>Seleccionar</button>
                                     </div>
                                     <div className={styles.serviceCard}>
-                                        <h3>Servicio VIP</h3>
-                                        <p>Atención personalizada de lujo, carroza de gala y coro lirical.</p>
+                                        <h3>Servicio de Honor</h3>
+                                        <p>Atención personalizada de excelencia, carroza de gala y acompañamiento especial.</p>
                                         <button className={styles.selectBtn}>Seleccionar</button>
                                     </div>
                                 </div>

@@ -20,10 +20,10 @@ const Header = () => {
         <div className={styles.container}>
           <div className={styles.logo}>
             <Link href="/">
-              <span className={styles.logoText}>FUNERARIA <span className={styles.logoBold}>ELITE</span></span>
+              <span className={styles.logoText}>FUNERARIA <span className={styles.logoBold}>SANTA MARGARITA</span></span>
             </Link>
           </div>
-          
+
           <nav className={styles.nav}>
             <Link href="/cotizacion">Cotización Online</Link>
             <Link href="/memoriales">Memoriales</Link>

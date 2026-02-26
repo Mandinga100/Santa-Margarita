@@ -7,7 +7,7 @@ const Footer = () => {
             <div className={styles.container}>
                 <div className={styles.grid}>
                     <div className={styles.column}>
-                        <h3 className={styles.title}>FUNERARIA ELITE</h3>
+                        <h3 className={styles.title}>FUNERARIA SANTA MARGARITA</h3>
                         <p className={styles.description}>
                             Brindamos un servicio de excelencia y acompañamiento integral en los momentos más difíciles, honrando la memoria con dignidad.
                         </p>
@@ -29,7 +29,7 @@ const Footer = () => {
                             <li>Dirección: Av. Principal 1234, Santiago</li>
                             <li>Teléfono: +56 2 2123 4567</li>
                             <li>Emergencias: +56 9 1234 5678</li>
-                            <li>Email: contacto@funerariaelite.cl</li>
+                            <li>Email: contacto@funerariasantamargarita.cl</li>
                         </ul>
                     </div>
 
@@ -44,7 +44,7 @@ const Footer = () => {
                 </div>
 
                 <div className={styles.bottom}>
-                    <p>&copy; {new Date().getFullYear()} Funeraria Elite. Todos los derechos reservados.</p>
+                    <p>&copy; {new Date().getFullYear()} Funeraria Santa Margarita. Todos los derechos reservados.</p>
                     <div className={styles.legal}>
                         <Link href="/privacidad">Privacidad</Link>
                         <Link href="/terminos">Términos</Link>

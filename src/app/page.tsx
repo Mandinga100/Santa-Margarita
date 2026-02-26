@@ -32,7 +32,7 @@ export default function Home() {
             <p className={styles.sectionSubtitle}>Soluciones integrales diseñadas para brindar tranquilidad y dignidad.</p>
           </div>
           <div className={styles.plansGrid}>
-            {['Básico', 'Estándar', 'Premium', 'Elite'].map((plan) => (
+            {['Esencial', 'Integral', 'Solemne', 'Honor'].map((plan) => (
               <div key={plan} className={styles.planCard}>
                 <h3 className={styles.planName}>{plan}</h3>
                 <p className={styles.planDesc}>Descripción breve del servicio y coberturas incluidas.</p>
