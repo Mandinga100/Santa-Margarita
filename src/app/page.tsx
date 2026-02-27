@@ -71,41 +71,51 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 
           <div className="bg-white dark:bg-zinc-900 p-8 rounded-xl shadow-sm border border-zinc-100 dark:border-zinc-800 hover:shadow-xl transition-shadow flex flex-col h-full">
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#7E7D7D] block mb-2">Plan Básico</span>
             <h4 className="font-serif text-xl font-bold mb-2 text-black dark:text-white">Margarita</h4>
             <div className="mb-6 border-b border-black/10 pb-4">
               <span className="text-3xl font-black text-black dark:text-white">$970.000</span>
+              <span className="text-xs text-[#7E7D7D] block mt-1">Pesos Chilenos · IVA incluido</span>
             </div>
-            <ul className="space-y-4 mb-10 flex-grow text-sm text-slate-600 dark:text-slate-400">
-              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-[18px] text-green-600">check_circle</span> Servicio Esencial</li>
-              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-[18px] text-green-600">check_circle</span> Trámites Legales</li>
+            <ul className="space-y-3 mb-10 flex-grow text-sm text-slate-600 dark:text-slate-400">
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-green-600 mt-0.5">check_circle</span> Cofre económico</li>
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-green-600 mt-0.5">check_circle</span> Traslado local</li>
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-green-600 mt-0.5">check_circle</span> Trámites legales básicos</li>
             </ul>
-            <Link href="/planes" className="w-full text-center py-3 border border-black dark:border-white text-black dark:text-white text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">Ver Detalle</Link>
+            <Link href="/planes" className="w-full text-center py-3 border border-black dark:border-white text-black dark:text-white text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">Ver Detalle del Plan</Link>
           </div>
 
           <div className="bg-black text-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow flex flex-col h-full ring-2 ring-black/5 relative overflow-hidden">
-            <div className="absolute top-0 right-0 bg-white text-black text-[9px] font-bold px-3 py-1 uppercase tracking-widest rounded-bl-lg">Más Popular</div>
-            <h4 className="font-serif text-xl font-bold mb-2 text-white">Raúl Premium</h4>
+            <div className="absolute top-0 left-0 right-0 bg-white/10 text-white text-[9px] font-bold uppercase tracking-[0.3em] text-center py-1.5">★ Más Solicitado</div>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50 block mb-2 mt-6">Plan Completo</span>
+            <h4 className="font-serif text-xl font-bold mb-2 text-white">Raúl</h4>
             <div className="mb-6 border-b border-white/20 pb-4">
               <span className="text-3xl font-black text-white">$3.590.000</span>
+              <span className="text-xs text-white/50 block mt-1">Pesos Chilenos · IVA incluido</span>
             </div>
-            <ul className="space-y-4 mb-10 flex-grow text-sm text-white/80">
-              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-[18px] text-white">check_circle</span> Urna Premium</li>
-              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-[18px] text-white">check_circle</span> Coronas Naturales</li>
-              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-[18px] text-white">check_circle</span> Traslados VIP</li>
+            <ul className="space-y-3 mb-10 flex-grow text-sm text-white/80">
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-white mt-0.5">check_circle</span> Cofre maderas nobles importadas</li>
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-white mt-0.5">check_circle</span> Coronas de flores naturales</li>
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-white mt-0.5">check_circle</span> Sala privada 24 hrs</li>
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-white mt-0.5">check_circle</span> Traslado nacional + aviso prensa</li>
             </ul>
-            <Link href="/planes" className="w-full text-center py-3 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-zinc-200 transition-all shadow-lg shadow-black/10">Ver Detalle</Link>
+            <Link href="/planes" className="w-full text-center py-3 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-zinc-200 transition-all shadow-lg shadow-black/10">Ver Detalle del Plan</Link>
           </div>
 
           <div className="bg-white dark:bg-zinc-900 p-8 rounded-xl shadow-sm border border-zinc-100 dark:border-zinc-800 hover:shadow-xl transition-shadow flex flex-col h-full">
-            <h4 className="font-serif text-xl font-bold mb-2 text-black dark:text-white">Cremación</h4>
+            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#7E7D7D] block mb-2">Servicio Esencial</span>
+            <h4 className="font-serif text-xl font-bold mb-2 text-black dark:text-white">Azucena</h4>
             <div className="mb-6 border-b border-black/10 pb-4">
-              <span className="text-3xl font-black text-black dark:text-white">Consultar</span>
+              <span className="text-3xl font-black text-black dark:text-white">$1.360.000</span>
+              <span className="text-xs text-[#7E7D7D] block mt-1">Pesos Chilenos · IVA incluido</span>
             </div>
-            <ul className="space-y-4 mb-10 flex-grow text-sm text-slate-600 dark:text-slate-400">
-              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-[18px] text-green-600">check_circle</span> Incineración</li>
-              <li className="flex items-center gap-3"><span className="material-symbols-outlined text-[18px] text-green-600">check_circle</span> Ánforas a elección</li>
+            <ul className="space-y-3 mb-10 flex-grow text-sm text-slate-600 dark:text-slate-400">
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-green-600 mt-0.5">check_circle</span> Cofre estándar</li>
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-green-600 mt-0.5">check_circle</span> Traslado local</li>
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-green-600 mt-0.5">check_circle</span> Velación en capilla pública</li>
+              <li className="flex items-start gap-3"><span className="material-symbols-outlined text-[18px] text-green-600 mt-0.5">check_circle</span> Trámites básicos</li>
             </ul>
-            <Link href="/planes" className="w-full text-center py-3 border border-black dark:border-white text-black dark:text-white text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">Ver Detalle</Link>
+            <Link href="/planes" className="w-full text-center py-3 border border-black dark:border-white text-black dark:text-white text-xs font-bold uppercase tracking-widest rounded-lg hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">Ver Detalle del Plan</Link>
           </div>
 
         </div>
