@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#eca413",
+              "background-light": "#f8f7f6",
+              "background-dark": "#221c10",
+              "deep-black": "#1a1a1a",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "serif": ["Playfair Display", "serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-display { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<!-- Backdrop: Dimmed and Blurred Background Content -->
+<div class="fixed inset-0 z-0 overflow-hidden filter blur-sm brightness-75 transition-all">
+<div class="relative flex h-screen w-full flex-col bg-white dark:bg-background-dark">
+<div class="layout-container flex h-full grow flex-col">
+<!-- Mock Header -->
+<header class="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 px-10 py-4">
+<div class="flex items-center gap-4 text-slate-900 dark:text-slate-100">
+<div class="size-6 text-primary">
+<span class="material-symbols-outlined text-3xl">account_balance</span>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Memorial Premium</h2>
+</div>
+<div class="flex flex-1 justify-end gap-8">
+<div class="flex items-center gap-9 text-sm font-medium">
+<a href="#">Obituarios</a>
+<a href="#">Servicios</a>
+<a href="#">Sobre Nosotros</a>
+</div>
+<div class="rounded-full size-10 bg-slate-200" data-alt="User profile avatar placeholder"></div>
+</div>
+</header>
+<!-- Mock Memorial Content -->
+<main class="flex-1 max-w-4xl mx-auto w-full px-4 py-8">
+<div class="aspect-video w-full rounded-xl overflow-hidden mb-8">
+<img class="w-full h-full object-cover" data-alt="Peaceful landscape with soft sunset lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBnm6-33NKoIzCuEwDc__yMPJKKAxmb7VvrEZ_EadqdT7_idF_s17BFl4q0Wz5o75pIsckvCtlL01X4qpYksrzP4PIAFwxDEvKVKA5Aeu67BiaRM6BQCkrJLUNoxV7BSZMpEWky2w-HxDco67vakCFxFcnqM20eIslL9yffOhVOOZuBsXuVFwN_NqvlazySY0aCbK3xxXeyH4awuYd9TJfAApXM2zUAN7WY5SMYrsSylTjZYgjBl5dUg1E6cN381hQ-qsZzRig0WY"/>
+</div>
+<h1 class="font-serif text-4xl text-center mb-4 text-slate-900 dark:text-slate-100">En Memoria de Elena Valenzuela</h1>
+<p class="text-center text-slate-600 dark:text-slate-400 max-w-2xl mx-auto italic">"Su luz seguirá brillando en nuestros corazones."</p>
+</main>
+</div>
+</div>
+</div>
+<!-- Notification Modal Overlay -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/20 backdrop-blur-[2px]">
+<!-- Modal Card -->
+<div class="bg-white dark:bg-slate-900 w-full max-w-md rounded-xl shadow-2xl overflow-hidden transform transition-all p-8 md:p-12 flex flex-col items-center text-center">
+<!-- Visual: Glowing Candle Flame -->
+<div class="mb-8 relative">
+<div class="w-16 h-16 flex items-center justify-center">
+<div class="relative">
+<!-- Flame Core -->
+<div class="w-6 h-10 bg-gradient-to-t from-primary to-amber-200 rounded-full blur-[2px] animate-pulse"></div>
+<!-- Flame Glow -->
+<div class="absolute inset-0 w-6 h-10 bg-primary/40 rounded-full blur-xl scale-150"></div>
+<!-- Wick -->
+<div class="absolute bottom-[-4px] left-1/2 -translate-x-1/2 w-0.5 h-3 bg-slate-800 rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Typography -->
+<div class="space-y-4 mb-10">
+<h2 class="font-serif text-3xl text-slate-900 dark:text-white leading-snug">
+                    Su vela ha sido <br/> encendida con éxito
+                </h2>
+<p class="text-slate-500 dark:text-slate-400 text-base leading-relaxed max-w-[280px] mx-auto">
+                    Gracias por honrar la memoria de <span class="font-semibold text-slate-700 dark:text-slate-200 text-primary">Elena Valenzuela</span>
+</p>
+</div>
+<!-- Action: Deep Black Button -->
+<button class="w-full py-4 px-8 bg-deep-black hover:bg-black text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+                Cerrar
+            </button>
+<!-- Subtle brand mark -->
+<div class="mt-8 flex items-center gap-2 opacity-30 grayscale">
+<span class="material-symbols-outlined text-sm">auto_awesome</span>
+<span class="text-[10px] uppercase tracking-widest font-bold">Memorial Premium</span>
+</div>
+</div>
+</div>
+</body></html>

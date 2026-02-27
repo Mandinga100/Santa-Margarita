@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-display { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<div class="relative flex min-h-screen w-full flex-col bg-white dark:bg-background-dark overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col items-center">
+<!-- Header -->
+<header class="flex w-full items-center justify-between border-b border-slate-100 dark:border-slate-800 px-6 py-4 bg-white dark:bg-background-dark sticky top-0 z-10">
+<div class="flex items-center gap-3 text-primary dark:text-slate-100">
+<div class="size-6 flex items-center justify-center">
+<svg class="w-full h-full" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold leading-tight tracking-tight">Eterna</h2>
+</div>
+<button class="flex items-center justify-center rounded-lg p-2 text-primary dark:text-slate-100 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Main Content -->
+<main class="flex flex-col items-center w-full max-w-[480px] px-6 py-12 md:py-20">
+<!-- Illustration/Icon -->
+<div class="mb-8 flex flex-col items-center">
+<div class="w-24 h-24 bg-slate-50 dark:bg-slate-800 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-5xl text-primary dark:text-slate-100 font-light">check_circle</span>
+</div>
+<div class="w-20 h-20 opacity-40">
+<img alt="Elegant white lily floral element" class="w-full h-full object-contain grayscale" data-alt="Elegant white lily on a white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuN4MpYrIOICFIilGnFNAk8fjPyIC-rF0U2XGpuet-D8jwTjRfpqeBwERfVK_OjQms-7ER6E5QkaDyatZ88LSf2o21LQLxhyKm0pzpzi8ZHiEeozoCc4kcqamxnnq_mjMLAvJtEakfI7HSI3l4r0rlw0DwcrHXWGkFZ_djNXqRTVAUp_b8sIVyxKY8ejMeeYbHVsw9pKi9FzKTfOwwy_yXL_Tp56EuFeD9kO0U2ADTsNbjvDs9JBH5YPirTkzsLfOU93-tX4HFN3A"/>
+</div>
+</div>
+<!-- Headline -->
+<h1 class="font-serif text-3xl md:text-4xl text-slate-900 dark:text-slate-100 text-center mb-4 leading-tight">
+                    Pago Realizado con Éxito
+                </h1>
+<!-- Message -->
+<p class="text-slate-600 dark:text-slate-400 text-center text-base leading-relaxed mb-10 max-w-[320px]">
+                    Se ha enviado un correo de confirmación. Un asesor se pondrá en contacto con usted a la brevedad para coordinar los siguientes pasos.
+                </p>
+<!-- Transaction Summary Card -->
+<div class="w-full bg-white dark:bg-slate-900 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.2)] border border-slate-50 dark:border-slate-800 p-6 mb-10">
+<h3 class="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-6">Resumen de Transacción</h3>
+<div class="space-y-4">
+<div class="flex flex-col gap-1 border-b border-slate-50 dark:border-slate-800 pb-3">
+<span class="text-xs text-slate-500 dark:text-slate-400">Nº de Orden</span>
+<span class="text-base font-semibold text-slate-900 dark:text-slate-100">#84920432</span>
+</div>
+<div class="flex flex-col gap-1 border-b border-slate-50 dark:border-slate-800 pb-3">
+<span class="text-xs text-slate-500 dark:text-slate-400">Servicio</span>
+<span class="text-base font-semibold text-slate-900 dark:text-slate-100">Plan Premium Exequial</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="text-xs text-slate-500 dark:text-slate-400">Monto Total</span>
+<span class="text-xl font-bold text-primary dark:text-slate-100">$4,500.00 USD</span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="w-full flex flex-col gap-6 items-center">
+<button class="w-full bg-primary text-white dark:bg-slate-100 dark:text-primary font-bold py-4 rounded-lg shadow-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-xl">download</span>
+                        Descargar Comprobante PDF
+                    </button>
+<a class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-slate-100 transition-colors flex items-center gap-1 border-b border-transparent hover:border-slate-300" href="#">
+                        Volver al Inicio
+                    </a>
+</div>
+</main>
+<!-- Footer Decorative Space -->
+<footer class="mt-auto py-8 text-center text-xs text-slate-400 dark:text-slate-600">
+<p>© 2024 Eterna Servicios Exequiales Premium</p>
+</footer>
+</div>
+</div>
+</body></html>

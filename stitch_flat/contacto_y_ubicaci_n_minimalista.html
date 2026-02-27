@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Contacto y Ubicación Minimalista</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#ffffff",
+                        "background-dark": "#191919",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .form-input-minimal {
+            border: none;
+            border-bottom: 1px solid #e5e7eb;
+            border-radius: 0;
+            padding-left: 0;
+            padding-right: 0;
+            transition: border-color 0.3s ease;
+        }
+        .form-input-minimal:focus {
+            ring: 0;
+            border-bottom-color: #000000;
+            outline: none;
+            box-shadow: none;
+        }
+        .map-grayscale {
+            filter: grayscale(100%) contrast(1.1) brightness(0.9);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col">
+<!-- Header -->
+<header class="flex items-center justify-between whitespace-nowrap bg-primary px-10 py-6 text-white sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<div class="size-6">
+<span class="material-symbols-outlined text-white text-2xl">eco</span>
+</div>
+<h2 class="text-white text-xl font-serif tracking-tight">Eternal Peace</h2>
+</div>
+<div class="flex flex-1 justify-end gap-10 items-center">
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#">Inicio</a>
+<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#">Servicios</a>
+<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#">Previsión</a>
+<a class="text-white/80 hover:text-white text-sm font-medium transition-colors" href="#">Sedes</a>
+</nav>
+<button class="flex min-w-[140px] cursor-pointer items-center justify-center rounded-none h-11 px-6 bg-white text-primary text-xs font-bold uppercase tracking-widest transition-all hover:bg-slate-200">
+                    Llamar ahora
+                </button>
+</div>
+</header>
+<main class="flex-1 max-w-7xl mx-auto w-full px-6 py-20">
+<!-- Page Title Section -->
+<div class="text-center mb-24 max-w-2xl mx-auto">
+<h1 class="font-serif text-6xl md:text-7xl mb-6 text-primary dark:text-slate-100">Contacto</h1>
+<p class="text-slate-500 dark:text-slate-400 text-lg font-light leading-relaxed">
+                    Nuestro equipo está disponible las 24 horas del día, los 365 días del año, para brindarle el apoyo y la serenidad que su familia necesita en los momentos más delicados.
+                </p>
+</div>
+<!-- Two-Column Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+<!-- Left Column: Info & Form -->
+<div class="flex flex-col gap-16">
+<!-- Contact Blocks -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary dark:text-slate-400 text-2xl">location_on</span>
+<h3 class="font-serif text-lg font-bold">Dirección</h3>
+<p class="text-slate-500 text-sm leading-6">Av. de la Paz 450, Col. San Ángel, CDMX</p>
+</div>
+<div class="flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary dark:text-slate-400 text-2xl">call</span>
+<h3 class="font-serif text-lg font-bold">Teléfono 24/7</h3>
+<p class="text-slate-500 text-sm leading-6">+52 55 9876 5432<br/>Atención inmediata</p>
+</div>
+<div class="flex flex-col gap-3">
+<span class="material-symbols-outlined text-primary dark:text-slate-400 text-2xl">mail</span>
+<h3 class="font-serif text-lg font-bold">Correo</h3>
+<p class="text-slate-500 text-sm leading-6">ayuda@eternalpeace.mx<br/>contacto@eternalpeace.mx</p>
+</div>
+</div>
+<!-- WhatsApp Button Integrated -->
+<a class="flex items-center gap-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg group transition-all hover:bg-slate-100 dark:hover:bg-slate-800 w-fit" href="#">
+<div class="bg-primary p-2 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">chat</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-widest text-primary dark:text-white">Asistencia Instantánea</p>
+<p class="text-sm text-slate-500">Contactar vía WhatsApp</p>
+</div>
+</a>
+<!-- Contact Form -->
+<div class="bg-white dark:bg-background-dark py-8 shadow-sm">
+<h2 class="font-serif text-3xl mb-10">Envíenos un mensaje</h2>
+<form class="flex flex-col gap-10">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+<div class="flex flex-col gap-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Nombre Completo</label>
+<input class="form-input-minimal dark:bg-transparent dark:text-white" placeholder="Su nombre" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Email</label>
+<input class="form-input-minimal dark:bg-transparent dark:text-white" placeholder="correo@ejemplo.com" type="email"/>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Asunto</label>
+<input class="form-input-minimal dark:bg-transparent dark:text-white" placeholder="Motivo del contacto" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Mensaje</label>
+<textarea class="form-input-minimal dark:bg-transparent dark:text-white resize-none" placeholder="¿Cómo podemos ayudarle?" rows="3"></textarea>
+</div>
+<button class="bg-primary text-white text-xs font-bold uppercase tracking-[0.2em] py-5 px-10 w-full md:w-fit transition-transform active:scale-95" type="submit">
+                                Enviar Mensaje
+                            </button>
+</form>
+</div>
+</div>
+<!-- Right Column: Map & Branch Details -->
+<div class="flex flex-col gap-10">
+<!-- Map Container -->
+<div class="relative w-full aspect-[4/5] bg-slate-100 overflow-hidden shadow-2xl">
+<img alt="Mapa minimalista escala de grises" class="w-full h-full object-cover map-grayscale opacity-80" data-alt="Grayscale minimalist city map showing location" data-location="Mexico City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAE5Px917eyqoUfG-nsUOkYvKXRUe3HeZaS5JlSwubtlDMMy6-kuIJnl05k5ABEWQUJFw_jzOGqOEbM7nP7szceg4Std2r9A4cSyF6k4gOVzfhF9i6P3mLGfoKRRUkOHE5AvsiWhwpsZ9svM7KrmZLwXa3EoXlu52KLD6dbsRHH2R-JJmI456TtbDX0cN2t0T3xTN8qRLeNPoEsKBRWq2BBEFfpPAjJmN1Ok_DNgwED7LLksYHODJzJgQ6B-T0s8_OqZVMR92IG5vQ"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="relative">
+<div class="size-4 bg-primary rounded-full ring-8 ring-primary/20 animate-pulse"></div>
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 bg-white px-3 py-1 shadow-lg text-[10px] font-bold uppercase tracking-tighter text-primary whitespace-nowrap">
+                                    Eternal Peace Center
+                                </div>
+</div>
+</div>
+</div>
+<!-- Branch Information -->
+<div class="flex flex-col gap-8 pt-6 border-t border-slate-100 dark:border-slate-800">
+<h4 class="font-serif text-xl">Sede San Ángel</h4>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Horario de Visitas</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">Lunes a Domingo<br/>08:00 — 20:00</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">Estacionamiento</p>
+<p class="text-sm text-slate-600 dark:text-slate-400">Servicio de Valet 24/7 disponible para familias</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-white px-10 py-16 mt-20">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1 flex flex-col gap-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-2xl">eco</span>
+<h2 class="text-xl font-serif">Eternal Peace</h2>
+</div>
+<p class="text-slate-400 text-xs leading-relaxed uppercase tracking-widest">
+                        Excelencia y compasión desde 1924.
+                    </p>
+</div>
+<div>
+<h5 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-slate-500">Navegación</h5>
+<ul class="flex flex-col gap-3 text-sm text-slate-300">
+<li><a class="hover:text-white transition-colors" href="#">Servicios</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Previsión Familiar</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Blog de Apoyo</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Contacto</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-slate-500">Sedes</h5>
+<ul class="flex flex-col gap-3 text-sm text-slate-300">
+<li>San Ángel, CDMX</li>
+<li>Polanco, CDMX</li>
+<li>Santa Fe, CDMX</li>
+<li>Querétaro, Qro.</li>
+</ul>
+</div>
+<div>
+<h5 class="text-[10px] font-bold uppercase tracking-[0.3em] mb-6 text-slate-500">Legal</h5>
+<ul class="flex flex-col gap-3 text-sm text-slate-300">
+<li><a class="hover:text-white transition-colors" href="#">Aviso de Privacidad</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Términos de Uso</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto pt-16 mt-16 border-t border-slate-800 text-center">
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">© 2024 Eternal Peace S.A. de C.V. Todos los derechos reservados.</p>
+</div>
+</footer>
+</div>
+<!-- Floating WhatsApp Button -->
+<a class="fixed bottom-10 right-10 bg-black text-white size-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-transform z-[100] md:hidden" href="#">
+<span class="material-symbols-outlined">chat</span>
+</a>
+</body></html>

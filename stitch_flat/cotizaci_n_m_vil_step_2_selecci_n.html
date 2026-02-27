@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#16169c",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111121",
+                    },
+                    fontFamily: {
+                        "display": ["Newsreader", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Newsreader', serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: rgba(22, 22, 156, 0.2);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-center justify-center">
+<div class="relative flex min-h-screen w-full max-w-[480px] flex-col bg-white dark:bg-slate-950 shadow-2xl overflow-x-hidden mx-auto border-x border-slate-100 dark:border-slate-800">
+<header class="sticky top-0 z-50 flex items-center justify-between bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<svg class="w-8 h-8" fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white">LUXAE</h1>
+</div>
+<button class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined text-slate-700 dark:text-slate-300">menu</span>
+</button>
+</header>
+<main class="flex-1 pb-40">
+<div class="px-6 pt-8 pb-4">
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-end">
+<span class="text-primary font-bold text-lg">2/4 Selección</span>
+<span class="text-slate-400 text-sm">Paso 2 de 4</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-1/2 rounded-full transition-all duration-500"></div>
+</div>
+</div>
+</div>
+<div class="px-6 pt-4 pb-8 text-center">
+<h2 class="text-3xl font-medium text-slate-900 dark:text-white leading-tight">Elija el tipo de servicio</h2>
+<p class="text-slate-500 mt-2 text-sm italic">Personalice la despedida con excelencia y respeto.</p>
+</div>
+<div class="px-6 flex flex-col gap-6">
+<!-- Option 1 -->
+<div class="group relative flex flex-col rounded-xl bg-white dark:bg-slate-900 border-2 border-slate-100 dark:border-slate-800 overflow-hidden shadow-sm transition-all hover:border-primary active:scale-[0.98]">
+<div class="h-48 w-full bg-center bg-cover" data-alt="Serene cemetery landscape with green trees and flowers" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVjBpw_DU-M_LxU-A7lXGwmdWnHn0TV3fPvoa633zNOHYlM5w1wLv0LqqrgepEY6L2_EPr1ltp2notCHXQiuTo0id-KWXk-TXg4aQo2nW2N9ylMzGD9X_670f9_SSiF42P0VrYlY7ukqebtuNp2V2-PlcUUd4fMFrgEmSYuwi2__hIlyXp-_CxzfSdUZUrKcrGXZ8YZZf_EXy9aI88U9q7lp61a_78aKuN-Ho6EgqLXXr7thgJIRqx7KADXUwNLzmvmwm-f8S0IZs');">
+</div>
+<div class="p-5 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Inhumación Tradicional</h3>
+<span class="material-symbols-outlined text-slate-300 group-hover:text-primary">check_circle</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                            Un tributo clásico y digno en un entorno sereno, honrando las tradiciones familiares.
+                        </p>
+</div>
+</div>
+<!-- Option 2 -->
+<div class="group relative flex flex-col rounded-xl bg-white dark:bg-slate-900 border-2 border-primary overflow-hidden shadow-md transition-all active:scale-[0.98]">
+<div class="h-48 w-full bg-center bg-cover" data-alt="Modern urn and memorial flowers in a peaceful room" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBgmy0MjKproX8B2ai7YvYrd2bm3HRn9cqKm0heJc_BJCHC9-Ew7TAFUQTwCBHjajhi_XS8C5FFF0ShahSxYHLaTtCo1WgS2_OO8VkBlZP2TR2wcmF48e_Lf3u4gJ2RTmwplNP731ly7kMbirE0L4EZZkPpIK1H6lmEJmmK7MO-9LSkFj8RnzUQRCGnWp7lAJ9sewiEfZSqlRVXHHhFXjncPYLpsWS3qpAvisH17_1pw5Y4K0kWNqMVIdR4p-iWrLYRnwo57F8abFg');">
+</div>
+<div class="p-5 flex flex-col gap-2 relative">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-bold text-slate-900 dark:text-white">Cremación</h3>
+<span class="material-symbols-outlined text-primary">check_circle</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
+                            Una despedida moderna con honor y respeto total, permitiendo diversas formas de conmemoración.
+                        </p>
+<div class="absolute -top-3 right-5 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                            Seleccionado
+                        </div>
+</div>
+</div>
+<!-- Option 3 (Premium) -->
+<div class="group relative flex flex-col rounded-xl bg-slate-900 dark:bg-slate-800 border-2 border-amber-400 overflow-hidden shadow-xl transition-all hover:shadow-amber-400/20 active:scale-[0.98]">
+<div class="h-48 w-full bg-center bg-cover grayscale-[0.3]" data-alt="Luxury car and gold accents for premium service" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBu9eo03YFcGZR-Mfy-_dlfG9TqMK16vFesNvY-1_9DoIHMcu5ha--eW-10-0qzYzDihvi1VfSpuIbwG4E4qBWnSlquq9WBNC6Aqn1HoNHaNI9oYOOsvn9djHQUqSnDVmbH8_K-U0t8qcOcQy6R_vCf6vv7wQ88jBCsFUct39qluwboG1IjHx9aKU0TtNvRGjaHxgJDcIP9Gs_uzSW5WnE6VamGsrx8IIrU9aE63_ZBblQih5IRQ6Wqv9C6b_qhHPAseT7ilQ_zwk8');">
+</div>
+<div class="p-5 flex flex-col gap-2">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-bold text-amber-100">Servicio VIP / Elite</h3>
+<span class="material-symbols-outlined text-amber-400">workspace_premium</span>
+</div>
+<p class="text-slate-300 text-sm leading-relaxed">
+                            Exclusividad absoluta, atención personalizada las 24 horas y los más altos estándares de lujo y confort.
+                        </p>
+</div>
+<div class="bg-amber-400/10 py-1 text-center border-t border-amber-400/20">
+<span class="text-amber-400 text-[11px] font-bold tracking-[0.2em] uppercase">Experiencia Premium</span>
+</div>
+</div>
+</div>
+</main>
+<footer class="fixed bottom-0 left-0 right-0 z-[60] flex flex-col items-center bg-white/90 dark:bg-slate-950/90 backdrop-blur-xl border-t border-slate-100 dark:border-slate-800 px-6 py-6 max-w-[480px] mx-auto">
+<button class="w-full bg-slate-900 dark:bg-slate-100 text-white dark:text-slate-900 rounded-lg py-4 font-bold text-base shadow-lg transition-transform active:scale-95 mb-4 uppercase tracking-widest">
+                Siguiente
+            </button>
+<button class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary transition-colors py-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                Atrás
+            </button>
+</footer>
+</div>
+</body></html>

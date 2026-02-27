@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
 import styles from './cotizacion.module.css';
 
 const steps = ['Datos', 'Selección', 'Resumen', 'Pago'];
@@ -15,7 +13,6 @@ export default function CotizacionPage() {
 
     return (
         <main className={styles.main}>
-            <Header />
 
             <div className={styles.stepperContainer}>
                 <div className="container">
@@ -98,7 +95,6 @@ export default function CotizacionPage() {
                 </div>
             </section>
 
-            <Footer />
         </main>
     );
 }

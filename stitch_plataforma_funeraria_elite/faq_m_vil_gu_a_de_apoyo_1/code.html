@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FAQ Móvil - Guía de Apoyo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#ffffff",
+                        "background-dark": "#101622",
+                        "funeral-gray": "#F2F2F2",
+                        "deep-black": "#111111",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .serif-font {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<header class="sticky top-0 z-50 flex items-center justify-between bg-white/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4 border-none">
+<div class="flex items-center gap-2">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">fluid</span>
+</div>
+<h2 class="serif-font text-xl font-bold tracking-tight">Eterna</h2>
+</div>
+<button class="p-2 rounded-full hover:bg-funeral-gray dark:hover:bg-slate-800 transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="flex-1 max-w-lg mx-auto w-full px-6 pt-12 pb-24 flex flex-col gap-12">
+<section class="text-center space-y-4">
+<h1 class="serif-font text-4xl font-bold leading-tight">Preguntas Frecuentes</h1>
+<p class="text-slate-500 dark:text-slate-400 font-light max-w-xs mx-auto">
+                    Encuentre respuestas y orientación serena para sus dudas sobre nuestros servicios.
+                </p>
+</section>
+<section class="relative">
+<div class="flex items-center bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-1">
+<span class="material-symbols-outlined text-slate-400 pl-3">search</span>
+<input class="w-full border-none focus:ring-0 bg-transparent text-lg py-3 px-3 font-light placeholder:text-slate-400" placeholder="Buscar pregunta..." type="text"/>
+</div>
+</section>
+<section class="space-y-10">
+<div class="space-y-4">
+<h2 class="serif-font text-2xl font-bold border-b border-slate-100 dark:border-slate-800 pb-2">Servicios</h2>
+<div class="space-y-2">
+<details class="group">
+<summary class="flex justify-between items-center py-4 cursor-pointer list-none">
+<span class="serif-font text-lg font-medium">¿Qué incluye el servicio fúnebre básico?</span>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="bg-funeral-gray dark:bg-slate-800/50 p-6 rounded-lg">
+<p class="font-display leading-relaxed text-slate-600 dark:text-slate-300">
+                                    Nuestro servicio básico contempla la gestión de trámites legales, traslado local, preparación estética, capilla ardiente y coordinación con el cementerio o crematorio.
+                                </p>
+</div>
+</details>
+<details class="group">
+<summary class="flex justify-between items-center py-4 cursor-pointer list-none border-t border-slate-50 dark:border-slate-800/50">
+<span class="serif-font text-lg font-medium">¿Disponen de servicios de cremación?</span>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="bg-funeral-gray dark:bg-slate-800/50 p-6 rounded-lg">
+<p class="font-display leading-relaxed text-slate-600 dark:text-slate-300">
+                                    Sí, ofrecemos opciones integrales de cremación con urnas biodegradables o de diseño, además de ceremonias de despedida personalizadas.
+                                </p>
+</div>
+</details>
+</div>
+</div>
+<div class="space-y-4">
+<h2 class="serif-font text-2xl font-bold border-b border-slate-100 dark:border-slate-800 pb-2">Previsión</h2>
+<div class="space-y-2">
+<details class="group">
+<summary class="flex justify-between items-center py-4 cursor-pointer list-none">
+<span class="serif-font text-lg font-medium">¿Cómo funciona un plan de previsión?</span>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="bg-funeral-gray dark:bg-slate-800/50 p-6 rounded-lg">
+<p class="font-display leading-relaxed text-slate-600 dark:text-slate-300">
+                                    Un plan de previsión permite organizar y financiar los servicios con antelación, garantizando la tranquilidad de sus seres queridos y protegiendo el precio actual contra la inflación.
+                                </p>
+</div>
+</details>
+</div>
+</div>
+<div class="space-y-4">
+<h2 class="serif-font text-2xl font-bold border-b border-slate-100 dark:border-slate-800 pb-2">Trámites</h2>
+<div class="space-y-2">
+<details class="group">
+<summary class="flex justify-between items-center py-4 cursor-pointer list-none">
+<span class="serif-font text-lg font-medium">¿Qué documentos son necesarios de inmediato?</span>
+<span class="material-symbols-outlined text-slate-400 group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="bg-funeral-gray dark:bg-slate-800/50 p-6 rounded-lg">
+<p class="font-display leading-relaxed text-slate-600 dark:text-slate-300">
+                                    Principalmente se requiere el Certificado Médico de Defunción y el DNI de la persona fallecida. Nuestro equipo se encarga de orientarle en el resto del proceso administrativo.
+                                </p>
+</div>
+</details>
+</div>
+</div>
+</section>
+<section class="mt-8 text-center space-y-6 bg-slate-50 dark:bg-slate-900/50 p-10 rounded-2xl">
+<div class="space-y-2">
+<h3 class="serif-font text-2xl font-bold">¿Necesita más ayuda?</h3>
+<p class="text-slate-500 text-sm font-light">Atención profesional las 24 horas del día.</p>
+</div>
+<div class="space-y-6">
+<a class="block text-2xl font-bold text-deep-black dark:text-white hover:text-primary transition-colors" href="tel:900100200">
+                        900 100 200
+                    </a>
+<button class="w-full bg-deep-black dark:bg-white text-white dark:text-deep-black py-4 rounded-full font-bold text-sm tracking-widest uppercase hover:opacity-90 transition-opacity">
+                        Contactar
+                    </button>
+</div>
+</section>
+</main>
+<footer class="px-6 py-8 border-t border-slate-50 dark:border-slate-800 text-center">
+<p class="text-[10px] uppercase tracking-widest text-slate-400">© 2024 Eterna Guía Funeraria. Todos los derechos reservados.</p>
+</footer>
+</div>
+</body></html>

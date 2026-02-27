@@ -1,0 +1,240 @@
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<title>Planes de Servicio - Comparativa Detallada</title>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex min-h-screen flex-col">
+<!-- Header -->
+<header class="bg-primary px-4 md:px-20 lg:px-40 py-6 text-white sticky top-0 z-50">
+<div class="flex items-center justify-between max-w-[1280px] mx-auto">
+<div class="flex items-center gap-4">
+<div class="size-6 text-white">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h1 class="text-xl font-bold font-serif tracking-tight">Funeraria Élite</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:opacity-70 transition-opacity" href="#">Inicio</a>
+<a class="text-sm font-medium hover:opacity-70 transition-opacity" href="#">Servicios</a>
+<a class="text-sm font-medium border-b border-white pb-1" href="#">Planes</a>
+<a class="text-sm font-medium hover:opacity-70 transition-opacity" href="#">Preguntas</a>
+<a class="text-sm font-medium hover:opacity-70 transition-opacity" href="#">Contacto</a>
+</nav>
+<button class="bg-white text-black px-6 py-2 rounded font-bold text-sm tracking-wide hover:bg-slate-200 transition-colors uppercase">
+                    Llamar ahora
+                </button>
+</div>
+</header>
+<main class="flex-1">
+<!-- Hero Section -->
+<section class="px-4 md:px-20 lg:px-40 py-20 max-w-[1280px] mx-auto text-center">
+<h2 class="text-primary dark:text-white text-5xl md:text-6xl font-serif font-bold mb-6">Nuestros Planes de Servicio</h2>
+<p class="text-slate-600 dark:text-slate-400 text-lg max-w-2xl mx-auto font-display leading-relaxed">
+                    Brindamos honor y respeto en cada detalle. Compare nuestras opciones diseñadas para ofrecer tranquilidad, dignidad y un acompañamiento integral en los momentos que más lo requiere.
+                </p>
+</section>
+<!-- Comparison Table Section -->
+<section class="px-4 md:px-20 lg:px-40 pb-20 max-w-[1280px] mx-auto overflow-x-auto">
+<div class="min-w-[800px] bg-white dark:bg-slate-800/30 overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-primary text-white">
+<th class="p-6 text-sm font-semibold uppercase tracking-wider">Características</th>
+<th class="p-6 text-sm font-semibold uppercase tracking-wider text-center">Básico</th>
+<th class="p-6 text-sm font-semibold uppercase tracking-wider text-center">Intermedio</th>
+<th class="p-6 text-sm font-semibold uppercase tracking-wider text-center">Estándar</th>
+<th class="p-6 text-sm font-semibold uppercase tracking-wider text-center">Premium</th>
+</tr>
+</thead>
+<tbody class="text-slate-700 dark:text-slate-300">
+<tr class="bg-transparent">
+<td class="p-6 text-sm font-medium border-none">Cofre Fúnebre</td>
+<td class="p-6 text-sm text-center border-none">Madera Sencilla</td>
+<td class="p-6 text-sm text-center border-none">Madera Tallada</td>
+<td class="p-6 text-sm text-center border-none font-semibold">Roble Premium</td>
+<td class="p-6 text-sm text-center border-none font-semibold">Caoba Elite</td>
+</tr>
+<tr class="bg-slate-50 dark:bg-slate-900/50">
+<td class="p-6 text-sm font-medium border-none">Sala de Velación</td>
+<td class="p-6 text-sm text-center border-none">12 Horas</td>
+<td class="p-6 text-sm text-center border-none">24 Horas</td>
+<td class="p-6 text-sm text-center border-none">24 Horas VIP</td>
+<td class="p-6 text-sm text-center border-none">Suite Presidencial</td>
+</tr>
+<tr class="bg-transparent">
+<td class="p-6 text-sm font-medium border-none">Carroza de Lujo</td>
+<td class="p-6 text-sm text-center border-none">Estándar</td>
+<td class="p-6 text-sm text-center border-none">Lujo</td>
+<td class="p-6 text-sm text-center border-none font-semibold text-primary dark:text-white">
+<span class="material-symbols-outlined align-middle">check</span>
+</td>
+<td class="p-6 text-sm text-center border-none font-semibold text-primary dark:text-white">
+<span class="material-symbols-outlined align-middle">check</span>
+</td>
+</tr>
+<tr class="bg-slate-50 dark:bg-slate-900/50">
+<td class="p-6 text-sm font-medium border-none">Trámites Legales</td>
+<td class="p-6 text-sm text-center border-none text-primary dark:text-white">
+<span class="material-symbols-outlined align-middle">check</span>
+</td>
+<td class="p-6 text-sm text-center border-none text-primary dark:text-white">
+<span class="material-symbols-outlined align-middle">check</span>
+</td>
+<td class="p-6 text-sm text-center border-none text-primary dark:text-white">
+<span class="material-symbols-outlined align-middle">check</span>
+</td>
+<td class="p-6 text-sm text-center border-none text-primary dark:text-white">
+<span class="material-symbols-outlined align-middle">check</span>
+</td>
+</tr>
+<tr class="bg-transparent">
+<td class="p-6 text-sm font-medium border-none">Arreglos Florales</td>
+<td class="p-6 text-sm text-center border-none">Sencillo</td>
+<td class="p-6 text-sm text-center border-none">Mediano</td>
+<td class="p-6 text-sm text-center border-none">Especial</td>
+<td class="p-6 text-sm text-center border-none font-semibold">Premium Extra</td>
+</tr>
+<tr class="bg-slate-50 dark:bg-slate-900/50">
+<td class="p-6 text-sm font-medium border-none">Música en Vivo</td>
+<td class="p-6 text-sm text-center border-none text-slate-300">—</td>
+<td class="p-6 text-sm text-center border-none text-slate-300">—</td>
+<td class="p-6 text-sm text-center border-none">Coro Clásico</td>
+<td class="p-6 text-sm text-center border-none">Orquesta Sinfónica</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Plan Highlight Cards Section -->
+<section class="px-4 md:px-20 lg:px-40 pb-24 max-w-[1280px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Básico -->
+<div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-sm flex flex-col hover:shadow-xl transition-shadow border-none">
+<h3 class="font-serif text-2xl font-bold mb-2">Básico</h3>
+<div class="text-3xl font-serif font-bold text-primary dark:text-white mb-6">$1,500 <span class="text-sm font-sans font-normal text-slate-500 uppercase">Final</span></div>
+<ul class="space-y-4 mb-10 flex-1 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Cofre de madera sencilla</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Sala de velación 12 horas</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Trámites administrativos</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Carroza estándar</li>
+</ul>
+<button class="w-full bg-primary text-white py-4 rounded font-bold uppercase text-xs tracking-widest hover:opacity-90 transition-opacity">Cotizar este Plan</button>
+</div>
+<!-- Intermedio -->
+<div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-sm flex flex-col hover:shadow-xl transition-shadow border-none">
+<h3 class="font-serif text-2xl font-bold mb-2">Intermedio</h3>
+<div class="text-3xl font-serif font-bold text-primary dark:text-white mb-6">$2,800 <span class="text-sm font-sans font-normal text-slate-500 uppercase">Final</span></div>
+<ul class="space-y-4 mb-10 flex-1 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Cofre tallado artesanal</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Sala de velación 24 horas</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Asesoría legal completa</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Carroza de lujo</li>
+</ul>
+<button class="w-full bg-primary text-white py-4 rounded font-bold uppercase text-xs tracking-widest hover:opacity-90 transition-opacity">Cotizar este Plan</button>
+</div>
+<!-- Estándar (Popular) -->
+<div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-md flex flex-col ring-2 ring-primary relative hover:shadow-xl transition-shadow border-none scale-105 z-10">
+<div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-bold uppercase tracking-[2px] px-4 py-1 rounded-full">Más Solicitado</div>
+<h3 class="font-serif text-2xl font-bold mb-2">Estándar</h3>
+<div class="text-3xl font-serif font-bold text-primary dark:text-white mb-6">$4,500 <span class="text-sm font-sans font-normal text-slate-500 uppercase">Final</span></div>
+<ul class="space-y-4 mb-10 flex-1 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+<li class="flex items-start gap-2 font-medium text-slate-900 dark:text-white"><span class="material-symbols-outlined text-sm pt-1">check</span> Roble Premium Importado</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Sala VIP Preferencial</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Coro en ceremonia religiosa</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Arreglos florales de especialidad</li>
+</ul>
+<button class="w-full bg-primary text-white py-4 rounded font-bold uppercase text-xs tracking-widest hover:opacity-90 transition-opacity">Cotizar este Plan</button>
+</div>
+<!-- Premium -->
+<div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-sm flex flex-col hover:shadow-xl transition-shadow border-none">
+<h3 class="font-serif text-2xl font-bold mb-2">Premium</h3>
+<div class="text-3xl font-serif font-bold text-primary dark:text-white mb-6">$7,000 <span class="text-sm font-sans font-normal text-slate-500 uppercase">Final</span></div>
+<ul class="space-y-4 mb-10 flex-1 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+<li class="flex items-start gap-2 font-medium text-slate-900 dark:text-white"><span class="material-symbols-outlined text-sm pt-1">check</span> Caoba de Élite Certificada</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Suite Presidencial Exclusiva</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Orquesta Filarmónica</li>
+<li class="flex items-start gap-2"><span class="material-symbols-outlined text-sm pt-1">check</span> Atención personalizada 24/7</li>
+</ul>
+<button class="w-full bg-primary text-white py-4 rounded font-bold uppercase text-xs tracking-widest hover:opacity-90 transition-opacity">Cotizar este Plan</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary px-4 md:px-20 lg:px-40 py-16 text-slate-400 text-sm">
+<div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-slate-800 pb-12 mb-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-3 text-white mb-6">
+<div class="size-5">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 4C25.7818 14.2173 33.7827 22.2182 44 24C33.7827 25.7818 25.7818 33.7827 24 44C22.2182 33.7827 14.2173 25.7818 4 24C14.2173 22.2182 22.2182 14.2173 24 4Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold font-serif tracking-tight">Funeraria Élite</h2>
+</div>
+<p class="leading-relaxed">Excelencia y compasión desde 1920. Líderes en servicios fúnebres de alta gama.</p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 uppercase tracking-wider text-xs">Navegación</h4>
+<ul class="space-y-4">
+<li><a class="hover:text-white transition-colors" href="#">Servicios</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Previsión</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Ubicaciones</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 uppercase tracking-wider text-xs">Ayuda</h4>
+<ul class="space-y-4">
+<li><a class="hover:text-white transition-colors" href="#">Preguntas Frecuentes</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Protocolos</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Privacidad</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Contacto Urgente</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6 uppercase tracking-wider text-xs">Contacto</h4>
+<ul class="space-y-4">
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-sm">mail</span> info@funerariaelite.com</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-sm">phone</span> +1 (800) 123-4567</li>
+<li class="flex items-start gap-3"><span class="material-symbols-outlined text-sm">location_on</span> Av. de la Paz 500, Ciudad Élite</li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<p>© 2024 Funeraria Élite S.A. Todos los derechos reservados.</p>
+<div class="flex gap-6">
+<a class="hover:text-white" href="#"><span class="material-symbols-outlined">social_leaderboard</span></a>
+<a class="hover:text-white" href="#"><span class="material-symbols-outlined">link</span></a>
+<a class="hover:text-white" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

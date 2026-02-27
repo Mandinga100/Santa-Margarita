@@ -1,0 +1,213 @@
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
+                        "soft-gray": "#E5E5E5",
+                        "medium-gray": "#7E7D7D"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .article-body {
+            line-height: 1.8;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen flex-col">
+<!-- Navigation -->
+<header class="sticky top-0 z-50 w-full border-b border-white/10 bg-primary px-6 py-4 lg:px-20">
+<div class="mx-auto flex max-w-7xl items-center justify-between">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-white">
+<span class="material-symbols-outlined text-2xl">church</span>
+<h1 class="text-lg font-bold tracking-tight uppercase">Eternal Peace</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white" href="#">Servicios</a>
+<a class="text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white" href="#">Planificación</a>
+<a class="text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white" href="#">Recursos</a>
+<a class="text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white" href="#">Contacto</a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<button class="hidden lg:flex items-center text-white/70 hover:text-white">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="rounded border border-white/20 px-5 py-2 text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-primary">
+                        Consulta Inmediata
+                    </button>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Article Header -->
+<article class="mx-auto max-w-screen-xl px-6 pt-16 lg:pt-24">
+<div class="mx-auto max-w-3xl text-center">
+<span class="text-xs font-bold tracking-[0.2em] text-medium-gray uppercase">Manejo del Duelo</span>
+<h1 class="mt-6 font-serif text-4xl leading-tight md:text-5xl lg:text-6xl text-slate-900 dark:text-slate-100">
+                        Cómo Encontrar Serenidad en Momentos de Pérdida
+                    </h1>
+<p class="mt-8 text-lg text-medium-gray italic font-serif">
+                        Una guía compasiva sobre el proceso de sanación y la importancia del autocuidado durante las etapas del duelo.
+                    </p>
+<div class="mt-10 flex items-center justify-center gap-4 text-sm font-medium text-medium-gray">
+<span>Por Elena Valderrama</span>
+<span class="h-1 w-1 rounded-full bg-medium-gray"></span>
+<span>24 de Mayo, 2024</span>
+<span class="h-1 w-1 rounded-full bg-medium-gray"></span>
+<span>Lectura de 8 min</span>
+</div>
+</div>
+<!-- Hero Image -->
+<div class="mt-16 overflow-hidden rounded-xl bg-slate-200">
+<img alt="Paisaje sereno al atardecer" class="aspect-[21/9] w-full object-cover shadow-2xl" data-alt="Serene mountain landscape at sunset with soft light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdlUw-YH8ZbJfcqcL325RGcWj3OXhNMuCWuIQSwcCqooxOvGKjQ1Qcb6-9X3o8PaMJ-ZDko2Wp_EPfaS8BaZkykmzm_RHLceC7bbACGE-QeY2ujRFHydjmnnWZW8uiQc-LamNbSujkBU36pJJQFWs1NTlio5BzMF02Dg2U09euzVF-AksegLFFs6baHBCwH45Mp1qozEdVjYf_QGHlen4Uaj2ZBqGCnXX3WDPigjgAR2_x6nn_gFSsSVo4XDweRDEFyoSqkwX503s"/>
+</div>
+<!-- Article Content Wrapper -->
+<div class="relative mx-auto mt-16 flex max-w-5xl flex-col lg:flex-row lg:gap-16">
+<!-- Sidebar Interactions (Desktop) -->
+<aside class="hidden lg:block w-12 sticky top-32 h-fit">
+<div class="flex flex-col gap-6 text-medium-gray">
+<button class="hover:text-primary dark:hover:text-white"><span class="material-symbols-outlined">share</span></button>
+<button class="hover:text-primary dark:hover:text-white"><span class="material-symbols-outlined">bookmark</span></button>
+<button class="hover:text-primary dark:hover:text-white"><span class="material-symbols-outlined">print</span></button>
+</div>
+</aside>
+<!-- Main Text Body -->
+<div class="article-body mx-auto max-w-2xl text-lg text-slate-700 dark:text-slate-300">
+<p class="mb-8">
+                            El duelo no es un destino, sino un camino que cada persona recorre a su propio ritmo. En los momentos de pérdida profunda, el mundo parece detenerse, mientras que la vida a nuestro alrededor continúa su marcha imperturbable. Encontrar la serenidad en medio de este torbellino emocional no significa olvidar, sino aprender a integrar la ausencia en nuestra nueva realidad.
+                        </p>
+<h2 class="mt-12 mb-6 font-serif text-3xl text-slate-900 dark:text-slate-100">La importancia de la validación</h2>
+<p class="mb-8">
+                            El primer paso hacia la sanación es permitirnos sentir. En nuestra cultura actual, a menudo existe una presión invisible por "superar" las cosas rápidamente. Sin embargo, el dolor es un testimonio del amor que se tuvo. Validar nuestras emociones, sin juicio ni prisa, es el cimiento de la recuperación emocional.
+                        </p>
+<blockquote class="my-12 border-l-4 border-soft-gray pl-8 py-2">
+<p class="font-serif text-2xl italic text-slate-800 dark:text-slate-200">
+                                "La sanación no significa que el daño nunca existió. Significa que el daño ya no controla nuestra vida."
+                            </p>
+</blockquote>
+<h2 class="mt-12 mb-6 font-serif text-3xl text-slate-900 dark:text-slate-100">Rituales de despedida</h2>
+<p class="mb-8">
+                            Los rituales han acompañado a la humanidad desde sus inicios para dar sentido a lo trascendental. Ya sea a través de una ceremonia tradicional o un pequeño acto privado, como escribir una carta o plantar un árbol, estas acciones actúan como puentes simbólicos que facilitan el tránsito del alma y el consuelo de los que se quedan.
+                        </p>
+<p class="mb-8">
+                            Es fundamental recordar que el autocuidado durante este periodo no es un lujo, sino una necesidad biológica y espiritual. El descanso adecuado, la nutrición suave y, sobre todo, la paciencia con uno mismo son herramientas vitales para navegar estas aguas inciertas.
+                        </p>
+<!-- Share Mobile -->
+<div class="mt-16 flex flex-col items-center border-y border-soft-gray py-8 dark:border-white/10">
+<p class="mb-4 text-xs font-bold uppercase tracking-widest text-medium-gray">Compartir este recurso</p>
+<div class="flex gap-8">
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">ios_share</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">mail</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-white/5 hover:bg-primary hover:text-white transition-colors">
+<span class="material-symbols-outlined text-xl">link</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Related Articles -->
+<section class="bg-white dark:bg-zinc-900/50 mt-24 py-24">
+<div class="mx-auto max-w-7xl px-6">
+<div class="mb-12 flex items-end justify-between">
+<div>
+<h2 class="font-serif text-3xl text-slate-900 dark:text-slate-100">Lecturas Recomendadas</h2>
+<p class="mt-2 text-medium-gray">Recursos adicionales para su bienestar y el de su familia.</p>
+</div>
+<a class="text-sm font-bold uppercase tracking-widest text-primary dark:text-white border-b border-primary dark:border-white pb-1" href="#">Ver todos</a>
+</div>
+<div class="grid gap-8 md:grid-cols-3">
+<!-- Card 1 -->
+<div class="group cursor-pointer">
+<div class="overflow-hidden rounded-lg bg-slate-200">
+<img alt="Apoyo familiar" class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Family members holding hands in support" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD__xxjWqIjIa9qu1LiIfXaTaUNWpK0e5nBTPUGR8AwM-qz2Jll6pGvOoOrKCS70dg62rTJfOlbsxk0FpAAJu5aVd3_y8gEoCHQ3Xrt8vG-hs1JrrDiYpiI9OJmpJ2Nin9GHGNneXwKXTxq76fYCqET2W6qI9Hyw-A24CqUEkov_6tGVWB7lEZ7G9N5eqsjIeSlVqDgLwTEbbcPXy5_v13qHUFiLMO5PKqIe8FT-FQDGdpxkRfWAEA87IKB2SFaTJgzBepWwglo9oM"/>
+</div>
+<span class="mt-6 block text-[10px] font-bold uppercase tracking-[0.2em] text-medium-gray">Acompañamiento</span>
+<h3 class="mt-3 font-serif text-xl leading-snug group-hover:text-medium-gray">Cómo hablar con los niños sobre la pérdida</h3>
+</div>
+<!-- Card 2 -->
+<div class="group cursor-pointer">
+<div class="overflow-hidden rounded-lg bg-slate-200">
+<img alt="Meditación" class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Person meditating by a calm lake" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYp0bYf5AuBNWAockGY5FnEjitGzg5Nwu-Sl7EmFQJhZYjPv-Wk55IGV1b1bYQdjQL8PiX_gtmuICRQObtqP9-zXZHMAUpMI-3a44GyMXoW0fcMVRktCAQCgH0M-LfLEhBVsj-HCv4_fLp9vBM6ydqjR6Hx5GaIdC4wQSI69uUefhVUfyS4GAJKg1xTyI3Wz9SymvIiqYVIXkRXo3SdITTD3yh-3V1WazK3QsuuRfrxFGvErhCLa-nSBhzgf4Dnq7PQWK0TXIs_vw"/>
+</div>
+<span class="mt-6 block text-[10px] font-bold uppercase tracking-[0.2em] text-medium-gray">Bienestar</span>
+<h3 class="mt-3 font-serif text-xl leading-snug group-hover:text-medium-gray">Prácticas de mindfulness para el duelo</h3>
+</div>
+<!-- Card 3 -->
+<div class="group cursor-pointer">
+<div class="overflow-hidden rounded-lg bg-slate-200">
+<img alt="Legado" class="aspect-[4/3] w-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Old photo album and a candle on a wooden table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwQlbMVwtP_IzWPs4ZGRIzOxzKxQ3lUlA_ZaMjnPI2i7KLh5jrrqSBX7smChWmIDGH3q53wRkvp3xvBB4dhR-nU3N4y6IKljz3aX1FQ08bzPNIEXL16ZbZRMeFOX9rigCLL4_1m0XNwj563oO6kLytkcT4EWwMtBabI5n_m0u1gjAgxiW58zaFBK_Tfx5Sdjh04I4M7r9jkS2v2O-aFspKyQZQvlOq9YrjbBUtlm1xSF4BsNFhNTzf8SVwGgwRaD8H2PKkL-4SQHg"/>
+</div>
+<span class="mt-6 block text-[10px] font-bold uppercase tracking-[0.2em] text-medium-gray">Legado</span>
+<h3 class="mt-3 font-serif text-xl leading-snug group-hover:text-medium-gray">Preservando el legado de un ser querido</h3>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-white py-16 px-6">
+<div class="mx-auto max-w-7xl">
+<div class="grid gap-12 lg:grid-cols-4">
+<div class="col-span-1 lg:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-3xl">church</span>
+<h2 class="text-xl font-bold uppercase tracking-tighter">Eternal Peace</h2>
+</div>
+<p class="max-w-md text-slate-400 leading-relaxed">
+                            Brindando apoyo y dignidad en los momentos más difíciles desde 1985. Nuestro compromiso es la paz y el respeto para su familia.
+                        </p>
+</div>
+<div>
+<h4 class="mb-6 text-xs font-bold uppercase tracking-[0.2em]">Contacto</h4>
+<ul class="space-y-4 text-sm text-slate-400">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">call</span> +34 900 000 000</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">location_on</span> Av. de la Paz 120, Madrid</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm">mail</span> contacto@eternalpeace.com</li>
+</ul>
+</div>
+<div>
+<h4 class="mb-6 text-xs font-bold uppercase tracking-[0.2em]">Síguenos</h4>
+<div class="flex gap-4">
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Instagram</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">LinkedIn</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Facebook</a>
+</div>
+</div>
+</div>
+<div class="mt-16 border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-slate-500">
+<p>© 2024 Eternal Peace. Todos los derechos reservados.</p>
+<div class="flex gap-8">
+<a class="hover:text-white" href="#">Política de Privacidad</a>
+<a class="hover:text-white" href="#">Aviso Legal</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

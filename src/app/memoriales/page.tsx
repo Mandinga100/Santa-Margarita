@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from 'react';
-import Header from '@/components/Header/Header';
-import Footer from '@/components/Footer/Footer';
 import styles from './memoriales.module.css';
 
 const dummyMemorials = [
@@ -21,8 +19,6 @@ export default function MemorialesPage() {
 
     return (
         <main className={styles.main}>
-            <Header />
-
             <section className={styles.hero}>
                 <div className="container">
                     <h1 className={styles.title}>Memoriales y Obituarios</h1>
@@ -54,7 +50,6 @@ export default function MemorialesPage() {
                         {filtered.map((m) => (
                             <div key={m.id} className={styles.card}>
                                 <div className={styles.imageContainer}>
-                                    {/* Placeholder para portrait */}
                                     <div className={styles.portraitPlaceholder}></div>
                                     <div className={styles.cardType}>{m.type}</div>
                                 </div>
@@ -68,8 +63,6 @@ export default function MemorialesPage() {
                     </div>
                 </div>
             </section>
-
-            <Footer />
         </main>
     );
 }

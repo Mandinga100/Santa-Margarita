@@ -1,46 +1,36 @@
 import Link from 'next/link';
-import styles from './Header.module.css';
 
-const Header = () => {
+export default function Header() {
   return (
-    <header className={styles.header}>
-      {/* Top Bar - Económicos */}
-      <div className={styles.topBar}>
-        <div className={styles.container}>
-          <div className={styles.indicators}>
-            <span>UF: $38.450,22</span>
-            <span>UTM: $66.232,00</span>
-            <span>{new Date().toLocaleDateString('es-CL', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
+    <header className="sticky top-0 z-50 bg-white/95 dark:bg-[#191919]/95 backdrop-blur-md border-b border-black/10">
+      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="bg-black text-white p-2 rounded-lg">
+            <span className="material-symbols-outlined text-2xl">temple_buddhist</span>
           </div>
-        </div>
-      </div>
-
-      {/* Main Bar */}
-      <div className={styles.mainBar}>
-        <div className={styles.container}>
-          <div className={styles.logo}>
-            <Link href="/">
-              <span className={styles.logoText}>FUNERARIA <span className={styles.logoBold}>SANTA MARGARITA</span></span>
-            </Link>
-          </div>
-
-          <nav className={styles.nav}>
-            <Link href="/cotizacion">Cotización Online</Link>
-            <Link href="/memoriales">Memoriales</Link>
-            <Link href="/planes">Planes</Link>
-            <Link href="/recursos">Recursos</Link>
-            <Link href="/contacto">Contacto</Link>
-          </nav>
-
-          <div className={styles.contact}>
-            <a href="tel:+56912345678" className={styles.phone}>
-              <span className={styles.phoneIcon}>📞</span> 24/7: +56 9 1234 5678
-            </a>
-          </div>
+          <h1 className="font-serif text-xl font-bold tracking-tight text-black dark:text-white">Santa Margarita</h1>
+        </Link>
+        <nav className="hidden lg:flex items-center gap-8">
+          <Link className="text-sm font-medium hover:text-black/60 transition-colors" href="/cotizacion">Cotización Online</Link>
+          <Link className="text-sm font-medium hover:text-black/60 transition-colors" href="/memoriales">Memoriales</Link>
+          <Link className="text-sm font-medium hover:text-black/60 transition-colors" href="/planes">Planes</Link>
+          <Link className="text-sm font-medium hover:text-black/60 transition-colors" href="/faq">Preguntas</Link>
+        </nav>
+        <div className="flex items-center gap-4">
+          <a className="hidden md:flex flex-col items-end mr-4" href="tel:+56964333760">
+            <span className="text-[10px] text-[#7E7D7D] font-bold uppercase tracking-tighter">Asistencia 24/7</span>
+            <span className="text-sm font-bold text-black dark:text-white">+56 9 6433 3760</span>
+          </a>
+          <button className="bg-[#25D366] text-white flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold shadow-lg shadow-green-200 dark:shadow-none transition-transform hover:scale-105 active:scale-95">
+            <span className="material-symbols-outlined text-[18px]">chat</span>
+            <span className="hidden md:inline">WhatsApp</span>
+          </button>
+          {/* Menu Mobile Toggle */}
+          <button className="lg:hidden text-black dark:text-white p-1">
+            <span className="material-symbols-outlined text-[32px]">menu</span>
+          </button>
         </div>
       </div>
     </header>
   );
-};
-
-export default Header;
+}

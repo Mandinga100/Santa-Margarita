@@ -1,0 +1,148 @@
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1754cf",
+            "background-light": "#f6f6f8",
+            "background-dark": "#111621",
+            "deep-black": "#0a0a0a",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"],
+            "serif": ["Playfair Display", "serif"],
+          },
+          borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+        },
+      },
+    }
+  </script>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="bg-white text-slate-900 antialiased">
+<div class="relative flex min-h-screen w-full flex-col bg-white">
+<!-- 1. Header: Persistent minimalist mobile header -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-none bg-white/90 backdrop-blur-md px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="text-primary">
+<svg class="size-6" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-slate-900 text-lg font-semibold tracking-tight font-display">Previsión Móvil</h2>
+</div>
+<button class="flex items-center justify-center p-2 text-slate-900">
+<span class="material-symbols-outlined" style="font-size: 28px;">menu</span>
+</button>
+</header>
+<main class="flex-1">
+<!-- 2. Hero Section: Full-width serene photograph -->
+<section class="relative h-[60vh] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-black/20 z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Serene ocean waves at sunset for calm atmosphere" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA2tDsg3cYu0FJ8vigLrmb8H14cRa8QF0zKpn1qAnDyBwXw1uQrmlGCFT3oiHd95h6PCbFeyP8Z6syeXjJG9S4se3SI_qjECA-URdiO9TxO4F3mVZ1-Qi9yub99AnMcoblP9bGkm8KN-K0OsNDZyQ0oWogED4njcumcN9IrYtV45vu-YmfpSgnn7iKW402drAa8XRSfgwMzZFZm409mKjMZzr_CPwCdUZFqWW-uMMSQDihqOXvQ5GmZ05DvIQ6noiDYyabcd5JAPAE");'></div>
+<div class="relative z-20 text-center px-6">
+<h1 class="text-white text-5xl md:text-6xl font-serif mb-4">Previsión</h1>
+<div class="h-1 w-12 bg-white mx-auto rounded-full"></div>
+</div>
+</section>
+<!-- 3. Introduction: Single-column vertical layout -->
+<section class="max-w-2xl mx-auto px-8 py-20 text-center">
+<p class="text-slate-600 text-lg md:text-xl leading-relaxed font-light">
+          Planear con anticipación es un acto de amor. Brinda la tranquilidad necesaria para usted y sus seres queridos, asegurando que cada detalle sea respetado y los costos protegidos ante el futuro.
+        </p>
+</section>
+<!-- 4. Benefits Stack: Vertical list of 3 elegant cards -->
+<section class="px-6 py-12 space-y-16">
+<div class="flex flex-col items-center text-center group">
+<div class="mb-6 p-4 rounded-full bg-primary/5 text-primary">
+<span class="material-symbols-outlined" style="font-size: 40px;">spa</span>
+</div>
+<h3 class="text-2xl font-serif text-slate-900 mb-3">Paz Mental</h3>
+<p class="text-slate-500 leading-relaxed max-w-sm">
+            La seguridad absoluta de haber tomado las decisiones correctas a tiempo, eliminando cargas emocionales futuras.
+          </p>
+</div>
+<div class="flex flex-col items-center text-center group">
+<div class="mb-6 p-4 rounded-full bg-primary/5 text-primary">
+<span class="material-symbols-outlined" style="font-size: 40px;">shield_with_heart</span>
+</div>
+<h3 class="text-2xl font-serif text-slate-900 mb-3">Protección Financiera</h3>
+<p class="text-slate-500 leading-relaxed max-w-sm">
+            Congele los costos actuales y proteja el patrimonio de su familia contra la inflación y gastos imprevistos.
+          </p>
+</div>
+<div class="flex flex-col items-center text-center group">
+<div class="mb-6 p-4 rounded-full bg-primary/5 text-primary">
+<span class="material-symbols-outlined" style="font-size: 40px;">person_celebrate</span>
+</div>
+<h3 class="text-2xl font-serif text-slate-900 mb-3">Servicio Personalizado</h3>
+<p class="text-slate-500 leading-relaxed max-w-sm">
+            Diseñamos planes a la medida de sus deseos y creencias, respetando cada detalle de su legado personal.
+          </p>
+</div>
+</section>
+<!-- 5. Process Timeline: Simplified vertical step-by-step -->
+<section class="bg-slate-50/50 py-24 px-8">
+<div class="max-w-md mx-auto">
+<h2 class="text-3xl font-serif text-center mb-16">Nuestro Proceso</h2>
+<div class="relative space-y-12">
+<!-- Timeline Line -->
+<div class="absolute left-[19px] top-2 bottom-2 w-px bg-slate-200"></div>
+<div class="relative flex items-start gap-6">
+<div class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-900 font-bold">1</div>
+<div>
+<h4 class="text-lg font-bold text-slate-900">Asesoría</h4>
+<p class="text-slate-500 mt-1">Sesión privada para entender sus necesidades y explicar las opciones disponibles.</p>
+</div>
+</div>
+<div class="relative flex items-start gap-6">
+<div class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-900 font-bold">2</div>
+<div>
+<h4 class="text-lg font-bold text-slate-900">Selección</h4>
+<p class="text-slate-500 mt-1">Elección del plan y servicios que mejor se adapten a su visión y presupuesto.</p>
+</div>
+</div>
+<div class="relative flex items-start gap-6">
+<div class="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-900 font-bold">3</div>
+<div>
+<h4 class="text-lg font-bold text-slate-900">Convenio</h4>
+<p class="text-slate-500 mt-1">Formalización de su plan con facilidades de pago y cobertura inmediata.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. CTA Section: Full-width, soft gray section -->
+<section class="bg-background-light py-20 px-6 text-center">
+<div class="max-w-xl mx-auto">
+<h2 class="text-2xl font-serif mb-4 text-slate-900">Comience a planear hoy</h2>
+<p class="text-slate-500 mb-10">Estamos aquí para guiarle en cada paso con empatía y profesionalismo.</p>
+<button class="w-full md:w-auto md:px-12 h-16 bg-deep-black text-white font-bold tracking-wider rounded-none uppercase text-sm transition-opacity hover:opacity-90">
+            Hablar con un Asesor
+          </button>
+</div>
+</section>
+</main>
+<footer class="bg-white py-12 px-6 border-t border-slate-50 text-center">
+<div class="flex justify-center gap-2 mb-6">
+<div class="text-slate-300">
+<svg class="size-5" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+</div>
+<p class="text-slate-400 text-xs uppercase tracking-widest">© 2024 Previsión Móvil. Todos los derechos reservados.</p>
+</footer>
+</div>
+</body></html>

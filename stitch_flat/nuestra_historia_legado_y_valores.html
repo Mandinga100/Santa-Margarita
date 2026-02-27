@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1152d4",
+              "background-light": "#ffffff",
+              "background-dark": "#101622",
+              "neutral-dark": "#000000",
+            },
+            fontFamily: {
+              "display": ["Inter", "sans-serif"],
+              "serif": ["Playfair Display", "serif"],
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .serif-text {
+            font-family: 'Playfair Display', serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light text-slate-900 selection:bg-primary/20">
+<nav class="bg-neutral-dark text-white px-8 md:px-20 py-6 flex items-center justify-between sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl">diamond</span>
+<span class="serif-text text-xl tracking-widest uppercase font-bold">Aeterna</span>
+</div>
+<div class="hidden md:flex items-center gap-12 text-xs uppercase tracking-[0.2em] font-medium">
+<a class="hover:text-primary transition-colors" href="#">Inicio</a>
+<a class="text-primary" href="#">Nuestra Historia</a>
+<a class="hover:text-primary transition-colors" href="#">Servicios</a>
+<a class="hover:text-primary transition-colors" href="#">Instalaciones</a>
+<a class="hover:text-primary transition-colors" href="#">Contacto</a>
+</div>
+<div>
+<button class="bg-white text-neutral-dark px-6 py-2 text-xs uppercase tracking-widest font-bold hover:bg-primary hover:text-white transition-all duration-300">
+                Planificar
+            </button>
+</div>
+</nav>
+<section class="relative h-[70vh] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-black/40 z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center scale-105" data-alt="Serene historical courtyard with classical architecture and soft light" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAeEbGYZADvSf2-MVS-tRbUlFAV11ipsHTPNZ8s_WDfFfQHRaX6rro5r-0QrLnE4d9CAHP9ZwpAZek1LMATleyZpH-dlmgxxK0X0_h5SNCvMkanlmr1zg-xf1weZnp3E8xlELzi2gLzkEoQ2BGBEVvybICqgr-g_OzzleWQ-hhN7nEe3efMdmtOCqMAFSPo97a8wh4meM9z_vdn_iMmuGyGM5AsGDsgFXQNE6vKAA0wFPj-rkdKO9AJ3-OYkUXUjthYsjkGfZJVYqI')">
+</div>
+<div class="relative z-20 text-center px-4">
+<h1 class="serif-text text-white text-5xl md:text-7xl font-light mb-4">Nuestra Historia</h1>
+<div class="w-16 h-px bg-white/60 mx-auto mt-8"></div>
+</div>
+</section>
+<section class="py-24 px-8 md:px-0">
+<div class="max-w-3xl mx-auto text-center">
+<h2 class="serif-text text-3xl md:text-4xl italic mb-12 text-slate-800">Un Legado de Dignidad</h2>
+<div class="space-y-8 text-slate-600 leading-relaxed text-lg font-light">
+<p>
+                    Desde 1924, Aeterna ha sido un pilar de consuelo y distinción para las familias en sus momentos más delicados. Lo que comenzó como un pequeño compromiso familiar se ha transformado en un referente mundial de excelencia funeraria, donde cada detalle es una oda a la vida que honramos.
+                </p>
+<p>
+                    Nuestra filosofía trasciende lo convencional. No solo gestionamos despedidas; curamos homenajes que reflejan la grandeza de cada existencia. Con una dedicación inquebrantable a la privacidad y el respeto, hemos servido a generaciones, manteniendo intactos los valores de honestidad y compasión que nos vieron nacer.
+                </p>
+<p>
+                    Hoy, combinamos la tradición secular con la innovación contemporánea, asegurando que cada servicio sea una experiencia de paz, belleza y trascendencia absoluta.
+                </p>
+</div>
+</div>
+</section>
+<section class="py-24 bg-slate-50/50">
+<div class="max-w-4xl mx-auto px-8">
+<div class="relative">
+<div class="absolute left-1/2 -translate-x-1/2 h-full w-px bg-slate-200"></div>
+<div class="relative flex items-center justify-between mb-24 flex-col md:flex-row">
+<div class="w-full md:w-[45%] text-right mb-4 md:mb-0">
+<span class="serif-text text-4xl text-primary font-bold">1924</span>
+<h3 class="font-bold text-slate-800 mt-2">La Fundación</h3>
+<p class="text-sm text-slate-500 mt-2 font-light">Don Julián Valdivia establece la primera casa de reposo y servicios en el casco histórico.</p>
+</div>
+<div class="size-3 bg-primary rounded-full relative z-10 border-4 border-white"></div>
+<div class="hidden md:block w-[45%]"></div>
+</div>
+<div class="relative flex items-center justify-between mb-24 flex-col md:flex-row">
+<div class="hidden md:block w-[45%]"></div>
+<div class="size-3 bg-primary rounded-full relative z-10 border-4 border-white"></div>
+<div class="w-full md:w-[45%] text-left mt-4 md:mt-0">
+<span class="serif-text text-4xl text-primary font-bold">1968</span>
+<h3 class="font-bold text-slate-800 mt-2">Expansión Nacional</h3>
+<p class="text-sm text-slate-500 mt-2 font-light">Apertura de nuestra sede insignia, reconocida por su arquitectura neoclásica.</p>
+</div>
+</div>
+<div class="relative flex items-center justify-between mb-24 flex-col md:flex-row">
+<div class="w-full md:w-[45%] text-right mb-4 md:mb-0">
+<span class="serif-text text-4xl text-primary font-bold">1995</span>
+<h3 class="font-bold text-slate-800 mt-2">Excelencia en Servicio</h3>
+<p class="text-sm text-slate-500 mt-2 font-light">Implementación de protocolos de atención personalizada y servicios de tanatoplastia avanzada.</p>
+</div>
+<div class="size-3 bg-primary rounded-full relative z-10 border-4 border-white"></div>
+<div class="hidden md:block w-[45%]"></div>
+</div>
+<div class="relative flex items-center justify-between flex-col md:flex-row">
+<div class="hidden md:block w-[45%]"></div>
+<div class="size-3 bg-primary rounded-full relative z-10 border-4 border-white"></div>
+<div class="w-full md:w-[45%] text-left mt-4 md:mt-0">
+<span class="serif-text text-4xl text-primary font-bold">2024</span>
+<h3 class="font-bold text-slate-800 mt-2">Centenario</h3>
+<p class="text-sm text-slate-500 mt-2 font-light">Cien años redefiniendo el concepto de despedida con dignidad y elegancia atemporal.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 px-8">
+<div class="max-w-6xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-16">
+<div class="text-center group">
+<div class="mb-8 flex justify-center">
+<span class="material-symbols-outlined text-5xl text-slate-400 group-hover:text-primary transition-colors duration-500">shrine</span>
+</div>
+<h4 class="serif-text text-2xl mb-4 font-medium">Dignidad</h4>
+<p class="text-slate-500 font-light leading-relaxed">Tratamos cada vida con el honor supremo que merece, cuidando cada detalle con solemnidad.</p>
+</div>
+<div class="text-center group">
+<div class="mb-8 flex justify-center">
+<span class="material-symbols-outlined text-5xl text-slate-400 group-hover:text-primary transition-colors duration-500">favorite</span>
+</div>
+<h4 class="serif-text text-2xl mb-4 font-medium">Respeto</h4>
+<p class="text-slate-500 font-light leading-relaxed">Entendemos la profundidad del duelo y actuamos con la máxima discreción y empatía.</p>
+</div>
+<div class="text-center group">
+<div class="mb-8 flex justify-center">
+<span class="material-symbols-outlined text-5xl text-slate-400 group-hover:text-primary transition-colors duration-500">auto_awesome</span>
+</div>
+<h4 class="serif-text text-2xl mb-4 font-medium">Excelencia</h4>
+<p class="text-slate-500 font-light leading-relaxed">Buscamos la perfección en cada ceremonia, desde la estética hasta la logística operativa.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-32 bg-white">
+<div class="max-w-6xl mx-auto px-8">
+<h2 class="serif-text text-4xl text-center mb-20 text-slate-800">Nuestro Liderazgo</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<div class="flex flex-col items-center">
+<div class="aspect-[4/5] w-full mb-6 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Professional black and white portrait of a senior male executive" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxVaL6DXmX6Nwuv-epeksZJnqzLW00S1sHwEapCl6suPTlq-4igIHYaV6_aSda8mXe104Nc6eLzKO6qH0tkxSkfwF8WtQ_0qNqO66raHzwPm6OhryxM3BzgsBgFidTgwT4XCx6lRH6wWQN22vi5KZscwhUJSEMHpPrkMNRr5LLCT5GFRFdhNs5kTG-xVSJhu2PkuozcP6x-xUSeSUOpUYcV_PtEB3WaJNLqZYspyMnShU2F8n4CdJhNG7To_XczrUkZkwyPHPGNwU"/>
+</div>
+<h3 class="serif-text text-xl font-bold text-slate-800">Julian Valdivia III</h3>
+<p class="text-xs uppercase tracking-widest text-slate-400 mt-1 font-medium">Director General</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="aspect-[4/5] w-full mb-6 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Professional black and white portrait of a female corporate leader" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD36QqAR9AB8so_mjBIZyEMOQ_F_g3P_NAEv27FY7gi1lDGLzEEDRUuqR1rQkWreAQf0KbVC3qNw81ktkQ9gcgGOjwKowT-zbJTsdW-VmCauTUivOWAa9NkE3lmXHNFB3wsznSCQFsCfM67FyzoeVg8SLpIwKN4i1UfQTUZle4OUzKZnhNMgz84znrZQtR7CeAtQLwVKs6tuzWPoWVK6Q3kI3kpU4RW3D4lZ0eIGJyNJ-0MJXoYw31aGZ6uQJyhGVsc7RJO3pkz-Kg"/>
+</div>
+<h3 class="serif-text text-xl font-bold text-slate-800">Elena de la Rosa</h3>
+<p class="text-xs uppercase tracking-widest text-slate-400 mt-1 font-medium">Directora de Operaciones</p>
+</div>
+<div class="flex flex-col items-center">
+<div class="aspect-[4/5] w-full mb-6 overflow-hidden shadow-sm">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Professional black and white portrait of a middle-aged male executive" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVZ8OgLfPDGQrmWILr4qaivMhVvx0AI-EmfYUGdTc7CZc3bZQShcx94PXvDau3RwOIxfND48AtPBQEZEpG9Uh8kSTrjcxyxBgL7Xz3PhoQDqMLmd52EG2V0SKQN67YuyD8qTo-AgMqNHn9PqRlFpH4WIYvd5itWAL_7a1itsdAhlnT0sSCqU7FNHdIE88R06qtHMKl8n-xvWs5_Y8aiDCPT9ct3XpQoKUa9MeJAzOEkAJRSTdSnOsL4bB8SfVUtaQLrhrZWMxthl4"/>
+</div>
+<h3 class="serif-text text-xl font-bold text-slate-800">Marcus Sterling</h3>
+<p class="text-xs uppercase tracking-widest text-slate-400 mt-1 font-medium">Director de Patrimonio</p>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-neutral-dark text-white py-20 px-8 md:px-20">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-2xl">diamond</span>
+<span class="serif-text text-lg tracking-widest uppercase font-bold">Aeterna</span>
+</div>
+<p class="text-slate-400 text-sm font-light leading-loose">
+                    Dedicados a la preservación del legado y la dignidad humana desde 1924.
+                </p>
+</div>
+<div>
+<h5 class="text-xs uppercase tracking-widest font-bold mb-8">Navegación</h5>
+<ul class="space-y-4 text-sm text-slate-400 font-light">
+<li><a class="hover:text-white transition-colors" href="#">Servicios</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Ubicaciones</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Pre-planificación</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Obituarios</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-xs uppercase tracking-widest font-bold mb-8">Contacto</h5>
+<ul class="space-y-4 text-sm text-slate-400 font-light">
+<li>Av. de la Eternidad 100, Capital</li>
+<li>+34 900 123 456</li>
+<li>contacto@aeterna.com</li>
+</ul>
+</div>
+<div>
+<h5 class="text-xs uppercase tracking-widest font-bold mb-8">Boletín</h5>
+<div class="flex border-b border-slate-700 py-2">
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full font-light" placeholder="Email" type="email"/>
+<button class="material-symbols-outlined text-slate-400">arrow_forward</button>
+</div>
+</div>
+</div>
+<div class="mt-20 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[10px] uppercase tracking-widest text-slate-500">© 2024 Aeterna Funeral Home. Todos los derechos reservados.</p>
+<div class="flex gap-8 text-[10px] uppercase tracking-widest text-slate-500">
+<a class="hover:text-white transition-colors" href="#">Privacidad</a>
+<a class="hover:text-white transition-colors" href="#">Términos</a>
+</div>
+</div>
+</footer>
+</body></html>

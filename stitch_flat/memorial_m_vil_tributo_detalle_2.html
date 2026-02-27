@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Memorial Móvil con Menú Rápido</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#16169c",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111121",
+                        "soft-gray": "#F2F2F2",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        :root {
+            --primary-blue: #16169c;
+            --accent-gold: #b8860b;
+        }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-sans { font-family: 'Inter', sans-serif; }
+        .bottom-nav-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<div class="relative flex min-h-screen w-full flex-col bg-white dark:bg-background-dark overflow-x-hidden pb-24">
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-slate-100 dark:border-slate-800 bg-white/90 dark:bg-background-dark/90 backdrop-blur-md px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl">church</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight uppercase tracking-[0.15em] font-display">Memorial</h2>
+</div>
+<button aria-label="Menú" class="flex items-center justify-center rounded-full h-12 w-12 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</header>
+<main class="flex flex-col max-w-[480px] mx-auto w-full px-6 py-8">
+<section class="flex flex-col items-center text-center mb-12">
+<div class="relative mb-8">
+<div class="size-56 rounded-full overflow-hidden border-8 border-slate-50 dark:border-slate-800 shadow-2xl">
+<img alt="Retrato de Ricardo de la Vega" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwtNdQvsTCMLpm4JWZEezLskn2HgF9C8X40bqv1zjuQJjhbfx7k_YGvvKjiPiVV6VxCYd7UKfNaVixPZ9UQIqfIEC2iaqW5Dbv7ENNmnkcjEB5_HFBae2A0-7NLprcEcX9zFMqpHQHm9mATXc__9-saGVG4G_j_qR3now-ePsohAa4T1FKfqkc6D_jmKZO0OvpadyXIHa1GE5Xb45OC02KnEAnyYJyHERKBHyk4JcUs_bof3dEd9nI1HAt6qjDm4AqFfoKIzpD8UM"/>
+</div>
+</div>
+<h1 class="text-4xl font-serif font-bold text-slate-900 dark:text-slate-100 mb-3 tracking-tight">Ricardo de la Vega</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xl font-medium tracking-wide">14 May 1945 — 22 Oct 2023</p>
+</section>
+<div class="flex flex-col items-center justify-center mb-10 py-6 border-y border-slate-100 dark:border-slate-800">
+<div class="flex items-center gap-1 mb-3">
+<span class="material-symbols-outlined text-amber-500 fill-1 text-2xl">workspace_premium</span>
+<span class="material-symbols-outlined text-amber-500 fill-1 text-2xl">workspace_premium</span>
+<span class="material-symbols-outlined text-amber-500 fill-1 text-2xl">workspace_premium</span>
+<span class="material-symbols-outlined text-amber-500 fill-1 text-2xl">workspace_premium</span>
+<span class="material-symbols-outlined text-amber-500 fill-1 text-2xl">workspace_premium</span>
+</div>
+<p class="text-sm font-bold text-slate-700 dark:text-slate-300 uppercase tracking-[0.2em]">128 Velas Encendidas</p>
+</div>
+<div class="flex flex-col gap-5 mb-14">
+<button class="flex items-center justify-center gap-3 rounded-2xl h-16 bg-primary text-white text-lg font-bold tracking-wide shadow-xl shadow-primary/30 active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-2xl">light</span>
+<span>Encender Vela Virtual</span>
+</button>
+<button class="flex items-center justify-center gap-3 rounded-2xl h-16 bg-slate-900 dark:bg-slate-700 text-white text-lg font-bold tracking-wide shadow-lg active:scale-[0.98] transition-all">
+<span class="material-symbols-outlined text-2xl">edit_note</span>
+<span>Dejar Condolencia</span>
+</button>
+</div>
+<section class="mb-14">
+<h3 class="text-2xl font-serif font-bold text-slate-900 dark:text-slate-100 mb-6 border-l-4 border-primary pl-4">Biografía</h3>
+<div class="prose dark:prose-invert max-w-none">
+<p class="text-slate-700 dark:text-slate-300 leading-relaxed text-xl mb-6">
+                    Ricardo fue un hombre de fe, dedicado por entero a su familia y a su comunidad. Arquitecto de profesión y poeta de corazón, dejó una huella imborrable en cada estructura que diseñó y en cada palabra que escribió.
+                </p>
+<p class="text-slate-700 dark:text-slate-300 leading-relaxed text-xl">
+                    Su legado perdura a través de sus hijos y nietos, quienes hoy celebran una vida llena de integridad, sabiduría y un amor incondicional por el arte y la naturaleza.
+                </p>
+</div>
+</section>
+<section class="mb-12">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-2xl font-serif font-bold text-slate-900 dark:text-slate-100">Condolencias</h3>
+<span class="text-xs font-black uppercase tracking-widest text-primary bg-primary/10 px-4 py-1.5 rounded-full border border-primary/20">24 Mensajes</span>
+</div>
+<div class="flex flex-col gap-6">
+<div class="bg-soft-gray dark:bg-slate-800/50 p-7 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-serif font-bold text-xl text-slate-900 dark:text-slate-100">Familia Martínez Soler</h4>
+<span class="text-[11px] text-slate-500 dark:text-slate-400 uppercase font-bold tracking-tighter">Hace 2 horas</span>
+</div>
+<p class="text-slate-700 dark:text-slate-300 italic leading-relaxed text-lg">
+                        "Nuestras más sinceras condolencias. Ricardo fue un gran amigo y mentor. Lo extrañaremos profundamente."
+                    </p>
+</div>
+<div class="bg-soft-gray dark:bg-slate-800/50 p-7 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-serif font-bold text-xl text-slate-900 dark:text-slate-100">Elena Rodríguez</h4>
+<span class="text-[11px] text-slate-500 dark:text-slate-400 uppercase font-bold tracking-tighter">Ayer</span>
+</div>
+<p class="text-slate-700 dark:text-slate-300 italic leading-relaxed text-lg">
+                        "Vuela alto, querido tío. Gracias por todas tus enseñanzas y por ese cariño tan especial que siempre nos brindaste."
+                    </p>
+</div>
+</div>
+<button class="w-full mt-8 py-5 text-primary font-black text-base uppercase tracking-[0.2em] flex items-center justify-center gap-3 border-2 border-primary/10 rounded-xl active:bg-primary/5 transition-colors">
+                Ver todos los tributos
+                <span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</section>
+</main>
+<footer class="mt-auto bg-slate-50 dark:bg-slate-900/50 px-6 pt-12 pb-32 border-t border-slate-200 dark:border-slate-800 text-center">
+<p class="text-slate-500 dark:text-slate-400 text-sm uppercase tracking-[0.25em] font-bold mb-6">Servicios Funerarios de Excelencia</p>
+<div class="flex justify-center gap-8 mb-10">
+<button class="p-3 bg-white dark:bg-slate-800 rounded-full shadow-md text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-2xl">share</span>
+</button>
+<button class="p-3 bg-white dark:bg-slate-800 rounded-full shadow-md text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-2xl">mail</span>
+</button>
+<button class="p-3 bg-white dark:bg-slate-800 rounded-full shadow-md text-slate-600 dark:text-slate-300">
+<span class="material-symbols-outlined text-2xl">print</span>
+</button>
+</div>
+<p class="text-slate-400 text-xs font-medium">© 2024 Memorial Digital Móvil. <br/>Diseño Accesible para la Familia.</p>
+</footer>
+<nav class="fixed bottom-0 left-0 right-0 z-[60] bottom-nav-blur bg-white/90 dark:bg-background-dark/90 border-t border-slate-200 dark:border-slate-800 px-2 pb-safe shadow-[0_-4px_20px_rgba(0,0,0,0.08)]">
+<div class="max-w-[480px] mx-auto flex items-center justify-around h-20">
+<a class="flex flex-col items-center justify-center flex-1 gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-2xl">home</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Inicio</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined text-2xl">menu_book</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Biografía</span>
+</a>
+<div class="relative -top-6">
+<button class="flex items-center justify-center size-16 rounded-full bg-primary text-white shadow-xl shadow-primary/40 border-4 border-white dark:border-background-dark active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-3xl fill-1">light</span>
+</button>
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 text-[10px] font-black text-primary uppercase whitespace-nowrap tracking-wider">Vela</span>
+</div>
+<a class="flex flex-col items-center justify-center flex-1 gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined text-2xl">chat_bubble</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Mensajes</span>
+</a>
+<a class="flex flex-col items-center justify-center flex-1 gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined text-2xl">share</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Compartir</span>
+</a>
+</div>
+</nav>
+</div>
+
+</body></html>

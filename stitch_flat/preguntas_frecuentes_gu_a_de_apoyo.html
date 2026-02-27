@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#ffffff",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .faq-accordion:hover .faq-icon { color: #1152d4; }
+        .faq-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        /* Using peer-checked for CSS-only accordion logic */
+        input:checked ~ .faq-content { max-height: 500px; padding-bottom: 24px; }
+        input:checked ~ label .faq-icon { transform: rotate(180deg); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex min-h-screen flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-black text-white px-6 md:px-20 py-6">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-6 text-white">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-serif text-xl tracking-widest uppercase">Elysium</span>
+</div>
+<nav class="hidden md:flex items-center gap-10 text-[11px] uppercase tracking-[0.2em] font-medium">
+<a class="hover:text-primary transition-colors" href="#">Servicios</a>
+<a class="hover:text-primary transition-colors" href="#">Previsión</a>
+<a class="hover:text-primary transition-colors" href="#">Memoriales</a>
+<a class="hover:text-primary transition-colors" href="#">Contacto</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="text-xs uppercase tracking-widest font-bold border-b border-white pb-1 hover:text-primary hover:border-primary transition-all">Mi Cuenta</button>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="pt-24 pb-12 px-6">
+<div class="max-w-3xl mx-auto text-center">
+<h1 class="font-serif text-5xl md:text-6xl mb-8 text-slate-900">Preguntas Frecuentes</h1>
+<p class="text-slate-500 text-lg leading-relaxed font-light max-w-2xl mx-auto">
+                        Encuentre respuestas detalladas sobre nuestros servicios funerarios, planes de previsión y el apoyo legal necesario en momentos de transición.
+                    </p>
+</div>
+</section>
+<!-- Search Bar -->
+<section class="mb-16 px-6">
+<div class="max-w-2xl mx-auto">
+<div class="relative group">
+<div class="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+<span class="material-symbols-outlined text-slate-400">search</span>
+</div>
+<input class="w-full bg-slate-50 border-none rounded-full py-4 pl-12 pr-6 text-sm focus:ring-1 focus:ring-primary/20 transition-all placeholder:text-slate-400 placeholder:italic" placeholder="¿En qué podemos ayudarle hoy?" type="text"/>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="max-w-3xl mx-auto px-6 pb-24">
+<!-- Category: Servicios Funerarios -->
+<div class="mb-16">
+<h2 class="font-serif text-2xl mb-8 pb-4 border-b border-slate-100">Servicios Funerarios</h2>
+<!-- Accordion Item 1 -->
+<div class="border-b border-slate-50">
+<input class="hidden peer" id="faq-1" type="checkbox"/>
+<label class="flex justify-between items-center py-6 cursor-pointer group" for="faq-1">
+<span class="font-serif text-xl group-hover:text-primary transition-colors">¿Qué servicios se incluyen en un funeral estándar?</span>
+<span class="material-symbols-outlined faq-icon transition-transform duration-300 text-slate-300">expand_more</span>
+</label>
+<div class="faq-content peer-checked:bg-slate-50/50 px-4 rounded-lg">
+<p class="text-slate-600 leading-loose font-light">
+                                Nuestros servicios estándar incluyen la preparación estética del ser querido, el uso de nuestras capillas de velación, coordinación de ceremonias religiosas o laicas, traslados locales y la gestión de todos los trámites necesarios ante las autoridades competentes.
+                            </p>
+</div>
+</div>
+<!-- Accordion Item 2 -->
+<div class="border-b border-slate-50">
+<input class="hidden peer" id="faq-2" type="checkbox"/>
+<label class="flex justify-between items-center py-6 cursor-pointer group" for="faq-2">
+<span class="font-serif text-xl group-hover:text-primary transition-colors">¿Ofrecen servicios de cremación?</span>
+<span class="material-symbols-outlined faq-icon transition-transform duration-300 text-slate-300">expand_more</span>
+</label>
+<div class="faq-content peer-checked:bg-slate-50/50 px-4 rounded-lg">
+<p class="text-slate-600 leading-loose font-light">
+                                Sí, contamos con crematorios propios de última generación. Ofrecemos diferentes opciones que van desde la cremación directa hasta servicios con velación previa. También disponemos de una amplia selección de urnas conmemorativas de diversos materiales y diseños.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Category: Previsión -->
+<div class="mb-16">
+<h2 class="font-serif text-2xl mb-8 pb-4 border-b border-slate-100">Planes de Previsión</h2>
+<div class="border-b border-slate-50">
+<input class="hidden peer" id="faq-3" type="checkbox"/>
+<label class="flex justify-between items-center py-6 cursor-pointer group" for="faq-3">
+<span class="font-serif text-xl group-hover:text-primary transition-colors">¿Por qué es importante contratar un plan de previsión?</span>
+<span class="material-symbols-outlined faq-icon transition-transform duration-300 text-slate-300">expand_more</span>
+</label>
+<div class="faq-content peer-checked:bg-slate-50/50 px-4 rounded-lg">
+<p class="text-slate-600 leading-loose font-light">
+                                La previsión permite congelar los precios actuales, evitando la inflación futura, y lo más importante, libera a sus seres queridos de la carga emocional y financiera de tomar decisiones difíciles en un momento de duelo.
+                            </p>
+</div>
+</div>
+<div class="border-b border-slate-50">
+<input class="hidden peer" id="faq-4" type="checkbox"/>
+<label class="flex justify-between items-center py-6 cursor-pointer group" for="faq-4">
+<span class="font-serif text-xl group-hover:text-primary transition-colors">¿Los planes son transferibles?</span>
+<span class="material-symbols-outlined faq-icon transition-transform duration-300 text-slate-300">expand_more</span>
+</label>
+<div class="faq-content peer-checked:bg-slate-50/50 px-4 rounded-lg">
+<p class="text-slate-600 leading-loose font-light">
+                                Absolutamente. Nuestros planes de previsión son 100% transferibles a familiares o amigos, brindando una flexibilidad total para asegurar la tranquilidad de su círculo cercano.
+                            </p>
+</div>
+</div>
+</div>
+<!-- Category: Memoriales -->
+<div class="mb-16">
+<h2 class="font-serif text-2xl mb-8 pb-4 border-b border-slate-100">Memoriales y Homenajes</h2>
+<div class="border-b border-slate-50">
+<input class="hidden peer" id="faq-5" type="checkbox"/>
+<label class="flex justify-between items-center py-6 cursor-pointer group" for="faq-5">
+<span class="font-serif text-xl group-hover:text-primary transition-colors">¿Qué es un memorial digital?</span>
+<span class="material-symbols-outlined faq-icon transition-transform duration-300 text-slate-300">expand_more</span>
+</label>
+<div class="faq-content peer-checked:bg-slate-50/50 px-4 rounded-lg">
+<p class="text-slate-600 leading-loose font-light">
+                                Es un espacio en línea dedicado a la memoria de su ser querido donde amigos y familiares pueden compartir fotos, anécdotas, encender velas virtuales y dejar mensajes de condolencia desde cualquier lugar del mundo.
+                            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Support CTA -->
+<section class="bg-slate-50 py-24 px-6 border-t border-slate-100">
+<div class="max-w-3xl mx-auto text-center">
+<h3 class="font-serif text-3xl mb-4">¿Aún tiene dudas?</h3>
+<p class="text-slate-500 mb-10 font-light">Estamos aquí para acompañarle las 24 horas del día, los 365 días del año.</p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-8">
+<div class="flex flex-col items-center">
+<span class="text-xs uppercase tracking-widest text-slate-400 mb-2">Llamada Gratuita 24/7</span>
+<span class="font-serif text-2xl">800-ELYSIUM-CARE</span>
+</div>
+<div class="h-px w-12 bg-slate-200 hidden md:block"></div>
+<button class="bg-black text-white px-10 py-4 rounded-full text-xs uppercase tracking-widest font-bold hover:bg-primary transition-colors">
+                            Contacto Directo
+                        </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-black text-white px-6 md:px-20 py-20 border-t border-white/10">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-5 text-white">
+<svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="font-serif text-lg tracking-widest uppercase">Elysium</span>
+</div>
+<p class="text-slate-400 text-xs leading-relaxed font-light">Excelencia y compasión en cada detalle para honrar el legado de quienes más amamos.</p>
+</div>
+<div>
+<h4 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-6 text-slate-500">Servicios</h4>
+<ul class="text-xs space-y-4 font-light text-slate-300">
+<li><a class="hover:text-white transition-colors" href="#">Funeraria Clásica</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Crematorio Privado</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Salas de Velación</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Transporte Internacional</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-6 text-slate-500">Legal</h4>
+<ul class="text-xs space-y-4 font-light text-slate-300">
+<li><a class="hover:text-white transition-colors" href="#">Privacidad</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Términos de Uso</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Preguntas Frecuentes</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Cookies</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-[10px] uppercase tracking-[0.3em] font-bold mb-6 text-slate-500">Contacto</h4>
+<p class="text-xs font-light text-slate-300 leading-relaxed">
+                            Calle de la Serenidad, 42<br/>
+                            Madrid, España<br/><br/>
+                            T: +34 900 123 456<br/>
+                            E: info@elysium.com
+                        </p>
+</div>
+</div>
+<div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-[10px] text-slate-500 uppercase tracking-widest">© 2024 Elysium Funeral Home. Todos los derechos reservados.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-slate-500 hover:text-white cursor-pointer text-sm">public</span>
+<span class="material-symbols-outlined text-slate-500 hover:text-white cursor-pointer text-sm">mail</span>
+<span class="material-symbols-outlined text-slate-500 hover:text-white cursor-pointer text-sm">call</span>
+</div>
+</div>
+</div>
+</footer>
+</div>
+</body></html>

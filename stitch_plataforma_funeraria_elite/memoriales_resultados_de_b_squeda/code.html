@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Memoriales - Resultados de Búsqueda</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .search-shadow {
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<!-- Header -->
+<header class="bg-primary text-white py-6 px-8 md:px-20 flex items-center justify-between sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl">auto_awesome</span>
+<h1 class="text-xl font-bold tracking-tight uppercase">Memoriales</h1>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:opacity-70" href="#">Servicios</a>
+<a class="text-sm font-medium hover:opacity-70" href="#">Ubicaciones</a>
+<a class="text-sm font-medium hover:opacity-70" href="#">Contacto</a>
+<a class="text-sm font-medium hover:opacity-70" href="#">Nosotros</a>
+</nav>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined cursor-pointer">account_circle</span>
+<span class="material-symbols-outlined cursor-pointer md:hidden">menu</span>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-6 py-12">
+<!-- Active Search Bar -->
+<div class="mb-12">
+<div class="relative max-w-2xl mx-auto">
+<div class="flex items-center bg-white dark:bg-slate-800 rounded-xl overflow-hidden p-2 search-shadow">
+<span class="material-symbols-outlined text-slate-400 px-4">search</span>
+<input class="w-full border-none focus:ring-0 text-lg bg-transparent py-3" placeholder="Buscar un memorial..." type="text" value="Juan Perez"/>
+<button class="flex items-center justify-center p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">cancel</span>
+</button>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-center mt-4 text-sm italic">
+                    Se encontraron 12 resultados para "Juan Perez"
+                </p>
+</div>
+</div>
+<!-- Refined Filters -->
+<div class="flex flex-wrap items-center justify-center gap-4 mb-16">
+<button class="flex items-center gap-2 px-6 py-2 bg-white dark:bg-slate-800 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors border-none shadow-sm">
+                Año <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-2 bg-white dark:bg-slate-800 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors border-none shadow-sm">
+                Tipo de Servicio <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<button class="flex items-center gap-2 px-6 py-2 bg-white dark:bg-slate-800 rounded-full text-sm font-medium hover:bg-slate-50 transition-colors border-none shadow-sm">
+                Ubicación <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+<!-- Results Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Card 1 -->
+<div class="group card-hover transition-all duration-300 bg-white dark:bg-slate-800 rounded-xl overflow-hidden flex flex-col items-center p-8 text-center">
+<div class="w-48 h-64 mb-6 rounded-lg bg-slate-100 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-transform" data-alt="Soft focus portrait of an elderly man" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoUo_S4dkrDSR3bED7_t3MHAg2Idhz8Ft3niZVHPvDd0jPe3g3zC4NfiNeMXlge5yeOUzWvjRPY6ZgSXj3q2frMfGog4Sj6ppwT5C_jzS-BHQd8sl87yK2f0ldw_pZWvHab9NV6TGk2agq_OPJGSnR9h5mncmVLNQLfT1pBpxrgx51MyRSvdtooCayy13S76cSeWYil3A6QzeQV_Snr_IxvsTPDulNUwuDmKkJgs1SbYKVAR7jnAS839hCf8YDxM3dzrxOA72i_f0"/>
+</div>
+<h3 class="font-serif text-2xl mb-1 text-slate-900 dark:text-white">Juan Manuel Pérez</h3>
+<p class="text-slate-500 dark:text-slate-400 font-display text-sm tracking-widest mb-6">1945 — 2023</p>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-primary text-white px-8 py-2 text-sm uppercase tracking-wider font-semibold">
+                    Ver Memorial
+                </button>
+</div>
+<!-- Card 2 -->
+<div class="group card-hover transition-all duration-300 bg-white dark:bg-slate-800 rounded-xl overflow-hidden flex flex-col items-center p-8 text-center">
+<div class="w-48 h-64 mb-6 rounded-lg bg-slate-100 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-transform" data-alt="Elegant portrait of a smiling woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDCzF_jQs-FqJ2kZmpfmdULJpCAVZxNR3xypFVfqBhXYWJ1QpxgCfB4ZWV8KrqAme334V3ZDoEFSFrrx5lJ6ckMFpBx-aa5TAbTHhUkyBMyRDcZeaiS360KKcmE3nOOPq3kji6jZl5swaRsYtCbX3NznjC8y2qXFrhYRusvs28zDzzx6Azu840QXmoDxtUFa5l8FDQ6lKHbCkelw6eZ7CcjM2XFbBMGCK86KvTI74iCmxX09wo9hUS-UGuujSyNG2CTaGmUgeefbUs"/>
+</div>
+<h3 class="font-serif text-2xl mb-1 text-slate-900 dark:text-white">María Elena Juárez</h3>
+<p class="text-slate-500 dark:text-slate-400 font-display text-sm tracking-widest mb-6">1938 — 2022</p>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-primary text-white px-8 py-2 text-sm uppercase tracking-wider font-semibold">
+                    Ver Memorial
+                </button>
+</div>
+<!-- Card 3 -->
+<div class="group card-hover transition-all duration-300 bg-white dark:bg-slate-800 rounded-xl overflow-hidden flex flex-col items-center p-8 text-center">
+<div class="w-48 h-64 mb-6 rounded-lg bg-slate-100 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-transform" data-alt="Portrait of a middle aged man in a suit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDKhg2eOI9qNwG1r3blzhIJbqw1-3OxdqSafl5fxo8nGxA6yeMoW8J__3E1nQTav8NVCaMfPubW8w9kgITg0kxJYCQiaIpjLk5z-2CihuF3zymcv9ESbhWFebGZDqrGkXLNmpDv8Xz7WJZv2dYIjDPEyvDch5n8rjaw-x3aisFX97fGd0efwFxa_ooNymMPrRu5YWso00i0AojHCDTVMT-3-80NMp86NteKn2s69XCVQUfWOSrJbaWBcZlHcQAcB1xWbKRA3JJInQ"/>
+</div>
+<h3 class="font-serif text-2xl mb-1 text-slate-900 dark:text-white">Carlos Rodriguez</h3>
+<p class="text-slate-500 dark:text-slate-400 font-display text-sm tracking-widest mb-6">1950 — 2023</p>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-primary text-white px-8 py-2 text-sm uppercase tracking-wider font-semibold">
+                    Ver Memorial
+                </button>
+</div>
+<!-- Card 4 -->
+<div class="group card-hover transition-all duration-300 bg-white dark:bg-slate-800 rounded-xl overflow-hidden flex flex-col items-center p-8 text-center">
+<div class="w-48 h-64 mb-6 rounded-lg bg-slate-100 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-transform" data-alt="Classic portrait of a woman" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM1xgzYUgF6U2W3UkNX69OZDfOXlkP1djDALSUv4VcHpI-bOP9hKvHZMoh_r_jZM5LwYlQWSEKM03N0RB0X9hzDrV6NjbVaAuVRHUa3IT7IevzoY6xISIBQH1XSNJl8g5gX7_WnoGWYCcZbFiLSlTxYo-eiRKFFPa70y66cQDHBBkKgouNOLIn-XEnyXbkxmz4km85JajMPRJaKe0hSYYfYEy9VUEdqWNdLtVzkwb70Qb-WyGuQzh2n61bSIuxOHq0d50L6QMeWGM"/>
+</div>
+<h3 class="font-serif text-2xl mb-1 text-slate-900 dark:text-white">Ana Rosa Martinez</h3>
+<p class="text-slate-500 dark:text-slate-400 font-display text-sm tracking-widest mb-6">1942 — 2021</p>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-primary text-white px-8 py-2 text-sm uppercase tracking-wider font-semibold">
+                    Ver Memorial
+                </button>
+</div>
+<!-- Card 5 -->
+<div class="group card-hover transition-all duration-300 bg-white dark:bg-slate-800 rounded-xl overflow-hidden flex flex-col items-center p-8 text-center">
+<div class="w-48 h-64 mb-6 rounded-lg bg-slate-100 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-transform" data-alt="Portrait of an older man with gray hair" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5znzBeB2EYID-8d4mZtNNpHRDmndH6tEQYUS4j43PIpCe7t3bvjXsUTbxdecnEgrKJGlEcqqxDQKIUR4rGUrPOp8jRZn_RLLmIXmt0Sa90VNZalbERA0ZZLFHYL3p-TpBKpHxN4hxG-gZihzNENqsIeXGYyllE4TVCsEmw0ci0yLfRTI2gJYV3lM0qDuycymRPmgYgi58vGV1w9_4pxooKjZz4VtCcuedIuzftqn-NuDw_lm61Kt-NMWW21wVoAMSudbXSG2bsjg"/>
+</div>
+<h3 class="font-serif text-2xl mb-1 text-slate-900 dark:text-white">Luis Hernandez</h3>
+<p class="text-slate-500 dark:text-slate-400 font-display text-sm tracking-widest mb-6">1935 — 2023</p>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-primary text-white px-8 py-2 text-sm uppercase tracking-wider font-semibold">
+                    Ver Memorial
+                </button>
+</div>
+<!-- Card 6 -->
+<div class="group card-hover transition-all duration-300 bg-white dark:bg-slate-800 rounded-xl overflow-hidden flex flex-col items-center p-8 text-center">
+<div class="w-48 h-64 mb-6 rounded-lg bg-slate-100 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover opacity-90 group-hover:opacity-100 scale-105 group-hover:scale-100 transition-transform" data-alt="Portrait of a woman with a gentle expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABs4yyBbSb4RCWHdqogtY-BfbRp0BlWX0rDXw4qA4bZHQpbmxwfYm-finwI8domB8kk7ORVnjD0Rw49FhKH5Zp8kHYGmypKH4eLBkxJ4BScWFC0uRZV7UH7w7YA99lFWTXkTSWZd9Arn9FpF9Z0tLE-E0Dubvkk1v7qCuiMe0QhZvGo2FIlK0k7tE6iXMt401IX5ly4jmL0CzNFxSMAraAX-AI2i15P4EriFVlKYYBh4esi_u0z2mamtfyHbGt4iDaLQtS6C2zeu4"/>
+</div>
+<h3 class="font-serif text-2xl mb-1 text-slate-900 dark:text-white">Elena Sofia Diaz</h3>
+<p class="text-slate-500 dark:text-slate-400 font-display text-sm tracking-widest mb-6">1955 — 2022</p>
+<button class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-primary text-white px-8 py-2 text-sm uppercase tracking-wider font-semibold">
+                    Ver Memorial
+                </button>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-20 flex items-center justify-center gap-8">
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-base">chevron_left</span> Anterior
+            </a>
+<div class="flex items-center gap-4">
+<span class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold">1</span>
+<a class="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-sm transition-colors" href="#">2</a>
+<a class="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-sm transition-colors" href="#">3</a>
+<span class="text-slate-400">...</span>
+<a class="w-8 h-8 rounded-full hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-sm transition-colors" href="#">12</a>
+</div>
+<a class="text-sm font-medium text-slate-900 dark:text-slate-100 hover:text-primary transition-colors flex items-center gap-1" href="#">
+                Siguiente <span class="material-symbols-outlined text-base">chevron_right</span>
+</a>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-white py-20 px-8 md:px-20 mt-20">
+<div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-3xl">auto_awesome</span>
+<h2 class="text-xl font-bold tracking-tight uppercase">Memoriales</h2>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed">
+                    Honrando vidas y preservando memorias con elegancia y respeto desde 1970.
+                </p>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-sm uppercase tracking-widest">Servicios</h4>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">Funerales Tradicionales</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Cremaciones</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Memoriales Digitales</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Previsión</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-sm uppercase tracking-widest">Información</h4>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">Ubicaciones</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Preguntas Frecuentes</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Blog</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Contacto</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-sm uppercase tracking-widest">Suscribirse</h4>
+<p class="text-slate-400 text-xs mb-4 italic">Reciba noticias y consejos sobre duelo y previsión.</p>
+<div class="flex border-b border-slate-700 py-2">
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full" placeholder="Correo electrónico" type="email"/>
+<button class="material-symbols-outlined hover:text-slate-300 transition-colors">arrow_forward</button>
+</div>
+</div>
+</div>
+<div class="max-w-6xl mx-auto mt-20 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+<p class="text-slate-500 text-xs uppercase tracking-widest">© 2024 Memoriales S.A. Todos los derechos reservados.</p>
+<div class="flex gap-8 text-slate-500 text-xs uppercase tracking-widest">
+<a class="hover:text-white transition-colors" href="#">Privacidad</a>
+<a class="hover:text-white transition-colors" href="#">Términos</a>
+<a class="hover:text-white transition-colors" href="#">Cookies</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cotización Móvil - Paso 4: Pago</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#16169c",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111121",
+                    },
+                    fontFamily: {
+                        "display": ["Newsreader", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Newsreader', serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex justify-center">
+<!-- Mobile Container Emulator -->
+<div class="w-full max-w-[480px] bg-white dark:bg-background-dark min-h-screen flex flex-col relative shadow-2xl">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-100 dark:border-slate-800 px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_balance</span>
+<span class="font-display font-bold text-lg tracking-tight">Funeraria Premium</span>
+</div>
+<button class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</header>
+<!-- Progress Stepper -->
+<div class="px-6 pt-6 pb-2">
+<div class="flex justify-between items-end mb-2">
+<span class="text-xs uppercase tracking-widest text-slate-500 font-medium">Paso Final</span>
+<span class="font-display font-bold text-xl text-primary">4/4 Pago</span>
+</div>
+<div class="w-full h-1 bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+<main class="flex-1 px-6 pb-32">
+<!-- Headline -->
+<div class="text-center py-8">
+<h1 class="font-display text-3xl font-semibold text-slate-900 dark:text-slate-100">Finalizar Pago</h1>
+<p class="text-slate-500 text-sm mt-2">Complete los detalles para confirmar su servicio</p>
+</div>
+<!-- Total Bar (Sticky-style but in flow) -->
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl p-5 mb-8 flex justify-between items-center border border-primary/10">
+<span class="text-slate-600 dark:text-slate-400 font-medium">Total a Pagar</span>
+<span class="font-display text-2xl font-bold text-primary">$1.250.000</span>
+</div>
+<!-- Payment Methods -->
+<div class="space-y-4">
+<!-- Option 1: Credit Card -->
+<div class="bg-white dark:bg-slate-900 rounded-xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800">
+<div class="p-4 flex items-center gap-4 cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">credit_card</span>
+</div>
+<div class="flex-1">
+<h3 class="font-semibold text-slate-800 dark:text-slate-200">Tarjeta de Crédito / Débito</h3>
+</div>
+<span class="material-symbols-outlined text-primary">expand_more</span>
+</div>
+<!-- Expanded Form Fields -->
+<div class="px-4 pb-6 pt-2 space-y-4">
+<div class="relative">
+<input class="w-full bg-transparent border-0 border-b border-slate-200 dark:border-slate-700 px-0 py-2 focus:ring-0 focus:border-primary placeholder:text-slate-400 text-sm" placeholder="Número de Tarjeta" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<input class="w-full bg-transparent border-0 border-b border-slate-200 dark:border-slate-700 px-0 py-2 focus:ring-0 focus:border-primary placeholder:text-slate-400 text-sm" placeholder="MM/AA" type="text"/>
+<input class="w-full bg-transparent border-0 border-b border-slate-200 dark:border-slate-700 px-0 py-2 focus:ring-0 focus:border-primary placeholder:text-slate-400 text-sm" placeholder="CVV" type="text"/>
+</div>
+<input class="w-full bg-transparent border-0 border-b border-slate-200 dark:border-slate-700 px-0 py-2 focus:ring-0 focus:border-primary placeholder:text-slate-400 text-sm" placeholder="Nombre en la Tarjeta" type="text"/>
+</div>
+</div>
+<!-- Option 2: Bank Transfer -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-4 flex items-center gap-4 opacity-70">
+<div class="w-10 h-10 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">account_balance</span>
+</div>
+<div class="flex-1">
+<h3 class="font-semibold text-slate-800 dark:text-slate-200">Transferencia Bancaria</h3>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+<!-- Option 3: Third Party -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-100 dark:border-slate-800 p-4 flex items-center gap-4 opacity-70">
+<div class="w-10 h-10 rounded-full bg-slate-50 dark:bg-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-600 dark:text-slate-300">account_balance_wallet</span>
+</div>
+<div class="flex-1">
+<h3 class="font-semibold text-slate-800 dark:text-slate-200">WebPay / MercadoPago</h3>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</div>
+<!-- Security Badge -->
+<div class="mt-12 flex flex-col items-center justify-center gap-2">
+<div class="flex items-center gap-2 px-4 py-2 bg-slate-50 dark:bg-slate-900 rounded-full border border-slate-100 dark:border-slate-800">
+<span class="material-symbols-outlined text-green-600 text-lg">lock</span>
+<span class="text-xs font-semibold text-slate-600 dark:text-slate-400 tracking-wide uppercase">Pago 100% Seguro</span>
+</div>
+<p class="text-[10px] text-slate-400 text-center max-w-[240px] leading-relaxed">Sus datos están protegidos mediante encriptación de grado bancario SSL de 256 bits.</p>
+</div>
+</main>
+<!-- Fixed Bottom Action Bar -->
+<footer class="fixed bottom-0 w-full max-w-[480px] bg-white dark:bg-background-dark p-6 border-t border-slate-100 dark:border-slate-800 shadow-[0_-10px_30px_rgba(0,0,0,0.05)]">
+<button class="w-full bg-slate-950 dark:bg-slate-100 text-white dark:text-slate-950 font-bold py-4 rounded-xl text-lg hover:opacity-90 active:scale-[0.98] transition-all">
+                Confirmar y Pagar
+            </button>
+<div class="mt-4 text-center">
+<button class="text-slate-400 dark:text-slate-500 text-sm font-medium hover:text-primary transition-colors">
+                    Atrás
+                </button>
+</div>
+</footer>
+</div>
+</body></html>

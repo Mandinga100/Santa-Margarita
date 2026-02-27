@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vela Encendida - Vista Móvil</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0d40a5",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .font-serif { font-family: 'Playfair Display', serif; }
+        .font-display { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased">
+<!-- Mobile Backdrop Simulation -->
+<div class="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
+<!-- Background: Dimmed Memorial Page Content -->
+<div class="absolute inset-0 z-0 brightness-50 grayscale-[0.2]">
+<div class="h-full w-full flex flex-col">
+<div class="h-64 w-full bg-cover bg-center" data-alt="Soft focused memorial flowers and landscape" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDk3JaxShQPSLl4ZjCN2UD6kObF2jdL6JDyWOtH497q2jVqF0uxcHbGKEl55vTxc0CdjAqpTWoOxPiCaFB3ZoXbjdz-oJ8z0WCHzSUT8clG7TVI2g8fVkPNelVCfNsRZBORBN2hr9McGST9yjNYMMi46zHOeNF4xDfYs2d6WUq7QfxJ01D4lcFV0Ul_8mdsO9H9YC2b_g7cNg4IQzjk97FIJ31H5JYPvEXOZbJTNGuKTR7riyh9APdRl2pHZxxxsNcJk-E-XtAyskI')"></div>
+<div class="p-6 bg-white flex-1">
+<div class="h-4 w-3/4 bg-slate-200 rounded mb-4"></div>
+<div class="h-4 w-1/2 bg-slate-200 rounded mb-8"></div>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-square bg-slate-100 rounded-lg"></div>
+<div class="aspect-square bg-slate-100 rounded-lg"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Notification Modal -->
+<div class="relative z-10 w-[90%] max-w-[360px] bg-white rounded-xl shadow-2xl p-8 flex flex-col items-center animate-fade-in">
+<!-- Top Navigation/Close Header within Modal -->
+<div class="absolute top-4 right-4">
+<button class="p-2 text-slate-400 hover:text-slate-600 transition-colors">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<!-- Visual: Glowing Candle Icon -->
+<div class="mb-8 mt-4 relative">
+<div class="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-150"></div>
+<div class="relative flex items-center justify-center size-20 bg-primary/10 rounded-full text-primary">
+<span class="material-symbols-outlined !text-5xl" style="font-variation-settings: 'FILL' 1">light_mode</span>
+</div>
+</div>
+<!-- Typography -->
+<div class="text-center space-y-3 mb-10">
+<h2 class="font-serif text-3xl text-slate-900 leading-tight">
+                    Vela encendida
+                </h2>
+<p class="font-display text-slate-600 text-base">
+                    Gracias por su homenaje
+                </p>
+</div>
+<!-- Action: Full-width Button -->
+<div class="w-full">
+<button class="w-full py-4 bg-slate-900 hover:bg-black text-white rounded-lg font-bold text-base tracking-wide transition-all shadow-md active:scale-[0.98]">
+                    Cerrar
+                </button>
+</div>
+</div>
+</div>
+<!-- Background Layer with subtle pattern for desktop viewing of the mobile frame -->
+<div class="fixed inset-0 -z-10 bg-gradient-to-br from-slate-100 to-slate-200 pointer-events-none"></div>
+</body></html>

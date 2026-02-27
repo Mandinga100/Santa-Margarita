@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600;6..72,700;6..72,800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#16169c",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111121",
+                    },
+                    fontFamily: {
+                        "display": ["Newsreader", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Newsreader', serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative flex min-h-screen flex-col items-center">
+<div class="w-full max-w-[480px] bg-white dark:bg-slate-900 min-h-screen flex flex-col shadow-xl">
+<!-- Header -->
+<header class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 px-6 py-4">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-2xl">account_balance</span>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold tracking-tight">Cotización Online</h2>
+</div>
+<button class="flex items-center justify-center rounded-lg h-10 w-10 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-100">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Progress Stepper -->
+<div class="flex flex-col gap-3 px-6 py-6">
+<div class="flex justify-between items-end">
+<p class="text-slate-900 dark:text-slate-100 text-xl font-bold leading-none">Resumen</p>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Paso 3 de 4</p>
+</div>
+<div class="h-1.5 w-full rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+<div class="h-full rounded-full bg-primary" style="width: 75%;"></div>
+</div>
+</div>
+<main class="flex-1 px-6 pb-32">
+<!-- Headline -->
+<h1 class="text-slate-900 dark:text-slate-100 text-3xl font-bold text-center py-6">Resumen de su Solicitud</h1>
+<!-- Details Section -->
+<section class="mb-8">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold mb-4 border-b border-slate-100 dark:border-slate-800 pb-2">Detalles del Servicio</h3>
+<div class="space-y-4">
+<div class="flex justify-between gap-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm">Plan Seleccionado</p>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium text-right">Plan Premium Funerario</p>
+</div>
+<div class="border-t border-slate-50 dark:border-slate-800/50"></div>
+<div class="flex justify-between gap-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm">Inclusiones</p>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium text-right">Servicio Completo, Traslado, Ataúd de Roble</p>
+</div>
+<div class="border-t border-slate-50 dark:border-slate-800/50"></div>
+<div class="flex justify-between gap-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm">Nombre del Solicitante</p>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium text-right">Juan Pérez</p>
+</div>
+<div class="border-t border-slate-50 dark:border-slate-800/50"></div>
+<div class="flex justify-between gap-4">
+<p class="text-slate-500 dark:text-slate-400 text-sm">Correo Electrónico</p>
+<p class="text-slate-900 dark:text-slate-100 text-sm font-medium text-right">juan.perez@email.com</p>
+</div>
+</div>
+</section>
+<!-- Costs Card -->
+<section class="mb-8">
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700">
+<h3 class="text-slate-900 dark:text-slate-100 text-lg font-bold mb-4">Resumen de Costos</h3>
+<div class="space-y-3">
+<div class="flex justify-between">
+<span class="text-slate-500 dark:text-slate-400 text-sm">Subtotal</span>
+<span class="text-slate-900 dark:text-slate-100 text-sm font-medium">$4,200.00</span>
+</div>
+<div class="flex justify-between">
+<span class="text-slate-500 dark:text-slate-400 text-sm">Impuestos (16%)</span>
+<span class="text-slate-900 dark:text-slate-100 text-sm font-medium">$672.00</span>
+</div>
+<div class="pt-4 mt-2 border-t border-slate-100 dark:border-slate-700 flex justify-between items-center">
+<span class="text-slate-900 dark:text-slate-100 text-base font-bold">Total Estimado</span>
+<span class="text-primary text-2xl font-bold tracking-tight">$4,872.00</span>
+</div>
+</div>
+</div>
+</section>
+<div class="flex justify-center py-4">
+<img alt="Peaceful interior setting" class="w-full h-40 object-cover rounded-xl opacity-80" data-alt="Peaceful and elegant interior setting with soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDz6MRnHNBhvnCwIxgsX0G-JFwdDavF7Bf08eXckKFbIBlCrP7J9BTo4dwtD9U8KkR53RTzepchaQvSTFlwexGUcQ9zOmOXePqFGmkxvBAZ0L24FJv7t5fWig6x4hkEjNtvJUs231kmjnB7VLuwl5_zoGYdvsVvNtUKV5TGD8_LHOJSp0DiCzK9AsHEqRyMsFBe6LUtvZc8kOKHZUMwXMW-LVVus6gYrYt9cLQCc_2pB-IWTy7em_APj2MpfHAoUte_-UcrtPxQPps"/>
+</div>
+</main>
+<!-- Navigation Bottom Bar -->
+<footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white dark:bg-slate-900 border-t border-slate-100 dark:border-slate-800 px-6 pt-4 pb-8 flex flex-col items-center gap-3">
+<button class="w-full bg-slate-900 dark:bg-primary text-white py-4 rounded-xl font-bold text-lg hover:bg-slate-800 dark:hover:bg-primary/90 transition-colors">
+                    Continuar al Pago
+                </button>
+<button class="text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-slate-900 dark:hover:text-slate-100 transition-colors">
+                    Atrás
+                </button>
+</footer>
+</div>
+</div>
+</body></html>

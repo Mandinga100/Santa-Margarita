@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-completed { color: #000000; }
+        .step-active { color: #000000; font-weight: 700; }
+        .step-inactive { color: #94a3b8; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<!-- Header -->
+<header class="bg-primary text-white py-6 px-4 md:px-20 lg:px-40 flex items-center justify-between border-b border-white/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl">church</span>
+<h1 class="text-xl font-serif tracking-wide">Cotización Online</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest">
+<a class="hover:text-slate-300 transition-colors" href="#">Servicios</a>
+<a class="hover:text-slate-300 transition-colors" href="#">Planes</a>
+<a class="hover:text-slate-300 transition-colors" href="#">Preguntas</a>
+<button class="border border-white/30 px-6 py-2 rounded-full hover:bg-white hover:text-black transition-all">Acceso Clientes</button>
+</nav>
+</header>
+<main class="max-w-[1200px] mx-auto px-4 py-12">
+<!-- Stepper -->
+<div class="mb-12">
+<div class="flex items-center justify-between max-w-3xl mx-auto relative">
+<!-- Progress Line Background -->
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-slate-200 -z-10 -translate-y-1/2"></div>
+<!-- Active Progress Line -->
+<div class="absolute top-1/2 left-0 w-full h-0.5 bg-primary -z-10 -translate-y-1/2"></div>
+<div class="flex flex-col items-center gap-2 bg-background-light px-4">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-tighter">Datos</span>
+</div>
+<div class="flex flex-col items-center gap-2 bg-background-light px-4">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-tighter">Selección</span>
+</div>
+<div class="flex flex-col items-center gap-2 bg-background-light px-4">
+<div class="w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">check</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-tighter">Resumen</span>
+</div>
+<div class="flex flex-col items-center gap-2 bg-background-light px-4">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center ring-4 ring-primary/20">
+<span class="text-sm font-bold">4</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-tighter text-primary">Pago</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+<!-- Left Column: Payment Methods -->
+<div class="lg:col-span-2 space-y-8">
+<section>
+<h2 class="text-4xl font-serif text-primary mb-2">Paso 4: Finalizar Pago</h2>
+<p class="text-slate-500 max-w-lg">Complete los detalles de su método de pago preferido para finalizar el proceso de contratación de forma segura.</p>
+</section>
+<!-- Payment Tabs -->
+<div class="border-b border-slate-200 flex gap-8">
+<button class="pb-4 border-b-2 border-primary flex items-center gap-2 text-primary font-bold">
+<span class="material-symbols-outlined">credit_card</span>
+                        Tarjeta
+                    </button>
+<button class="pb-4 border-b-2 border-transparent flex items-center gap-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_balance</span>
+                        Transferencia
+                    </button>
+<button class="pb-4 border-b-2 border-transparent flex items-center gap-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+                        Digital Wallets
+                    </button>
+</div>
+<!-- Credit Card Form -->
+<div class="space-y-6 bg-white p-8 rounded-xl shadow-sm border border-slate-100">
+<div class="flex justify-between items-center mb-4">
+<h3 class="text-lg font-bold">Detalles de la Tarjeta</h3>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-slate-400">payments</span>
+<span class="material-symbols-outlined text-slate-400">credit_score</span>
+</div>
+</div>
+<div class="relative">
+<label class="block text-[10px] uppercase tracking-widest font-bold text-slate-400 mb-1">Nombre en la Tarjeta</label>
+<input class="w-full border-0 border-b-2 border-slate-200 focus:border-primary focus:ring-0 px-0 py-2 text-lg placeholder:text-slate-300 transition-colors uppercase font-medium" placeholder="JUAN PEREZ" type="text"/>
+</div>
+<div class="relative">
+<label class="block text-[10px] uppercase tracking-widest font-bold text-slate-400 mb-1">Número de Tarjeta</label>
+<div class="flex items-center border-b-2 border-slate-200 focus-within:border-primary transition-colors">
+<input class="w-full border-0 focus:ring-0 px-0 py-2 text-lg placeholder:text-slate-300 font-medium" placeholder="0000 0000 0000 0000" type="text"/>
+<span class="material-symbols-outlined text-slate-400">lock</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="relative">
+<label class="block text-[10px] uppercase tracking-widest font-bold text-slate-400 mb-1">Fecha de Expiración</label>
+<input class="w-full border-0 border-b-2 border-slate-200 focus:border-primary focus:ring-0 px-0 py-2 text-lg placeholder:text-slate-300 font-medium" placeholder="MM / YY" type="text"/>
+</div>
+<div class="relative">
+<label class="block text-[10px] uppercase tracking-widest font-bold text-slate-400 mb-1">CVC / CVV</label>
+<input class="w-full border-0 border-b-2 border-slate-200 focus:border-primary focus:ring-0 px-0 py-2 text-lg placeholder:text-slate-300 font-medium" placeholder="000" type="text"/>
+</div>
+</div>
+<div class="pt-4 flex items-center gap-2 text-slate-500 text-xs italic">
+<span class="material-symbols-outlined text-sm">info</span>
+                        Sus datos están encriptados y protegidos bajo estándares bancarios.
+                    </div>
+</div>
+<!-- Navigation Action -->
+<div class="flex items-center justify-between pt-4">
+<a class="flex items-center gap-2 text-slate-500 hover:text-primary font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">arrow_back</span>
+                        Atrás
+                    </a>
+<div class="flex items-center gap-4 bg-slate-50 px-4 py-2 rounded-lg border border-slate-200">
+<span class="material-symbols-outlined text-green-600">verified_user</span>
+<span class="text-xs font-bold text-slate-600 uppercase tracking-tighter">Pago 100% Seguro</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Sidebar Summary -->
+<div class="lg:col-span-1">
+<div class="sticky top-8 space-y-4">
+<div class="bg-white rounded-xl shadow-lg border border-slate-100 overflow-hidden">
+<div class="bg-primary p-6 text-white">
+<h3 class="font-serif text-xl">Resumen de Orden</h3>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Plan de Servicio Premium</span>
+<span class="font-bold">$2.450.000</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Servicios Adicionales</span>
+<span class="font-bold">$120.000</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-slate-500">Impuestos (19%)</span>
+<span class="font-bold">$488.300</span>
+</div>
+<hr class="border-slate-100 my-4"/>
+<div class="flex justify-between items-end">
+<span class="text-xs uppercase font-bold tracking-widest text-slate-400">Total a Pagar</span>
+<span class="text-3xl font-serif font-bold text-primary">$3.058.300</span>
+</div>
+<button class="w-full bg-primary text-white py-4 rounded-lg font-bold uppercase tracking-widest text-sm hover:bg-slate-800 transition-all mt-6 flex items-center justify-center gap-2">
+                                Confirmar y Pagar
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Trust Badges -->
+<div class="flex flex-wrap justify-center gap-4 opacity-50 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-500">
+<div class="flex flex-col items-center">
+<img alt="" class="h-6 object-contain" data-alt="Logo de Mastercard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9xJKkLU82LsPdaa2sNIfRpCpCiSweeMg-HDzkXGrG3zwjoWGSjnd0PgDOzf_JtXEX-ryUVBfbpoEG06dARx6ySUzhRlN-vHc_A2GGk6Ysl_KzPM8c6x-5yjlVLLnRfOmMnjj21pUcUa-p7Mcd63SyqkcPvJz4jMWKDUmgkPcV7nJKPzQIyR4nbXb3FbZDP88yz3PwTLgYbcxsFQvFAg94I799s5jKBYfUaJRrr8531LeOnT4J6jcjpkbnvdtdtuAHYuZSBDlGQbw"/>
+</div>
+<div class="flex flex-col items-center">
+<img alt="" class="h-6 object-contain" data-alt="Logo de Visa" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd9_iD3pzf0s8VwkZdB_exhgCIZi9f855w-6zY5fz-7YC8SGoRAKsGHBdlK8K1OsAR9MoM_ihnjPDSerXVYy8DbLlyUOUutEXvYq3hTY41lOcEV7ElMlJtcQt1MWOSvjsctUzGgmYx7eGgbNTXsBC-7KPI1HER5QfiD7pIQFiQdWs8NC-KX8LUMk5lNfatUEwD3iIPbn4-x7HYU0yXbs8prodYKureoidrkiPhqfXpVkbkN9fKUNQvsFXn6ew-TYKofow8QZFj570"/>
+</div>
+<div class="flex flex-col items-center">
+<img alt="" class="h-6 object-contain" data-alt="Logo de PayPal" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYCJjrsnOcwrjgDyTWQCcj0LRwx830qm0igQRbdfljeGbHkSz1aIFqo6IMtKPjXVcIe_CEu59q__brEGacEY_3tPTbP8shKyJY0T1OFMhfRF3h2PFDCCI-9CukvUBCfSyUlTvZLrkzPavf4HZhe0Qqgjr7Dlc0Usaytxajzp3EBBN1mJF6FUjpWaM2KcOHtZm_E0T4Uu8riPaqYBt9CgR4c-Yw7NR_ZMoJJx2k_0M0Gkz1NI3JPuIpe7hYCF5MMvXEzvDW7JJHNtA"/>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-white py-12 px-4 md:px-20 lg:px-40 mt-20 border-t border-white/10">
+<div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-3xl">church</span>
+<h2 class="text-xl font-serif tracking-wide">Cotización Online</h2>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-sm">
+                    Ofreciendo servicios de excelencia y acompañamiento en los momentos más difíciles, con la dignidad y respeto que sus seres queridos merecen.
+                </p>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-bold mb-6 text-slate-300">Contacto</h4>
+<ul class="text-sm text-slate-400 space-y-3">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">call</span>
+                        +56 9 1234 5678
+                    </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">mail</span>
+                        contacto@funeralpremium.cl
+                    </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">location_on</span>
+                        Av. Las Condes 1234, Santiago
+                    </li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs uppercase tracking-widest font-bold mb-6 text-slate-300">Legales</h4>
+<ul class="text-sm text-slate-400 space-y-3">
+<li><a class="hover:text-white transition-colors" href="#">Términos y Condiciones</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Política de Privacidad</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Preguntas Frecuentes</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-[1200px] mx-auto mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-slate-500 font-bold">
+<p>© 2024 Cotización Online. Todos los derechos reservados.</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Instagram</a>
+<a class="hover:text-white transition-colors" href="#">Facebook</a>
+<a class="hover:text-white transition-colors" href="#">LinkedIn</a>
+</div>
+</div>
+</footer>
+</body></html>

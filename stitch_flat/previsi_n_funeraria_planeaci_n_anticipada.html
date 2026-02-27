@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Previsión Funeraria - Planeación Anticipada</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
+                        "soft-gray": "#F2F2F2",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-white text-slate-900 font-display">
+<!-- Header -->
+<header class="bg-primary text-white px-6 md:px-12 py-6 flex items-center justify-between sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-3xl">account_balance_wallet</span>
+<h2 class="text-xl font-bold tracking-tight uppercase">Previsión</h2>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:opacity-70 transition-opacity" href="#">Servicios</a>
+<a class="text-sm font-medium hover:opacity-70 transition-opacity underline underline-offset-8" href="#">Previsión</a>
+<a class="text-sm font-medium hover:opacity-70 transition-opacity" href="#">Nosotros</a>
+<a class="text-sm font-medium hover:opacity-70 transition-opacity border border-white/30 px-4 py-2" href="#">Contacto</a>
+</nav>
+<div class="md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="relative h-[80vh] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-black/30 z-10"></div>
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Peaceful sunset over a serene landscape with golden light" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBo0u9JGTfVEkKio2irZN1oro7OFKhAUUH--NVYb-kgi5zFI3WxUUIirCRKrdkp6wR9mwzY5GqWmJJJ1Gd8nRMXsme8ljQrOJsaI_5DMEc-841LnuaLJK_gDEqwwasq0Fply9ywqAJXF367k5t4NvBKikNRHn92pFSmtlFVcpqhh5NqHxz-C1-aQHEhsVfPSw8s8DAPK09fUpGvXD8Vj9ZnGNOjIB9ehuMq3Z8JvOxzA_nUkvRn-W3WQkCputvL0V2F5XJmIs84ja4');">
+</div>
+<div class="relative z-20 text-center px-4 max-w-4xl">
+<h1 class="font-serif text-white text-5xl md:text-7xl mb-6 leading-tight">
+                Previsión: La Tranquilidad de Decidir Hoy
+            </h1>
+<div class="w-24 h-px bg-white/60 mx-auto mt-8"></div>
+</div>
+</section>
+<!-- Introduction -->
+<section class="py-24 px-6 md:px-12 max-w-3xl mx-auto text-center">
+<p class="text-xl md:text-2xl font-light leading-relaxed text-slate-800">
+            La previsión funeraria es mucho más que un trámite; es un acto de amor y responsabilidad. Permite tomar decisiones importantes con serenidad, asegurando que sus deseos sean respetados y evitando cargas financieras o emocionales inesperadas para sus seres queridos en los momentos más difíciles.
+        </p>
+</section>
+<!-- Benefits Grid -->
+<section class="bg-white py-24 px-6 md:px-12">
+<div class="max-w-6xl mx-auto">
+<div class="grid md:grid-cols-3 gap-16">
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-4xl mb-6 text-primary/80">family_restroom</span>
+<h3 class="font-serif text-2xl mb-4">Cero Estrés Familiar</h3>
+<p class="text-slate-600 leading-relaxed">
+                        Sus seres queridos no tendrán que tomar decisiones logísticas o financieras bajo la presión del duelo. Todo estará resuelto.
+                    </p>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-4xl mb-6 text-primary/80">payments</span>
+<h3 class="font-serif text-2xl mb-4">Precios Congelados</h3>
+<p class="text-slate-600 leading-relaxed">
+                        Proteja su patrimonio de la inflación futura. El costo pactado hoy se mantiene vigente sin importar el paso de los años.
+                    </p>
+</div>
+<div class="flex flex-col items-center text-center">
+<span class="material-symbols-outlined text-4xl mb-6 text-primary/80">spa</span>
+<h3 class="font-serif text-2xl mb-4">Servicio Personalizado</h3>
+<p class="text-slate-600 leading-relaxed">
+                        Diseñe un homenaje que refleje verdaderamente su vida y legado. Elija cada detalle según su voluntad y creencias.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Process Steps -->
+<section class="py-24 bg-white px-6 md:px-12 border-t border-slate-100">
+<div class="max-w-6xl mx-auto">
+<h2 class="font-serif text-4xl text-center mb-20 italic">Cómo Funciona</h2>
+<div class="grid md:grid-cols-3 gap-8 relative">
+<!-- Step 1 -->
+<div class="flex flex-col gap-4">
+<div class="text-6xl font-serif text-slate-100 absolute -mt-12 hidden md:block">01</div>
+<div class="relative pt-4">
+<h4 class="font-bold uppercase tracking-widest text-xs mb-4 text-primary">Paso Uno</h4>
+<h3 class="text-2xl font-serif mb-4">Asesoría Profesional</h3>
+<p class="text-slate-600">Un asesor especializado le guiará para entender sus necesidades y las de su familia en una sesión privada.</p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col gap-4">
+<div class="text-6xl font-serif text-slate-100 absolute -mt-12 hidden md:block" style="left: 33%;">02</div>
+<div class="relative pt-4">
+<h4 class="font-bold uppercase tracking-widest text-xs mb-4 text-primary">Paso Dos</h4>
+<h3 class="text-2xl font-serif mb-4">Selección de Plan</h3>
+<p class="text-slate-600">Elija entre nuestros planes integrales o personalice uno a su medida, ajustando coberturas y servicios.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col gap-4">
+<div class="text-6xl font-serif text-slate-100 absolute -mt-12 hidden md:block" style="left: 66%;">03</div>
+<div class="relative pt-4">
+<h4 class="font-bold uppercase tracking-widest text-xs mb-4 text-primary">Paso Tres</h4>
+<h3 class="text-2xl font-serif mb-4">Convenio de Previsión</h3>
+<h3 class="text-2xl font-serif mb-4"></h3>
+<p class="text-slate-600">Formalice su plan con opciones de pago flexibles y obtenga la documentación que garantiza su tranquilidad futura.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="bg-soft-gray py-32 px-6">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="font-serif text-4xl mb-8">Comience su planeación hoy mismo</h2>
+<p class="text-lg text-slate-600 mb-12 max-w-2xl mx-auto">
+                Estamos aquí para escucharle y resolver todas sus dudas sin compromiso alguno. La paz mental comienza con una conversación.
+            </p>
+<button class="bg-primary text-white px-10 py-5 text-sm font-bold tracking-widest uppercase hover:bg-slate-800 transition-colors">
+                Hablar con un Asesor de Previsión
+            </button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-primary text-white py-20 px-6 md:px-12">
+<div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-12">
+<div class="col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-2xl">account_balance_wallet</span>
+<h2 class="text-lg font-bold tracking-tight uppercase">Previsión Funeraria</h2>
+</div>
+<p class="text-white/50 max-w-sm font-light">
+                    Excelencia y respeto en el servicio, brindando seguridad y acompañamiento a las familias mexicanas desde hace décadas.
+                </p>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest mb-6">Navegación</h4>
+<ul class="flex flex-col gap-3 text-sm text-white/70">
+<li><a class="hover:text-white transition-colors" href="#">Inicio</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Servicios</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Previsión</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-widest mb-6">Legal</h4>
+<ul class="flex flex-col gap-3 text-sm text-white/70">
+<li><a class="hover:text-white transition-colors" href="#">Aviso de Privacidad</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Términos y Condiciones</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Preguntas Frecuentes</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-6xl mx-auto border-t border-white/10 mt-20 pt-10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/30 tracking-widest">
+<p>© 2024 PREVISIÓN FUNERARIA. TODOS LOS DERECHOS RESERVADOS.</p>
+<div class="flex gap-6">
+<a class="hover:text-white" href="#">INSTAGRAM</a>
+<a class="hover:text-white" href="#">FACEBOOK</a>
+<a class="hover:text-white" href="#">LINKEDIN</a>
+</div>
+</div>
+</footer>
+</body></html>

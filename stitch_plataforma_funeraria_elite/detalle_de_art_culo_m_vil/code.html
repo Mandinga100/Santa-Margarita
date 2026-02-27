@@ -1,0 +1,127 @@
+<html class="dark"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#17a1cf",
+            "background-light": "#f6f7f8",
+            "background-dark": "#111d21",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"],
+            "serif": ["Playfair Display", "serif"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .article-body { line-height: 1.8; }
+    .material-symbols-outlined { font-size: 20px; }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 transition-colors duration-300">
+<!-- Main Container for Mobile View Simulation on Desktop -->
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex items-center justify-between border-b border-slate-200 dark:border-slate-800 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-6 py-4">
+<div class="flex items-center gap-2">
+<div class="text-primary">
+<svg class="w-8 h-8" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<span class="text-lg font-bold tracking-tight text-slate-900 dark:text-white font-serif italic">Eterna</span>
+</div>
+<button class="flex items-center justify-center p-2 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<!-- Article Header -->
+<div class="flex flex-col items-center pt-12 pb-8 px-6 text-center max-w-2xl mx-auto">
+<span class="text-xs font-bold tracking-[0.2em] text-primary uppercase mb-4">Manejo del Duelo</span>
+<h1 class="font-serif text-4xl md:text-5xl font-normal leading-tight text-slate-900 dark:text-white">
+        Entendiendo el Duelo en Familia
+      </h1>
+<div class="w-12 h-px bg-primary/40 mt-8"></div>
+</div>
+<!-- Hero Image Section -->
+<div class="w-full mb-12">
+<div class="aspect-[16/9] w-full bg-cover bg-center grayscale-[20%] brightness-90" data-alt="Soft focus image of a supportive family embrace in a warm room" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCz97w0okMm8lXSTZPuGFBSv5VZRxGMwkz5JeaFs8hFKWBlKtSNzB3Fml8fu0eLoiw_zaZ6s-pqu3V0hugi4lzcYhNiGaXZzGWJTFPyHjXbrDQPfKSyKaFE0G5J_E-1DSd29gWS2-Ph-qgsVE4tDXKGLuHJXSf7GbWfLlPiYy5lUUzjnf3SzEZfADAzoIRcg3WCmpubNA8IWBMwantswdm8azci9Rrk02etr95SOukzXapBxUs8-moB4yNbm3zMB1MnMX4CVzfQZkg');">
+</div>
+</div>
+<!-- Article Content -->
+<article class="max-w-xl mx-auto px-8 md:px-4 article-body pb-16">
+<p class="text-lg text-slate-700 dark:text-slate-300 mb-8 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left first-letter:text-primary">
+        El duelo es un proceso natural y necesario que cada miembro de la familia experimenta de manera única. En momentos de pérdida, la comunicación abierta y el apoyo mutuo se vuelven pilares fundamentales para la sanación colectiva.
+      </p>
+<h2 class="font-serif text-2xl text-slate-900 dark:text-white mt-12 mb-6">La Individualidad en el Dolor</h2>
+<p class="text-slate-700 dark:text-slate-300 mb-8">
+        Aunque compartan la misma pérdida, cada integrante procesa sus emociones a un ritmo distinto. Los niños pueden manifestar su tristeza a través del juego o cambios en el comportamiento, mientras que los adultos a menudo intentan mantenerse fuertes por los demás, postergando su propio alivio emocional.
+      </p>
+<blockquote class="border-l-2 border-primary/40 pl-8 py-4 my-12 italic font-serif text-xl text-slate-600 dark:text-slate-400">
+        "El duelo compartido no es dolor dividido, sino apoyo multiplicado."
+      </blockquote>
+<h2 class="font-serif text-2xl text-slate-900 dark:text-white mt-12 mb-6">Espacios de Comunicación</h2>
+<p class="text-slate-700 dark:text-slate-300 mb-8">
+        Es vital crear momentos seguros para hablar. No se trata de forzar la conversación, sino de estar presente. El silencio compartido también es una forma de comunicación poderosa cuando las palabras no alcanzan a describir el vacío de la ausencia.
+      </p>
+<p class="text-slate-700 dark:text-slate-300 mb-8">
+        Reconocer y validar los sentimientos de cada uno permite que la familia se fortalezca. La sanación no significa olvidar, sino aprender a integrar la pérdida en la nueva realidad familiar.
+      </p>
+<!-- Share Icons -->
+<div class="flex items-center justify-center gap-6 pt-12 border-t border-slate-200 dark:border-slate-800 mt-16">
+<span class="text-xs font-bold uppercase tracking-widest text-slate-500">Compartir:</span>
+<button class="p-2 hover:text-primary transition-colors text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">share</span>
+</button>
+<button class="p-2 hover:text-primary transition-colors text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">chat</span>
+</button>
+<button class="p-2 hover:text-primary transition-colors text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">link</span>
+</button>
+</div>
+</article>
+<!-- Related Content -->
+<div class="bg-slate-100 dark:bg-slate-900/50 py-16 px-8">
+<div class="max-w-xl mx-auto">
+<p class="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase mb-6">Siguiente Artículo</p>
+<a class="group block" href="#">
+<h3 class="font-serif text-2xl text-slate-900 dark:text-white group-hover:text-primary transition-colors mb-4 leading-snug">
+            Cómo acompañar a los niños en procesos de pérdida
+          </h3>
+<div class="flex items-center gap-2 text-primary text-sm font-bold">
+<span>Leer más</span>
+<span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</div>
+</a>
+</div>
+</div>
+<!-- Footer -->
+<footer class="bg-[#05090a] py-12 px-8 border-t border-slate-800 text-center">
+<div class="flex justify-center mb-6">
+<div class="text-primary/60">
+<svg class="w-6 h-6" fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+</div>
+<p class="text-slate-500 text-xs mb-8">© 2024 Eterna Servicios Funerarios. Todos los derechos reservados.</p>
+<div class="flex justify-center gap-6 text-slate-600 dark:text-slate-500 text-xs uppercase tracking-widest font-bold">
+<a class="hover:text-primary" href="#">Contacto</a>
+<a class="hover:text-primary" href="#">Servicios</a>
+<a class="hover:text-primary" href="#">Legales</a>
+</div>
+</footer>
+</div>
+</body></html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#16169c",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111121",
+                        "deep-black": "#0a0a0a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<!-- Mobile Header -->
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-primary/10 px-6 py-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">account_balance</span>
+<h1 class="font-serif text-lg font-bold tracking-tight">Lux</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</header>
+<main class="max-w-md mx-auto pb-20">
+<!-- Hero Section -->
+<section class="px-6 pt-10 pb-6 text-center">
+<h2 class="font-serif text-4xl font-black mb-4 leading-tight">Nuestros Planes</h2>
+<p class="text-slate-600 dark:text-slate-400 text-base leading-relaxed">
+                Honramos la memoria de sus seres queridos con la dignidad y el respeto que merecen.
+            </p>
+</section>
+<!-- Plans Stack -->
+<section class="px-6 space-y-6">
+<!-- Plan: Básico -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="text-primary font-semibold text-xs uppercase tracking-widest">Esencial</span>
+</div>
+<h3 class="font-serif text-2xl font-bold mb-2">Básico</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="font-serif text-3xl font-black">$1,200</span>
+<span class="text-slate-500 text-sm italic">pago único</span>
+</div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Asistencia legal 24/7
+                        </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Cofre básico de madera
+                        </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Trámites gubernamentales
+                        </li>
+</ul>
+<button class="w-full bg-deep-black text-white py-4 rounded-lg font-bold text-sm tracking-wide uppercase hover:opacity-90 transition-opacity">
+                        Cotizar este Plan
+                    </button>
+</div>
+</div>
+<!-- Plan: Intermedio -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="text-primary font-semibold text-xs uppercase tracking-widest">Recomendado</span>
+</div>
+<h3 class="font-serif text-2xl font-bold mb-2">Intermedio</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="font-serif text-3xl font-black">$2,500</span>
+<span class="text-slate-500 text-sm italic">pago único</span>
+</div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Velación 12 horas
+                        </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Cofre de cedro tallado
+                        </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Cortejo fúnebre estándar
+                        </li>
+</ul>
+<button class="w-full bg-deep-black text-white py-4 rounded-lg font-bold text-sm tracking-wide uppercase hover:opacity-90 transition-opacity">
+                        Cotizar este Plan
+                    </button>
+</div>
+</div>
+<!-- Plan: Estándar (Popular) -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-lg border-2 border-primary/20 overflow-hidden flex flex-col relative">
+<div class="absolute top-4 right-4 bg-primary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Más Popular</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="text-primary font-semibold text-xs uppercase tracking-widest">Integral</span>
+</div>
+<h3 class="font-serif text-2xl font-bold mb-2">Estándar</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="font-serif text-3xl font-black">$4,800</span>
+<span class="text-slate-500 text-sm italic">pago único</span>
+</div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Sala VIP exclusiva
+                        </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Cofre de madera fina
+                        </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Servicio de cafetería premium
+                        </li>
+</ul>
+<button class="w-full bg-primary text-white py-4 rounded-lg font-bold text-sm tracking-wide uppercase hover:opacity-90 transition-opacity">
+                        Cotizar este Plan
+                    </button>
+</div>
+</div>
+<!-- Plan: Premium -->
+<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm overflow-hidden flex flex-col">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="text-primary font-semibold text-xs uppercase tracking-widest">Exclusivo</span>
+</div>
+<h3 class="font-serif text-2xl font-bold mb-2">Premium</h3>
+<div class="flex items-baseline gap-1 mb-6">
+<span class="font-serif text-3xl font-black">$8,500</span>
+<span class="text-slate-500 text-sm italic">pago único</span>
+</div>
+<ul class="space-y-3 mb-8">
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Homenaje personalizado
+                        </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Cofre de lujo importado
+                        </li>
+<li class="flex items-center gap-3 text-sm">
+<span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Servicio de repatriación
+                        </li>
+</ul>
+<button class="w-full bg-deep-black text-white py-4 rounded-lg font-bold text-sm tracking-wide uppercase hover:opacity-90 transition-opacity">
+                        Cotizar este Plan
+                    </button>
+</div>
+</div>
+</section>
+<!-- Detailed Comparison Accordions -->
+<section class="px-6 mt-12">
+<h4 class="font-serif text-xl font-bold mb-6 border-b border-primary/10 pb-2">Detalles del Servicio</h4>
+<div class="space-y-3">
+<details class="group bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+<span class="font-medium text-sm">Servicio de Cofre</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Desde modelos básicos de madera ecológica hasta diseños de lujo en caoba o cedro con acabados en bronce, dependiendo del plan seleccionado.
+                    </div>
+</details>
+<details class="group bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+<span class="font-medium text-sm">Salas de Velación</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Contamos con salas modernas equipadas con aire acondicionado, áreas de descanso, y estaciones de café permanente.
+                    </div>
+</details>
+<details class="group bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+<span class="font-medium text-sm">Trámites Legales</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Nuestro equipo se encarga de toda la documentación necesaria ante registros civiles y autoridades sanitarias.
+                    </div>
+</details>
+<details class="group bg-slate-100 dark:bg-slate-800 rounded-lg overflow-hidden">
+<summary class="flex items-center justify-between p-4 cursor-pointer list-none">
+<span class="font-medium text-sm">Asistencia Psicológica</span>
+<span class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-4 pb-4 pt-0 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                        Ofrecemos acompañamiento profesional en el proceso de duelo para los familiares directos.
+                    </div>
+</details>
+</div>
+</section>
+<!-- FAQ CTA -->
+<section class="px-6 mt-12 text-center">
+<p class="text-sm text-slate-500 mb-4">¿Tiene dudas sobre los planes?</p>
+<a class="text-primary font-bold text-sm underline underline-offset-4 decoration-primary/30" href="#">Hable con un asesor ahora</a>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 bg-white dark:bg-background-dark border-t border-primary/10 px-6 py-3 flex justify-around items-center z-50">
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Inicio</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">description</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Planes</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">call</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Contacto</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-400" href="#">
+<span class="material-symbols-outlined">info</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter">Nosotros</span>
+</a>
+</nav>
+</body></html>

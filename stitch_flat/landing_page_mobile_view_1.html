@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Funeral Home - Honrando la Vida</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#000000",
+                        "background-light": "#f7f7f7",
+                        "background-dark": "#191919",
+                    },
+                    fontFamily: {
+                        "display": ["Newsreader", "serif"],
+                        "serif": ["Playfair Display", "serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Newsreader', serif; }
+        .serif-title { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<!-- Header -->
+<header class="sticky top-0 z-50 bg-white/95 dark:bg-background-dark/95 backdrop-blur-md border-b border-primary/10 px-4 py-3 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">church</span>
+<span class="font-serif font-bold text-lg tracking-tight">ETERNITY</span>
+</div>
+<div class="flex items-center gap-4">
+<a class="bg-primary text-white p-2 rounded-full flex items-center justify-center" href="tel:+123456789">
+<span class="material-symbols-outlined text-[20px]">call</span>
+</a>
+<button class="text-primary p-1">
+<span class="material-symbols-outlined text-[32px]">menu</span>
+</button>
+</div>
+</header>
+<!-- Economic Bar -->
+<div class="bg-primary/5 border-b border-primary/5 py-2 overflow-hidden whitespace-nowrap">
+<div class="flex gap-8 px-4 animate-scroll items-center justify-center">
+<div class="flex items-center gap-2 text-xs font-medium uppercase tracking-widest opacity-70">
+<span>UF Today:</span>
+<span class="font-bold text-primary">$37.142</span>
+</div>
+<div class="flex items-center gap-2 text-xs font-medium uppercase tracking-widest opacity-70">
+<span>UTM:</span>
+<span class="font-bold text-primary">$65.443</span>
+</div>
+</div>
+</div>
+<!-- Hero Section -->
+<section class="relative h-[80vh] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="Solemn white lilies in a peaceful funeral hall interior" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuBfMQUiRGGznKhD6AiorXP5385ehmbb7saYSBH7O080ZNEuTlbSbgbxT6hlxDplpNHTKqtW8Bd3FS8mPMsQrAqgaCLDyuwqwDXxFiH0S2O-YYKGGRnvIGQvP-ANlgqjflNMMLQ04udeKlSr5BaAL4VeMHFuQApvRk-1LVNEmXMVeEovUou1FfcDrXFC7VfUVn4_VgPeNyOKCpOZngJOvCNCBl-k1soWapJTv2JjfL0_KBYi_HhoMljCUOr6LO0_gFvgYNkvdmc3Px0');"></div>
+<div class="relative z-10 text-center px-6 w-full max-w-md">
+<h1 class="serif-title text-4xl md:text-5xl text-white mb-8 leading-tight">
+                Honrando la vida con dignidad y respeto
+            </h1>
+<button class="w-full bg-primary text-white font-bold py-4 rounded-lg uppercase tracking-widest text-sm shadow-xl hover:bg-slate-900 transition-colors">
+                Cotizar Servicio Online
+            </button>
+</div>
+</section>
+<!-- Memorial Search -->
+<section class="px-4 -mt-10 relative z-20">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl shadow-2xl border border-primary/5">
+<h2 class="serif-title text-xl text-center mb-4">Buscar Fallecidos</h2>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-3 rounded-lg border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-primary focus:border-primary transition-all" placeholder="Nombre del ser querido..." type="text"/>
+</div>
+</div>
+</section>
+<!-- Service Plans -->
+<section class="px-4 py-16">
+<div class="mb-10 text-center">
+<h2 class="serif-title text-3xl mb-2">Planes Funerarios</h2>
+<div class="h-1 w-12 bg-primary mx-auto"></div>
+</div>
+<div class="space-y-6">
+<!-- Card 1 -->
+<div class="bg-white dark:bg-slate-900 p-8 rounded-xl border border-primary/10 shadow-sm">
+<span class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/60 mb-2 block">Esencial</span>
+<h3 class="serif-title text-2xl mb-4">Plan Tradicional</h3>
+<div class="text-3xl font-bold mb-6">$1.890.000 <span class="text-sm font-normal text-slate-400">CLP</span></div>
+<ul class="space-y-3 mb-8 text-sm opacity-80">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-green-600">check_circle</span> Urna de madera noble</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-green-600">check_circle</span> Traslado regional</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-sm text-green-600">check_circle</span> Trámites legales</li>
+</ul>
+<a class="inline-flex items-center gap-2 font-bold text-sm border-b-2 border-primary pb-1" href="#">Ver detalles <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+</div>
+<!-- Card 2 -->
+<div class="bg-primary text-white p-8 rounded-xl shadow-xl">
+<span class="text-[10px] uppercase tracking-[0.2em] font-bold text-white/60 mb-2 block">Más Popular</span>
+<h3 class="serif-title text-2xl mb-4 text-white">Plan Premium</h3>
+<div class="text-3xl font-bold mb-6 text-white">$3.250.000 <span class="text-sm font-normal text-white/60">CLP</span></div>
+<ul class="space-y-3 mb-8 text-sm opacity-90">
+<li class="flex items-center gap-2 text-white"><span class="material-symbols-outlined text-sm">check_circle</span> Urna importada Premium</li>
+<li class="flex items-center gap-2 text-white"><span class="material-symbols-outlined text-sm">check_circle</span> Coronas de flores naturales</li>
+<li class="flex items-center gap-2 text-white"><span class="material-symbols-outlined text-sm">check_circle</span> Aviso en prensa nacional</li>
+</ul>
+<a class="inline-flex items-center gap-2 font-bold text-sm border-b-2 border-white pb-1 text-white" href="#">Ver detalles <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+</div>
+<!-- Card 3 -->
+<div class="bg-white dark:bg-slate-900 p-8 rounded-xl border border-primary/10 shadow-sm opacity-90">
+<span class="text-[10px] uppercase tracking-[0.2em] font-bold text-primary/60 mb-2 block">Dignidad</span>
+<h3 class="serif-title text-2xl mb-4">Plan Cremación</h3>
+<div class="text-3xl font-bold mb-6">$2.450.000 <span class="text-sm font-normal text-slate-400">CLP</span></div>
+<a class="inline-flex items-center gap-2 font-bold text-sm border-b-2 border-primary pb-1" href="#">Ver detalles <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+</div>
+</div>
+</section>
+<!-- Support Resources / Blog -->
+<section class="bg-primary/5 py-16 px-4">
+<h2 class="serif-title text-3xl mb-10 text-center">Apoyo en el Duelo</h2>
+<div class="space-y-8">
+<article class="flex flex-col gap-4">
+<div class="w-full aspect-video rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Soft light shining through green leaves in a quiet park" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDG1fXn8HvZ8CulId1JUrCNeTVENCzwNakTmzFotbALgAlGewx8BhOqs-QIc-uiCVKBXWLw1xG-hrayfPDAA_R3r8U6oJG1vw_o492SP5ivTdjEsv7bfGoHYVTmQhyPS7ZvKnUFta3yQyDe152MVWiwp_WCovT2qdKKFZnMRY-plsVTTvXpqVHIVYYWdnTRAdRznw0nYOqF2hXv72J8TIl38yWJUZ2WzoIHX8MGzvoFXb58NP6wIjNUCv-yssB1NTaR2KFQq9s7U_Y"/>
+</div>
+<div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary/60">Recursos</span>
+<h3 class="serif-title text-xl mt-1 mb-2">Cómo hablar del fallecimiento con los niños</h3>
+<p class="text-sm opacity-70 line-clamp-2">Nuestros expertos ofrecen guías prácticas para acompañar a los más pequeños en este proceso...</p>
+</div>
+</article>
+<article class="flex flex-col gap-4">
+<div class="w-full aspect-video rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A peaceful sunset over calm water reflecting warm colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhT-YiQn-_Zpmg7DTsWJofuGtkkvIDFg-IdZtUoMQGbBqZ90SbWW3Le_CVEtbrXdfwqsfY91YT2FsXghYGO1OuDVO6DrXJguCd1fC5J2cczZCh7PIlluh2LzQ0oI-cGn7qtpmehWI1gOzg2864kPjuu3Ar9uoPuvIt8jXiFOY8plqV_bVJpSWqeg8SEk5AxSJai-qvcq1-zNlnNpAet3fliYK6w4CCUU-GIJBf9asYaSpgpR1Vgow-M0iO-KYvqQ-Y-XCbgIDJIx8"/>
+</div>
+<div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary/60">Bienestar</span>
+<h3 class="serif-title text-xl mt-1 mb-2">Rituales para honrar la memoria en casa</h3>
+<p class="text-sm opacity-70 line-clamp-2">Ideas sencillas y significativas para mantener vivo el legado de quienes partieron.</p>
+</div>
+</article>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-primary text-white py-16 px-6">
+<div class="max-w-md mx-auto">
+<div class="flex items-center gap-2 mb-10 justify-center">
+<span class="material-symbols-outlined text-3xl">church</span>
+<span class="font-serif font-bold text-xl tracking-tight">ETERNITY</span>
+</div>
+<div class="grid grid-cols-2 gap-8 mb-12 text-sm">
+<div class="space-y-4">
+<h4 class="font-bold uppercase tracking-widest text-xs opacity-50">Servicios</h4>
+<ul class="space-y-2">
+<li><a class="hover:underline" href="#">Planes Funerarios</a></li>
+<li><a class="hover:underline" href="#">Cremación</a></li>
+<li><a class="hover:underline" href="#">Sepultación</a></li>
+<li><a class="hover:underline" href="#">Traslados</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold uppercase tracking-widest text-xs opacity-50">Nosotros</h4>
+<ul class="space-y-2">
+<li><a class="hover:underline" href="#">Nuestra Historia</a></li>
+<li><a class="hover:underline" href="#">Sucursales</a></li>
+<li><a class="hover:underline" href="#">Preguntas Frecuentes</a></li>
+<li><a class="hover:underline" href="#">Contacto</a></li>
+</ul>
+</div>
+</div>
+<div class="flex justify-center gap-6 mb-12">
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">share</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">camera</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors" href="#">
+<span class="material-symbols-outlined text-xl">alternate_email</span>
+</a>
+</div>
+<div class="border-t border-white/10 pt-10 flex flex-col items-center gap-6">
+<div class="flex gap-4 opacity-40 grayscale contrast-125">
+<div class="h-8 w-20 bg-white/20 rounded flex items-center justify-center text-[8px] font-bold">ALLIANCE 1</div>
+<div class="h-8 w-20 bg-white/20 rounded flex items-center justify-center text-[8px] font-bold">ALLIANCE 2</div>
+</div>
+<p class="text-[10px] opacity-40 text-center uppercase tracking-widest">
+                    © 2024 Eternity Funeral Services. Todos los derechos reservados.
+                </p>
+</div>
+</div>
+</footer>
+<!-- Floating Action WhatsApp -->
+<a class="fixed bottom-6 right-6 w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl flex items-center justify-center z-50 hover:scale-110 active:scale-95 transition-transform" href="https://wa.me/123456789">
+<svg class="w-8 h-8 fill-current" viewbox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M19.11 17.205c-.372 0-1.088 1.39-1.518 1.39a.63.63 0 0 1-.315-.1c-.802-.402-1.504-.817-2.163-1.447-.545-.516-1.146-1.29-1.46-1.963a.426.426 0 0 1-.073-.215c0-.33.99-.945.99-1.49 0-.23-.13-.415-.13-.415l-1.1-1.49c-.315-.458-.83-.787-1.418-.787-.43 0-1.417.86-1.417 1.317 0 .473.115 1.06.143 1.116.115.143.143.2 1.404 3.094.63 1.447 1.29 2.12 2.12 2.72.63.458 1.962 1.204 3.253 1.39.43.057 1.232-.372 1.232-.83 0-.172-.086-.344-.23-.458l-1.132-.616a.442.442 0 0 1-.215-.043zM15.906 0C7.15 0 0 7.15 0 15.906c0 2.822.744 5.473 2.034 7.765l-2.034 7.422 7.593-1.99a15.76 15.76 0 0 0 8.313 2.348C24.851 31.451 32 24.3 32 15.547 32 6.793 24.851 0 15.906 0zm.014 28.564c-2.507 0-4.856-.73-6.848-1.977l-.487-.286-4.498 1.175 1.203-4.383-.315-.516c-1.346-2.12-2.12-4.641-2.12-7.335 0-7.392 6.017-13.408 13.408-13.408s13.408 6.016 13.408 13.408-6.017 13.408-13.408 13.408z"></path></svg>
+</a>
+</body></html>
