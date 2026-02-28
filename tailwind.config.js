@@ -24,7 +24,10 @@ module.exports = {
     },
   },
   plugins: [
+    /* eslint-disable @typescript-eslint/no-require-imports */
+    require('tailwind-scrollbar'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
+    /* eslint-enable @typescript-eslint/no-require-imports */
   ],
 }
