@@ -1,75 +1,120 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 const servicios = [
     {
         title: 'Servicios Funerarios',
-        description: 'Ceremonias de gala personalizadas que honran la esencia de cada ser querido con una atención meticulosa a la estética y el protocolo.',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA7RuP3KNdPrYIbglckhUe46rvYsbC9nrmxYlxr5F9O3JaceN_r7lky7QIEL8sTqxzsEbqAFxpyNdE25yx46SUVzqYAmA0T763gXkAcrfwgbaW5-D7eRDluyaOk-PtwscQ--14u7hGKRREZN90rxvVsYYfB7X9820giv7_HwU7LabxX7sM5br4Ry7Eq0mPPTSxAvF_R4V9m6Aq2AAkxgQ-ynjnPV8hVjgggVDMN_v7M-ezJMuEJ6grmOZdBgahB7EaIekKg3TGDmgg',
+        description: 'Ceremonias de gala personalizadas que honran la esencia de cada ser querido con una atención meticulosa a la estética, el protocolo y la solemnidad absoluta.',
+        image: '/assets/images/servicios/funerales-gala.webp',
         features: ['Capillas VIP exclusivas', 'Carruajes de honor', 'Atención solemne 24h']
     },
     {
         title: 'Crematorio y Cinerarios',
-        description: 'Procesos llevados con el máximo respeto en instalaciones de vanguardia, rodeadas de jardines diseñados para la reflexión y la paz eterna.',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBL0OrItcdiLSS_ghT9c7owX82P9RuemkVfJab2kjLWvgahtOkrxiuRLDlffDMZy-jCs6sLIpIcWBM79KznSq8KsOdD5PLFnUMZaimo2J_9VGrSsi-NincESrCqeg3knpGzoQu654tyml4J0pqeQlyKmtuzsLiM16M70GznWF81_tNb61n0iCPoGbMLz7XqhTtIAKQw-0z8rRKCg8ijG735EqoMP3jmHreXO4FHHaPvDvWrRxsaHmILz8nOjcywTz0nMusMeCBi644',
+        description: 'Procesos llevados con el máximo respeto en instalaciones de vanguardia, rodeadas de jardines diseñados para la reflexión profunda y la paz eterna.',
+        image: '/assets/images/servicios/crematorio.webp',
         features: ['Urnas de diseño fino', 'Espacios memoriales naturales', 'Protocolos certificados']
     },
     {
         title: 'Traslados Internacionales',
-        description: 'Gestión logística integral para el retorno de restos a cualquier destino mundial, cumpliendo rigurosamente normativas de seguridad y sanidad.',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDKKxz62qQfRjODn-sBYQZ2ifoIwjnN3yoicGkW2Rm7i_abQxPsB8OaX8Om93YnA79FRwh4mqRGPN66QAp0PiczUy2PYJ9DS8v9ilQyHdpYV7j2j1sKi6OY_2iIQ9xemYow63nm5LIsHms3BgqEzTrPK3wW9wdRW2CZKGXH-MLDKUmjHaGqtIFl2BSM1ttKicnIlxIhfd__SCMeovlVo6ZTem2F85MTmEcKRqw5ClZwirYwk7cGqrDmzsY0G5CZtYMmCYHYFY_lhyE',
+        description: 'Gestión logística integral para el retorno de restos a cualquier destino mundial, cumpliendo rigurosamente normativas de seguridad y sanidad internacional.',
+        image: '/assets/images/servicios/traslados.webp',
         features: ['Repatriación asistida', 'Trámites consulares', 'Custodia profesional']
     },
     {
         title: 'Asesoría Administrativa',
-        description: 'Aliviamos su carga gestionando certificados, licencias y procesos legales, permitiéndole vivir su duelo con la serenidad necesaria.',
-        image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAEyR-i8ybgXenH-wsA9w1QQGCxV3eXt7L7jCm5-u3iaGhnNG5KnGIKZb97j-dGjdr5B5blak2SGmDhcNj2U0wDxS8ay9iZFTsKiJC2LnAbLAf4owvWYLPLXVpwvtkcEoBdW7Fx3ZSZuV81HJeWJ6nuwQcf5D_aBJFnf8PrtdJByGpyaQSeUhfEHZ-9SPON8goMI6aNuqk_ZQ_nla992WGT5RFoeDK3eu3Ov-qAaw7A-MGhyA2LlW_0w10J8FwMn4AhLbwh3P8i19A',
+        description: 'Aliviamos su carga gestionando certificados, licencias y procesos legales, permitiéndole vivir su duelo con la serenidad y apoyo que su familia merece.',
+        image: '/assets/images/servicios/asesoria.webp',
         features: ['Gestión de herencias', 'Apoyo en seguros', 'Trámites gubernamentales']
     }
 ];
 
 export default function ServiciosPage() {
-    return (
-        <main className="min-h-screen bg-black text-white font-display pt-32 pb-24 selection:bg-white/10 antialiased">
+    const containerRef = useRef<HTMLDivElement>(null);
 
-            {/* Hero Section - Inmersivo Stitch */}
-            <section className="max-w-5xl mx-auto px-6 py-24 text-center border-b border-white/5 mb-32">
-                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40 block mb-8">Protocolos de Excelencia</span>
-                <h1 className="text-5xl md:text-8xl font-serif text-white mb-12 italic leading-tight">
-                    Homenajes que Trascienden
+    useEffect(() => {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const ctx = gsap.context(() => {
+            // Header Animation
+            gsap.fromTo(".servicios-header",
+                { opacity: 0, y: 30 },
+                { opacity: 1, y: 0, duration: 1.5, ease: "expo.out" }
+            );
+
+            // Cards Animation
+            gsap.fromTo(".service-card",
+                { opacity: 0, scale: 0.95, y: 50 },
+                {
+                    opacity: 1, scale: 1, y: 0, duration: 1.2, stagger: 0.2, ease: "expo.out",
+                    scrollTrigger: {
+                        trigger: ".services-grid",
+                        start: "top 85%",
+                    }
+                }
+            );
+
+            // Featured Section Animation
+            gsap.fromTo(".featured-service",
+                { opacity: 0, y: 60 },
+                {
+                    opacity: 1, y: 0, duration: 1.5, ease: "expo.out",
+                    scrollTrigger: {
+                        trigger: ".featured-service",
+                        start: "top 80%",
+                    }
+                }
+            );
+        }, containerRef);
+
+        return () => ctx.revert();
+    }, []);
+
+    return (
+        <main ref={containerRef} className="min-h-screen bg-black text-white font-display pt-32 pb-48 selection:bg-white/10 antialiased overflow-x-hidden">
+
+            {/* Hero Section - Immersive Editorial */}
+            <section className="max-w-6xl mx-auto px-6 py-32 text-center servicios-header">
+                <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white/30 block mb-10">Protocolos de Excelencia</span>
+                <h1 className="text-6xl md:text-9xl font-serif text-white mb-12 italic leading-[0.85] tracking-tighter">
+                    Dignidad <br /> <span className="text-white/40">que Trasciende</span>
                 </h1>
-                <p className="text-xl text-white/60 max-w-2xl mx-auto leading-relaxed font-light italic">
-                    "En los instantes de mayor fragilidad, transformamos el adiós en un tributo solemne a la grandeza de una vida."
+                <p className="text-2xl text-white/40 max-w-2xl mx-auto leading-relaxed font-light italic border-x border-white/5 px-10">
+                    "En los instantes de mayor fragilidad, transformamos el adiós en un tributo solemne a la grandeza de una vida extraordinaria."
                 </p>
-                <div className="w-16 h-px bg-white/20 mx-auto mt-20"></div>
+                <div className="w-24 h-px bg-white/10 mx-auto mt-24"></div>
             </section>
 
-            {/* Services Grid - Visual Cards UI */}
-            <section className="max-w-7xl mx-auto px-6 mb-48">
+            {/* Services Grid - Visual Elegance */}
+            <section className="max-w-7xl mx-auto px-6 mb-64 services-grid">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
                     {servicios.map((s, idx) => (
                         <article
                             key={idx}
-                            className="group flex flex-col bg-white/[0.02] rounded-[3rem] overflow-hidden transition-all duration-700 hover:-translate-y-2 border border-white/5 hover:border-white/20 shadow-3xl shadow-black/60"
+                            className="service-card group flex flex-col bg-white/[0.01] rounded-[4rem] overflow-hidden transition-all duration-1000 border border-white/5 hover:border-white/20 shadow-4xl"
                         >
-                            <div className="aspect-[16/10] overflow-hidden bg-black/40 grayscale group-hover:grayscale-0 transition-all duration-1000">
-                                <img
-                                    className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                            <div className="aspect-[16/10] relative overflow-hidden bg-black/40 grayscale group-hover:grayscale-0 transition-all duration-1000">
+                                <Image
                                     src={s.image}
                                     alt={`Visualización de ${s.title}`}
-                                    loading="lazy"
+                                    fill
+                                    className="object-cover transition-transform duration-[2s] group-hover:scale-110"
                                 />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
                             </div>
-                            <div className="p-16">
-                                <h3 className="text-3xl font-serif mb-8 italic">{s.title}</h3>
-                                <p className="text-white/50 mb-12 leading-relaxed font-light text-lg">
+                            <div className="p-20">
+                                <h3 className="text-4xl font-serif mb-8 italic tracking-tighter">{s.title}</h3>
+                                <p className="text-white/30 mb-12 leading-relaxed font-light text-xl italic group-hover:text-white/60 transition-colors duration-700">
                                     {s.description}
                                 </p>
                                 <ul className="space-y-6">
                                     {s.features.map((f, i) => (
-                                        <li key={i} className="flex items-center gap-5 text-[10px] font-black uppercase tracking-[0.3em] text-white/30 group-hover:text-white/60 transition-colors">
-                                            <span className="material-symbols-outlined text-amber-500/60 text-base">check_circle</span>
+                                        <li key={i} className="flex items-center gap-6 text-[10px] font-black uppercase tracking-[0.4em] text-white/20 group-hover:text-white/70 transition-all duration-700 group-hover:translate-x-2">
+                                            <span className="material-symbols-outlined text-amber-500/40 text-lg">check_circle</span>
                                             {f}
                                         </li>
                                     ))}
@@ -78,26 +123,27 @@ export default function ServiciosPage() {
                         </article>
                     ))}
 
-                    {/* Featured: Floristería (Full Width Edition) */}
-                    <article className="md:col-span-2 group flex flex-col md:flex-row bg-white/[0.02] rounded-[4rem] overflow-hidden transition-all duration-700 hover:-translate-y-2 border border-white/5 hover:border-white/20 shadow-3xl shadow-black/60">
-                        <div className="md:w-1/2 aspect-video md:aspect-auto overflow-hidden bg-black/40 grayscale group-hover:grayscale-0 transition-all duration-1000">
-                            <img
-                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYpGcDTcprOQZ4a5vwoarkUgy2CTYjR_5Rs8UHCdb8z166bnMjtU_GbyVdLBe-2bX8K7m21odDlkq_U3HjNZlTFbxXvKkKNiRx1Bda5WCBFl-DwsisB4DjEV2pR_lPMERWZ7wOj8Dbtu0UjrXd0UK7IA4RvSRaaMZy0vFI4cViY4T7I6bWdTW1nPuHc4GF-2bBLXxtep_MiZv65pQRYJMn0P0T9UX2QMjgJyqWqCf_2excw6_4gfJtcQn5ikqesOyH7ifG3ZaKeLE"
-                                alt="Floristería de Autor"
-                                loading="lazy"
+                    {/* Featured: Floristería de Autor (Full Width Masterpiece) */}
+                    <article className="featured-service md:col-span-2 group flex flex-col lg:flex-row bg-white/[0.02] rounded-[5rem] overflow-hidden transition-all duration-1000 border border-white/5 hover:border-white/20 shadow-4xl">
+                        <div className="lg:w-1/2 aspect-video lg:aspect-auto relative overflow-hidden bg-black/40 grayscale group-hover:grayscale-0 transition-all duration-[2s]">
+                            <Image
+                                src="/assets/images/servicios/floristeria.webp"
+                                alt="Floristería de Autor Funeraria Santa Margarita"
+                                fill
+                                className="object-cover transition-transform duration-[3s] group-hover:scale-110"
                             />
+                            <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent lg:block hidden"></div>
                         </div>
-                        <div className="md:w-1/2 p-20 flex flex-col justify-center">
-                            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/30 mb-8">Distinción Visual</span>
-                            <h3 className="text-4xl md:text-5xl font-serif mb-10 italic">Floristería de Autor</h3>
-                            <p className="text-xl text-white/50 mb-12 font-light leading-relaxed">
-                                Diseños florales curados que transmiten esperanza y consuelo. Utilizamos especies exclusivas para crear tributos visuales de inigualable elegancia.
+                        <div className="lg:w-1/2 p-24 lg:p-32 flex flex-col justify-center relative">
+                            <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white/20 mb-10">Curaduría Visual</span>
+                            <h3 className="text-5xl lg:text-7xl font-serif mb-12 italic leading-none tracking-tighter">Floristería <br /> <span className="text-white/30">de Autor</span></h3>
+                            <p className="text-2xl text-white/40 mb-16 font-light leading-relaxed italic border-l border-white/10 pl-10">
+                                Diseños florales curados que transmiten esperanza y consuelo. Utilizamos especies exclusivas para crear tributos visuales de inigualable elegancia y distinción.
                             </p>
                             <div className="grid grid-cols-2 gap-10">
-                                {['Arreglos Fúnebres', 'Coronas de Honor', 'Decoración de Salas', 'Diseños de Autor'].map((item) => (
-                                    <div key={item} className="flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.3em] text-white/30">
-                                        <span className="material-symbols-outlined text-base text-white/20">local_florist</span> {item}
+                                {['Arreglos Fúnebres', 'Coronas de Honor', 'Decoración de Salas', 'Homenajes Vivos'].map((item) => (
+                                    <div key={item} className="flex items-center gap-5 text-[10px] font-black uppercase tracking-[0.4em] text-white/20 group-hover:text-amber-500/50 transition-colors">
+                                        <span className="material-symbols-outlined text-xl">local_florist</span> {item}
                                     </div>
                                 ))}
                             </div>
@@ -106,26 +152,30 @@ export default function ServiciosPage() {
                 </div>
             </section>
 
-            {/* Emergency Service Section - High Impact */}
+            {/* Professional Contact - High Contrast Response */}
             <section className="max-w-6xl mx-auto px-6">
-                <div className="bg-gradient-to-b from-white/[0.05] to-transparent p-24 md:p-32 rounded-[4rem] border border-white/10 text-center relative overflow-hidden">
+                <div className="bg-white text-black p-24 md:p-48 rounded-[5rem] text-center relative overflow-hidden group">
+                    <div className="absolute inset-0 opacity-5 pointer-events-none overflow-hidden">
+                        <span className="material-symbols-outlined text-[300px] absolute -right-20 -bottom-20 rotate-12 transition-transform duration-[3s] group-hover:rotate-0">support_agent</span>
+                    </div>
+
                     <div className="relative z-10">
-                        <h2 className="text-5xl md:text-7xl font-serif mb-10 italic leading-tight">Asistencia Inmediata</h2>
-                        <p className="text-xl text-white/40 mb-16 font-light max-w-2xl mx-auto leading-relaxed">
-                            Nuestro protocolo de respuesta está activo las 24 horas del día para brindarle el apoyo compasivo que su familia requiere ahora.
+                        <h2 className="text-6xl md:text-8xl font-serif mb-12 italic leading-[0.9] tracking-tighter">Asistencia las <br /><span className="text-black/30">24 Horas</span></h2>
+                        <p className="text-2xl text-black/50 mb-20 font-light max-w-2xl mx-auto leading-relaxed italic">
+                            Nuestro protocolo de respuesta inmediata está activo para brindarle el apoyo compasivo que su familia requiere hoy.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-10">
                             <a
-                                className="bg-white text-black px-16 py-6 rounded-full font-black uppercase text-[10px] tracking-[0.4em] hover:bg-slate-200 transition-all shadow-2xl shadow-white/5"
+                                className="bg-black text-white px-20 py-8 rounded-full font-black uppercase text-[11px] tracking-[0.6em] hover:bg-zinc-800 transition-all shadow-3xl"
                                 href="tel:+56964333760"
                             >
-                                Llamada Urgente
+                                Llamada Inmediata
                             </a>
                             <a
-                                className="border border-white/20 text-white px-16 py-6 rounded-full font-black uppercase text-[10px] tracking-[0.4em] hover:bg-white/5 transition-all"
+                                className="border border-black/10 text-black px-20 py-8 rounded-full font-black uppercase text-[11px] tracking-[0.6em] hover:bg-black/5 transition-all"
                                 href="https://wa.me/56964333760"
                             >
-                                WhatsApp 24h
+                                WhatsApp Protocolo
                             </a>
                         </div>
                     </div>
