@@ -33,10 +33,19 @@ C:.
 ├───.git                # Control de versiones (Hook pre-commit activo)
 ├───backup              # Backups comprimidos y optimizados
 ├───docs                # Documentación técnica y estratégica (Índice Maestro)
-├───public              # Activos estáticos (Imágenes Hero, SVGs)
+├───public              # Activos estáticos
+│   └───assets          # Recursos de dominio
+│       ├───deprecated  # Archivos obsoletos (en cuarentena)
+│       └───images      # Núcleo de imágenes (Brand, Planes, UI, etc.)
 ├───scripts             # Scripts de automatización y verificación
 │   ├───backup.ps1      # Generador de backups optimizados
-│   └───verify-firebase.ps1 # Validador de entorno y cuenta
+│   ├───verify-firebase.ps1 # Validador de entorno y cuenta
+│   └───migrate-assets.js   # Script autogenerado de migración de recursos
+├───stitch              # Archivos y proyectos fuente (raw) UI/UX
+│   ├───config          # Configuraciones base UI
+│   ├───escenas         # Plantillas renderizables
+│   ├───exports         # Elementos estáticos intermedios
+│   └───proyectos       # Matrices de proyecto de diseño
 └───src                 # Código fuente de la aplicación
     ├───app             # Rutas y Layouts (Next.js App Router)
     │   ├───cotizacion  # Página de cotización multi-step
@@ -77,6 +86,7 @@ C:.
 4. Página de Cotización v1 (Multi-step).
 5. Galería de Memoriales v1.
 6. Despliegue inicial en Producción: [funeraria-sm.web.app](https://funeraria-sm.web.app).
+7. Arquitectura global de Assets, purga de legacy y reestructuración de imágenes WebP/SVG centralizada en `public/assets/images/`.
 
 ### 🚀 Próximos Pasos
 1. Conexión de indicadores económicos a API real (UF/UTM).
@@ -85,4 +95,4 @@ C:.
 4. Configuración de Dominio Personalizado.
 
 ---
-**Documento autogenerado por Antigravity (IA Unit). Última actualización: 26-02-2026**
+**Documento autogenerado por Antigravity (IA Unit). Última actualización: 28-02-2026**

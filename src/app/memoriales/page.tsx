@@ -118,7 +118,27 @@ export default function MemorialesPage() {
             } else {
                 setUsingDemo(false);
                 setMemoriales(
-                    snap.docs.map(d => ({ id: d.id, ...d.data() } as Memorial))
+                    snap.docs.map(d => {
+                        const data = d.data();
+
+                        // Función auxiliar para convertir Timestamp a String legible
+                        const formatDate = (val: any) => {
+                            if (!val) return '';
+                            // Si es un Timestamp de Firestore
+                            if (val.seconds) {
+                                return new Date(val.seconds * 1000).getFullYear().toString();
+                            }
+                            // Si ya es un string o date
+                            return val.toString();
+                        };
+
+                        return {
+                            id: d.id,
+                            ...data,
+                            nacimiento: formatDate(data.nacimiento),
+                            fallecimiento: formatDate(data.fallecimiento),
+                        } as Memorial;
+                    })
                 );
             }
         } catch {

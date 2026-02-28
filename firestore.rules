@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // MEMORIALES: Lectura pública, Escritura bloqueada
+    match /memoriales/{document} {
+      allow read: if true; 
+      allow write: if false; 
+    }
+    
+    // COTIZACIONES: Creación pública (leads), el resto bloqueado
+    match /cotizaciones/{document} {
+      allow create: if true;
+      allow read, update, delete: if false;
+    }
+  }
+}
