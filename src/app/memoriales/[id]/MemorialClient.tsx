@@ -99,111 +99,117 @@ export default function MemorialDetallePage() {
     }, [id]);
 
     if (loading) return (
-        <div className="min-h-screen flex items-center justify-center bg-[#f7f7f7] dark:bg-[#101622]">
-            <div className="w-12 h-12 border-2 border-black/5 border-t-black rounded-full animate-spin"></div>
+        <div className="min-h-screen flex items-center justify-center bg-black">
+            <div className="w-16 h-16 border border-white/10 border-t-white rounded-full animate-spin"></div>
         </div>
     );
 
     if (!memorial) return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#f7f7f7] dark:bg-[#101622] px-6 text-center">
-            <h1 className="font-serif text-4xl mb-4">Memorial no encontrado</h1>
-            <Link href="/memoriales" className="text-sm font-bold uppercase tracking-widest border-b border-black pb-1 hover:opacity-50 transition-all">Volver al listado</Link>
+        <div className="min-h-screen flex flex-col items-center justify-center bg-black px-6 text-center">
+            <h1 className="font-serif text-5xl mb-8 text-white">Memorial no encontrado</h1>
+            <Link href="/memoriales" className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30 hover:text-white border-b border-white/10 pb-4 transition-all">Regresar a la Galería</Link>
         </div>
     );
 
     return (
-        <main className="min-h-screen bg-white dark:bg-[#101622] font-display selection:bg-black selection:text-white">
+        <main className="min-h-screen bg-black text-white font-display selection:bg-white/10 antialiased overflow-x-hidden">
 
-            {/* Header / Hero */}
-            <section className="pt-32 pb-20 px-6">
-                <div className="max-w-4xl mx-auto text-center">
-                    <div className="relative inline-block mb-12 group">
-                        <div className="absolute -inset-4 bg-black/5 rounded-full blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
-                        <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white dark:border-slate-800 shadow-2xl">
+            {/* Header / Hero - Estilo Editorial Sanitario */}
+            <section className="pt-40 pb-24 px-6 relative">
+                <div className="max-w-4xl mx-auto text-center border-b border-white/5 pb-24">
+                    <div className="relative inline-block mb-16 transform transition-transform duration-[2s] hover:scale-105">
+                        <div className="absolute -inset-10 bg-white/5 rounded-full blur-[80px] opacity-40"></div>
+                        <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden border border-white/10 shadow-3xl">
                             <img
                                 src={memorial.imagen || '/assets/images/stitch/placeholder-memorial.webp'}
-                                alt={memorial.nombre}
-                                className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:brightness-100 transition-all duration-1000 scale-105 group-hover:scale-100"
+                                alt={`Retrato de ${memorial.nombre}`}
+                                className="w-full h-full object-cover grayscale brightness-75 hover:grayscale-0 hover:brightness-100 transition-all duration-1000"
                             />
                         </div>
                     </div>
-                    <h1 className="font-serif text-5xl md:text-7xl mb-4 italic text-black dark:text-white">{memorial.nombre}</h1>
-                    <p className="text-[#7E7D7D] text-lg tracking-[0.4em] uppercase font-light">{memorial.nacimiento} — {memorial.fallecimiento}</p>
-                    <div className="w-16 h-px bg-black/10 mx-auto mt-12"></div>
+                    <span className="text-[9px] font-black uppercase tracking-[0.6em] text-white/40 block mb-6">En Memoria Eterna</span>
+                    <h1 className="font-serif text-6xl md:text-8xl mb-8 italic tracking-tight leading-[0.9] text-white">{memorial.nombre}</h1>
+                    <p className="text-white/30 text-xl tracking-[0.5em] uppercase font-black">{memorial.nacimiento} — {memorial.fallecimiento}</p>
                 </div>
             </section>
 
-            {/* Action Bar */}
-            <section className="sticky top-20 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-y border-black/5">
-                <div className="max-w-4xl mx-auto flex divide-x divide-black/5">
-                    <button className="flex-1 py-8 flex flex-col items-center gap-2 hover:bg-black/5 transition-all group">
-                        <span className="material-symbols-outlined text-amber-500 fill-1 text-3xl">flare</span>
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em]">Encender Vela</span>
+            {/* Sticky Action Bar - Premium Dark Glass */}
+            <section className="sticky top-0 z-50 border-b border-white/5 bg-black/80 backdrop-blur-2xl">
+                <div className="max-w-5xl mx-auto flex h-32">
+                    <button className="flex-1 flex flex-col items-center justify-center gap-3 transition-all duration-700 hover:bg-white/[0.03] group border-r border-white/5">
+                        <span className="material-symbols-outlined text-amber-400 group-hover:scale-125 transition-transform duration-500 text-3xl fill-1">flare</span>
+                        <span className="text-[9px] font-black uppercase tracking-[0.4em] text-white/40 group-hover:text-white transition-colors">Encender Luz</span>
                     </button>
-                    <button className="flex-1 py-8 bg-black text-white flex flex-col items-center gap-2 hover:bg-slate-900 transition-all group">
-                        <span className="material-symbols-outlined text-3xl">edit_note</span>
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em]">Escribir Condolencia</span>
+                    <button className="flex-1 flex bg-white text-black flex-col items-center justify-center gap-3 transition-all duration-700 hover:bg-white/90 group">
+                        <span className="material-symbols-outlined text-3xl group-hover:scale-110 transition-transform duration-500">auto_awesome</span>
+                        <span className="text-[9px] font-black uppercase tracking-[0.4em] text-black">Ofrecer Tributo</span>
                     </button>
                 </div>
             </section>
 
-            {/* Biography */}
-            <section className="py-32 px-6">
-                <div className="max-w-2xl mx-auto">
-                    <h2 className="font-serif text-4xl mb-12 text-center italic text-black dark:text-white">Su Legado</h2>
-                    <div className="prose prose-slate dark:prose-invert max-w-none">
-                        <p className="text-xl leading-relaxed font-light text-slate-700 dark:text-slate-300 first-letter:text-5xl first-letter:font-serif first-letter:mr-3 first-letter:float-left first-letter:italic">
-                            {memorial.biografia || 'Un ser humano excepcional que tocó las vidas de todos los que tuvieron el honor de conocerle...'}
+            {/* Biography Section - Editorial Layout */}
+            <section className="py-40 px-6">
+                <div className="max-w-3xl mx-auto relative">
+                    <div className="absolute -left-20 top-0 text-[180px] font-serif italic text-white/[0.02] leading-none select-none">"</div>
+                    <h2 className="font-serif text-5xl mb-20 text-center italic text-white/90">Ecos de una Vida</h2>
+                    <div className="prose prose-invert max-w-none">
+                        <p className="text-2xl md:text-3xl leading-[1.6] font-light text-white/50 first-letter:text-8xl first-letter:font-serif first-letter:mr-6 first-letter:mt-4 first-letter:float-left first-letter:italic first-letter:text-white">
+                            {memorial.biografia || 'Un ser humano excepcional cuyo legado trasciende las palabras, habitando en los gestos, las risas y los recuerdos de quienes tuvieron la bendición de cruzarse en su camino...'}
                         </p>
                     </div>
+                    <div className="w-24 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mx-auto mt-32"></div>
                 </div>
             </section>
 
-            {/* Candle Count */}
-            <section className="py-20 bg-[#fcfcfc] dark:bg-slate-800/20 border-y border-black/5">
-                <div className="max-w-4xl mx-auto px-6 text-center">
-                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-[#7E7D7D] mb-8">{memorial.velas || 0} Luces encendidas en su honor</p>
-                    <div className="flex flex-wrap justify-center gap-3">
-                        {[...Array(Math.min(24, memorial.velas || 5))].map((_, i) => (
-                            <span key={i} className="material-symbols-outlined text-amber-500 fill-1 text-2xl opacity-40 hover:opacity-100 transition-all cursor-default animate-pulse" style={{ animationDelay: `${i * 0.2}s` }}>
-                                flare
-                            </span>
+            {/* Candle Wall - Visual Tribute */}
+            <section className="py-24 bg-white/[0.02] border-y border-white/5">
+                <div className="max-w-5xl mx-auto px-6 text-center">
+                    <p className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20 mb-12">{memorial.velas || 0} Luces habitando este espacio</p>
+                    <div className="flex flex-wrap justify-center gap-6">
+                        {[...Array(Math.min(32, memorial.velas || 8))].map((_, i) => (
+                            <div key={i} className="group relative">
+                                <span className="material-symbols-outlined text-amber-500/30 text-3xl fill-1 animate-pulse" style={{ animationDelay: `${i * 0.15}s` }}>
+                                    flare
+                                </span>
+                                <div className="absolute inset-0 bg-amber-500/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                            </div>
                         ))}
-                        {(memorial.velas || 0) > 24 && <span className="text-slate-300 self-end text-xs font-bold">...</span>}
+                        {(memorial.velas || 0) > 32 && <span className="text-white/10 self-center text-xs font-black tracking-widest">+</span>}
                     </div>
                 </div>
             </section>
 
-            {/* Condolences Wall */}
-            <section className="py-32 px-6">
-                <div className="max-w-3xl mx-auto">
-                    <h2 className="font-serif text-4xl mb-16 text-center italic text-black dark:text-white">Muro de Condolencias</h2>
+            {/* Condolences Wall - Premium Cards */}
+            <section className="py-40 px-6">
+                <div className="max-w-4xl mx-auto">
+                    <h2 className="font-serif text-5xl mb-24 text-center italic text-white">Pensamientos Compartidos</h2>
 
-                    <div className="space-y-6">
+                    <div className="grid gap-12">
                         {condolencias.length > 0 ? (
                             condolencias.map(c => (
-                                <div key={c.id} className="bg-[#f9f9f9] dark:bg-slate-800/40 p-12 rounded-[2rem] border border-black/5">
-                                    <div className="flex justify-between items-start mb-6">
-                                        <h4 className="font-serif text-xl text-black dark:text-white">{c.autor}</h4>
-                                        <span className="text-[9px] font-bold uppercase tracking-widest text-black/20">
-                                            {c.fecha?.seconds ? new Date(c.fecha.seconds * 1000).toLocaleDateString() : 'Recientemente'}
+                                <article key={c.id} className="bg-white/[0.02] p-16 rounded-[3rem] border border-white/5 hover:border-white/10 transition-all duration-700 hover:bg-white/[0.03]">
+                                    <div className="flex justify-between items-center mb-10 border-b border-white/5 pb-8">
+                                        <h4 className="font-serif text-2xl text-white italic">{c.autor}</h4>
+                                        <span className="text-[10px] font-black uppercase tracking-[0.3em] text-white/10">
+                                            {c.fecha?.seconds ? new Date(c.fecha.seconds * 1000).toLocaleDateString() : 'Presente'}
                                         </span>
                                     </div>
-                                    <p className="text-slate-600 dark:text-slate-400 font-light italic leading-relaxed text-lg">
+                                    <p className="text-white/40 font-light italic leading-relaxed text-2xl">
                                         "{c.mensaje}"
                                     </p>
-                                </div>
+                                </article>
                             ))
                         ) : (
-                            <div className="text-center py-12 border-2 border-dashed border-black/5 rounded-[2rem]">
-                                <p className="text-[#7E7D7D] font-light italic">No hay mensajes aún. Sea el primero en compartir un recuerdo.</p>
+                            <div className="text-center py-24 border-2 border-dashed border-white/5 rounded-[3rem]">
+                                <p className="text-white/20 text-xl font-light italic">El silencio también es un homenaje. Sea el primero en romperlo con un recuerdo.</p>
                             </div>
                         )}
                     </div>
 
-                    <div className="mt-16 text-center">
-                        <Link href="/memoriales" className="text-[10px] font-black uppercase tracking-[0.4em] text-black/40 hover:text-black hover:tracking-[0.5em] transition-all">
-                            Volver a Memoriales
+                    <div className="mt-32 text-center">
+                        <Link href="/memoriales" className="group inline-flex items-center gap-4 py-6 px-12 border border-white/5 rounded-full hover:bg-white hover:text-black transition-all duration-700">
+                            <span className="material-symbols-outlined text-xl group-hover:-translate-x-2 transition-transform duration-500">arrow_back</span>
+                            <span className="text-[10px] font-black uppercase tracking-[0.4em]">Cronología de Memoriales</span>
                         </Link>
                     </div>
                 </div>

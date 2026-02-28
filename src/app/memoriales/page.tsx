@@ -61,7 +61,6 @@ export default function MemorialesPage() {
     const [filtroTipo, setFiltroTipo] = useState<Tipo>('todos');
     const [memoriales, setMemoriales] = useState<Memorial[]>([]);
     const [loading, setLoading] = useState(true);
-    const [usingDemo, setUsingDemo] = useState(false);
 
     const fetchMemoriales = useCallback(async () => {
         setLoading(true);
@@ -77,10 +76,8 @@ export default function MemorialesPage() {
             const snap = await getDocs(q);
 
             if (snap.empty) {
-                setUsingDemo(true);
                 setMemoriales(DEMO_MEMORIALES);
             } else {
-                setUsingDemo(false);
                 setMemoriales(
                     snap.docs.map(d => {
                         const data = d.data();
@@ -99,7 +96,6 @@ export default function MemorialesPage() {
                 );
             }
         } catch {
-            setUsingDemo(true);
             setMemoriales(DEMO_MEMORIALES);
         } finally {
             setLoading(false);
@@ -115,102 +111,115 @@ export default function MemorialesPage() {
     );
 
     return (
-        <main className="min-h-screen bg-[#f7f7f7] dark:bg-[#191919] pt-32 pb-24 font-display antialiased">
-            <div className="max-w-6xl mx-auto px-6">
+        <main className="min-h-screen bg-black text-white font-display pt-32 pb-24 selection:bg-white/10 antialiased">
+            <div className="max-w-7xl mx-auto px-6">
 
-                {/* Header Seccion */}
-                <div className="mb-16 text-center">
-                    <h1 className="font-serif text-5xl md:text-6xl mb-6 text-black dark:text-white">Memoriales Eternos</h1>
-                    <p className="text-[#7E7D7D] max-w-2xl mx-auto text-lg font-light leading-relaxed">
-                        Un espacio sagrado para honrar las vidas que han dejado una huella imborrable en nuestros corazones.
+                {/* Header Seccion - Estilo Editorial */}
+                <header className="mb-24 text-center border-b border-white/5 pb-16">
+                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40 block mb-6">Muro de la Memoria</span>
+                    <h1 className="font-serif text-6xl md:text-8xl mb-8 italic leading-tight text-white">Memoriales Eternos</h1>
+                    <p className="text-white/50 max-w-2xl mx-auto text-xl font-light italic leading-relaxed">
+                        "En cada historia reside un legado que trasciende el tiempo, habitando eternamente en nuestro recuerdo."
                     </p>
-                </div>
+                    <div className="w-16 h-px bg-white/20 mx-auto mt-16"></div>
+                </header>
 
-                {/* Active Search Bar - Stitch Optimized */}
-                <div className="mb-12">
-                    <div className="relative max-w-2xl mx-auto">
-                        <div className="flex items-center bg-white dark:bg-slate-800 rounded-2xl overflow-hidden p-2 shadow-2xl shadow-black/[0.03] border border-black/5 dark:border-white/5">
-                            <span className="material-symbols-outlined text-slate-400 px-5">search</span>
+                {/* Search Bar - Inmersive Mode */}
+                <div className="mb-20">
+                    <div className="relative max-w-3xl mx-auto group">
+                        <div className="flex items-center bg-white/[0.03] rounded-[2.5rem] overflow-hidden p-3 border border-white/5 group-focus-within:border-white/20 group-focus-within:bg-white/[0.06] transition-all duration-700 shadow-3xl shadow-black">
+                            <span className="material-symbols-outlined text-white/20 px-6 group-focus-within:text-white transition-colors">search</span>
                             <input
-                                className="w-full border-none focus:ring-0 text-xl bg-transparent py-4 placeholder:text-slate-400 font-light"
-                                placeholder="Buscar un memorial..."
+                                className="w-full border-none focus:ring-0 text-xl bg-transparent py-5 placeholder:text-white/10 font-light text-white"
+                                placeholder="Buscar un legado..."
                                 type="text"
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
                             />
                             {search && (
-                                <button onClick={() => setSearch('')} className="px-5 text-slate-400 hover:text-black dark:hover:text-white transition-colors">
-                                    <span className="material-symbols-outlined text-xl">cancel</span>
+                                <button
+                                    onClick={() => setSearch('')}
+                                    className="px-6 text-white/30 hover:text-white transition-all transform hover:scale-110"
+                                    aria-label="Limpiar búsqueda"
+                                >
+                                    <span className="material-symbols-outlined text-2xl">close</span>
                                 </button>
                             )}
                         </div>
                         {search && (
-                            <p className="text-slate-500 text-center mt-5 text-sm italic">
-                                Se encontraron {filtered.length} resultados para "{search}"
+                            <p className="text-white/30 text-center mt-8 text-[10px] font-black uppercase tracking-widest animate-fade-in">
+                                {filtered.length} Destellos en la memoria
                             </p>
                         )}
                     </div>
                 </div>
 
-                {/* Refined Filters */}
-                <div className="flex flex-wrap items-center justify-center gap-4 mb-20">
+                {/* Premium Filters */}
+                <nav className="flex flex-wrap items-center justify-center gap-6 mb-32" aria-label="Categorías de memoriales">
                     {['todos', 'hoy', 'reciente', 'cinerario'].map((t) => (
                         <button
                             key={t}
                             onClick={() => setFiltroTipo(t as Tipo)}
-                            className={`px-8 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] transition-all border ${filtroTipo === t
-                                    ? 'bg-black text-white border-black dark:bg-white dark:text-black shadow-lg scale-105'
-                                    : 'bg-white text-[#7E7D7D] border-black/5 dark:bg-slate-800 dark:border-white/5 hover:border-black/20'
+                            className={`px-10 py-3 rounded-full text-[9px] font-black uppercase tracking-[0.4em] transition-all duration-700 border ${filtroTipo === t
+                                ? 'bg-white text-black border-white shadow-3xl shadow-white/10 scale-105'
+                                : 'bg-black text-white/30 border-white/5 hover:border-white/20 hover:text-white'
                                 }`}
                         >
-                            {t === 'todos' ? 'Ver Todos' : t}
+                            {t === 'todos' ? 'Cronología Completa' : t === 'hoy' ? 'En Honor Hoy' : t}
                         </button>
                     ))}
-                </div>
+                </nav>
 
-                {/* Results Grid - Premium Cards */}
+                {/* Results Grid - Legacy Gallery */}
                 {loading ? (
-                    <div className="flex justify-center py-24">
-                        <div className="w-12 h-12 border-2 border-black/5 border-t-black rounded-full animate-spin"></div>
+                    <div className="flex justify-center py-48">
+                        <div className="w-16 h-16 border border-white/10 border-t-white rounded-full animate-spin"></div>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-24">
                         {filtered.map(m => (
                             <Link
                                 href={`/memoriales/${m.id}`}
                                 key={m.id}
-                                className="group bg-white dark:bg-slate-800/50 rounded-[2.5rem] p-10 flex flex-col items-center text-center transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/5"
+                                className="group flex flex-col items-center text-center transition-all duration-1000"
                             >
-                                <div className="w-48 h-64 mb-10 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000 shadow-xl">
-                                    <img
-                                        className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
-                                        src={m.imagen || '/assets/images/stitch/placeholder-memorial.webp'}
-                                        alt={m.nombre}
-                                    />
-                                </div>
-                                <h3 className="font-serif text-2xl mb-2 text-slate-900 dark:text-white group-hover:text-black transition-colors">{m.nombre}</h3>
-                                <p className="text-[#7E7D7D] font-display text-[10px] font-bold tracking-[0.4em] mb-10 uppercase">{m.nacimiento} — {m.fallecimiento}</p>
+                                <article className="w-full">
+                                    <div className="aspect-[3/4] mb-12 rounded-[2.5rem] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-[1.5s] relative shadow-3xl shadow-black border border-white/5 group-hover:border-white/20">
+                                        <img
+                                            className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s] ease-out"
+                                            src={m.imagen || '/assets/images/stitch/placeholder-memorial.webp'}
+                                            alt={`Retrato de ${m.nombre}`}
+                                            loading="lazy"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-1000"></div>
+                                    </div>
+                                    <h3 className="font-serif text-3xl md:text-4xl mb-4 text-white group-hover:italic group-hover:tracking-wider transition-all duration-700">{m.nombre}</h3>
+                                    <p className="text-white/20 font-display text-[9px] font-black tracking-[0.6em] mb-12 uppercase">{m.nacimiento} — {m.fallecimiento}</p>
 
-                                <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
-                                    <span className="bg-black text-white dark:bg-white dark:text-black px-10 py-3.5 text-[9px] uppercase tracking-[0.3em] font-black rounded-full shadow-xl shadow-black/10">
-                                        Explorar Legado
-                                    </span>
-                                </div>
+                                    <div className="opacity-0 group-hover:opacity-100 translate-y-6 group-hover:translate-y-0 transition-all duration-1000 ease-out">
+                                        <span className="inline-block border border-white/20 text-white px-12 py-4 text-[9px] uppercase tracking-[0.4em] font-black rounded-full hover:bg-white hover:text-black transition-all">
+                                            Habitar su Legado
+                                        </span>
+                                    </div>
+                                </article>
                             </Link>
                         ))}
                     </div>
                 )}
 
-                {/* Pagination Placeholder */}
+                {/* Pagination Stitch-Style */}
                 {!loading && filtered.length > 0 && (
-                    <div className="mt-24 pt-12 border-t border-black/5 flex flex-col items-center gap-8">
-                        <div className="flex items-center gap-3">
-                            <button className="w-10 h-10 rounded-full bg-black text-white font-bold text-xs ring-4 ring-black/10">1</button>
-                            <button className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 text-[#7E7D7D] font-bold text-xs hover:bg-black/5 transition-all">2</button>
-                            <button className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 text-[#7E7D7D] font-bold text-xs hover:bg-black/5 transition-all">3</button>
+                    <nav className="mt-48 pt-20 border-t border-white/5 flex flex-col items-center gap-12" aria-label="Navegación de páginas">
+                        <div className="flex items-center gap-6">
+                            <button className="w-14 h-14 rounded-full bg-white text-black font-black text-xs shadow-3xl shadow-white/10 ring-1 ring-white" aria-current="page">01</button>
+                            <button className="w-14 h-14 rounded-full border border-white/5 text-white/20 font-black text-xs hover:border-white/20 hover:text-white transition-all">02</button>
+                            <button className="w-14 h-14 rounded-full border border-white/5 text-white/20 font-black text-xs hover:border-white/20 hover:text-white transition-all">03</button>
                         </div>
-                        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20">Desplazarse para más</p>
-                    </div>
+                        <div className="flex flex-col items-center gap-4">
+                            <div className="w-px h-16 bg-gradient-to-b from-white/20 to-transparent"></div>
+                            <span className="text-[9px] font-black uppercase tracking-[0.5em] text-white/10">Profundizar en la Memoria</span>
+                        </div>
+                    </nav>
                 )}
             </div>
         </main>

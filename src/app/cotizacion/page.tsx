@@ -18,9 +18,9 @@ const PLANES = [
 ];
 
 const SERVICIOS = [
-    { id: 'inhumacion', icono: 'local_florist', titulo: 'Inhumación Tradicional', desc: 'Servicio completo de sepultación con todos los honores.' },
-    { id: 'cremacion', icono: 'local_fire_department', titulo: 'Cremación', desc: 'Proceso de incineración con ánfora de madera noble.' },
-    { id: 'prevision', icono: 'lock', titulo: 'Previsión Anticipada', desc: 'Contrate hoy al precio vigente y proteja a su familia.' },
+    { id: 'inhumacion', icono: 'local_florist', titulo: 'Inhumación Tradicional', desc: 'Solemne despedida con los más altos honores y respeto.' },
+    { id: 'cremacion', icono: 'local_fire_department', titulo: 'Cremación', desc: 'Proceso inmaculado con ánfora de madera noble seleccionada.' },
+    { id: 'prevision', icono: 'lock', titulo: 'Previsión Familiar', desc: 'Proteja el futuro hoy con la tranquilidad del precio garantizado.' },
 ];
 
 type Step = 'datos' | 'servicio' | 'plan' | 'resumen' | 'enviado';
@@ -98,64 +98,65 @@ export default function CotizacionPage() {
     const svcSelected = SERVICIOS.find(s => s.id === form.servicio);
 
     const steps = [
-        { id: 'datos', label: 'Datos' },
+        { id: 'datos', label: 'Identidad' },
         { id: 'servicio', label: 'Selección' },
-        { id: 'plan', label: 'Plan' },
-        { id: 'resumen', label: 'Resumen' },
+        { id: 'plan', label: 'Tributo' },
+        { id: 'resumen', label: 'Confirmación' },
     ];
 
-    const currentStepIndex = steps.findIndex(s => s.id === step);
-
     return (
-        <main className="min-h-screen bg-[#f7f7f7] dark:bg-[#101622] pt-32 pb-24">
+        <main className="min-h-screen bg-black text-white font-display pt-32 pb-24 selection:bg-white/10 antialiased">
 
-            {/* Header */}
-            <section className="max-w-4xl mx-auto px-6 text-center mb-16">
-                <h1 className="font-serif text-5xl md:text-6xl text-black dark:text-white mb-4">Cotización Online</h1>
-                <p className="text-[#7E7D7D] text-lg font-light">Diseñe el servicio que mejor se adapte a sus deseos y presupuesto.</p>
+            {/* Header - Editorial Style */}
+            <section className="max-w-4xl mx-auto px-6 text-center mb-24">
+                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40 block mb-6">Proyecciones de Despedida</span>
+                <h1 className="font-serif text-5xl md:text-8xl text-white mb-8 italic">Configurador Personal</h1>
+                <p className="text-white/50 text-xl font-light italic italic">"Diseñe un homenaje a la altura de una vida extraordinaria."</p>
+                <div className="w-16 h-px bg-white/20 mx-auto mt-16"></div>
             </section>
 
-            {/* Stepper Stitch Style */}
+            {/* Stepper Stitch Style (Refined for Dark) */}
             {step !== 'enviado' && (
-                <div className="max-w-3xl mx-auto px-6 mb-20 relative">
-                    <div className="absolute top-1/2 left-0 w-full h-px bg-black/10 dark:bg-white/10 -translate-y-1/2 -z-10"></div>
+                <nav className="max-w-3xl mx-auto px-6 mb-32 relative" aria-label="Progreso de cotización">
+                    <div className="absolute top-1/2 left-0 w-full h-px bg-white/5 -translate-y-1/2 -z-10"></div>
                     <div className="flex justify-between">
                         {steps.map((s, i) => {
                             const active = s.id === step;
-                            const completed = steps.findIndex(st => st.id === step) > i;
+                            const currentIdx = steps.findIndex(st => st.id === step);
+                            const completed = currentIdx > i;
                             return (
-                                <div key={s.id} className="flex flex-col items-center gap-2">
-                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${active ? 'bg-black border-black text-white scale-110 shadow-xl shadow-black/20' :
-                                            completed ? 'bg-white border-black text-black' : 'bg-white border-black/10 text-black/20'
+                                <div key={s.id} className="flex flex-col items-center gap-4">
+                                    <div className={`w-12 h-12 rounded-full flex items-center justify-center border transition-all duration-700 ${active ? 'bg-white border-white text-black scale-110 shadow-3xl shadow-white/20' :
+                                        completed ? 'bg-white/10 border-white/20 text-white' : 'bg-black border-white/5 text-white/10'
                                         }`}>
                                         {completed ? <span className="material-symbols-outlined text-sm">check</span> : i + 1}
                                     </div>
-                                    <span className={`text-[10px] font-bold uppercase tracking-widest ${active ? 'text-black' : 'text-black/20 font-medium'}`}>{s.label}</span>
+                                    <span className={`text-[9px] font-black uppercase tracking-[0.3em] transition-colors duration-500 ${active ? 'text-white' : 'text-white/20'}`}>{s.label}</span>
                                 </div>
                             );
                         })}
                     </div>
-                </div>
+                </nav>
             )}
 
             <section className="max-w-5xl mx-auto px-6">
-                <div className="max-w-2xl mx-auto bg-white dark:bg-slate-900/50 p-12 rounded-[3.5rem] shadow-2xl shadow-black/[0.03] border border-black/5">
+                <div className="max-w-2xl mx-auto bg-white/[0.02] p-12 md:p-16 rounded-[4rem] border border-white/5 shadow-3xl shadow-black">
 
                     {/* PASO 1: DATOS */}
                     {step === 'datos' && (
                         <div className="animate-fade-in">
-                            <h2 className="font-serif text-3xl mb-8 text-black dark:text-white">Información de Contacto</h2>
-                            <div className="space-y-6">
+                            <h2 className="font-serif text-4xl mb-12 italic">Identidad Personal</h2>
+                            <div className="space-y-10">
                                 {[
-                                    { id: 'nombre', label: 'Nombre Completo', placeholder: 'Ej: Juan Pérez', type: 'text' },
-                                    { id: 'telefono', label: 'WhatsApp / Teléfono', placeholder: '+56 9 ...', type: 'tel' },
-                                    { id: 'email', label: 'Email', placeholder: 'juan@email.com', type: 'email' },
-                                    { id: 'comuna', label: 'Comuna', placeholder: 'Ej: Providencia', type: 'text' },
+                                    { id: 'nombre', label: 'Nombre Completo', placeholder: 'Ingrese su nombre', type: 'text' },
+                                    { id: 'telefono', label: 'Comunicación Móvil', placeholder: '+56 9 ...', type: 'tel' },
+                                    { id: 'email', label: 'Correo de Contacto', placeholder: 'email@ejemplo.com', type: 'email' },
+                                    { id: 'comuna', label: 'Comuna / Localidad', placeholder: 'Ej: Las Condes', type: 'text' },
                                 ].map(f => (
-                                    <div key={f.id}>
-                                        <label className="text-[11px] uppercase tracking-[0.3em] font-bold text-black/30 dark:text-white/30 block mb-3 ml-1">{f.label}</label>
+                                    <div key={f.id} className="group">
+                                        <label className="text-[10px] uppercase tracking-[0.4em] font-black text-white/30 block mb-4 ml-1 group-focus-within:text-white transition-colors">{f.label}</label>
                                         <input
-                                            className="w-full bg-[#fcfcfc] dark:bg-slate-800/50 border-none rounded-2xl py-4 px-6 text-black dark:text-white outline-none focus:ring-2 focus:ring-black/5 transition-all text-lg font-light"
+                                            className="w-full bg-white/[0.03] border border-white/5 rounded-2xl py-5 px-8 text-white placeholder-white/10 outline-none focus:bg-white/[0.06] focus:border-white/20 transition-all text-lg font-light shadow-inner"
                                             placeholder={f.placeholder}
                                             type={f.type}
                                             value={form[f.id as keyof FormData]}
@@ -166,9 +167,9 @@ export default function CotizacionPage() {
                                 <button
                                     onClick={() => setStep('servicio')}
                                     disabled={!canContinueDatos}
-                                    className="w-full bg-black text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 transition-all disabled:opacity-20 mt-8 shadow-xl shadow-black/10"
+                                    className="w-full bg-white text-black py-7 rounded-full font-black uppercase tracking-[0.4em] text-[10px] hover:bg-slate-200 transition-all disabled:opacity-5 mt-12 shadow-2xl shadow-white/5"
                                 >
-                                    Siguiente Paso
+                                    Siguiente Fase
                                 </button>
                             </div>
                         </div>
@@ -177,30 +178,30 @@ export default function CotizacionPage() {
                     {/* PASO 2: SERVICIO */}
                     {step === 'servicio' && (
                         <div className="animate-fade-in">
-                            <h2 className="font-serif text-3xl mb-8 text-black dark:text-white">Tipo de Servicio</h2>
-                            <div className="space-y-4">
+                            <h2 className="font-serif text-4xl mb-12 italic">Selección de Ritual</h2>
+                            <div className="space-y-6">
                                 {SERVICIOS.map(s => (
                                     <button
                                         key={s.id}
                                         onClick={() => update('servicio', s.id)}
-                                        className={`w-full text-left p-6 rounded-3xl border-2 transition-all group ${form.servicio === s.id ? 'border-black bg-black text-white shadow-2xl' : 'border-black/5 hover:border-black/20 text-[#7E7D7D]'
+                                        className={`w-full text-left p-8 rounded-[2.5rem] border transition-all duration-500 group ${form.servicio === s.id ? 'border-white bg-white text-black shadow-3xl shadow-white/10' : 'border-white/5 bg-white/[0.02] hover:border-white/20'
                                             }`}
                                     >
-                                        <div className="flex items-center gap-5">
-                                            <span className={`material-symbols-outlined text-4xl ${form.servicio === s.id ? 'text-white' : 'text-black/20 group-hover:text-black transition-colors'}`}>{s.icono}</span>
+                                        <div className="flex items-center gap-8">
+                                            <span className={`material-symbols-outlined text-5xl transition-all duration-700 ${form.servicio === s.id ? 'text-black scale-110' : 'text-white/10 group-hover:text-white/40'}`}>{s.icono}</span>
                                             <div>
-                                                <h4 className={`text-xl font-serif ${form.servicio === s.id ? 'text-white' : 'text-black dark:text-white'}`}>{s.titulo}</h4>
-                                                <p className="text-sm font-light mt-1 opacity-70 leading-relaxed">{s.desc}</p>
+                                                <h4 className={`text-2xl font-serif mb-2 italic ${form.servicio === s.id ? 'text-black' : 'text-white'}`}>{s.titulo}</h4>
+                                                <p className={`text-sm font-light leading-relaxed ${form.servicio === s.id ? 'text-black/60' : 'text-white/40'}`}>{s.desc}</p>
                                             </div>
                                         </div>
                                     </button>
                                 ))}
-                                <div className="flex gap-4 mt-12">
-                                    <button onClick={() => setStep('datos')} className="flex-1 border-2 border-black/5 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-black/5 transition-all">Atrás</button>
+                                <div className="flex gap-6 mt-16">
+                                    <button onClick={() => setStep('datos')} className="flex-1 border border-white/10 py-6 rounded-full font-black uppercase tracking-[0.3em] text-[9px] hover:bg-white/5 transition-all">Regresar</button>
                                     <button
                                         onClick={() => setStep('plan')}
                                         disabled={!canContinueServicio}
-                                        className="flex-[2] bg-black text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 transition-all disabled:opacity-20"
+                                        className="flex-[2] bg-white text-black py-6 rounded-full font-black uppercase tracking-[0.3em] text-[9px] hover:bg-slate-200 transition-all disabled:opacity-5"
                                     >
                                         Continuar
                                     </button>
@@ -212,29 +213,29 @@ export default function CotizacionPage() {
                     {/* PASO 3: PLAN */}
                     {step === 'plan' && (
                         <div className="animate-fade-in">
-                            <h2 className="font-serif text-3xl mb-8 text-black dark:text-white">Seleccione un Plan</h2>
-                            <div className="grid grid-cols-2 gap-4">
+                            <h2 className="font-serif text-4xl mb-12 italic">Nivel de Tributo</h2>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 {PLANES.map(p => (
                                     <button
                                         key={p.id}
                                         onClick={() => update('plan', p.id)}
-                                        className={`p-6 rounded-3xl border-2 text-center transition-all ${form.plan === p.id ? 'border-black bg-black text-white shadow-xl' : 'border-black/5 hover:border-black/20 text-[#7E7D7D]'
+                                        className={`p-10 rounded-[2.5rem] border text-center transition-all duration-500 relative overflow-hidden group ${form.plan === p.id ? 'border-white bg-white text-black shadow-3xl shadow-white/10' : 'border-white/5 bg-white/[0.02] hover:border-white/20'
                                             }`}
                                     >
-                                        {p.popular && <span className="text-[8px] font-black uppercase tracking-widest block mb-2 opacity-50">Popular</span>}
-                                        <h4 className={`text-xl font-serif ${form.plan === p.id ? 'text-white' : 'text-black dark:text-white'}`}>{p.nombre}</h4>
-                                        <p className="text-xs font-bold mt-2 opacity-70 tracking-widest">{formatter.format(p.precio)}</p>
+                                        {p.popular && <span className={`text-[8px] font-black uppercase tracking-[0.4em] block mb-4 ${form.plan === p.id ? 'text-black/40' : 'text-amber-500/60'}`}>Recomendado</span>}
+                                        <h4 className={`text-2xl font-serif mb-4 italic ${form.plan === p.id ? 'text-black' : 'text-white'}`}>{p.nombre}</h4>
+                                        <p className={`text-xs font-black tracking-[0.2em] uppercase ${form.plan === p.id ? 'text-black/40' : 'text-white/20'}`}>{formatter.format(p.precio)}</p>
                                     </button>
                                 ))}
                             </div>
-                            <div className="flex gap-4 mt-12">
-                                <button onClick={() => setStep('servicio')} className="flex-1 border-2 border-black/5 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-black/5 transition-all">Atrás</button>
+                            <div className="flex gap-6 mt-16">
+                                <button onClick={() => setStep('servicio')} className="flex-1 border border-white/10 py-6 rounded-full font-black uppercase tracking-[0.3em] text-[9px] hover:bg-white/5 transition-all">Regresar</button>
                                 <button
                                     onClick={() => setStep('resumen')}
                                     disabled={!canContinuePlan}
-                                    className="flex-[2] bg-black text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 transition-all disabled:opacity-20"
+                                    className="flex-[2] bg-white text-black py-6 rounded-full font-black uppercase tracking-[0.3em] text-[9px] hover:bg-slate-200 transition-all disabled:opacity-5"
                                 >
-                                    Ver Resumen
+                                    Ver Detalle Final
                                 </button>
                             </div>
                         </div>
@@ -243,75 +244,73 @@ export default function CotizacionPage() {
                     {/* PASO 4: RESUMEN */}
                     {step === 'resumen' && (
                         <div className="animate-fade-in">
-                            <h2 className="font-serif text-3xl mb-12 text-black dark:text-white">Resumen de Solicitud</h2>
+                            <h2 className="font-serif text-4xl mb-12 italic leading-tight">Presupuesto de Honor</h2>
 
-                            <div className="space-y-8 mb-12">
-                                <div className="border-b border-black/5 pb-6">
-                                    <h4 className="text-[10px] uppercase tracking-[0.4em] font-black text-black/30 mb-4">Servicio Digital</h4>
-                                    <div className="flex justify-between items-center">
-                                        <div>
-                                            <p className="text-2xl font-serif text-black dark:text-white">{planSelected?.nombre}</p>
-                                            <p className="text-sm font-light text-[#7E7D7D] mt-1">{svcSelected?.titulo}</p>
-                                        </div>
-                                        <p className="text-2xl font-serif text-black dark:text-white">{formatter.format(planSelected?.precio || 0)}</p>
+                            <div className="space-y-10 mb-16 border-b border-white/5 pb-12">
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/30 block mb-4">Selección Curada</span>
+                                        <p className="text-3xl font-serif italic mb-2">Plan {planSelected?.nombre}</p>
+                                        <p className="text-lg font-light text-white/50">{svcSelected?.titulo}</p>
                                     </div>
+                                    <p className="text-3xl font-serif italic text-white">{formatter.format(planSelected?.precio || 0)}</p>
                                 </div>
 
-                                <div className="space-y-4">
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-[#7E7D7D]">Subtotal</span>
-                                        <span className="text-black dark:text-white">{formatter.format((planSelected?.precio || 0) * 0.81)}</span>
+                                <div className="space-y-5 pt-8 border-t border-white/5">
+                                    <div className="flex justify-between text-sm font-light text-white/40">
+                                        <span>Valor Neto Base</span>
+                                        <span className="font-mono">{formatter.format((planSelected?.precio || 0) * 0.81)}</span>
                                     </div>
-                                    <div className="flex justify-between text-sm">
-                                        <span className="text-[#7E7D7D]">IVA (19%)</span>
-                                        <span className="text-black dark:text-white">{formatter.format((planSelected?.precio || 0) * 0.19)}</span>
+                                    <div className="flex justify-between text-sm font-light text-white/40">
+                                        <span>Impuesto al Valor (19%)</span>
+                                        <span className="font-mono">{formatter.format((planSelected?.precio || 0) * 0.19)}</span>
                                     </div>
-                                    <div className="flex justify-between items-end pt-4 border-t border-black/5">
-                                        <span className="text-lg font-serif">Total Final</span>
-                                        <span className="text-4xl font-serif text-black dark:text-white">{formatter.format(planSelected?.precio || 0)}</span>
+                                    <div className="flex justify-between items-end pt-8 mt-4 border-t border-white/10">
+                                        <span className="text-xl font-serif italic">Inversión Final</span>
+                                        <span className="text-5xl font-serif italic text-white">{formatter.format(planSelected?.precio || 0)}</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-4">
+                            <div className="flex flex-col gap-6">
                                 <button
                                     onClick={handleSubmit}
                                     disabled={loading}
-                                    className="w-full bg-black text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 transition-all shadow-2xl shadow-black/20 flex items-center justify-center gap-3"
+                                    className="w-full bg-white text-black py-7 rounded-full font-black uppercase tracking-[0.4em] text-[10px] hover:bg-slate-200 transition-all shadow-3xl shadow-white/5 flex items-center justify-center gap-5"
                                 >
-                                    {loading ? 'Procesando...' : 'Confirmar y Solicitar'}
+                                    {loading ? 'Transmitiendo...' : 'Procesar Solicitud'}
                                     <span className="material-symbols-outlined text-sm">arrow_forward</span>
                                 </button>
-                                <button onClick={() => setStep('plan')} className="text-[#7E7D7D] text-xs font-bold uppercase tracking-widest hover:text-black transition-colors py-2">Volver y Editar</button>
+                                <button onClick={() => setStep('plan')} className="text-white/30 text-[9px] font-black uppercase tracking-[0.4em] hover:text-white transition-colors py-4">Editar Parámetros</button>
                             </div>
                         </div>
                     )}
 
                     {/* CONFIRMACIÓN */}
                     {step === 'enviado' && (
-                        <div className="text-center py-12 animate-fade-in">
-                            <div className="w-24 h-24 bg-black rounded-full flex items-center justify-center mx-auto mb-10 shadow-3xl shadow-black/20">
-                                <span className="material-symbols-outlined text-5xl text-white">check</span>
+                        <div className="text-center py-16 animate-fade-in">
+                            <div className="w-28 h-28 border border-white/20 rounded-full flex items-center justify-center mx-auto mb-12 shadow-3xl shadow-white/5">
+                                <span className="material-symbols-outlined text-6xl text-white">done_all</span>
                             </div>
-                            <h2 className="font-serif text-4xl mb-6 text-black dark:text-white">¡Solicitud Enviada!</h2>
-                            <p className="text-lg text-[#7E7D7D] font-light leading-relaxed mb-12">
-                                Hemos recibido sus datos. Un asesor especializado le contactará en los próximos minutos para formalizar su cotización.
+                            <h2 className="font-serif text-5xl mb-8 italic">Misión Recibida</h2>
+                            <p className="text-xl text-white/40 font-light leading-relaxed mb-16 italic italic">
+                                "Su solicitud ha sido integrada a nuestro protocolo prioritario. Un asesor senior se comunicará a la brevedad."
                             </p>
 
-                            <div className="space-y-4">
+                            <div className="space-y-6">
                                 <a
                                     href={`https://wa.me/${WA_NUMBER}?text=${buildWhatsAppMsg(form)}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full bg-[#25D366] text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] hover:opacity-90 transition-all shadow-xl shadow-green-500/20 flex items-center justify-center gap-2"
+                                    className="w-full bg-white text-black py-7 rounded-full font-black uppercase tracking-[0.4em] text-[10px] hover:bg-slate-200 transition-all shadow-3xl shadow-white/5 flex items-center justify-center gap-4"
                                 >
-                                    Hablar por WhatsApp Ahora
+                                    WhatsApp Prioritario
                                 </a>
                                 <Link
                                     href="/"
-                                    className="block text-[#7E7D7D] text-[10px] font-bold uppercase tracking-widest hover:text-black pt-4"
+                                    className="block text-white/20 text-[9px] font-black uppercase tracking-[0.4em] hover:text-white pt-8 transition-colors"
                                 >
-                                    Volver al Inicio
+                                    Cerrar y Regresar
                                 </Link>
                             </div>
                         </div>
