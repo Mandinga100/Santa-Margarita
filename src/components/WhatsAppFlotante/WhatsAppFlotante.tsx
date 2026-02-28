@@ -31,9 +31,9 @@ export default function WhatsAppFlotante() {
             </a>
 
             {/* Emergency Footer Bar */}
-            <div className="fixed bottom-0 left-0 w-full bg-red-800 text-white py-1.5 px-4 z-[98] text-center text-xs md:text-sm font-bold tracking-wider flex items-center justify-center gap-3">
-                <i className="fas fa-exclamation-triangle animate-pulse"></i>
-                <span>Servicio 24/7 Disponible | <strong>+56 9 6433 3760</strong></span>
+            <div className="fixed bottom-0 left-0 w-full bg-[#1A1A1A] text-white py-1.5 px-4 z-[98] text-center text-xs md:text-sm font-bold tracking-wider flex items-center justify-center gap-3">
+                <i className="fas fa-exclamation-triangle animate-pulse text-white"></i>
+                <span>SERVICIO 24/7 DISPONIBLE | <strong>+56 9 6433 3760</strong></span>
             </div>
         </>
     );

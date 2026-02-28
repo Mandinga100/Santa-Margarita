@@ -92,3 +92,39 @@ section {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gray-medium);
 }
+
+/* Subrayado animado navbar - consistente por sección */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  padding-bottom: 4px;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #b8960c, #d4af37, #b8960c);
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Adaptar color del subrayado según sección clara/oscura */
+.nav-light .nav-link::after {
+  background: linear-gradient(90deg, #8b6914, #b8960c, #8b6914);
+}
+
+.nav-dark .nav-link::after {
+  background: linear-gradient(90deg, #b8960c, #d4af37, #b8960c);
+}

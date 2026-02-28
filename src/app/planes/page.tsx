@@ -91,12 +91,12 @@ export default function PlanesPage() {
     }, []);
 
     return (
-        <main ref={containerRef} className="min-h-screen bg-black text-white font-display pt-32 pb-48 selection:bg-white/10 antialiased overflow-x-hidden">
+        <main ref={containerRef} className="min-h-screen bg-[#1A1A1A] text-white font-display pt-32 pb-48 selection:bg-white/10 antialiased overflow-x-hidden">
             <div className="max-w-7xl mx-auto px-6">
 
                 {/* Hero Section - Editorial Aesthetic */}
                 <section className="text-center mb-48 planes-header">
-                    <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white/30 block mb-12">Protocolos de Dignidad Suprema</span>
+                    <span className="text-base font-black uppercase tracking-[0.4em] text-white/50 block mb-12">Protocolos de Dignidad Suprema</span>
                     <h1 className="font-serif text-6xl md:text-9xl mb-12 italic leading-[0.85] tracking-tighter">Nuestros <span className="text-white/40">Planes</span></h1>
                     <p className="text-white/40 max-w-3xl mx-auto text-2xl font-light leading-relaxed italic border-x border-white/5 px-12">
                         "Cada vida es una obra maestra que merece ser honrada con la mayor solemnidad y excelencia posible."
@@ -109,37 +109,37 @@ export default function PlanesPage() {
                         <table className="w-full text-left border-collapse min-w-[1000px]">
                             <thead>
                                 <tr className="bg-white/[0.03] text-white">
-                                    <th className="p-12 text-[10px] font-black uppercase tracking-[0.5em] text-white/30 border-b border-white/5">Atributos</th>
-                                    <th className="p-12 text-[10px] font-black uppercase tracking-[0.5em] text-center border-b border-white/5">Azucena</th>
-                                    <th className="p-12 text-[10px] font-black uppercase tracking-[0.5em] text-center border-b border-white/5">Quillay</th>
-                                    <th className="p-12 text-[10px] font-black uppercase tracking-[0.5em] text-center border-b border-white/5">Queule</th>
-                                    <th className="p-12 text-[10px] font-black uppercase tracking-[0.5em] text-center border-b border-amber-500/20 text-amber-500 bg-amber-500/[0.02]">Raúl Premium VIP</th>
+                                    <th className="p-12 text-sm md:text-base font-black uppercase tracking-widest text-white/50 border-b border-white/5">Atributos</th>
+                                    <th className="p-12 text-sm md:text-base font-black uppercase tracking-widest text-center border-b border-white/5">Azucena</th>
+                                    <th className="p-12 text-sm md:text-base font-black uppercase tracking-widest text-center border-b border-white/5">Quillay</th>
+                                    <th className="p-12 text-sm md:text-base font-black uppercase tracking-widest text-center border-b border-white/5">Queule</th>
+                                    <th className="p-12 text-sm md:text-base font-black uppercase tracking-widest text-center border-b border-amber-500/20 text-amber-500 bg-amber-500/[0.02]">Raúl Premium VIP</th>
                                 </tr>
                             </thead>
                             <tbody className="text-white/40">
                                 <tr className="table-row border-b border-white/5 group hover:bg-white/[0.02] transition-colors">
-                                    <td className="p-12 text-[10px] font-black uppercase tracking-widest text-white/20">Cofre / Urna</td>
+                                    <td className="p-12 text-sm font-black uppercase tracking-widest text-white/40">Cofre / Urna</td>
                                     <td className="p-12 text-xl text-center font-light">Línea Estándar</td>
                                     <td className="p-12 text-xl text-center font-light">Madera Barnizada</td>
                                     <td className="p-12 text-xl text-center font-light">Roble Nacional</td>
                                     <td className="p-12 text-xl text-center font-serif italic text-white bg-amber-500/[0.02]">Maderas de Importación</td>
                                 </tr>
                                 <tr className="table-row border-b border-white/5 group hover:bg-white/[0.02] transition-colors">
-                                    <td className="p-12 text-[10px] font-black uppercase tracking-widest text-white/20">Sala de Velación</td>
+                                    <td className="p-12 text-sm font-black uppercase tracking-widest text-white/40">Sala de Velación</td>
                                     <td className="p-12 text-xl text-center font-light italic">Capilla Local</td>
                                     <td className="p-12 text-xl text-center font-light">Estándar 12h</td>
                                     <td className="p-12 text-xl text-center font-light">Privada 24h</td>
                                     <td className="p-12 text-xl text-center font-serif italic text-white bg-amber-500/[0.02] underline decoration-amber-500/30 underline-offset-[12px]">Suite Presidencial</td>
                                 </tr>
                                 <tr className="table-row border-b border-white/5 group hover:bg-white/[0.02] transition-colors">
-                                    <td className="p-12 text-[10px] font-black uppercase tracking-widest text-white/20">Fila de Gala</td>
+                                    <td className="p-12 text-sm font-black uppercase tracking-widest text-white/40">Fila de Gala</td>
                                     <td className="p-12 text-xl text-center text-white/5">—</td>
                                     <td className="p-12 text-xl text-center font-light">Instalación</td>
                                     <td className="p-12 text-xl text-center font-light">Mercedes</td>
                                     <td className="p-12 text-xl text-center font-serif italic text-white bg-amber-500/[0.02]">Cortejo VIP Mercedes-Benz</td>
                                 </tr>
                                 <tr className="table-row group hover:bg-white/[0.02] transition-colors">
-                                    <td className="p-12 text-[10px] font-black uppercase tracking-widest text-white/20">Tributo Eternal</td>
+                                    <td className="p-12 text-sm font-black uppercase tracking-widest text-white/40">Tributo Eternal</td>
                                     <td className="p-12 text-center text-white/20 italic">Básico</td>
                                     <td className="p-12 text-center text-white/40 italic">Intermedio</td>
                                     <td className="p-12 text-center text-white/60 italic">Avanzado</td>
@@ -165,7 +165,7 @@ export default function PlanesPage() {
                             </span>
 
                             {plan.destacado && (
-                                <span className="inline-block bg-black text-white text-[9px] font-black uppercase tracking-[0.5em] px-6 py-3 rounded-full mb-10 self-start">
+                                <span className="inline-block bg-black text-white text-sm font-black uppercase tracking-widest px-6 py-3 rounded-full mb-10 self-start">
                                     RECOMENDADO
                                 </span>
                             )}
@@ -176,7 +176,7 @@ export default function PlanesPage() {
                                 <span className={`text-5xl font-serif italic tracking-tighter ${plan.destacado ? 'text-black' : 'text-white'}`}>
                                     {plan.precio}
                                 </span>
-                                <span className={`text-[10px] font-black uppercase tracking-[0.4em] ${plan.destacado ? 'text-black/30' : 'text-white/10'}`}>Valor Liquidación</span>
+                                <span className={`text-sm font-black uppercase tracking-[0.4em] ${plan.destacado ? 'text-black/50' : 'text-white/40'}`}>Valor Liquidación</span>
                             </div>
 
                             <ul className="space-y-10 mb-20 flex-1">
@@ -190,7 +190,7 @@ export default function PlanesPage() {
 
                             <Link
                                 href="/cotizacion"
-                                className={`w-full text-center py-8 rounded-full font-black uppercase text-[10px] tracking-[0.6em] transition-all duration-700 shadow-2xl ${plan.destacado
+                                className={`w-full text-center py-8 rounded-full font-black uppercase text-base tracking-widest transition-all duration-700 shadow-2xl ${plan.destacado
                                     ? 'bg-black text-white hover:bg-zinc-800 shadow-black/20'
                                     : 'bg-white text-black hover:bg-zinc-200 shadow-white/5'
                                     }`}
@@ -214,10 +214,10 @@ export default function PlanesPage() {
                             "Nuestros directores de protocolo están listos para guiarle con la máxima distinción y empatía en cada paso del camino."
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
-                            <a href="tel:+56964333760" className="w-full sm:w-auto bg-black text-white px-20 py-8 rounded-full font-black uppercase text-[11px] tracking-[0.6em] hover:bg-zinc-800 transition-all shadow-3xl">
+                            <a href="tel:+56964333760" className="w-full sm:w-auto bg-black text-white px-20 py-8 rounded-full font-black uppercase text-base tracking-widest hover:bg-zinc-800 transition-all shadow-3xl">
                                 LLAMADA INMEDIATA
                             </a>
-                            <a href="https://wa.me/56964333760" className="w-full sm:w-auto border border-black/10 text-black px-20 py-8 rounded-full font-black uppercase text-[11px] tracking-[0.6em] hover:bg-black/5 transition-all">
+                            <a href="https://wa.me/56964333760" className="w-full sm:w-auto border border-black/10 text-black px-20 py-8 rounded-full font-black uppercase text-base tracking-widest hover:bg-black/5 transition-all">
                                 WHATSAPP PROTOCOLO
                             </a>
                         </div>

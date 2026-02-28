@@ -104,7 +104,7 @@ export default function PrevisionPage() {
     }, []);
 
     return (
-        <main className="min-h-screen bg-black text-white font-display pt-32 pb-32 selection:bg-white/10 antialiased overflow-hidden">
+        <main className="min-h-screen bg-[#1A1A1A] text-white font-display pt-32 pb-32 selection:bg-white/10 antialiased overflow-hidden">
 
             {/* Hero Section - Ultra-Polish Parallax */}
             <section ref={heroRef} className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden mb-48 border-b border-white/5">
@@ -119,7 +119,7 @@ export default function PrevisionPage() {
                     />
                 </div>
                 <div className="relative z-20 text-center px-6 max-w-6xl">
-                    <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white/30 block mb-12">Protocolo de Previsión Familiar</span>
+                    <span className="text-sm font-black uppercase tracking-widest text-white/50 block mb-12">Protocolo de Previsión Familiar</span>
                     <h1 className="font-serif text-white text-6xl md:text-9xl mb-12 italic leading-[0.85] tracking-tighter">
                         La Paz de <br /> <span className="text-white/40">Saber Decidir</span>
                     </h1>
@@ -162,7 +162,7 @@ export default function PrevisionPage() {
 
                     <header className="mb-32 text-center lg:text-left flex flex-col lg:flex-row items-end justify-between gap-12">
                         <div className="max-w-2xl">
-                            <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20 block mb-6">Metodología</span>
+                            <span className="text-sm md:text-base font-black uppercase tracking-widest text-white/40 block mb-6">Metodología</span>
                             <h2 className="font-serif text-5xl md:text-7xl italic leading-none text-white">Protocolo de <br /> Activación Vitalicia</h2>
                         </div>
                         <p className="text-white/30 text-xl font-light italic max-w-sm lg:text-right">
@@ -200,13 +200,13 @@ export default function PrevisionPage() {
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
                             <a
                                 href="tel:+56964333760"
-                                className="w-full sm:w-auto bg-black text-white px-16 py-8 rounded-full font-black uppercase text-[10px] tracking-[0.5em] hover:bg-zinc-800 transition-all shadow-3xl"
+                                className="w-full sm:w-auto bg-[#1A1A1A] border border-white/20 text-white px-16 py-8 rounded-full font-black uppercase text-sm tracking-widest hover:bg-black transition-all shadow-3xl"
                             >
                                 Llamar a Especialista
                             </a>
                             <Link
                                 href="/cotizacion"
-                                className="w-full sm:w-auto border border-black/10 text-black px-16 py-8 rounded-full font-black uppercase text-[10px] tracking-[0.5em] hover:bg-black/5 transition-all"
+                                className="w-full sm:w-auto border border-black/20 text-black px-16 py-8 rounded-full font-black uppercase text-sm tracking-widest hover:bg-black/5 transition-all"
                             >
                                 Cotizar Protección
                             </Link>

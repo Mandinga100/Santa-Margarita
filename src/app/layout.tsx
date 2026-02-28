@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from 'next/font/google';
 import "./globals.css";
 
@@ -20,12 +20,17 @@ const playfair = Playfair_Display({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
   title: "Funeraria Santa Margarita | Servicios Funerarios Premium 24/7",
   description: "Dignidad y paz en cada despedida. Planes funerarios integrales desde $1.360.000, memoriales exclusivos y atención compasiva las 24 horas en Chile.",
   keywords: "funeraria santiago, planes funerarios chile, servicio funerario premium, memoriales digitales, funeraria 24 horas",
   authors: [{ name: "Funeraria Santa Margarita" }],
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   robots: "index, follow",
   openGraph: {
     title: "Funeraria Santa Margarita | Servicios Funerarios Premium 24/7",
@@ -62,6 +67,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
       </head>
       <body className="font-sans bg-black text-white antialiased overflow-x-hidden min-h-screen flex flex-col selection:bg-white/10 selection:text-white">
         <script

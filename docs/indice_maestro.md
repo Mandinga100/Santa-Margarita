@@ -87,6 +87,7 @@ C:.
 5. Galería de Memoriales v1.
 6. Despliegue inicial en Producción: [funeraria-sm.web.app](https://funeraria-sm.web.app).
 7. Arquitectura global de Assets, purga de legacy y reestructuración de imágenes WebP/SVG centralizada en `public/assets/images/`.
+8. **Integración Final y Restauración Visual Index**: Restauración de CTAs, Fondos Alternos y secciones Nosotros/Previsión. [Ver Reporte Detallado](REPORTE_RESTAURACION_FINAL.md).
 
 ### 🚀 Próximos Pasos
 1. Conexión de indicadores económicos a API real (UF/UTM).

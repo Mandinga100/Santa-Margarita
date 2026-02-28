@@ -1,12 +1,15 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { usePathname } from 'next/navigation';
 
 export default function NavbarPremium() {
     const navRef = useRef<HTMLElement>(null);
+    const pathname = usePathname();
+    const [activeSection, setActiveSection] = useState('inicio');
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -25,50 +28,79 @@ export default function NavbarPremium() {
             duration: 0.3,
         });
 
-        // Cleanup
+        // Current active section observer (only for home)
+        if (pathname === '/') {
+            const sections = document.querySelectorAll('section[id]');
+            const observer = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            setActiveSection(entry.target.id);
+                        }
+                    });
+                },
+                { rootMargin: '-30% 0px -70% 0px' }
+            );
+
+            sections.forEach((section) => observer.observe(section));
+
+            return () => {
+                sections.forEach((section) => observer.unobserve(section));
+                ScrollTrigger.getAll().forEach((st) => st.kill());
+            };
+        }
+
         return () => {
             ScrollTrigger.getAll().forEach((st) => st.kill());
         };
-    }, []);
+    }, [pathname]);
+
+    const getHref = (id: string) => pathname === '/' ? `#${id}` : `/#${id}`;
 
     return (
         <nav
             ref={navRef}
-            className="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent border-b border-transparent"
+            className="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-transparent border-b border-transparent nav-dark flex flex-col"
+            role="navigation"
         >
-            <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            {/* Secondary Navbar */}
+            <div className="navbar-secondary w-full py-1.5 px-4 bg-black/40 backdrop-blur-md border-b border-white/10 hidden md:block">
+                <div className="max-w-7xl mx-auto flex justify-between items-center text-[10px] text-gray-300 font-medium tracking-widest uppercase">
+                    <span id="datetime">28 Feb 2026 | 17:30</span>
+                    <span>UF: <span id="uf-value">$37.123</span> | UTM: <span id="utm-value">$66.789</span></span>
+                </div>
+            </div>
+            <div className="w-full px-[2vw] h-20 flex items-center justify-between pt-[2vh]">
 
                 {/* Brand / Logo */}
-                <Link href="/" className="flex items-center gap-3 group">
+                <Link href={getHref('inicio')} className="flex items-center gap-3 group logo-left">
                     <img
                         src="/assets/images/brand/logo-white.webp"
                         alt="Logo Oficial Funeraria Santa Margarita"
-                        className="h-10 w-auto group-hover:opacity-80 transition-opacity"
+                        className="h-12 md:h-16 w-auto max-w-[220px] md:max-w-[280px] group-hover:opacity-80 transition-opacity object-contain"
                     />
                 </Link>
 
-                {/* Navigation Links */}
-                <div className="hidden lg:flex items-center gap-6 text-white">
-                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/">Inicio</Link>
-                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/planes">Planes</Link>
-                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/servicios">Servicios</Link>
-                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/memoriales">Memoriales</Link>
-                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/nosotros">Nosotros</Link>
-                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/prevision">Previsión</Link>
+                {/* Navigation Links (Orden Jerárquico) */}
+                <div className="hidden lg:flex items-center gap-6 text-white ml-auto mr-10">
+                    <Link className={`nav-link text-[10px] font-black transition-colors uppercase tracking-[0.3em] ${activeSection === 'inicio' ? 'active' : ''}`} href={getHref('inicio')}>Inicio</Link>
+                    <Link className={`nav-link text-[10px] font-black transition-colors uppercase tracking-[0.3em] ${activeSection === 'planes' ? 'active' : ''}`} href={getHref('planes')}>Planes</Link>
+                    <Link className={`nav-link text-[10px] font-black transition-colors uppercase tracking-[0.3em] ${activeSection === 'servicios' ? 'active' : ''}`} href={getHref('servicios')}>Servicios</Link>
+                    <Link className="nav-link text-[10px] font-black transition-colors uppercase tracking-[0.3em]" href="/memoriales">Memoriales</Link>
+                    <Link className={`nav-link text-[10px] font-black transition-colors uppercase tracking-[0.3em] ${activeSection === 'nosotros' ? 'active' : ''}`} href={getHref('nosotros')}>Nosotros</Link>
+                    <Link className={`nav-link text-[10px] font-black transition-colors uppercase tracking-[0.3em] ${activeSection === 'prevision' ? 'active' : ''}`} href={getHref('prevision')}>Previsión</Link>
+                    <Link className={`nav-link text-[10px] font-black transition-colors uppercase tracking-[0.3em] ${activeSection === 'contacto' ? 'active text-[#b8960c]' : ''}`} href={getHref('contacto')}>Contacto</Link>
                 </div>
 
                 {/* CTAs */}
-                <div className="flex items-center gap-4">
-                    <Link href="/cotizacion" className="hidden xl:inline-flex bg-white text-black px-6 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-slate-200 transition-colors shadow-lg shadow-black/10">
-                        Cotización 24/7
+                <div className="flex items-center gap-4 ctas-right">
+                    {/* Cotización -> Derecha extrema, d-none d-md-flex (hidden md:flex) */}
+                    <Link href="http://localhost:3000/cotizacion?plan=estandar" className="hidden md:inline-flex border border-white text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                        Cotización Inmediata
                     </Link>
-                    <a href="https://wa.me/56964333760?text=Hola%20necesito%20información" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white flex items-center justify-center h-10 w-10 md:w-auto md:px-4 rounded-full text-sm font-bold shadow-lg shadow-green-900/40 hover:scale-105 active:scale-95 transition-transform">
-                        <i className="fab fa-whatsapp text-lg"></i>
-                        <span className="hidden md:inline ml-2">Asistencia Inmediata</span>
-                    </a>
 
                     {/* Mobile Toggle Placeholder */}
-                    <button className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors">
+                    <button className="lg:hidden text-white p-2 hover:bg-white/10 rounded-lg transition-colors ml-auto">
                         <i className="fas fa-bars text-xl"></i>
                     </button>
                 </div>

@@ -134,12 +134,12 @@ export default function MemorialesPage() {
     );
 
     return (
-        <main ref={containerRef} className="min-h-screen bg-black text-white font-display pt-32 pb-48 selection:bg-white/10 antialiased overflow-x-hidden">
+        <main ref={containerRef} className="min-h-screen bg-[#1A1A1A] text-white font-display pt-32 pb-48 selection:bg-white/10 antialiased overflow-x-hidden">
             <div className="max-w-7xl mx-auto px-6">
 
                 {/* Header Seccion - Estilo Editorial */}
                 <header className="mb-32 text-center border-b border-white/5 pb-20 relative">
-                    <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white/30 block mb-10">Muro de la Memoria</span>
+                    <span className="text-sm md:text-base font-black uppercase tracking-widest text-white/50 block mb-10">Muro de la Memoria</span>
                     <h1 className="font-serif text-7xl md:text-9xl mb-12 italic leading-none text-white tracking-tighter">
                         Memoriales <br /> <span className="text-white/30">Eternos</span>
                     </h1>
@@ -172,7 +172,7 @@ export default function MemorialesPage() {
                             )}
                         </div>
                         {search && (
-                            <p className="text-white/20 text-center mt-10 text-[10px] font-black uppercase tracking-[0.6em] animate-pulse">
+                            <p className="text-white/40 text-center mt-10 text-sm md:text-base font-black uppercase tracking-widest animate-pulse">
                                 {filtered.length} Destellos en la memoria
                             </p>
                         )}
@@ -185,7 +185,7 @@ export default function MemorialesPage() {
                         <button
                             key={t}
                             onClick={() => setFiltroTipo(t as Tipo)}
-                            className={`px-12 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.5em] transition-all duration-1000 border relative group overflow-hidden ${filtroTipo === t
+                            className={`px-12 py-4 rounded-full text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-1000 border relative group overflow-hidden ${filtroTipo === t
                                 ? 'bg-white text-black border-white shadow-5xl scale-105'
                                 : 'bg-black text-white/20 border-white/5 hover:border-white/20 hover:text-white'
                                 }`}
@@ -221,11 +221,11 @@ export default function MemorialesPage() {
 
                                         {/* Hover Overlay Detail */}
                                         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-[1s] bg-black/20 backdrop-blur-[2px]">
-                                            <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white border border-white/20 px-10 py-4 rounded-full bg-black/40">Habitar su Legado</span>
+                                            <span className="text-sm font-black uppercase tracking-widest text-white border border-white/20 px-10 py-4 rounded-full bg-black/40">Habitar su Legado</span>
                                         </div>
                                     </div>
                                     <h3 className="font-serif text-4xl md:text-5xl mb-6 text-white group-hover:italic transition-all duration-1000 tracking-tighter leading-none">{m.nombre}</h3>
-                                    <p className="text-white/20 font-display text-[10px] font-black tracking-[0.8em] mb-12 uppercase italic">{m.nacimiento} — {m.fallecimiento}</p>
+                                    <p className="text-white/40 font-display text-sm font-black tracking-widest mb-12 uppercase italic">{m.nacimiento} — {m.fallecimiento}</p>
                                 </article>
                             </Link>
                         ))}
@@ -245,7 +245,7 @@ export default function MemorialesPage() {
                         </div>
                         <div className="flex flex-col items-center gap-6">
                             <div className="w-px h-24 bg-gradient-to-b from-white/20 to-transparent"></div>
-                            <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white/10 italic">Profundizar en la Memoria</span>
+                            <span className="text-sm md:text-base font-black uppercase tracking-widest text-white/30 italic">Profundizar en la Memoria</span>
                         </div>
                     </nav>
                 )}
