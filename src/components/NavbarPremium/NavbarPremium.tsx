@@ -52,7 +52,7 @@ export default function NavbarPremium() {
                     <Link className="text-sm font-medium hover:text-white/60 transition-colors uppercase tracking-widest" href="#hero">Inicio</Link>
                     <Link className="text-sm font-medium hover:text-white/60 transition-colors uppercase tracking-widest" href="#planes">Planes</Link>
                     <Link className="text-sm font-medium hover:text-white/60 transition-colors uppercase tracking-widest" href="#servicios">Servicios</Link>
-                    <Link className="text-sm font-medium hover:text-white/60 transition-colors uppercase tracking-widest" href="#nosotros">Nosotros</Link>
+                    <Link className="text-sm font-medium hover:text-white/60 transition-colors uppercase tracking-widest" href="#diferenciador">Nosotros</Link>
                 </div>
 
                 {/* CTAs */}

@@ -7,6 +7,8 @@ import FooterPremium from '@/components/FooterPremium/FooterPremium';
 import NavbarMobile from '@/components/NavbarMobile/NavbarMobile';
 import WhatsAppFlotante from '@/components/WhatsAppFlotante/WhatsAppFlotante';
 
+import SmoothScroll from '@/components/SmoothScroll/SmoothScroll';
+
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair' });
 
@@ -50,12 +52,15 @@ export default function RootLayout({
             })
           }}
         />
-        <NavbarPremium />
-        <main className="flex-grow w-full">
-          {children}
-        </main>
-        <FooterPremium />
-        <WhatsAppFlotante />
+        <SmoothScroll>
+          <NavbarPremium />
+          <main className="flex-grow w-full">
+            {children}
+          </main>
+          <FooterPremium />
+          <WhatsAppFlotante />
+          <NavbarMobile />
+        </SmoothScroll>
       </body>
     </html>
   );
