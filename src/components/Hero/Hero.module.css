@@ -5,7 +5,7 @@
     width: 100%;
     display: flex;
     align-items: center;
-    background-image: url('/images/hero_bg.png');
+    background-image: url('/assets/images/ui/hero-bg.webp');
     background-size: cover;
     background-position: center;
     margin-top: 0;
