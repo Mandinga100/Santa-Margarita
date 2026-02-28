@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { db } from '@/lib/firebase';
 import {
     collection,
@@ -12,6 +12,9 @@ import {
     QueryConstraint,
 } from 'firebase/firestore';
 import Link from 'next/link';
+import Image from 'next/image';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 // Datos de demostración (Stitch Style)
 const DEMO_MEMORIALES = [
@@ -22,7 +25,7 @@ const DEMO_MEMORIALES = [
         fallecimiento: '2026',
         tipo: 'reciente',
         mensaje: 'Padre amoroso, siempre en nuestros corazones.',
-        imagen: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBoUo_S4dkrDSR3bED7_t3MHAg2Idhz8Ft3niZVHPvDd0jPe3g3zC4NfiNeMXlge5yeOUzWvjRPY6ZgSXj3q2frMfGog4Sj6ppwT5C_jzS-BHQd8sl87yK2f0ldw_pZWvHab9NV6TGk2agq_OPJGSnR9h5mncmVLNQLfT1pBpxrgx51MyRSvdtooCayy13S76cSeWYil3A6QzeQV_Snr_IxvsTPDulNUwuDmKkJgs1SbYKVAR7jnAS839hCf8YDxM3dzrxOA72i_f0'
+        imagen: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop'
     },
     {
         id: 'demo2',
@@ -31,7 +34,7 @@ const DEMO_MEMORIALES = [
         fallecimiento: '2026',
         tipo: 'cinerario',
         mensaje: 'Luz que nunca se apaga.',
-        imagen: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDCzF_jQs-FqJ2kZmpfmdULJpCAVZxNR3xypFVfqBhXYWJ1QpxgCfB4ZWV8KrqAme334V3ZDoEFSFrrx5lJ6ckMFpBx-aa5TAbTHhUkyBMyRDcZeaiS360KKcmE3nOOPq3kji6jZl5swaRsYtCbX3NznjC8y2qXFrhYRusvs28zDzzx6Azu840QXmoDxtUFa5l8FDQ6lKHbCkelw6eZ7CcjM2XFbBMGCK86KvTI74iCmxX09wo9hUS-UGuujSyNG2CTaGmUgeefbUs'
+        imagen: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop'
     },
     {
         id: 'demo3',
@@ -40,7 +43,7 @@ const DEMO_MEMORIALES = [
         fallecimiento: '2026',
         tipo: 'hoy',
         mensaje: '',
-        imagen: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCDKhg2eOI9qNwG1r3blzhIJbqw1-3OxdqSafl5fxo8nGxA6yeMoW8J__3E1nQTav8NVCaMfPubW8w9kgITg0kxJYCQiaIpjLk5z-2CihuF3zymcv9ESbhWFebGZDqrGkXLNmpDv8Xz7WJZv2dYIjDPEyvDch5n8rjaw-x3aisFX97fGd0efwFxa_ooNymMPrRu5YWso00i0AojHCDTVMT-3-80NMp86NteKn2s69XCVQUfWOSrJbaWBcZlHcQAcB1xWbKRA3JJInQ'
+        imagen: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop'
     },
 ];
 
@@ -61,6 +64,8 @@ export default function MemorialesPage() {
     const [filtroTipo, setFiltroTipo] = useState<Tipo>('todos');
     const [memoriales, setMemoriales] = useState<Memorial[]>([]);
     const [loading, setLoading] = useState(true);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const cardsRef = useRef<HTMLDivElement>(null);
 
     const fetchMemoriales = useCallback(async () => {
         setLoading(true);
@@ -106,31 +111,51 @@ export default function MemorialesPage() {
         fetchMemoriales();
     }, [fetchMemoriales]);
 
+    useEffect(() => {
+        if (!loading && memoriales.length > 0) {
+            gsap.registerPlugin(ScrollTrigger);
+            const ctx = gsap.context(() => {
+                gsap.fromTo(".memorial-card",
+                    { opacity: 0, y: 30, scale: 0.98 },
+                    {
+                        opacity: 1, y: 0, scale: 1,
+                        duration: 1.2, stagger: 0.1,
+                        ease: "expo.out",
+                        clearProps: "all"
+                    }
+                );
+            }, cardsRef);
+            return () => ctx.revert();
+        }
+    }, [loading, memoriales, filtroTipo, search]);
+
     const filtered = memoriales.filter(m =>
         m.nombre.toLowerCase().includes(search.toLowerCase())
     );
 
     return (
-        <main className="min-h-screen bg-black text-white font-display pt-32 pb-24 selection:bg-white/10 antialiased">
+        <main ref={containerRef} className="min-h-screen bg-black text-white font-display pt-32 pb-48 selection:bg-white/10 antialiased overflow-x-hidden">
             <div className="max-w-7xl mx-auto px-6">
 
                 {/* Header Seccion - Estilo Editorial */}
-                <header className="mb-24 text-center border-b border-white/5 pb-16">
-                    <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/40 block mb-6">Muro de la Memoria</span>
-                    <h1 className="font-serif text-6xl md:text-8xl mb-8 italic leading-tight text-white">Memoriales Eternos</h1>
-                    <p className="text-white/50 max-w-2xl mx-auto text-xl font-light italic leading-relaxed">
-                        "En cada historia reside un legado que trasciende el tiempo, habitando eternamente en nuestro recuerdo."
+                <header className="mb-32 text-center border-b border-white/5 pb-20 relative">
+                    <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white/30 block mb-10">Muro de la Memoria</span>
+                    <h1 className="font-serif text-7xl md:text-9xl mb-12 italic leading-none text-white tracking-tighter">
+                        Memoriales <br /> <span className="text-white/30">Eternos</span>
+                    </h1>
+                    <p className="text-white/40 max-w-2xl mx-auto text-2xl font-light italic leading-relaxed border-x border-white/5 px-12">
+                        "En cada historia reside un legado que trasciende el tiempo, habitando eternamente en la serenidad de nuestro recuerdo."
                     </p>
-                    <div className="w-16 h-px bg-white/20 mx-auto mt-16"></div>
+                    <div className="w-24 h-px bg-white/10 mx-auto mt-24"></div>
                 </header>
 
-                {/* Search Bar - Inmersive Mode */}
-                <div className="mb-20">
+                {/* Search Bar - Premium Glassmorphism */}
+                <div className="mb-24">
                     <div className="relative max-w-3xl mx-auto group">
-                        <div className="flex items-center bg-white/[0.03] rounded-[2.5rem] overflow-hidden p-3 border border-white/5 group-focus-within:border-white/20 group-focus-within:bg-white/[0.06] transition-all duration-700 shadow-3xl shadow-black">
-                            <span className="material-symbols-outlined text-white/20 px-6 group-focus-within:text-white transition-colors">search</span>
+                        <div className="flex items-center bg-white/[0.01] rounded-[3rem] overflow-hidden p-4 border border-white/5 group-focus-within:border-white/20 group-focus-within:bg-white/[0.03] transition-all duration-1000 shadow-4xl backdrop-blur-3xl">
+                            <span className="material-symbols-outlined text-white/10 px-8 group-focus-within:text-white transition-all duration-700">search</span>
                             <input
-                                className="w-full border-none focus:ring-0 text-xl bg-transparent py-5 placeholder:text-white/10 font-light text-white"
+                                className="w-full border-none focus:ring-0 text-2xl bg-transparent py-6 placeholder:text-white/5 font-light italic text-white selection:bg-white/10"
                                 placeholder="Buscar un legado..."
                                 type="text"
                                 value={search}
@@ -139,68 +164,68 @@ export default function MemorialesPage() {
                             {search && (
                                 <button
                                     onClick={() => setSearch('')}
-                                    className="px-6 text-white/30 hover:text-white transition-all transform hover:scale-110"
+                                    className="px-8 text-white/20 hover:text-white transition-all transform hover:scale-110"
                                     aria-label="Limpiar búsqueda"
                                 >
-                                    <span className="material-symbols-outlined text-2xl">close</span>
+                                    <span className="material-symbols-outlined text-3xl">close</span>
                                 </button>
                             )}
                         </div>
                         {search && (
-                            <p className="text-white/30 text-center mt-8 text-[10px] font-black uppercase tracking-widest animate-fade-in">
+                            <p className="text-white/20 text-center mt-10 text-[10px] font-black uppercase tracking-[0.6em] animate-pulse">
                                 {filtered.length} Destellos en la memoria
                             </p>
                         )}
                     </div>
                 </div>
 
-                {/* Premium Filters */}
-                <nav className="flex flex-wrap items-center justify-center gap-6 mb-32" aria-label="Categorías de memoriales">
+                {/* Premium Filters - Stitch Navigation */}
+                <nav className="flex flex-wrap items-center justify-center gap-6 mb-48" aria-label="Categorías de memoriales">
                     {['todos', 'hoy', 'reciente', 'cinerario'].map((t) => (
                         <button
                             key={t}
                             onClick={() => setFiltroTipo(t as Tipo)}
-                            className={`px-10 py-3 rounded-full text-[9px] font-black uppercase tracking-[0.4em] transition-all duration-700 border ${filtroTipo === t
-                                ? 'bg-white text-black border-white shadow-3xl shadow-white/10 scale-105'
-                                : 'bg-black text-white/30 border-white/5 hover:border-white/20 hover:text-white'
+                            className={`px-12 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.5em] transition-all duration-1000 border relative group overflow-hidden ${filtroTipo === t
+                                ? 'bg-white text-black border-white shadow-5xl scale-105'
+                                : 'bg-black text-white/20 border-white/5 hover:border-white/20 hover:text-white'
                                 }`}
                         >
-                            {t === 'todos' ? 'Cronología Completa' : t === 'hoy' ? 'En Honor Hoy' : t}
+                            <span className="relative z-10">{t === 'todos' ? 'Cronología Completa' : t === 'hoy' ? 'En Honor Hoy' : t}</span>
+                            {filtroTipo === t && <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full animate-shimmer"></div>}
                         </button>
                     ))}
                 </nav>
 
                 {/* Results Grid - Legacy Gallery */}
                 {loading ? (
-                    <div className="flex justify-center py-48">
-                        <div className="w-16 h-16 border border-white/10 border-t-white rounded-full animate-spin"></div>
+                    <div className="flex justify-center py-64">
+                        <div className="w-20 h-20 border-2 border-white/5 border-t-white rounded-full animate-spin"></div>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16 md:gap-24">
+                    <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 md:gap-32">
                         {filtered.map(m => (
                             <Link
                                 href={`/memoriales/${m.id}`}
                                 key={m.id}
-                                className="group flex flex-col items-center text-center transition-all duration-1000"
+                                className="memorial-card group flex flex-col items-center text-center transition-all duration-1000"
                             >
                                 <article className="w-full">
-                                    <div className="aspect-[3/4] mb-12 rounded-[2.5rem] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-[1.5s] relative shadow-3xl shadow-black border border-white/5 group-hover:border-white/20">
-                                        <img
-                                            className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-[2s] ease-out"
+                                    <div className="aspect-[4/5] mb-12 rounded-[4rem] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-[2s] relative shadow-4xl border border-white/5 group-hover:border-white/20">
+                                        <Image
+                                            className="object-cover scale-110 group-hover:scale-100 transition-transform duration-[3s] ease-out"
                                             src={m.imagen || '/assets/images/stitch/placeholder-memorial.webp'}
                                             alt={`Retrato de ${m.nombre}`}
-                                            loading="lazy"
+                                            fill
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-1000"></div>
-                                    </div>
-                                    <h3 className="font-serif text-3xl md:text-4xl mb-4 text-white group-hover:italic group-hover:tracking-wider transition-all duration-700">{m.nombre}</h3>
-                                    <p className="text-white/20 font-display text-[9px] font-black tracking-[0.6em] mb-12 uppercase">{m.nacimiento} — {m.fallecimiento}</p>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-[1.5s]"></div>
 
-                                    <div className="opacity-0 group-hover:opacity-100 translate-y-6 group-hover:translate-y-0 transition-all duration-1000 ease-out">
-                                        <span className="inline-block border border-white/20 text-white px-12 py-4 text-[9px] uppercase tracking-[0.4em] font-black rounded-full hover:bg-white hover:text-black transition-all">
-                                            Habitar su Legado
-                                        </span>
+                                        {/* Hover Overlay Detail */}
+                                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-[1s] bg-black/20 backdrop-blur-[2px]">
+                                            <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white border border-white/20 px-10 py-4 rounded-full bg-black/40">Habitar su Legado</span>
+                                        </div>
                                     </div>
+                                    <h3 className="font-serif text-4xl md:text-5xl mb-6 text-white group-hover:italic transition-all duration-1000 tracking-tighter leading-none">{m.nombre}</h3>
+                                    <p className="text-white/20 font-display text-[10px] font-black tracking-[0.8em] mb-12 uppercase italic">{m.nacimiento} — {m.fallecimiento}</p>
                                 </article>
                             </Link>
                         ))}
@@ -209,15 +234,18 @@ export default function MemorialesPage() {
 
                 {/* Pagination Stitch-Style */}
                 {!loading && filtered.length > 0 && (
-                    <nav className="mt-48 pt-20 border-t border-white/5 flex flex-col items-center gap-12" aria-label="Navegación de páginas">
-                        <div className="flex items-center gap-6">
-                            <button className="w-14 h-14 rounded-full bg-white text-black font-black text-xs shadow-3xl shadow-white/10 ring-1 ring-white" aria-current="page">01</button>
-                            <button className="w-14 h-14 rounded-full border border-white/5 text-white/20 font-black text-xs hover:border-white/20 hover:text-white transition-all">02</button>
-                            <button className="w-14 h-14 rounded-full border border-white/5 text-white/20 font-black text-xs hover:border-white/20 hover:text-white transition-all">03</button>
+                    <nav className="mt-64 pt-24 border-t border-white/5 flex flex-col items-center gap-16" aria-label="Navegación de páginas">
+                        <div className="flex items-center gap-8">
+                            <button className="w-16 h-16 rounded-full bg-white text-black font-black text-xs shadow-5xl ring-1 ring-white/20 relative group overflow-hidden" aria-current="page">
+                                <span className="relative z-10">01</span>
+                                <div className="absolute inset-0 bg-zinc-200 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
+                            </button>
+                            <button className="w-16 h-16 rounded-full border border-white/5 text-white/10 font-black text-xs hover:border-white/20 hover:text-white transition-all duration-700">02</button>
+                            <button className="w-16 h-16 rounded-full border border-white/5 text-white/10 font-black text-xs hover:border-white/20 hover:text-white transition-all duration-700">03</button>
                         </div>
-                        <div className="flex flex-col items-center gap-4">
-                            <div className="w-px h-16 bg-gradient-to-b from-white/20 to-transparent"></div>
-                            <span className="text-[9px] font-black uppercase tracking-[0.5em] text-white/10">Profundizar en la Memoria</span>
+                        <div className="flex flex-col items-center gap-6">
+                            <div className="w-px h-24 bg-gradient-to-b from-white/20 to-transparent"></div>
+                            <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white/10 italic">Profundizar en la Memoria</span>
                         </div>
                     </nav>
                 )}

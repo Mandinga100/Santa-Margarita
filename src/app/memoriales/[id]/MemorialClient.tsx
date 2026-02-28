@@ -65,7 +65,7 @@ export default function MemorialDetallePage() {
                             nacimiento: '1945',
                             fallecimiento: '2026',
                             biografia: 'Eduardo fue un hombre de gran rectitud y amor por su familia. Dedicó su vida a la enseñanza y al servicio público, dejando un legado de honestidad y perseverancia en todos sus alumnos y seres queridos. Su partida deja un vacío profundo, pero su ejemplo seguirá guiando a las futuras generaciones de su linaje.',
-                            imagen: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBoUo_S4dkrDSR3bED7_t3MHAg2Idhz8Ft3niZVHPvDd0jPe3g3zC4NfiNeMXlge5yeOUzWvjRPY6ZgSXj3q2frMfGog4Sj6ppwT5C_jzS-BHQd8sl87yK2f0ldw_pZWvHab9NV6TGk2agq_OPJGSnR9h5mncmVLNQLfT1pBpxrgx51MyRSvdtooCayy13S76cSeWYil3A6QzeQV_Snr_IxvsTPDulNUwuDmKkJgs1SbYKVAR7jnAS839hCf8YDxM3dzrxOA72i_f0',
+                            imagen: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop',
                             velas: 124
                         },
                         demo2: {
@@ -74,7 +74,7 @@ export default function MemorialDetallePage() {
                             nacimiento: '1952',
                             fallecimiento: '2026',
                             biografia: 'Marta fue la luz de nuestro hogar. Su alegría contagiosa y su pasión por la jardinería transformaron cada espacio que habitó en un paraíso terrenal. Siempre la recordaremos entre flores y risas, su espíritu libre vuela ahora sobre los campos que tanto amó cuidar.',
-                            imagen: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDCzF_jQs-FqJ2kZmpfmdULJpCAVZxNR3xypFVfqBhXYWJ1QpxgCfB4ZWV8KrqAme334V3ZDoEFSFrrx5lJ6ckMFpBx-aa5TAbTHhUkyBMyRDcZeaiS360KKcmE3nOOPq3kji6jZl5swaRsYtCbX3NznjC8y2qXFrhYRusvs28zDzzx6Azu840QXmoDxtUFa5l8FDQ6lKHbCkelw6eZ7CcjM2XFbBMGCK86KvTI74iCmxX09wo9hUS-UGuujSyNG2CTaGmUgeefbUs',
+                            imagen: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop',
                             velas: 89
                         }
                     };
