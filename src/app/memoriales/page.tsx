@@ -11,8 +11,9 @@ import {
     getDocs,
     QueryConstraint,
 } from 'firebase/firestore';
+import Link from 'next/link';
 
-// Datos de demostración que se muestran si Firestore no tiene documentos aún
+// Datos de demostración (Stitch Style)
 const DEMO_MEMORIALES = [
     {
         id: 'demo1',
@@ -21,6 +22,7 @@ const DEMO_MEMORIALES = [
         fallecimiento: '2026',
         tipo: 'reciente',
         mensaje: 'Padre amoroso, siempre en nuestros corazones.',
+        imagen: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBoUo_S4dkrDSR3bED7_t3MHAg2Idhz8Ft3niZVHPvDd0jPe3g3zC4NfiNeMXlge5yeOUzWvjRPY6ZgSXj3q2frMfGog4Sj6ppwT5C_jzS-BHQd8sl87yK2f0ldw_pZWvHab9NV6TGk2agq_OPJGSnR9h5mncmVLNQLfT1pBpxrgx51MyRSvdtooCayy13S76cSeWYil3A6QzeQV_Snr_IxvsTPDulNUwuDmKkJgs1SbYKVAR7jnAS839hCf8YDxM3dzrxOA72i_f0'
     },
     {
         id: 'demo2',
@@ -29,6 +31,7 @@ const DEMO_MEMORIALES = [
         fallecimiento: '2026',
         tipo: 'cinerario',
         mensaje: 'Luz que nunca se apaga.',
+        imagen: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDCzF_jQs-FqJ2kZmpfmdULJpCAVZxNR3xypFVfqBhXYWJ1QpxgCfB4ZWV8KrqAme334V3ZDoEFSFrrx5lJ6ckMFpBx-aa5TAbTHhUkyBMyRDcZeaiS360KKcmE3nOOPq3kji6jZl5swaRsYtCbX3NznjC8y2qXFrhYRusvs28zDzzx6Azu840QXmoDxtUFa5l8FDQ6lKHbCkelw6eZ7CcjM2XFbBMGCK86KvTI74iCmxX09wo9hUS-UGuujSyNG2CTaGmUgeefbUs'
     },
     {
         id: 'demo3',
@@ -37,30 +40,7 @@ const DEMO_MEMORIALES = [
         fallecimiento: '2026',
         tipo: 'hoy',
         mensaje: '',
-    },
-    {
-        id: 'demo4',
-        nombre: 'Lucía Fernández Tapia',
-        nacimiento: '1960',
-        fallecimiento: '2026',
-        tipo: 'reciente',
-        mensaje: 'Abuela querida, tu legado vive en nosotros.',
-    },
-    {
-        id: 'demo5',
-        nombre: 'Carlos Andrés Rojas',
-        nacimiento: '1955',
-        fallecimiento: '2026',
-        tipo: 'cinerario',
-        mensaje: '',
-    },
-    {
-        id: 'demo6',
-        nombre: 'Ana María Fuentes',
-        nacimiento: '1970',
-        fallecimiento: '2026',
-        tipo: 'hoy',
-        mensaje: 'Siempre en la memoria de quienes te amaron.',
+        imagen: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCDKhg2eOI9qNwG1r3blzhIJbqw1-3OxdqSafl5fxo8nGxA6yeMoW8J__3E1nQTav8NVCaMfPubW8w9kgITg0kxJYCQiaIpjLk5z-2CihuF3zymcv9ESbhWFebGZDqrGkXLNmpDv8Xz7WJZv2dYIjDPEyvDch5n8rjaw-x3aisFX97fGd0efwFxa_ooNymMPrRu5YWso00i0AojHCDTVMT-3-80NMp86NteKn2s69XCVQUfWOSrJbaWBcZlHcQAcB1xWbKRA3JJInQ'
     },
 ];
 
@@ -73,22 +53,7 @@ interface Memorial {
     fallecimiento: string;
     tipo: string;
     mensaje?: string;
-}
-
-const TIPO_LABELS: Record<string, { label: string; color: string }> = {
-    hoy: { label: 'Servicio de Hoy', color: 'bg-black text-white dark:bg-white dark:text-black' },
-    reciente: { label: 'Servicio Reciente', color: 'bg-zinc-200 text-black dark:bg-zinc-800 dark:text-white' },
-    cinerario: { label: 'Cinerario', color: 'bg-zinc-100 text-zinc-700 dark:bg-zinc-900 dark:text-zinc-300' },
-};
-
-// Iniciales para avatar
-function getInitials(name: string) {
-    return name
-        .split(' ')
-        .slice(0, 2)
-        .map(n => n[0])
-        .join('')
-        .toUpperCase();
+    imagen?: string;
 }
 
 export default function MemorialesPage() {
@@ -112,7 +77,6 @@ export default function MemorialesPage() {
             const snap = await getDocs(q);
 
             if (snap.empty) {
-                // Sin datos en Firestore aún → mostrar demo
                 setUsingDemo(true);
                 setMemoriales(DEMO_MEMORIALES);
             } else {
@@ -120,18 +84,11 @@ export default function MemorialesPage() {
                 setMemoriales(
                     snap.docs.map(d => {
                         const data = d.data();
-
-                        // Función auxiliar para convertir Timestamp a String legible
                         const formatDate = (val: any) => {
                             if (!val) return '';
-                            // Si es un Timestamp de Firestore
-                            if (val.seconds) {
-                                return new Date(val.seconds * 1000).getFullYear().toString();
-                            }
-                            // Si ya es un string o date
+                            if (val.seconds) return new Date(val.seconds * 1000).getFullYear().toString();
                             return val.toString();
                         };
-
                         return {
                             id: d.id,
                             ...data,
@@ -142,7 +99,6 @@ export default function MemorialesPage() {
                 );
             }
         } catch {
-            // Error de conexión → fallback a demo
             setUsingDemo(true);
             setMemoriales(DEMO_MEMORIALES);
         } finally {
@@ -158,176 +114,105 @@ export default function MemorialesPage() {
         m.nombre.toLowerCase().includes(search.toLowerCase())
     );
 
-    const tabs: { id: Tipo; label: string; icon: string }[] = [
-        { id: 'todos', label: 'Todos', icon: 'grid_view' },
-        { id: 'hoy', label: 'Hoy', icon: 'today' },
-        { id: 'reciente', label: 'Recientes', icon: 'history' },
-        { id: 'cinerario', label: 'Cinerarios', icon: 'local_fire_department' },
-    ];
-
     return (
-        <main className="min-h-screen bg-white dark:bg-black">
-            {/* Hero dark */}
-            <section className="bg-black text-white px-6 pt-16 pb-14">
-                <div className="max-w-4xl mx-auto text-center">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 block mb-4">
-                        Memoriales y Obituarios
-                    </span>
-                    <h1 className="font-serif text-4xl md:text-5xl font-medium mb-5">
-                        Un espacio para recordarles
-                    </h1>
-                    <p className="text-white/60 text-base font-light max-w-xl mx-auto leading-relaxed mb-8">
-                        Honramos la memoria de quienes han partido. Aquí encontrará los servicios
-                        actuales y recientes de Funeraria Santa Margarita.
-                    </p>
+        <main className="min-h-screen bg-[#f7f7f7] dark:bg-[#191919] pt-32 pb-24 font-display antialiased">
+            <div className="max-w-6xl mx-auto px-6">
 
-                    {/* Buscador */}
-                    <div className="relative max-w-md mx-auto">
-                        <span className="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-white/40 text-[20px]">search</span>
-                        <input
-                            type="text"
-                            placeholder="Buscar por nombre o apellido…"
-                            value={search}
-                            onChange={e => setSearch(e.target.value)}
-                            className="w-full pl-12 pr-4 py-3.5 bg-white/10 border border-white/20 rounded-xl text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-white/30 text-sm"
-                        />
+                {/* Header Seccion */}
+                <div className="mb-16 text-center">
+                    <h1 className="font-serif text-5xl md:text-6xl mb-6 text-black dark:text-white">Memoriales Eternos</h1>
+                    <p className="text-[#7E7D7D] max-w-2xl mx-auto text-lg font-light leading-relaxed">
+                        Un espacio sagrado para honrar las vidas que han dejado una huella imborrable en nuestros corazones.
+                    </p>
+                </div>
+
+                {/* Active Search Bar - Stitch Optimized */}
+                <div className="mb-12">
+                    <div className="relative max-w-2xl mx-auto">
+                        <div className="flex items-center bg-white dark:bg-slate-800 rounded-2xl overflow-hidden p-2 shadow-2xl shadow-black/[0.03] border border-black/5 dark:border-white/5">
+                            <span className="material-symbols-outlined text-slate-400 px-5">search</span>
+                            <input
+                                className="w-full border-none focus:ring-0 text-xl bg-transparent py-4 placeholder:text-slate-400 font-light"
+                                placeholder="Buscar un memorial..."
+                                type="text"
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)}
+                            />
+                            {search && (
+                                <button onClick={() => setSearch('')} className="px-5 text-slate-400 hover:text-black dark:hover:text-white transition-colors">
+                                    <span className="material-symbols-outlined text-xl">cancel</span>
+                                </button>
+                            )}
+                        </div>
                         {search && (
-                            <button
-                                onClick={() => setSearch('')}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 hover:text-white transition-colors"
-                            >
-                                <span className="material-symbols-outlined text-[18px]">close</span>
-                            </button>
+                            <p className="text-slate-500 text-center mt-5 text-sm italic">
+                                Se encontraron {filtered.length} resultados para "{search}"
+                            </p>
                         )}
                     </div>
                 </div>
-            </section>
 
-            {/* Tabs filtro — sticky */}
-            <div className="sticky top-0 z-20 bg-white dark:bg-zinc-950 border-b border-black/5 dark:border-white/5 shadow-sm">
-                <div className="max-w-5xl mx-auto px-6 flex overflow-x-auto gap-0 hide-scrollbar">
-                    {tabs.map(tab => (
+                {/* Refined Filters */}
+                <div className="flex flex-wrap items-center justify-center gap-4 mb-20">
+                    {['todos', 'hoy', 'reciente', 'cinerario'].map((t) => (
                         <button
-                            key={tab.id}
-                            onClick={() => setFiltroTipo(tab.id)}
-                            className={`flex items-center gap-2 px-5 py-4 text-xs font-bold uppercase tracking-widest whitespace-nowrap border-b-2 transition-all ${filtroTipo === tab.id
-                                ? 'border-black dark:border-white text-black dark:text-white'
-                                : 'border-transparent text-[#7E7D7D] hover:text-black dark:hover:text-white'
+                            key={t}
+                            onClick={() => setFiltroTipo(t as Tipo)}
+                            className={`px-8 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] transition-all border ${filtroTipo === t
+                                    ? 'bg-black text-white border-black dark:bg-white dark:text-black shadow-lg scale-105'
+                                    : 'bg-white text-[#7E7D7D] border-black/5 dark:bg-slate-800 dark:border-white/5 hover:border-black/20'
                                 }`}
                         >
-                            <span className="material-symbols-outlined text-[16px]">{tab.icon}</span>
-                            {tab.label}
+                            {t === 'todos' ? 'Ver Todos' : t}
                         </button>
                     ))}
                 </div>
-            </div>
 
-            {/* Aviso modo demo */}
-            {usingDemo && !loading && (
-                <div className="bg-amber-50 dark:bg-amber-950/30 border-b border-amber-200 dark:border-amber-800 px-6 py-3">
-                    <p className="max-w-5xl mx-auto text-xs text-amber-800 dark:text-amber-400 flex items-center gap-2">
-                        <span className="material-symbols-outlined text-[14px]">info</span>
-                        Mostrando datos de ejemplo. Conecte Firestore para ver memoriales reales.
-                    </p>
-                </div>
-            )}
-
-            {/* Grilla memoriales */}
-            <section className="max-w-5xl mx-auto px-6 py-14">
+                {/* Results Grid - Premium Cards */}
                 {loading ? (
-                    <div className="flex flex-col items-center justify-center py-24 text-[#7E7D7D]">
-                        <span className="material-symbols-outlined text-4xl animate-spin mb-4">progress_activity</span>
-                        <p className="text-sm">Cargando memoriales…</p>
-                    </div>
-                ) : filtered.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center py-24 text-center">
-                        <span className="material-symbols-outlined text-5xl text-black/10 dark:text-white/10 mb-4">search_off</span>
-                        <p className="font-semibold text-black dark:text-white mb-1">Sin resultados</p>
-                        <p className="text-sm text-[#7E7D7D]">
-                            No se encontraron memoriales para <strong>"{search}"</strong>
-                        </p>
-                        <button
-                            onClick={() => setSearch('')}
-                            className="mt-4 text-sm underline underline-offset-4 text-[#7E7D7D] hover:text-black dark:hover:text-white transition-colors"
-                        >
-                            Limpiar búsqueda
-                        </button>
+                    <div className="flex justify-center py-24">
+                        <div className="w-12 h-12 border-2 border-black/5 border-t-black rounded-full animate-spin"></div>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {filtered.map(m => {
-                            const tipoInfo = TIPO_LABELS[m.tipo] ?? { label: m.tipo, color: 'bg-zinc-100 text-zinc-600' };
-                            const initials = getInitials(m.nombre);
-                            return (
-                                <div
-                                    key={m.id}
-                                    className="group border border-black/5 dark:border-white/10 rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 hover:shadow-lg transition-all hover:-translate-y-0.5"
-                                >
-                                    {/* Foto / Avatar */}
-                                    <div className="h-36 bg-gradient-to-br from-zinc-200 to-zinc-100 dark:from-zinc-800 dark:to-zinc-900 flex items-center justify-center relative overflow-hidden">
-                                        <span className="font-serif text-4xl font-bold text-black/20 dark:text-white/20 select-none">
-                                            {initials}
-                                        </span>
-                                        {/* Badge tipo */}
-                                        <span className={`absolute top-3 right-3 text-[9px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full ${tipoInfo.color}`}>
-                                            {tipoInfo.label}
-                                        </span>
-                                        {/* Vela decorativa */}
-                                        <span className="absolute left-3 bottom-3 material-symbols-outlined text-[20px] text-black/10 dark:text-white/10">
-                                            local_fire_department
-                                        </span>
-                                    </div>
-
-                                    {/* Contenido */}
-                                    <div className="p-5">
-                                        <h3 className="font-serif font-bold text-black dark:text-white text-lg leading-snug mb-1">
-                                            {m.nombre}
-                                        </h3>
-                                        <p className="text-xs text-[#7E7D7D] font-medium mb-3">
-                                            {m.nacimiento} — {m.fallecimiento}
-                                        </p>
-                                        {m.mensaje && (
-                                            <p className="text-sm text-slate-500 dark:text-slate-400 italic leading-relaxed mb-4 line-clamp-2">
-                                                "{m.mensaje}"
-                                            </p>
-                                        )}
-                                        <a
-                                            href={`https://wa.me/${process.env.NEXT_PUBLIC_WA_NUMBER || '56964333760'}?text=${encodeURIComponent(`Hola, deseo información sobre el servicio de ${m.nombre}.`)}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#7E7D7D] hover:text-black dark:hover:text-white transition-colors group-hover:gap-3"
-                                        >
-                                            Consultar información
-                                            <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
-                                        </a>
-                                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                        {filtered.map(m => (
+                            <Link
+                                href={`/memoriales/${m.id}`}
+                                key={m.id}
+                                className="group bg-white dark:bg-slate-800/50 rounded-[2.5rem] p-10 flex flex-col items-center text-center transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_45px_100px_-20px_rgba(0,0,0,0.06)] border border-transparent hover:border-black/5"
+                            >
+                                <div className="w-48 h-64 mb-10 rounded-2xl overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-1000 shadow-xl">
+                                    <img
+                                        className="w-full h-full object-cover scale-110 group-hover:scale-100 transition-transform duration-1000"
+                                        src={m.imagen || '/assets/images/stitch/placeholder-memorial.webp'}
+                                        alt={m.nombre}
+                                    />
                                 </div>
-                            );
-                        })}
+                                <h3 className="font-serif text-2xl mb-2 text-slate-900 dark:text-white group-hover:text-black transition-colors">{m.nombre}</h3>
+                                <p className="text-[#7E7D7D] font-display text-[10px] font-bold tracking-[0.4em] mb-10 uppercase">{m.nacimiento} — {m.fallecimiento}</p>
+
+                                <div className="opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                                    <span className="bg-black text-white dark:bg-white dark:text-black px-10 py-3.5 text-[9px] uppercase tracking-[0.3em] font-black rounded-full shadow-xl shadow-black/10">
+                                        Explorar Legado
+                                    </span>
+                                </div>
+                            </Link>
+                        ))}
                     </div>
                 )}
-            </section>
 
-            {/* CTA */}
-            <section className="bg-[#F2F2F2] dark:bg-zinc-900/50 py-14 px-6">
-                <div className="max-w-3xl mx-auto text-center">
-                    <span className="material-symbols-outlined text-3xl text-black/20 dark:text-white/20 block mb-4">volunteer_activism</span>
-                    <h3 className="font-serif text-2xl font-semibold mb-3 text-black dark:text-white">
-                        ¿Desea publicar un memorial?
-                    </h3>
-                    <p className="text-[#7E7D7D] text-sm mb-7 max-w-md mx-auto leading-relaxed">
-                        Los familiares de personas que contraten nuestros servicios pueden solicitar
-                        que incluyamos un espacio de memoria en este sitio.
-                    </p>
-                    <a
-                        href="tel:+56964333760"
-                        className="inline-flex items-center gap-3 bg-black text-white dark:bg-white dark:text-black px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:opacity-80 transition-opacity"
-                    >
-                        <span className="material-symbols-outlined text-[18px]">call</span>
-                        Contactar · +56 9 6433 3760
-                    </a>
-                </div>
-            </section>
+                {/* Pagination Placeholder */}
+                {!loading && filtered.length > 0 && (
+                    <div className="mt-24 pt-12 border-t border-black/5 flex flex-col items-center gap-8">
+                        <div className="flex items-center gap-3">
+                            <button className="w-10 h-10 rounded-full bg-black text-white font-bold text-xs ring-4 ring-black/10">1</button>
+                            <button className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 text-[#7E7D7D] font-bold text-xs hover:bg-black/5 transition-all">2</button>
+                            <button className="w-10 h-10 rounded-full bg-white dark:bg-slate-800 text-[#7E7D7D] font-bold text-xs hover:bg-black/5 transition-all">3</button>
+                        </div>
+                        <p className="text-[10px] font-black uppercase tracking-[0.4em] text-black/20">Desplazarse para más</p>
+                    </div>
+                )}
+            </div>
         </main>
     );
 }

@@ -48,16 +48,18 @@ export default function NavbarPremium() {
                 </Link>
 
                 {/* Navigation Links */}
-                <div className="hidden lg:flex items-center gap-8 text-white">
-                    <Link className="text-sm font-medium hover:text-white/60 transition-colors uppercase tracking-widest" href="#hero">Inicio</Link>
-                    <Link className="text-sm font-medium hover:text-white/60 transition-colors uppercase tracking-widest" href="#planes">Planes</Link>
-                    <Link className="text-sm font-medium hover:text-white/60 transition-colors uppercase tracking-widest" href="#servicios">Servicios</Link>
-                    <Link className="text-sm font-medium hover:text-white/60 transition-colors uppercase tracking-widest" href="#diferenciador">Nosotros</Link>
+                <div className="hidden lg:flex items-center gap-6 text-white">
+                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/">Inicio</Link>
+                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/planes">Planes</Link>
+                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/servicios">Servicios</Link>
+                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/memoriales">Memoriales</Link>
+                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/nosotros">Nosotros</Link>
+                    <Link className="text-[10px] font-black hover:text-white/60 transition-colors uppercase tracking-[0.3em]" href="/prevision">Previsión</Link>
                 </div>
 
                 {/* CTAs */}
                 <div className="flex items-center gap-4">
-                    <Link href="/cotizacion" className="hidden md:inline-flex bg-white text-black px-6 py-2.5 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-slate-200 transition-colors shadow-lg shadow-black/10">
+                    <Link href="/cotizacion" className="hidden xl:inline-flex bg-white text-black px-6 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest hover:bg-slate-200 transition-colors shadow-lg shadow-black/10">
                         Cotización 24/7
                     </Link>
                     <a href="https://wa.me/56964333760?text=Hola%20necesito%20información" target="_blank" rel="noopener noreferrer" className="bg-[#25D366] text-white flex items-center justify-center h-10 w-10 md:w-auto md:px-4 rounded-full text-sm font-bold shadow-lg shadow-green-900/40 hover:scale-105 active:scale-95 transition-transform">

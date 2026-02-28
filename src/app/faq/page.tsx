@@ -81,54 +81,37 @@ const categorias = [
             },
         ],
     },
-    {
-        id: 'pagos',
-        icono: 'payments',
-        titulo: 'Medios de Pago y Seguros',
-        preguntas: [
-            {
-                q: '¿Qué medios de pago aceptan?',
-                a: 'Aceptamos efectivo, transferencia bancaria, cheques y tarjetas de débito/crédito. Para familias que lo necesiten, evaluamos facilidades de pago. Consulte directamente con nuestro equipo al +56 9 6433 3760.',
-            },
-            {
-                q: '¿El SEGURO de VIDA del fallecido cubre los gastos funerarios?',
-                a: 'Depende de la póliza. Muchas pólizas de vida incluyen cobertura funeraria. Solicite el certificado de defunción y contáctese con la aseguradora. Podemos asistirle en el proceso de presentación de la documentación requerida.',
-            },
-            {
-                q: '¿El FONASA o ISAPRE cubre servicios funerarios?',
-                a: 'Actualmente FONASA e ISAPREs no cubren servicios funerarios directamente. Sin embargo, algunas cajas de compensación ofrecen subsidios mortuorios para sus afiliados. Verifique su situación particular.',
-            },
-        ],
-    },
 ];
 
 function Acordeon({ pregunta, respuesta }: { pregunta: string; respuesta: string }) {
     const [abierto, setAbierto] = useState(false);
 
     return (
-        <div className="border-b border-black/8 dark:border-white/8">
+        <div className="border-b border-black/5 dark:border-white/5 last:border-0 hover:bg-black/[0.02] dark:hover:bg-white/[0.02] transition-colors rounded-3xl overflow-hidden mb-2">
             <button
                 onClick={() => setAbierto(!abierto)}
-                className="w-full text-left flex items-start justify-between gap-4 py-5 group"
+                className="w-full text-left flex items-center justify-between gap-6 py-6 px-4 group"
                 aria-expanded={abierto}
             >
-                <span className="font-semibold text-black dark:text-white text-sm md:text-base leading-snug group-hover:opacity-70 transition-opacity pr-4">
+                <span className="font-serif text-xl md:text-2xl text-black dark:text-white transition-opacity duration-300">
                     {pregunta}
                 </span>
                 <span
-                    className="material-symbols-outlined text-[20px] flex-shrink-0 mt-0.5 text-[#7E7D7D] transition-all duration-300"
-                    style={{ transform: abierto ? 'rotate(45deg)' : 'rotate(0deg)' }}
+                    className="material-symbols-outlined text-2xl text-black/20 dark:text-white/20 transition-transform duration-500"
+                    style={{ transform: abierto ? 'rotate(180deg)' : 'rotate(0deg)' }}
                 >
-                    add
+                    expand_more
                 </span>
             </button>
             <div
-                className="overflow-hidden transition-all duration-300 ease-in-out"
-                style={{ maxHeight: abierto ? '500px' : '0px', opacity: abierto ? 1 : 0 }}
+                className="overflow-hidden transition-all duration-500 ease-in-out px-4"
+                style={{ maxHeight: abierto ? '600px' : '0px', opacity: abierto ? 1 : 0 }}
             >
-                <p className="text-slate-600 dark:text-slate-400 text-sm leading-relaxed pb-5 pr-8">
-                    {respuesta}
-                </p>
+                <div className="pb-8 pt-2">
+                    <p className="text-[#7E7D7D] dark:text-slate-400 text-lg leading-loose font-light max-w-2xl">
+                        {respuesta}
+                    </p>
+                </div>
             </div>
         </div>
     );
@@ -136,150 +119,95 @@ function Acordeon({ pregunta, respuesta }: { pregunta: string; respuesta: string
 
 export default function FaqPage() {
     const [categoriaActiva, setCategoriaActiva] = useState('tramites');
+    const [searchQuery, setSearchQuery] = useState('');
 
     const categoriaSeleccionada = categorias.find((c) => c.id === categoriaActiva)!;
 
-    const totalPreguntas = categorias.reduce((acc, c) => acc + c.preguntas.length, 0);
-
     return (
-        <main className="min-h-screen bg-white dark:bg-black">
-            {/* Hero */}
-            <section className="bg-black text-white pt-16 pb-16 px-6">
-                <div className="max-w-4xl mx-auto text-center">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 block mb-4">
-                        Centro de Ayuda
-                    </span>
-                    <h1 className="font-serif text-4xl md:text-6xl font-medium mb-6 leading-tight">
-                        Guía de Trámites<br />y Preguntas Frecuentes
-                    </h1>
-                    <p className="text-white/70 text-lg font-light max-w-2xl mx-auto leading-relaxed mb-8">
-                        Resolvemos sus dudas sobre trámites legales, servicios funerarios y acompañamiento en el duelo.
-                    </p>
-                    {/* Stats strip */}
-                    <div className="inline-flex items-center gap-6 bg-white/5 border border-white/10 rounded-2xl px-6 py-3 text-sm text-white/60">
-                        <span><strong className="text-white">{totalPreguntas}</strong> preguntas respondidas</span>
-                        <span className="w-px h-4 bg-white/20" />
-                        <span><strong className="text-white">{categorias.length}</strong> categorías</span>
-                        <span className="w-px h-4 bg-white/20" />
-                        <span>Actualizado <strong className="text-white">2025</strong></span>
+        <main className="min-h-screen bg-[#fcfcfc] dark:bg-[#101622] pt-32 pb-24">
+
+            {/* Header Section */}
+            <section className="max-w-4xl mx-auto px-6 text-center mb-24">
+                <h1 className="font-serif text-6xl md:text-8xl mb-8 text-black dark:text-white leading-tight">
+                    Preguntas Frecuentes
+                </h1>
+                <p className="text-[#7E7D7D] text-xl font-light leading-relaxed max-w-2xl mx-auto">
+                    Encuentre respuestas detalladas sobre nuestros servicios funerarios, planes de previsión y el apoyo legal necesario.
+                </p>
+            </section>
+
+            {/* Search Bar - Pillar Style */}
+            <section className="max-w-2xl mx-auto px-6 mb-24">
+                <div className="relative group">
+                    <div className="absolute inset-y-0 left-6 flex items-center pointer-events-none">
+                        <span className="material-symbols-outlined text-black/20 dark:text-white/20 group-focus-within:text-black transition-colors">search</span>
                     </div>
+                    <input
+                        className="w-full bg-white dark:bg-slate-900/50 border-none rounded-full py-6 pl-16 pr-8 text-lg shadow-2xl shadow-black/5 focus:ring-2 focus:ring-black/5 transition-all outline-none text-black dark:text-white placeholder:text-black/20"
+                        placeholder="¿En qué podemos ayudarle hoy?"
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
                 </div>
             </section>
 
-            {/* Navegación de categorías — sticky mobile */}
-            <div className="sticky top-0 z-20 bg-white dark:bg-zinc-950 border-b border-black/10 dark:border-white/10 shadow-sm">
-                <div className="max-w-5xl mx-auto px-6 flex overflow-x-auto gap-0" style={{ scrollbarWidth: 'none' }}>
-                    {categorias.map((cat) => (
-                        <button
-                            key={cat.id}
-                            onClick={() => setCategoriaActiva(cat.id)}
-                            className="flex items-center gap-2 px-5 py-4 text-xs font-bold uppercase tracking-widest whitespace-nowrap border-b-2 transition-all"
-                            style={{
-                                borderColor: categoriaActiva === cat.id ? 'currentColor' : 'transparent',
-                                color: categoriaActiva === cat.id ? undefined : '#7E7D7D',
-                            }}
-                        >
-                            <span className="material-symbols-outlined text-[16px]">{cat.icono}</span>
-                            {cat.titulo}
-                        </button>
-                    ))}
-                </div>
-            </div>
+            {/* Categories & Content */}
+            <section className="max-w-5xl mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-16">
 
-            {/* Contenido FAQ */}
-            <section className="max-w-5xl mx-auto px-6 py-16">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    {/* Sidebar Nav */}
+                    <div className="space-y-4">
+                        <h4 className="text-[10px] uppercase tracking-[0.4em] font-bold text-black/30 dark:text-white/30 mb-8 pl-4">Categorías</h4>
+                        {categorias.map((cat) => (
+                            <button
+                                key={cat.id}
+                                onClick={() => setCategoriaActiva(cat.id)}
+                                className={`w-full text-left px-6 py-4 rounded-2xl text-sm font-semibold tracking-wide transition-all ${categoriaActiva === cat.id
+                                        ? 'bg-black text-white shadow-xl shadow-black/20'
+                                        : 'text-[#7E7D7D] hover:bg-black/5 dark:hover:bg-white/5'
+                                    }`}
+                            >
+                                {cat.titulo}
+                            </button>
+                        ))}
+                    </div>
 
-                    {/* Panel lateral desktop */}
-                    <div className="hidden md:block">
-                        <div className="sticky top-24 space-y-1">
-                            {categorias.map((cat) => (
-                                <button
-                                    key={cat.id}
-                                    onClick={() => setCategoriaActiva(cat.id)}
-                                    className="w-full text-left flex items-center justify-between gap-3 px-4 py-3 rounded-xl text-sm font-semibold transition-all"
-                                    style={{
-                                        background: categoriaActiva === cat.id ? 'black' : undefined,
-                                        color: categoriaActiva === cat.id ? 'white' : '#7E7D7D',
-                                    }}
-                                >
-                                    <span className="flex items-center gap-3">
-                                        <span className="material-symbols-outlined text-[18px]">{cat.icono}</span>
-                                        {cat.titulo}
-                                    </span>
-                                    <span className="text-[10px] font-black opacity-50">
-                                        {cat.preguntas.length}
-                                    </span>
-                                </button>
-                            ))}
-
-                            {/* Card de contacto */}
-                            <div className="mt-8 p-5 bg-[#F2F2F2] dark:bg-zinc-900 rounded-2xl">
-                                <span className="material-symbols-outlined text-2xl text-black/40 dark:text-white/40 block mb-3">support_agent</span>
-                                <p className="text-xs font-bold text-black dark:text-white mb-1">¿Necesita asesoría?</p>
-                                <p className="text-xs text-[#7E7D7D] mb-4 leading-relaxed">Disponibles 24/7 para orientarle sin compromiso.</p>
-                                <a
-                                    href="tel:+56964333760"
-                                    className="flex items-center gap-2 bg-black text-white dark:bg-white dark:text-black text-xs font-bold uppercase tracking-widest px-4 py-2.5 rounded-lg w-full justify-center hover:opacity-80 transition-opacity"
-                                >
-                                    <span className="material-symbols-outlined text-[14px]">call</span>
-                                    +56 9 6433 3760
-                                </a>
-                            </div>
+                    {/* FAQ List */}
+                    <div className="md:col-span-3">
+                        <h2 className="font-serif text-3xl mb-12 pb-6 border-b border-black/5 dark:border-white/5 text-black dark:text-white">
+                            {categoriaSeleccionada.titulo}
+                        </h2>
+                        <div className="space-y-4">
+                            {categoriaSeleccionada.preguntas
+                                .filter(q => q.q.toLowerCase().includes(searchQuery.toLowerCase()))
+                                .map((item) => (
+                                    <Acordeon key={item.q} pregunta={item.q} respuesta={item.a} />
+                                ))}
                         </div>
                     </div>
 
-                    {/* Acordeones con animación */}
-                    <div className="md:col-span-2">
-                        <div className="flex items-center gap-3 mb-8">
-                            <div className="w-10 h-10 rounded-xl bg-black dark:bg-white flex items-center justify-center flex-shrink-0">
-                                <span className="material-symbols-outlined text-[20px] text-white dark:text-black">
-                                    {categoriaSeleccionada.icono}
-                                </span>
-                            </div>
-                            <div>
-                                <h2 className="font-serif text-2xl font-bold text-black dark:text-white">
-                                    {categoriaSeleccionada.titulo}
-                                </h2>
-                                <p className="text-xs text-[#7E7D7D]">{categoriaSeleccionada.preguntas.length} preguntas</p>
-                            </div>
-                        </div>
-                        <div>
-                            {categoriaSeleccionada.preguntas.map((item) => (
-                                <Acordeon key={item.q} pregunta={item.q} respuesta={item.a} />
-                            ))}
-                        </div>
-                    </div>
                 </div>
             </section>
 
-            {/* CTA final */}
-            <section className="bg-[#F2F2F2] dark:bg-zinc-900/50 py-16 px-6">
-                <div className="max-w-3xl mx-auto text-center">
-                    <h3 className="font-serif text-3xl font-semibold mb-4 text-black dark:text-white">
-                        ¿No encontró su respuesta?
-                    </h3>
-                    <p className="text-[#7E7D7D] mb-8">
-                        Nuestro equipo especializado está disponible las 24 horas del día, los 7 días de la semana.
-                    </p>
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <a
-                            href="tel:+56964333760"
-                            className="flex items-center gap-3 bg-black text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-zinc-800 transition-colors w-full sm:w-auto justify-center"
-                        >
-                            <span className="material-symbols-outlined text-[18px]">call</span>
-                            Llamar Ahora
+            {/* Support CTA */}
+            <section className="mt-40 max-w-5xl mx-auto px-6 pb-24 border-t border-black/5 pt-32 text-center">
+                <h3 className="font-serif text-4xl mb-6 text-black dark:text-white">¿Aún tiene dudas?</h3>
+                <p className="text-[#7E7D7D] mb-12 font-light text-lg">Estamos aquí para acompañarle las 24 horas del día, los 365 días del año.</p>
+                <div className="flex flex-col md:flex-row items-center justify-center gap-12">
+                    <div className="flex flex-col items-center">
+                        <span className="text-[10px] uppercase tracking-[0.3em] text-black/30 mb-3">Llamada Gratuita 24/7</span>
+                        <a href="tel:+56964333760" className="font-serif text-3xl text-black dark:text-white hover:opacity-70 transition-opacity">
+                            +56 9 6433 3760
                         </a>
-                        <Link
-                            href="/cotizacion"
-                            className="flex items-center gap-3 border border-black dark:border-white text-black dark:text-white px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-all w-full sm:w-auto justify-center"
-                        >
-                            <span className="material-symbols-outlined text-[18px]">request_quote</span>
-                            Cotizar Online
-                        </Link>
                     </div>
+                    <div className="h-1 w-12 bg-black/5 hidden md:block"></div>
+                    <button className="bg-black text-white px-12 py-5 rounded-full text-xs uppercase tracking-[0.2em] font-bold hover:bg-zinc-800 transition-colors shadow-2xl shadow-black/20">
+                        Contacto Directo
+                    </button>
                 </div>
             </section>
+
         </main>
     );
 }

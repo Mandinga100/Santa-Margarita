@@ -3,26 +3,27 @@
 import { useState, FormEvent } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import Link from 'next/link';
 
 const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER || '56964333760';
 
 const PLANES = [
-    { id: 'margarita', nombre: 'Margarita', precio: '$970.000' },
-    { id: 'azucena', nombre: 'Azucena', precio: '$1.360.000' },
-    { id: 'rosal', nombre: 'Rosal Abelia', precio: '$1.750.000' },
-    { id: 'acacia', nombre: 'Acacia', precio: '$2.250.000' },
-    { id: 'quillay', nombre: 'Quillay', precio: '$2.390.000' },
-    { id: 'queule', nombre: 'Queule', precio: '$2.990.000' },
-    { id: 'raul', nombre: 'Raúl', precio: '$3.590.000', popular: true },
+    { id: 'margarita', nombre: 'Margarita', precio: 970000 },
+    { id: 'azucena', nombre: 'Azucena', precio: 1360000 },
+    { id: 'rosal', nombre: 'Rosal Abelia', precio: 1750000 },
+    { id: 'acacia', nombre: 'Acacia', precio: 2250000 },
+    { id: 'quillay', nombre: 'Quillay', precio: 2390000 },
+    { id: 'queule', nombre: 'Queule', precio: 2990000 },
+    { id: 'raul', nombre: 'Raúl', precio: 3590000, popular: true },
 ];
 
 const SERVICIOS = [
-    { id: 'inhumacion', icono: 'local_florist', titulo: 'Inhumación Tradicional', desc: 'Servicio completo de sepultación con todos los honores y acompañamiento.' },
-    { id: 'cremacion', icono: 'local_fire_department', titulo: 'Cremación', desc: 'Proceso de incineración con ánfora de madera noble incluida.' },
-    { id: 'prevision', icono: 'lock', titulo: 'Previsión Anticipada', desc: 'Contrate hoy al precio vigente y proteja a su familia del futuro.' },
+    { id: 'inhumacion', icono: 'local_florist', titulo: 'Inhumación Tradicional', desc: 'Servicio completo de sepultación con todos los honores.' },
+    { id: 'cremacion', icono: 'local_fire_department', titulo: 'Cremación', desc: 'Proceso de incineración con ánfora de madera noble.' },
+    { id: 'prevision', icono: 'lock', titulo: 'Previsión Anticipada', desc: 'Contrate hoy al precio vigente y proteja a su familia.' },
 ];
 
-type Step = 'datos' | 'servicio' | 'plan' | 'enviado';
+type Step = 'datos' | 'servicio' | 'plan' | 'resumen' | 'enviado';
 
 interface FormData {
     nombre: string;
@@ -38,6 +39,11 @@ const INITIAL: FormData = {
     servicio: '', plan: '',
 };
 
+const formatter = new Intl.NumberFormat('es-CL', {
+    style: 'currency',
+    currency: 'CLP',
+});
+
 function buildWhatsAppMsg(data: FormData): string {
     const plan = PLANES.find(p => p.id === data.plan);
     const svc = SERVICIOS.find(s => s.id === data.servicio);
@@ -49,7 +55,7 @@ function buildWhatsAppMsg(data: FormData): string {
         `📧 *Email:* ${data.email}`,
         `📍 *Comuna:* ${data.comuna}`,
         `🔧 *Servicio:* ${svc?.titulo || data.servicio}`,
-        `📋 *Plan:* ${plan ? `${plan.nombre} (${plan.precio})` : data.plan}`,
+        `📋 *Plan:* ${plan ? `${plan.nombre} (${formatter.format(plan.precio)})` : data.plan}`,
     ];
     return encodeURIComponent(lines.join('\n'));
 }
@@ -68,9 +74,7 @@ export default function CotizacionPage() {
     const canContinueServicio = form.servicio !== '';
     const canContinuePlan = form.plan !== '';
 
-    async function handleSubmit(e: FormEvent) {
-        e.preventDefault();
-        if (!canContinuePlan) return;
+    async function handleSubmit() {
         setLoading(true);
         setError('');
 
@@ -90,51 +94,43 @@ export default function CotizacionPage() {
         }
     }
 
-    function resetForm() {
-        setForm(INITIAL);
-        setStep('datos');
-        setDocId('');
-        setError('');
-    }
+    const planSelected = PLANES.find(p => p.id === form.plan);
+    const svcSelected = SERVICIOS.find(s => s.id === form.servicio);
 
-    const stepIndex: Record<Step, number> = { datos: 0, servicio: 1, plan: 2, enviado: 3 };
+    const steps = [
+        { id: 'datos', label: 'Datos' },
+        { id: 'servicio', label: 'Selección' },
+        { id: 'plan', label: 'Plan' },
+        { id: 'resumen', label: 'Resumen' },
+    ];
+
+    const currentStepIndex = steps.findIndex(s => s.id === step);
 
     return (
-        <main className="min-h-screen bg-white dark:bg-black">
-            {/* Hero */}
-            <section className="bg-black text-white px-6 pt-16 pb-14">
-                <div className="max-w-3xl mx-auto text-center">
-                    <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-white/50 block mb-4">
-                        Cotización en línea
-                    </span>
-                    <h1 className="font-serif text-4xl md:text-5xl font-medium mb-4">
-                        Reciba una cotización personalizada
-                    </h1>
-                    <p className="text-white/60 text-base font-light max-w-xl mx-auto">
-                        Complete el formulario y un asesor le contactará a la brevedad.
-                        Sin compromiso, sin letra pequeña.
-                    </p>
-                </div>
+        <main className="min-h-screen bg-[#f7f7f7] dark:bg-[#101622] pt-32 pb-24">
+
+            {/* Header */}
+            <section className="max-w-4xl mx-auto px-6 text-center mb-16">
+                <h1 className="font-serif text-5xl md:text-6xl text-black dark:text-white mb-4">Cotización Online</h1>
+                <p className="text-[#7E7D7D] text-lg font-light">Diseñe el servicio que mejor se adapte a sus deseos y presupuesto.</p>
             </section>
 
-            {/* Stepper */}
+            {/* Stepper Stitch Style */}
             {step !== 'enviado' && (
-                <div className="bg-[#F2F2F2] dark:bg-zinc-900 border-b border-black/5 dark:border-white/5 py-4 px-6">
-                    <div className="max-w-xl mx-auto flex items-center justify-center gap-2">
-                        {(['datos', 'servicio', 'plan'] as const).map((s, i) => {
-                            const labels = ['Sus datos', 'Tipo de servicio', 'Elija un plan'];
-                            const current = stepIndex[step];
-                            const done = i < current;
-                            const active = i === current;
+                <div className="max-w-3xl mx-auto px-6 mb-20 relative">
+                    <div className="absolute top-1/2 left-0 w-full h-px bg-black/10 dark:bg-white/10 -translate-y-1/2 -z-10"></div>
+                    <div className="flex justify-between">
+                        {steps.map((s, i) => {
+                            const active = s.id === step;
+                            const completed = steps.findIndex(st => st.id === step) > i;
                             return (
-                                <div key={s} className="flex items-center gap-2">
-                                    <div className={`flex items-center gap-2 ${active ? 'opacity-100' : done ? 'opacity-70' : 'opacity-30'}`}>
-                                        <div className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-black transition-all ${active ? 'bg-black text-white dark:bg-white dark:text-black' : done ? 'bg-black/20 text-black dark:bg-white/20 dark:text-white' : 'bg-black/10 text-black/40 dark:bg-white/10 dark:text-white/40'}`}>
-                                            {done ? <span className="material-symbols-outlined text-[14px]">check</span> : i + 1}
-                                        </div>
-                                        <span className="text-xs font-bold hidden sm:block text-black dark:text-white">{labels[i]}</span>
+                                <div key={s.id} className="flex flex-col items-center gap-2">
+                                    <div className={`w-10 h-10 rounded-full flex items-center justify-center border-2 transition-all duration-500 ${active ? 'bg-black border-black text-white scale-110 shadow-xl shadow-black/20' :
+                                            completed ? 'bg-white border-black text-black' : 'bg-white border-black/10 text-black/20'
+                                        }`}>
+                                        {completed ? <span className="material-symbols-outlined text-sm">check</span> : i + 1}
                                     </div>
-                                    {i < 2 && <div className="w-6 h-px bg-black/20 dark:bg-white/20 mx-1" />}
+                                    <span className={`text-[10px] font-bold uppercase tracking-widest ${active ? 'text-black' : 'text-black/20 font-medium'}`}>{s.label}</span>
                                 </div>
                             );
                         })}
@@ -142,240 +138,188 @@ export default function CotizacionPage() {
                 </div>
             )}
 
-            {/* Form */}
-            <section className="max-w-2xl mx-auto px-6 py-14">
-                {/* PASO 1 — DATOS */}
-                {step === 'datos' && (
-                    <form className="space-y-5" onSubmit={e => { e.preventDefault(); if (canContinueDatos) setStep('servicio'); }}>
-                        <div>
-                            <h2 className="font-serif text-2xl font-semibold text-black dark:text-white mb-1">Sus datos de contacto</h2>
-                            <p className="text-sm text-[#7E7D7D] mb-6">Le contactaremos únicamente para enviarle su cotización.</p>
-                        </div>
+            <section className="max-w-5xl mx-auto px-6">
+                <div className="max-w-2xl mx-auto bg-white dark:bg-slate-900/50 p-12 rounded-[3.5rem] shadow-2xl shadow-black/[0.03] border border-black/5">
 
-                        {[
-                            { id: 'nombre', label: 'Nombre completo', type: 'text', placeholder: 'Ej: María González', icon: 'person' },
-                            { id: 'telefono', label: 'Teléfono de contacto', type: 'tel', placeholder: '+56 9 ...', icon: 'phone' },
-                            { id: 'email', label: 'Correo electrónico', type: 'email', placeholder: 'correo@ejemplo.com', icon: 'mail' },
-                            { id: 'comuna', label: 'Comuna de requerimiento', type: 'text', placeholder: 'Ej: Santiago Centro', icon: 'location_on' },
-                        ].map(f => (
-                            <div key={f.id}>
-                                <label className="block text-sm font-semibold text-black dark:text-white mb-1.5">{f.label}</label>
-                                <div className="relative">
-                                    <span className="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-[18px] text-[#7E7D7D]">{f.icon}</span>
-                                    <input
-                                        type={f.type}
-                                        placeholder={f.placeholder}
-                                        value={form[f.id as keyof FormData]}
-                                        onChange={e => update(f.id as keyof FormData, e.target.value)}
-                                        required={['nombre', 'telefono', 'email'].includes(f.id)}
-                                        className="w-full pl-10 pr-4 py-3 rounded-xl border border-black/10 dark:border-white/10 bg-[#F9F9F9] dark:bg-zinc-900 text-black dark:text-white placeholder:text-[#7E7D7D] focus:outline-none focus:ring-2 focus:ring-black dark:focus:ring-white transition-shadow text-sm"
-                                    />
+                    {/* PASO 1: DATOS */}
+                    {step === 'datos' && (
+                        <div className="animate-fade-in">
+                            <h2 className="font-serif text-3xl mb-8 text-black dark:text-white">Información de Contacto</h2>
+                            <div className="space-y-6">
+                                {[
+                                    { id: 'nombre', label: 'Nombre Completo', placeholder: 'Ej: Juan Pérez', type: 'text' },
+                                    { id: 'telefono', label: 'WhatsApp / Teléfono', placeholder: '+56 9 ...', type: 'tel' },
+                                    { id: 'email', label: 'Email', placeholder: 'juan@email.com', type: 'email' },
+                                    { id: 'comuna', label: 'Comuna', placeholder: 'Ej: Providencia', type: 'text' },
+                                ].map(f => (
+                                    <div key={f.id}>
+                                        <label className="text-[11px] uppercase tracking-[0.3em] font-bold text-black/30 dark:text-white/30 block mb-3 ml-1">{f.label}</label>
+                                        <input
+                                            className="w-full bg-[#fcfcfc] dark:bg-slate-800/50 border-none rounded-2xl py-4 px-6 text-black dark:text-white outline-none focus:ring-2 focus:ring-black/5 transition-all text-lg font-light"
+                                            placeholder={f.placeholder}
+                                            type={f.type}
+                                            value={form[f.id as keyof FormData]}
+                                            onChange={e => update(f.id as keyof FormData, e.target.value)}
+                                        />
+                                    </div>
+                                ))}
+                                <button
+                                    onClick={() => setStep('servicio')}
+                                    disabled={!canContinueDatos}
+                                    className="w-full bg-black text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 transition-all disabled:opacity-20 mt-8 shadow-xl shadow-black/10"
+                                >
+                                    Siguiente Paso
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* PASO 2: SERVICIO */}
+                    {step === 'servicio' && (
+                        <div className="animate-fade-in">
+                            <h2 className="font-serif text-3xl mb-8 text-black dark:text-white">Tipo de Servicio</h2>
+                            <div className="space-y-4">
+                                {SERVICIOS.map(s => (
+                                    <button
+                                        key={s.id}
+                                        onClick={() => update('servicio', s.id)}
+                                        className={`w-full text-left p-6 rounded-3xl border-2 transition-all group ${form.servicio === s.id ? 'border-black bg-black text-white shadow-2xl' : 'border-black/5 hover:border-black/20 text-[#7E7D7D]'
+                                            }`}
+                                    >
+                                        <div className="flex items-center gap-5">
+                                            <span className={`material-symbols-outlined text-4xl ${form.servicio === s.id ? 'text-white' : 'text-black/20 group-hover:text-black transition-colors'}`}>{s.icono}</span>
+                                            <div>
+                                                <h4 className={`text-xl font-serif ${form.servicio === s.id ? 'text-white' : 'text-black dark:text-white'}`}>{s.titulo}</h4>
+                                                <p className="text-sm font-light mt-1 opacity-70 leading-relaxed">{s.desc}</p>
+                                            </div>
+                                        </div>
+                                    </button>
+                                ))}
+                                <div className="flex gap-4 mt-12">
+                                    <button onClick={() => setStep('datos')} className="flex-1 border-2 border-black/5 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-black/5 transition-all">Atrás</button>
+                                    <button
+                                        onClick={() => setStep('plan')}
+                                        disabled={!canContinueServicio}
+                                        className="flex-[2] bg-black text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 transition-all disabled:opacity-20"
+                                    >
+                                        Continuar
+                                    </button>
                                 </div>
                             </div>
-                        ))}
+                        </div>
+                    )}
 
-                        <button
-                            type="submit"
-                            disabled={!canContinueDatos}
-                            className="w-full mt-2 flex items-center justify-center gap-3 bg-black text-white dark:bg-white dark:text-black px-8 py-4 rounded-xl font-bold text-sm uppercase tracking-widest hover:opacity-80 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-                        >
-                            Continuar
-                            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-                        </button>
-                    </form>
-                )}
-
-                {/* PASO 2 — SERVICIO */}
-                {step === 'servicio' && (
-                    <div>
-                        <h2 className="font-serif text-2xl font-semibold text-black dark:text-white mb-1">¿Qué tipo de servicio necesita?</h2>
-                        <p className="text-sm text-[#7E7D7D] mb-6">Puede cambiar su elección más adelante.</p>
-
-                        <div className="space-y-3 mb-8">
-                            {SERVICIOS.map(s => (
+                    {/* PASO 3: PLAN */}
+                    {step === 'plan' && (
+                        <div className="animate-fade-in">
+                            <h2 className="font-serif text-3xl mb-8 text-black dark:text-white">Seleccione un Plan</h2>
+                            <div className="grid grid-cols-2 gap-4">
+                                {PLANES.map(p => (
+                                    <button
+                                        key={p.id}
+                                        onClick={() => update('plan', p.id)}
+                                        className={`p-6 rounded-3xl border-2 text-center transition-all ${form.plan === p.id ? 'border-black bg-black text-white shadow-xl' : 'border-black/5 hover:border-black/20 text-[#7E7D7D]'
+                                            }`}
+                                    >
+                                        {p.popular && <span className="text-[8px] font-black uppercase tracking-widest block mb-2 opacity-50">Popular</span>}
+                                        <h4 className={`text-xl font-serif ${form.plan === p.id ? 'text-white' : 'text-black dark:text-white'}`}>{p.nombre}</h4>
+                                        <p className="text-xs font-bold mt-2 opacity-70 tracking-widest">{formatter.format(p.precio)}</p>
+                                    </button>
+                                ))}
+                            </div>
+                            <div className="flex gap-4 mt-12">
+                                <button onClick={() => setStep('servicio')} className="flex-1 border-2 border-black/5 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-black/5 transition-all">Atrás</button>
                                 <button
-                                    key={s.id}
-                                    type="button"
-                                    onClick={() => update('servicio', s.id)}
-                                    className={`w-full text-left flex items-start gap-4 p-5 rounded-2xl border transition-all ${form.servicio === s.id
-                                        ? 'border-black dark:border-white bg-black text-white dark:bg-white dark:text-black'
-                                        : 'border-black/10 dark:border-white/10 bg-white dark:bg-zinc-900 text-black dark:text-white hover:border-black/30 dark:hover:border-white/30'
-                                        }`}
+                                    onClick={() => setStep('resumen')}
+                                    disabled={!canContinuePlan}
+                                    className="flex-[2] bg-black text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 transition-all disabled:opacity-20"
                                 >
-                                    <span className={`material-symbols-outlined text-[26px] mt-0.5 flex-shrink-0 ${form.servicio === s.id ? 'text-white dark:text-black' : 'text-[#7E7D7D]'}`}>{s.icono}</span>
-                                    <div>
-                                        <p className="font-bold text-sm">{s.titulo}</p>
-                                        <p className={`text-xs mt-1 leading-relaxed ${form.servicio === s.id ? 'text-white/70 dark:text-black/70' : 'text-[#7E7D7D]'}`}>{s.desc}</p>
+                                    Ver Resumen
+                                </button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* PASO 4: RESUMEN */}
+                    {step === 'resumen' && (
+                        <div className="animate-fade-in">
+                            <h2 className="font-serif text-3xl mb-12 text-black dark:text-white">Resumen de Solicitud</h2>
+
+                            <div className="space-y-8 mb-12">
+                                <div className="border-b border-black/5 pb-6">
+                                    <h4 className="text-[10px] uppercase tracking-[0.4em] font-black text-black/30 mb-4">Servicio Digital</h4>
+                                    <div className="flex justify-between items-center">
+                                        <div>
+                                            <p className="text-2xl font-serif text-black dark:text-white">{planSelected?.nombre}</p>
+                                            <p className="text-sm font-light text-[#7E7D7D] mt-1">{svcSelected?.titulo}</p>
+                                        </div>
+                                        <p className="text-2xl font-serif text-black dark:text-white">{formatter.format(planSelected?.precio || 0)}</p>
                                     </div>
-                                    {form.servicio === s.id && (
-                                        <span className="material-symbols-outlined text-[20px] ml-auto flex-shrink-0 text-white dark:text-black">check_circle</span>
-                                    )}
-                                </button>
-                            ))}
-                        </div>
+                                </div>
 
-                        <div className="flex gap-3">
-                            <button
-                                type="button"
-                                onClick={() => setStep('datos')}
-                                className="flex items-center gap-2 px-6 py-3 rounded-xl border border-black/20 dark:border-white/20 text-black dark:text-white text-sm font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                            >
-                                <span className="material-symbols-outlined text-[16px]">arrow_back</span>
-                                Atrás
-                            </button>
-                            <button
-                                type="button"
-                                disabled={!canContinueServicio}
-                                onClick={() => setStep('plan')}
-                                className="flex-1 flex items-center justify-center gap-3 bg-black text-white dark:bg-white dark:text-black px-8 py-3 rounded-xl font-bold text-sm uppercase tracking-widest hover:opacity-80 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-                            >
-                                Continuar
-                                <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-                            </button>
-                        </div>
-                    </div>
-                )}
+                                <div className="space-y-4">
+                                    <div className="flex justify-between text-sm">
+                                        <span className="text-[#7E7D7D]">Subtotal</span>
+                                        <span className="text-black dark:text-white">{formatter.format((planSelected?.precio || 0) * 0.81)}</span>
+                                    </div>
+                                    <div className="flex justify-between text-sm">
+                                        <span className="text-[#7E7D7D]">IVA (19%)</span>
+                                        <span className="text-black dark:text-white">{formatter.format((planSelected?.precio || 0) * 0.19)}</span>
+                                    </div>
+                                    <div className="flex justify-between items-end pt-4 border-t border-black/5">
+                                        <span className="text-lg font-serif">Total Final</span>
+                                        <span className="text-4xl font-serif text-black dark:text-white">{formatter.format(planSelected?.precio || 0)}</span>
+                                    </div>
+                                </div>
+                            </div>
 
-                {/* PASO 3 — PLAN */}
-                {step === 'plan' && (
-                    <form onSubmit={handleSubmit}>
-                        <h2 className="font-serif text-2xl font-semibold text-black dark:text-white mb-1">Seleccione un plan de referencia</h2>
-                        <p className="text-sm text-[#7E7D7D] mb-6">El precio es referencial; el asesor le confirmará el valor final.</p>
-
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
-                            {PLANES.map(p => (
+                            <div className="flex flex-col gap-4">
                                 <button
-                                    key={p.id}
-                                    type="button"
-                                    onClick={() => update('plan', p.id)}
-                                    className={`relative p-4 rounded-xl border text-center transition-all hover:-translate-y-0.5 ${form.plan === p.id
-                                        ? 'border-black dark:border-white bg-black text-white dark:bg-white dark:text-black shadow-lg'
-                                        : 'border-black/10 dark:border-white/10 bg-white dark:bg-zinc-900 text-black dark:text-white hover:border-black/30 dark:hover:border-white/30'
-                                        }`}
+                                    onClick={handleSubmit}
+                                    disabled={loading}
+                                    className="w-full bg-black text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-xs hover:bg-zinc-800 transition-all shadow-2xl shadow-black/20 flex items-center justify-center gap-3"
                                 >
-                                    {p.popular && (
-                                        <span className={`text-[9px] font-bold uppercase tracking-wider block mb-1 ${form.plan === p.id ? 'text-white/60 dark:text-black/60' : 'text-[#7E7D7D]'}`}>
-                                            ★ Popular
-                                        </span>
-                                    )}
-                                    <p className="font-serif font-bold text-base">{p.nombre}</p>
-                                    <p className={`text-[11px] font-black mt-1 ${form.plan === p.id ? 'text-white/70 dark:text-black/70' : 'text-[#7E7D7D]'}`}>{p.precio}</p>
-                                    {form.plan === p.id && (
-                                        <span className="material-symbols-outlined text-[16px] absolute top-2 right-2 text-white dark:text-black">check_circle</span>
-                                    )}
+                                    {loading ? 'Procesando...' : 'Confirmar y Solicitar'}
+                                    <span className="material-symbols-outlined text-sm">arrow_forward</span>
                                 </button>
-                            ))}
+                                <button onClick={() => setStep('plan')} className="text-[#7E7D7D] text-xs font-bold uppercase tracking-widest hover:text-black transition-colors py-2">Volver y Editar</button>
+                            </div>
                         </div>
+                    )}
 
-                        {error && (
-                            <p className="text-red-600 text-sm mb-4 flex items-center gap-2">
-                                <span className="material-symbols-outlined text-[16px]">error</span>
-                                {error}
+                    {/* CONFIRMACIÓN */}
+                    {step === 'enviado' && (
+                        <div className="text-center py-12 animate-fade-in">
+                            <div className="w-24 h-24 bg-black rounded-full flex items-center justify-center mx-auto mb-10 shadow-3xl shadow-black/20">
+                                <span className="material-symbols-outlined text-5xl text-white">check</span>
+                            </div>
+                            <h2 className="font-serif text-4xl mb-6 text-black dark:text-white">¡Solicitud Enviada!</h2>
+                            <p className="text-lg text-[#7E7D7D] font-light leading-relaxed mb-12">
+                                Hemos recibido sus datos. Un asesor especializado le contactará en los próximos minutos para formalizar su cotización.
                             </p>
-                        )}
 
-                        <div className="flex gap-3">
-                            <button
-                                type="button"
-                                onClick={() => setStep('servicio')}
-                                className="flex items-center gap-2 px-6 py-3 rounded-xl border border-black/20 dark:border-white/20 text-black dark:text-white text-sm font-bold hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
-                            >
-                                <span className="material-symbols-outlined text-[16px]">arrow_back</span>
-                                Atrás
-                            </button>
-                            <button
-                                type="submit"
-                                disabled={!canContinuePlan || loading}
-                                className="flex-1 flex items-center justify-center gap-3 bg-black text-white dark:bg-white dark:text-black px-8 py-3 rounded-xl font-bold text-sm uppercase tracking-widest hover:opacity-80 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-                            >
-                                {loading ? (
-                                    <>
-                                        <span className="animate-spin material-symbols-outlined text-[18px]">progress_activity</span>
-                                        Enviando…
-                                    </>
-                                ) : (
-                                    <>
-                                        <span className="material-symbols-outlined text-[18px]">send</span>
-                                        Solicitar cotización
-                                    </>
-                                )}
-                            </button>
+                            <div className="space-y-4">
+                                <a
+                                    href={`https://wa.me/${WA_NUMBER}?text=${buildWhatsAppMsg(form)}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full bg-[#25D366] text-white py-5 rounded-full font-bold uppercase tracking-[0.2em] text-[10px] hover:opacity-90 transition-all shadow-xl shadow-green-500/20 flex items-center justify-center gap-2"
+                                >
+                                    Hablar por WhatsApp Ahora
+                                </a>
+                                <Link
+                                    href="/"
+                                    className="block text-[#7E7D7D] text-[10px] font-bold uppercase tracking-widest hover:text-black pt-4"
+                                >
+                                    Volver al Inicio
+                                </Link>
+                            </div>
                         </div>
-                    </form>
-                )}
+                    )}
 
-                {/* CONFIRMACIÓN */}
-                {step === 'enviado' && (
-                    <div className="text-center py-8">
-                        <span className="material-symbols-outlined text-5xl text-black/20 dark:text-white/20 block mb-6">check_circle</span>
-                        <h2 className="font-serif text-3xl font-semibold text-black dark:text-white mb-3">
-                            Solicitud recibida
-                        </h2>
-                        <p className="text-[#7E7D7D] text-base mb-2 max-w-sm mx-auto leading-relaxed">
-                            Su cotización ha sido registrada exitosamente. Un asesor le contactará a la brevedad.
-                        </p>
-                        {docId && (
-                            <p className="text-xs text-black/30 dark:text-white/30 mb-8">
-                                Referencia: <span className="font-mono">{docId.slice(0, 12)}…</span>
-                            </p>
-                        )}
-
-                        {/* Contacto inmediato por WhatsApp */}
-                        <div className="bg-[#F2F2F2] dark:bg-zinc-900 rounded-2xl p-6 mb-8 max-w-sm mx-auto">
-                            <p className="text-sm font-semibold text-black dark:text-white mb-1">¿Necesita atención inmediata?</p>
-                            <p className="text-xs text-[#7E7D7D] mb-4">Escríbanos directamente con los detalles de su solicitud.</p>
-                            <a
-                                href={`https://wa.me/${WA_NUMBER}?text=${buildWhatsAppMsg(form)}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex items-center justify-center gap-3 bg-[#25D366] text-white px-6 py-3.5 rounded-xl font-bold text-sm uppercase tracking-widest hover:opacity-90 transition-opacity w-full"
-                            >
-                                <svg viewBox="0 0 24 24" className="w-5 h-5 fill-current flex-shrink-0">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-                                </svg>
-                                Contactar por WhatsApp
-                            </a>
-                        </div>
-
-                        <button
-                            type="button"
-                            onClick={resetForm}
-                            className="text-sm text-[#7E7D7D] hover:text-black dark:hover:text-white transition-colors underline underline-offset-4"
-                        >
-                            Realizar otra cotización
-                        </button>
-                    </div>
-                )}
+                </div>
             </section>
 
-            {/* Info adicional */}
-            {step !== 'enviado' && (
-                <div className="bg-[#F2F2F2] dark:bg-zinc-900/50 py-10 px-6">
-                    <div className="max-w-2xl mx-auto flex flex-col sm:flex-row gap-6 text-center sm:text-left">
-                        <div className="flex-1 flex gap-4 items-start">
-                            <span className="material-symbols-outlined text-[24px] text-black/30 dark:text-white/30 flex-shrink-0">shield</span>
-                            <div>
-                                <p className="font-bold text-sm text-black dark:text-white">Sin compromiso</p>
-                                <p className="text-xs text-[#7E7D7D] mt-0.5">Puede cancelar o modificar en cualquier momento antes de firmar.</p>
-                            </div>
-                        </div>
-                        <div className="flex-1 flex gap-4 items-start">
-                            <span className="material-symbols-outlined text-[24px] text-black/30 dark:text-white/30 flex-shrink-0">schedule</span>
-                            <div>
-                                <p className="font-bold text-sm text-black dark:text-white">Respuesta en &lt; 2 horas</p>
-                                <p className="text-xs text-[#7E7D7D] mt-0.5">Nuestro equipo responde en horario extendido todos los días.</p>
-                            </div>
-                        </div>
-                        <div className="flex-1 flex gap-4 items-start">
-                            <span className="material-symbols-outlined text-[24px] text-black/30 dark:text-white/30 flex-shrink-0">lock</span>
-                            <div>
-                                <p className="font-bold text-sm text-black dark:text-white">Datos protegidos</p>
-                                <p className="text-xs text-[#7E7D7D] mt-0.5">Su información es almacenada de forma segura y no compartida.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
         </main>
     );
 }
