@@ -55,6 +55,28 @@ export default function NavbarPremium() {
         };
     }, [pathname]);
 
+    const [currentDateTime, setCurrentDateTime] = useState('');
+
+    useEffect(() => {
+        const updateDateTime = () => {
+            const now = new Date();
+            const formatter = new Intl.DateTimeFormat('es-CL', {
+                day: '2-digit',
+                month: 'short',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false,
+                timeZone: 'America/Santiago'
+            });
+            setCurrentDateTime(formatter.format(now).replace(',', ' |'));
+        };
+
+        updateDateTime();
+        const interval = setInterval(updateDateTime, 60000);
+        return () => clearInterval(interval);
+    }, []);
+
     const getHref = (id: string) => pathname === '/' ? `#${id}` : `/#${id}`;
 
     return (
@@ -66,8 +88,8 @@ export default function NavbarPremium() {
             {/* Secondary Navbar */}
             <div className="navbar-secondary w-full py-1.5 px-4 bg-black/40 backdrop-blur-md border-b border-white/10 hidden md:block">
                 <div className="max-w-7xl mx-auto flex justify-between items-center text-[10px] text-gray-300 font-medium tracking-widest uppercase">
-                    <span id="datetime">28 Feb 2026 | 17:30</span>
-                    <span>UF: <span id="uf-value">$37.123</span> | UTM: <span id="utm-value">$66.789</span></span>
+                    <span id="datetime">{currentDateTime || 'Sincronizando...'}</span>
+                    <span>UF: <span id="uf-value">$39.850</span> | UTM: <span id="utm-value">$68.420</span></span>
                 </div>
             </div>
             <div className="w-full px-[2vw] h-20 flex items-center justify-between pt-[2vh]">

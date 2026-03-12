@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
@@ -17,6 +17,18 @@ export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const planesRef = useRef<HTMLElement>(null);
+
+  const [contactForm, setContactForm] = useState({ nombre: '', telefono: '', mensaje: '' });
+
+  const handleContactSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const { nombre, telefono, mensaje } = contactForm;
+    if (!nombre.trim() || !telefono.trim()) return;
+    const texto = encodeURIComponent(
+      `Hola, soy *${nombre}*. Mi teléfono: ${telefono}.\n\n${mensaje || 'Solicito asesoría funeral.'}`
+    );
+    window.open(`https://wa.me/56964333760?text=${texto}`, '_blank', 'noopener,noreferrer');
+  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -318,8 +330,7 @@ export default function Home() {
       <section
         id="planes"
         ref={planesRef}
-        className="py-32 relative"
-        style={{ background: '#1A1A1A', color: '#FFFFFF' }}
+        className="py-32 relative bg-[#1A1A1A] text-white"
         aria-label="Planes Funerarios"
       >
         <div className="max-w-7xl mx-auto px-6">
@@ -341,7 +352,7 @@ export default function Home() {
             <div className="card-plane plan-card">
               <div className="plan-card-img">
                 <Image
-                  src="/assets/images/planes/acacia-urna-principal.webp"
+                  src="/assets/images/planes/plan-acacia.webp"
                   alt="Plan Acacia – Urna"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-[2000ms]"
@@ -371,7 +382,7 @@ export default function Home() {
             <div className="card-plane plan-card">
               <div className="plan-card-img">
                 <Image
-                  src="/assets/images/planes/quillay-urna-principal.webp"
+                  src="/assets/images/planes/plan-quillay.webp"
                   alt="Plan Quillay – Urna"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-[2000ms]"
@@ -404,7 +415,7 @@ export default function Home() {
               </div>
               <div className="plan-card-img">
                 <Image
-                  src="/assets/images/planes/raul-urna-principal.webp"
+                  src="/assets/images/planes/plan-raul.webp"
                   alt="Plan Raúl – Urna"
                   fill
                   className="object-cover hover:scale-105 transition-transform duration-[2000ms]"
@@ -438,8 +449,7 @@ export default function Home() {
       ============================== */}
       <section
         id="servicios"
-        className="py-32 relative"
-        style={{ background: '#FFFFFF', color: '#1A1A1A' }}
+        className="py-32 relative bg-white text-[#1A1A1A]"
         aria-label="Servicios Funerarios"
       >
         <div className="max-w-7xl mx-auto px-6">
@@ -484,8 +494,7 @@ export default function Home() {
       ============================== */}
       <section
         id="memoriales"
-        className="py-32 relative"
-        style={{ background: '#1A1A1A', color: '#FFFFFF' }}
+        className="py-32 relative bg-[#1A1A1A] text-white"
         aria-label="Memoriales Digitales"
       >
         <div className="max-w-7xl mx-auto px-6 text-center">
@@ -523,8 +532,7 @@ export default function Home() {
       ============================== */}
       <section
         id="nosotros"
-        className="py-32 relative"
-        style={{ background: '#FFFFFF', color: '#1A1A1A' }}
+        className="py-32 relative bg-white text-[#1A1A1A]"
         aria-label="Sobre Nosotros"
       >
         <div className="max-w-7xl mx-auto px-6">
@@ -569,8 +577,7 @@ export default function Home() {
       ============================== */}
       <section
         id="prevision"
-        className="py-32 relative"
-        style={{ background: '#1A1A1A', color: '#FFFFFF' }}
+        className="py-32 relative bg-[#1A1A1A] text-white"
         aria-label="Previsión Familiar"
       >
         <div className="max-w-7xl mx-auto px-6">
@@ -621,8 +628,7 @@ export default function Home() {
       ============================== */}
       <section
         id="confianza"
-        className="py-32 relative"
-        style={{ background: '#FFFFFF', color: '#1A1A1A' }}
+        className="py-32 relative bg-white text-[#1A1A1A]"
         aria-label="Confianza Comprobada"
       >
         <div className="max-w-7xl mx-auto px-6">
@@ -665,12 +671,12 @@ export default function Home() {
                 {[
                   {
                     name: 'Familia Rodríguez Vargas',
-                    img: '/assets/images/ui/avatars-ia/avatar_testimonio_cliente_femenino_1772293313257.webp',
+                    img: '/assets/images/ui/avatars-ia/avatar-testimonio-femenino.webp',
                     text: 'En el momento más difícil, Santa Margarita fue un faro de luz. Dignidad y respeto en cada detalle.',
                   },
                   {
                     name: 'Roberto Echeverría',
-                    img: '/assets/images/ui/avatars-ia/avatar_testimonio_cliente_masculino_1772293330249.webp',
+                    img: '/assets/images/ui/avatars-ia/avatar-testimonio-masculino.webp',
                     text: 'El plan Raúl superó toda expectativa. Discreción y honor en cada momento.',
                   },
                 ].map((t, idx) => (
@@ -697,8 +703,7 @@ export default function Home() {
       ============================== */}
       <section
         id="contacto"
-        className="py-32 relative"
-        style={{ background: '#0a0a0a' }}
+        className="py-32 relative bg-[#0a0a0a]"
         aria-label="Contacto y Asesoría"
       >
         <div className="max-w-5xl mx-auto px-6 text-center text-[#f5f0eb] mb-16">
@@ -712,30 +717,37 @@ export default function Home() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-[2rem] p-10 md:p-14 shadow-2xl">
             <h2 className="text-center text-2xl text-white font-serif italic mb-10">Asesoría Personalizada 24/7</h2>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={handleContactSubmit} noValidate>
               <input
                 type="text"
                 className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
-                placeholder="Nombre completo"
+                placeholder="Nombre completo *"
                 required
+                value={contactForm.nombre}
+                onChange={(e) => setContactForm(f => ({ ...f, nombre: e.target.value }))}
               />
               <input
                 type="tel"
                 className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
-                placeholder="Teléfono WhatsApp"
+                placeholder="Teléfono WhatsApp *"
                 required
+                value={contactForm.telefono}
+                onChange={(e) => setContactForm(f => ({ ...f, telefono: e.target.value }))}
               />
               <div className="md:col-span-2">
                 <textarea
                   className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
                   rows={4}
                   placeholder="Cuéntanos tu necesidad..."
+                  value={contactForm.mensaje}
+                  onChange={(e) => setContactForm(f => ({ ...f, mensaje: e.target.value }))}
                 />
               </div>
               <div className="md:col-span-2 text-center">
                 <button
                   type="submit"
-                  className="bg-[#b8960c] text-[#0a0a0a] px-12 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.4em] hover:bg-[#d4af37] transition-all inline-flex items-center gap-3"
+                  className="bg-[#b8960c] text-[#0a0a0a] px-12 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.4em] hover:bg-[#d4af37] transition-all inline-flex items-center gap-3 disabled:opacity-50"
+                  disabled={!contactForm.nombre.trim() || !contactForm.telefono.trim()}
                 >
                   <i className="fab fa-whatsapp text-lg" />
                   Recibir Asesoría Inmediata

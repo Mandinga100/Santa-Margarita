@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Playfair_Display } from 'next/font/google';
+// FontAwesome via npm — elimina dependencia CDN externo (XSS risk)
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import "./globals.css";
 
 import NavbarPremium from '@/components/NavbarPremium/NavbarPremium';
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/assets/images/ui/og-image.jpg',
+        url: '/assets/images/ui/og-image.webp',
         width: 1200,
         height: 630,
         alt: 'Funeraria Santa Margarita - Acompañamiento Digno',
@@ -52,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Funeraria Santa Margarita',
     description: 'Servicios Funerarios Premium 24/7 en Chile.',
-    images: ['/assets/images/ui/og-image.jpg'],
+    images: ['/assets/images/ui/og-image.webp'],
   },
 };
 
@@ -66,8 +68,8 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
+        {/* Material Symbols - Google Fonts (no CDN externo de terceros) */}
+        <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
       </head>
       <body className="font-sans bg-black text-white antialiased overflow-x-hidden min-h-screen flex flex-col selection:bg-white/10 selection:text-white">
         <script
@@ -78,14 +80,14 @@ export default function RootLayout({
               "@type": "FuneralHome",
               "name": "Funeraria Santa Margarita",
               "url": "https://funerariasantamargarita.cl",
-              "logo": "https://funerariasantamargarita.cl/assets/images/ui/logo-premium.png",
-              "image": "https://funerariasantamargarita.cl/assets/images/ui/hero-bg.webp",
+              "logo": "https://funerariasantamargarita.cl/assets/images/brand/logo.webp",
+              "image": "https://funerariasantamargarita.cl/assets/images/ui/og-image.webp",
               "description": "Servicios funerarios premium y asistencia integral 24/7 en Chile.",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "Dirección Oficina Central",
-                "addressLocality": "Macul",
-                "addressRegion": "Santiago",
+                "streetAddress": "Macul",
+                "addressLocality": "Santiago",
+                "addressRegion": "Región Metropolitana",
                 "addressCountry": "CL"
               },
               "telephone": "+56964333760",
