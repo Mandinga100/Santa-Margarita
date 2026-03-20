@@ -164,12 +164,71 @@ export default function Home() {
           box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        /* Slogan gradiente */
-        .slogan-grad {
-          background: linear-gradient(135deg, #c0c0c0 0%, #ffffff 50%, #c0c0c0 100%);
+        /* Slogan plata brillante ANIMADO con borde negro y aura blanca dinámica */
+        .slogan-plata {
+          background: linear-gradient(
+            to right, 
+            #959595 0%, 
+            #e0e0e0 20%, 
+            #ffffff 45%, 
+            #ffffff 55%, 
+            #e0e0e0 80%, 
+            #959595 100%
+          );
+          background-size: 200% auto;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
+          animation: 
+            silverShimmer 12s linear infinite,
+            auraPulse 12s ease-in-out infinite;
+          
+          /* Borde negro para legibilidad + Glow inicial */
+          filter: 
+            drop-shadow(1px 1px 0px rgba(0,0,0,1))
+            drop-shadow(-1px -1px 0px rgba(0,0,0,1))
+            drop-shadow(1px -1px 0px rgba(0,0,0,1))
+            drop-shadow(-1px 1px 0px rgba(0,0,0,1))
+            drop-shadow(0 0 15px rgba(255,255,255,0.4));
+          
+          will-change: filter;
+        }
+
+        @keyframes silverShimmer {
+          0% { background-position: 0% center; }
+          100% { background-position: 200% center; }
+        }
+
+        @keyframes auraPulse {
+          0%, 100% { 
+            filter: 
+              drop-shadow(1px 1px 0px rgba(0,0,0,1))
+              drop-shadow(-1px -1px 0px rgba(0,0,0,1))
+              drop-shadow(1px -1px 0px rgba(0,0,0,1))
+              drop-shadow(-1px 1px 0px rgba(0,0,0,1))
+              /* Brillo fino y definido */
+              drop-shadow(0 0 4px rgba(255,255,255,0.4))
+              drop-shadow(0 0 8px rgba(255,255,255,0.2));
+          }
+          50% { 
+            filter: 
+              drop-shadow(1px 1px 0px rgba(0,0,0,1))
+              drop-shadow(-1px -1px 0px rgba(0,0,0,1))
+              drop-shadow(1px -1px 0px rgba(0,0,0,1))
+              drop-shadow(-1px 1px 0px rgba(0,0,0,1))
+              /* Expansión controlada del destello periférico */
+              drop-shadow(0 0 6px rgba(255,255,255,0.6))
+              drop-shadow(0 0 12px rgba(255,255,255,0.3));
+          }
+        }
+
+        @media (max-width: 768px) {
+          .slogan-plata {
+            background-size: 150% auto;
+            animation: 
+              silverShimmer 10s linear infinite,
+              auraPulse 10s ease-in-out infinite;
+          }
         }
 
         /* CTAs Hero Bottom */
@@ -292,9 +351,8 @@ export default function Home() {
         <div
           ref={titleRef}
           className="hero-content relative z-20 text-center w-full max-w-5xl px-6"
-          style={{ textShadow: '0 4px 20px rgba(0,0,0,0.8)' }}
         >
-          <h1 className="slogan-grad font-serif text-4xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight tracking-tight drop-shadow-2xl">
+          <h1 className="slogan-plata font-serif text-4xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight tracking-tight drop-shadow-2xl">
             Acompañamos con respeto,<br />
             <span className="italic">despedimos con amor</span>
           </h1>
@@ -306,21 +364,19 @@ export default function Home() {
         {/* CTAs Hero Restaurados – Bottom Center (PASO 1) */}
         <div className="hero-ctas-bottom">
           <Link
-            href="/cotizacion?plan=estandar"
+            href="/cotizacion"
             className="inline-flex items-center justify-center gap-2 bg-[#f5f0eb] text-[#0a0a0a] px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-[0.3em] hover:bg-white hover:scale-105 transition-all duration-300 shadow-2xl shadow-black/40"
           >
             <i className="fas fa-file-contract text-sm" />
-            Cotización Inmediata
+            Cotización Online
           </Link>
-          <a
-            href="https://wa.me/56964333760?text=Hola%2C%20necesito%20asesor%C3%ADa"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-[0.3em] hover:bg-[#20b557] hover:scale-105 transition-all duration-300 shadow-2xl shadow-green-900/40"
+          <Link
+            href="/prevision"
+            className="inline-flex items-center justify-center gap-2 bg-[#b8960c] text-[#0a0a0a] px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-[0.3em] hover:bg-[#d4af37] hover:scale-105 transition-all duration-300 shadow-2xl shadow-[#b8960c]/30"
           >
-            <i className="fab fa-whatsapp text-base" />
-            Asesoría WhatsApp
-          </a>
+            <i className="fas fa-shield-alt text-sm" />
+            Previsión Anticipada
+          </Link>
         </div>
       </section>
 
@@ -715,45 +771,48 @@ export default function Home() {
         </div>
 
         <div className="max-w-4xl mx-auto px-6">
-          <div className="bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-[2rem] p-10 md:p-14 shadow-2xl">
-            <h2 className="text-center text-2xl text-white font-serif italic mb-10">Asesoría Personalizada 24/7</h2>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={handleContactSubmit} noValidate>
-              <input
-                type="text"
-                className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
-                placeholder="Nombre completo *"
-                required
-                value={contactForm.nombre}
-                onChange={(e) => setContactForm(f => ({ ...f, nombre: e.target.value }))}
-              />
-              <input
-                type="tel"
-                className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
-                placeholder="Teléfono WhatsApp *"
-                required
-                value={contactForm.telefono}
-                onChange={(e) => setContactForm(f => ({ ...f, telefono: e.target.value }))}
-              />
-              <div className="md:col-span-2">
-                <textarea
+          <div className="rounded-[2.5rem] p-10 md:p-14 border border-white/10 bg-white/[0.03] relative overflow-hidden">
+            <div className="absolute inset-0 z-0 opacity-[0.04]" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div className="relative z-10">
+              <h2 className="text-center text-2xl text-white font-serif italic mb-10">Asesoría Personalizada 24/7</h2>
+              <form className="grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={handleContactSubmit} noValidate>
+                <input
+                  type="text"
                   className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
-                  rows={4}
-                  placeholder="Cuéntanos tu necesidad..."
-                  value={contactForm.mensaje}
-                  onChange={(e) => setContactForm(f => ({ ...f, mensaje: e.target.value }))}
+                  placeholder="Nombre completo *"
+                  required
+                  value={contactForm.nombre}
+                  onChange={(e) => setContactForm(f => ({ ...f, nombre: e.target.value }))}
                 />
-              </div>
-              <div className="md:col-span-2 text-center">
-                <button
-                  type="submit"
-                  className="bg-[#b8960c] text-[#0a0a0a] px-12 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.4em] hover:bg-[#d4af37] transition-all inline-flex items-center gap-3 disabled:opacity-50"
-                  disabled={!contactForm.nombre.trim() || !contactForm.telefono.trim()}
-                >
-                  <i className="fab fa-whatsapp text-lg" />
-                  Recibir Asesoría Inmediata
-                </button>
-              </div>
-            </form>
+                <input
+                  type="tel"
+                  className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
+                  placeholder="Teléfono WhatsApp *"
+                  required
+                  value={contactForm.telefono}
+                  onChange={(e) => setContactForm(f => ({ ...f, telefono: e.target.value }))}
+                />
+                <div className="md:col-span-2">
+                  <textarea
+                    className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
+                    rows={4}
+                    placeholder="Cuéntanos tu necesidad..."
+                    value={contactForm.mensaje}
+                    onChange={(e) => setContactForm(f => ({ ...f, mensaje: e.target.value }))}
+                  />
+                </div>
+                <div className="md:col-span-2 text-center">
+                  <button
+                    type="submit"
+                    className="inline-flex items-center justify-center gap-3 bg-[#b8960c] text-[#0a0a0a] px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.4em] hover:bg-[#d4af37] hover:scale-105 transition-all duration-300 shadow-xl shadow-[#b8960c]/20 disabled:opacity-70 disabled:hover:scale-100"
+                    disabled={!contactForm.nombre.trim() || !contactForm.telefono.trim()}
+                  >
+                    <i className="fab fa-whatsapp text-lg" />
+                    Contáctanos
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </section>

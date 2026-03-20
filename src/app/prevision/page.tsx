@@ -65,10 +65,13 @@ export default function PrevisionPage() {
         }
 
         // Animated Headers
-        gsap.fromTo(".fade-up-header",
-            { opacity: 0, y: 40 },
-            { opacity: 1, y: 0, duration: 1.5, ease: "expo.out", scrollTrigger: { trigger: ".fade-up-header", start: "top 90%" } }
-        );
+        const headers = document.querySelectorAll(".fade-up-header");
+        if (headers.length > 0) {
+            gsap.fromTo(".fade-up-header",
+                { opacity: 0, y: 40 },
+                { opacity: 1, y: 0, duration: 1.5, ease: "expo.out", scrollTrigger: { trigger: ".fade-up-header", start: "top 90%" } }
+            );
+        }
 
         // Benefits Animation
         if (benefitsRef.current) {
@@ -106,6 +109,26 @@ export default function PrevisionPage() {
     return (
         <main className="min-h-screen bg-[#1A1A1A] text-white font-display pt-32 pb-32 selection:bg-white/10 antialiased overflow-hidden">
 
+            <style jsx>{`
+                .glass-badge {
+                    background: rgba(255, 255, 255, 0.05);
+                    backdrop-filter: blur(20px);
+                    -webkit-backdrop-filter: blur(20px);
+                    border: 1px solid rgba(255, 255, 255, 0.15);
+                    padding: 0.7rem 1.8rem;
+                    border-radius: 100px;
+                    display: inline-block;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+                }
+                .badge-text {
+                    font-weight: 900;
+                    color: rgba(255, 255, 255, 0.7);
+                    font-size: 0.7rem;
+                    letter-spacing: 0.5em;
+                    text-transform: uppercase;
+                }
+            `}</style>
+
             {/* Hero Section - Ultra-Polish Parallax */}
             <section ref={heroRef} className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden mb-48 border-b border-white/5">
                 <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/40 to-black"></div>
@@ -119,8 +142,10 @@ export default function PrevisionPage() {
                     />
                 </div>
                 <div className="relative z-20 text-center px-6 max-w-6xl">
-                    <span className="text-sm font-black uppercase tracking-widest text-white/50 block mb-12">Protocolo de Previsión Familiar</span>
-                    <h1 className="font-serif text-white text-6xl md:text-9xl mb-12 italic leading-[0.85] tracking-tighter">
+                    <div className="glass-badge mb-12">
+                        <span className="badge-text block">Protocolo de Previsión Familiar</span>
+                    </div>
+                    <h1 className="font-serif text-white text-6xl md:text-9xl mb-12 italic leading-[0.85] tracking-tighter fade-up-header">
                         La Paz de <br /> <span className="text-white/40">Saber Decidir</span>
                     </h1>
                     <p className="text-white/40 text-xl md:text-2xl font-light tracking-wide italic max-w-2xl mx-auto">
@@ -163,7 +188,7 @@ export default function PrevisionPage() {
                     <header className="mb-32 text-center lg:text-left flex flex-col lg:flex-row items-end justify-between gap-12">
                         <div className="max-w-2xl">
                             <span className="text-sm md:text-base font-black uppercase tracking-widest text-white/40 block mb-6">Metodología</span>
-                            <h2 className="font-serif text-5xl md:text-7xl italic leading-none text-white">Protocolo de <br /> Activación Vitalicia</h2>
+                            <h2 className="font-serif text-5xl md:text-7xl italic leading-none text-white fade-up-header">Protocolo de <br /> Activación Vitalicia</h2>
                         </div>
                         <p className="text-white/30 text-xl font-light italic max-w-sm lg:text-right">
                             Un proceso diseñado para eliminar cualquier fricción en momentos complejos.

@@ -12,7 +12,7 @@ export default function FooterPremium() {
                         <Image src="/assets/images/brand/logo-white.webp" alt="Funeraria Santa Margarita" width={180} height={60} className="w-auto h-12 object-contain" />
                     </Link>
                     <p className="text-sm font-light leading-relaxed">
-                        Honrando el legado de quienes amas con profundo respeto y compasión.
+                        Ofrecemos servicios funerarios compasivos y personalizados para honrar la memoria de sus seres queridos. Nuestro equipo está aquí para brindar apoyo y consuelo en momentos difíciles.
                     </p>
                     <div className="flex gap-4">
                         <a href="https://wa.me/56964333760" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-zinc-800 flex items-center justify-center hover:bg-[#25D366] hover:text-white transition-colors" aria-label="WhatsApp">
@@ -74,7 +74,7 @@ export default function FooterPremium() {
             {/* Copyright */}
             <div className="max-w-7xl mx-auto px-6 pt-8 flex flex-col md:flex-row items-center justify-between text-xs text-zinc-600 font-light">
                 <p>© {new Date().getFullYear()} Funeraria Santa Margarita Chile. Todos los derechos reservados.</p>
-                <p className="mt-2 md:mt-0 flex items-center gap-1">Diseñado con <i className="fas fa-heart text-[#111111] drop-shadow-[0_0_2px_rgba(255,255,255,0.2)]"></i> por Antigravity</p>
+                <p className="mt-2 md:mt-0 flex items-center gap-1">Diseñado por Daniel Misle</p>
             </div>
         </footer>
     );

@@ -117,7 +117,7 @@ export default function NavbarPremium() {
                 {/* CTAs */}
                 <div className="flex items-center gap-4 ctas-right">
                     {/* Cotización -> Derecha extrema, d-none d-md-flex (hidden md:flex) */}
-                    <Link href="http://localhost:3000/cotizacion?plan=estandar" className="hidden md:inline-flex border border-white text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
+                    <Link href="/cotizacion?plan=estandar" className="hidden md:inline-flex border border-white text-white px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all">
                         Cotización Inmediata
                     </Link>
 

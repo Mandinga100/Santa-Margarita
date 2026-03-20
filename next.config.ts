@@ -49,15 +49,6 @@ const nextConfig: NextConfig = {
     // Necesario para output: 'export' (sitio estático sin servidor de optimización)
     unoptimized: true,
   },
-  // Headers de seguridad — aplicados en desarrollo (en producción Firebase Hosting los maneja)
-  async headers() {
-    return [
-      {
-        source: "/(.*)",
-        headers: securityHeaders,
-      },
-    ];
-  },
 };
 
 export default nextConfig;

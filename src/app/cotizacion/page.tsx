@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef, FormEvent } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import Link from 'next/link';
@@ -69,11 +69,10 @@ export default function CotizacionPage() {
     const formRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        // Step transition animation
         if (formRef.current) {
             gsap.fromTo(formRef.current,
-                { opacity: 0, y: 20 },
-                { opacity: 1, y: 0, duration: 0.8, ease: "expo.out" }
+                { opacity: 0, scale: 0.98, y: 10 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: "power2.out" }
             );
         }
     }, [step]);
@@ -109,42 +108,64 @@ export default function CotizacionPage() {
 
     const steps = [
         { id: 'datos', label: 'Identidad' },
-        { id: 'servicio', label: 'Servicio' },
-        { id: 'plan', label: 'Tributo' },
-        { id: 'resumen', label: 'Resumen' },
+        { id: 'servicio', label: 'Ritual' },
+        { id: 'plan', label: 'Homenaje' },
+        { id: 'resumen', label: 'Presupuesto' },
     ];
 
     return (
-        <main className="min-h-screen bg-black text-white font-display pt-32 pb-48 selection:bg-white/10 antialiased overflow-x-hidden">
+        <main className="min-h-screen bg-[#0a0a0a] text-white font-display pt-32 pb-48 selection:bg-[#b8960c]/30 antialiased overflow-x-hidden relative">
+            
+            {/* Background Texture */}
+            <div className="fixed inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
-            {/* Header - Editorial Style */}
-            <section className="max-w-4xl mx-auto px-6 text-center mb-32">
-                <span className="text-[10px] font-black uppercase tracking-[0.8em] text-white/30 block mb-10">Proyecciones de Honor</span>
-                <h1 className="font-serif text-6xl md:text-9xl text-white mb-12 italic leading-[0.85] tracking-tighter">Configurador <br /> <span className="text-white/30">Personal</span></h1>
-                <p className="text-white/40 text-2xl font-light italic max-w-2xl mx-auto border-x border-white/5 px-12 leading-relaxed">
-                    "Diseñe el tributo que el legado de su familia merece, con la serenata y el respeto de la mayor distinción."
+            <style jsx global>{`
+                .silver-text {
+                    background: linear-gradient(135deg, #e0e0e0 0%, #ffffff 40%, #b0b0b0 60%, #f0f0f0 100%);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                    background-clip: text;
+                    filter: drop-shadow(0 0 10px rgba(255,255,255,0.3));
+                }
+                .gold-glow {
+                    box-shadow: 0 0 25px rgba(184, 150, 12, 0.2);
+                }
+                @keyframes bounce-x {
+                    0%, 100% { transform: translateX(0); }
+                    50% { transform: translateX(5px); }
+                }
+                .animate-bounce-x {
+                    animation: bounce-x 1s infinite;
+                }
+            `}</style>
+
+            {/* Header */}
+            <section className="max-w-4xl mx-auto px-6 text-center mb-24 relative z-10">
+                <h1 className="font-serif text-5xl md:text-8xl text-white mb-10 italic leading-[0.9] tracking-tighter silver-text">Cotización Online</h1>
+                <p className="text-white/50 text-xl font-light italic max-w-2xl mx-auto leading-relaxed">
+                    Personalice cada detalle del homenaje. Estamos aquí para asegurar que el legado sea honrado con la mayor distinción.
                 </p>
-                <div className="w-24 h-px bg-white/10 mx-auto mt-20"></div>
+                <div className="w-20 h-px bg-gradient-to-r from-transparent via-[#b8960c]/30 to-transparent mx-auto mt-16"></div>
             </section>
 
-            {/* Stepper Premium */}
+            {/* Premium Stepper */}
             {step !== 'enviado' && (
-                <nav className="max-w-4xl mx-auto px-6 mb-48 relative" aria-label="Progreso de cotización">
-                    <div className="absolute top-6 left-0 w-full h-px bg-white/5 -z-10"></div>
-                    <div className="flex justify-between relative px-2 md:px-12">
+                <nav className="max-w-4xl mx-auto px-6 mb-32 relative z-10" aria-label="Progreso">
+                    <div className="absolute top-7 left-0 w-full h-px bg-white/5 -z-10 hidden md:block"></div>
+                    <div className="flex justify-between relative px-2 md:px-12 gap-4">
                         {steps.map((s, i) => {
                             const active = s.id === step;
                             const currentIdx = steps.findIndex(st => st.id === step);
                             const completed = currentIdx > i;
                             return (
-                                <div key={s.id} className="flex flex-col items-center gap-6 group">
-                                    <div className={`w-14 h-14 rounded-full flex items-center justify-center border transition-all duration-1000 relative ${active ? 'bg-white border-white text-black scale-110 shadow-[0_0_40px_rgba(255,255,255,0.2)]' :
-                                        completed ? 'bg-zinc-900 border-white/20 text-white' : 'bg-black border-white/5 text-white/10'
-                                        }`}>
+                                <div key={s.id} className="flex flex-col items-center gap-4 group flex-1">
+                                    <div className={`w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center border transition-all duration-700 relative text-xs md:text-sm ${
+                                        active ? 'bg-[#b8960c] border-[#b8960c] text-[#0a0a0a] scale-110 gold-glow' :
+                                        completed ? 'bg-zinc-900 border-[#b8960c]/30 text-[#b8960c]' : 'bg-transparent border-white/10 text-white/20'
+                                    }`}>
                                         {completed ? <span className="material-symbols-outlined text-sm font-black">check</span> : i + 1}
-                                        {active && <div className="absolute inset-[-10px] border border-white/10 rounded-full animate-ping-slow"></div>}
                                     </div>
-                                    <span className={`text-[10px] font-black uppercase tracking-[0.4em] transition-all duration-1000 ${active ? 'text-white' : 'text-white/10 group-hover:text-white/30'}`}>{s.label}</span>
+                                    <span className={`text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] md:tracking-[0.4em] transition-all duration-500 text-center ${active ? 'text-[#b8960c]' : 'text-white/20'}`}>{s.label}</span>
                                 </div>
                             );
                         })}
@@ -152,208 +173,208 @@ export default function CotizacionPage() {
                 </nav>
             )}
 
-            <section className="max-w-6xl mx-auto px-6 relative">
-                <div ref={formRef} className="max-w-2xl mx-auto bg-white/[0.01] p-12 md:p-20 rounded-[5rem] border border-white/5 shadow-4xl backdrop-blur-3xl relative overflow-hidden group">
-                    <div className="absolute -top-32 -right-32 w-64 h-64 bg-white/5 blur-[120px] rounded-full pointer-events-none group-hover:bg-amber-500/5 transition-colors duration-[2s]"></div>
+            {/* Form Container */}
+            <section className="max-w-6xl mx-auto px-6 relative z-10">
+                <div ref={formRef} className="max-w-2xl mx-auto bg-white/[0.03] backdrop-blur-xl p-8 md:p-16 rounded-[2.5rem] border border-white/10 shadow-3xl relative overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none"></div>
 
-                    {/* PASO 1: DATOS */}
+                    {/* FASE 1: DATOS */}
                     {step === 'datos' && (
-                        <div>
-                            <header className="mb-16">
-                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 block mb-6 px-1">Fase 01</span>
-                                <h2 className="font-serif text-5xl italic tracking-tighter leading-none mb-10">Identidad <br /><span className="text-white/30">del Solicitante</span></h2>
+                        <div className="relative z-10">
+                            <header className="mb-12">
+                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#b8960c]/50 block mb-4 px-1">Paso 01</span>
+                                <h2 className="font-serif text-4xl md:text-5xl italic tracking-tighter leading-none mb-6">Información <br /><span className="text-white/30">de Contacto</span></h2>
                             </header>
-                            <div className="space-y-12">
+                            <div className="space-y-8">
                                 {[
-                                    { id: 'nombre', label: 'Nombre Completo', placeholder: 'Ingrese su nombre', type: 'text' },
-                                    { id: 'telefono', label: 'Comunicación Móvil', placeholder: '+56 9 ...', type: 'tel' },
-                                    { id: 'email', label: 'Correo Electrónico', placeholder: 'email@ejemplo.com', type: 'email' },
-                                    { id: 'comuna', label: 'Ubicación / Comuna', placeholder: 'Ej: Las Condes', type: 'text' },
+                                    { id: 'nombre', label: 'Nombre Completo', placeholder: 'Ej: Juan Pérez', type: 'text', icon: 'person' },
+                                    { id: 'telefono', label: 'WhatsApp de Contacto', placeholder: '+56 9 ...', type: 'tel', icon: 'call' },
+                                    { id: 'email', label: 'Correo Electrónico', placeholder: 'ejemplo@correo.com', type: 'email', icon: 'mail' },
+                                    { id: 'comuna', label: 'Comuna de Residencia', placeholder: 'Ej: Providencia', type: 'text', icon: 'location_on' },
                                 ].map(f => (
                                     <div key={f.id} className="group relative">
-                                        <label className="text-[10px] uppercase tracking-[0.5em] font-black text-white/20 block mb-6 ml-2 transition-all duration-700 group-focus-within:text-white group-focus-within:translate-x-2">{f.label}</label>
-                                        <input
-                                            className="w-full bg-white/[0.02] border border-white/5 rounded-[2rem] py-8 px-10 text-white placeholder-white/5 outline-none focus:bg-white/[0.04] focus:border-white/20 transition-all text-xl font-light italic shadow-inner selection:bg-white/10"
-                                            placeholder={f.placeholder}
-                                            type={f.type}
-                                            value={form[f.id as keyof FormData]}
-                                            onChange={e => update(f.id as keyof FormData, e.target.value)}
-                                        />
+                                        <label className="text-[10px] uppercase tracking-[0.4em] font-black text-white/30 block mb-4 ml-2 group-focus-within:text-[#b8960c] transition-colors">{f.label}</label>
+                                        <div className="relative">
+                                            <span className="material-symbols-outlined absolute left-6 top-1/2 -translate-y-1/2 text-white/10 group-focus-within:text-[#b8960c]/50 transition-colors text-xl">{f.icon}</span>
+                                            <input
+                                                className="w-full bg-white/[0.04] border border-white/5 rounded-2xl py-6 pl-16 pr-8 text-white placeholder-white/10 outline-none focus:bg-white/[0.06] focus:border-[#b8960c]/50 transition-all text-lg font-light shadow-inner"
+                                                placeholder={f.placeholder}
+                                                type={f.type}
+                                                value={form[f.id as keyof FormData]}
+                                                onChange={e => update(f.id as keyof FormData, e.target.value)}
+                                            />
+                                        </div>
                                     </div>
                                 ))}
                                 <button
                                     onClick={() => setStep('servicio')}
                                     disabled={!canContinueDatos}
-                                    className="w-full bg-white text-black py-10 rounded-full font-black uppercase tracking-[0.6em] text-[11px] hover:bg-zinc-200 transition-all duration-700 disabled:opacity-5 mt-16 shadow-3xl overflow-hidden relative group"
+                                    className="w-full bg-[#b8960c] text-[#0a0a0a] py-6 rounded-full font-black uppercase tracking-[0.5em] text-[11px] hover:bg-[#d4af37] hover:scale-[1.02] transition-all duration-300 disabled:opacity-30 mt-12 shadow-xl shadow-[#b8960c]/20 flex items-center justify-center gap-4"
                                 >
-                                    <span className="relative z-10 italic">Avanzar al Ritual</span>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                                    Siguiente Paso
+                                    <span className="material-symbols-outlined text-lg animate-bounce-x">arrow_forward</span>
                                 </button>
                             </div>
                         </div>
                     )}
 
-                    {/* PASO 2: SERVICIO */}
+                    {/* FASE 2: SERVICIO */}
                     {step === 'servicio' && (
-                        <div>
-                            <header className="mb-16">
-                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 block mb-6 px-1">Fase 02</span>
-                                <h2 className="font-serif text-5xl italic tracking-tighter leading-none mb-10">Selección <br /><span className="text-white/30">del Ritual</span></h2>
+                        <div className="relative z-10">
+                            <header className="mb-12">
+                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#b8960c]/50 block mb-4 px-1">Paso 02</span>
+                                <h2 className="font-serif text-4xl md:text-5xl italic tracking-tighter leading-none mb-6">Tipo de <br /><span className="text-white/30">Servicio</span></h2>
                             </header>
-                            <div className="grid grid-cols-1 gap-8">
+                            <div className="grid grid-cols-1 gap-5">
                                 {SERVICIOS.map(s => (
                                     <button
                                         key={s.id}
                                         onClick={() => update('servicio', s.id)}
-                                        className={`w-full text-left p-10 rounded-[3.5rem] border transition-all duration-1000 group relative overflow-hidden ${form.servicio === s.id ? 'border-white bg-white text-black shadow-4xl scale-[1.02]' : 'border-white/5 bg-white/[0.01] hover:border-white/20'
-                                            }`}
+                                        className={`w-full text-left p-8 rounded-3xl border transition-all duration-500 group relative overflow-hidden ${
+                                            form.servicio === s.id ? 'border-[#b8960c] bg-[#b8960c]/10' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.05]'
+                                        }`}
                                     >
-                                        <div className="flex items-center gap-10 relative z-10">
-                                            <span className={`material-symbols-outlined text-6xl transition-all duration-1000 ${form.servicio === s.id ? 'text-black scale-110' : 'text-white/10 group-hover:text-amber-500/50'}`}>{s.icono}</span>
-                                            <div>
-                                                <h4 className={`text-3xl font-serif mb-3 italic tracking-tighter leading-none ${form.servicio === s.id ? 'text-black' : 'text-white'}`}>{s.titulo}</h4>
-                                                <p className={`text-base font-light italic leading-relaxed ${form.servicio === s.id ? 'text-black/60' : 'text-white/20'}`}>{s.desc}</p>
+                                        <div className="flex items-center gap-8 relative z-10">
+                                            <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all ${
+                                                form.servicio === s.id ? 'bg-[#b8960c] text-[#0a0a0a]' : 'bg-white/5 text-white/30'
+                                            }`}>
+                                                <span className="material-symbols-outlined text-3xl">{s.icono}</span>
                                             </div>
+                                            <div className="flex-1">
+                                                <h4 className={`text-xl font-serif italic tracking-tight mb-2 ${form.servicio === s.id ? 'text-[#b8960c]' : 'text-white'}`}>{s.titulo}</h4>
+                                                <p className="text-sm font-light italic leading-relaxed text-white/40">{s.desc}</p>
+                                            </div>
+                                            {form.servicio === s.id && <span className="material-symbols-outlined text-[#b8960c] scale-125">check_circle</span>}
                                         </div>
                                     </button>
                                 ))}
-                                <div className="flex flex-col sm:flex-row gap-8 mt-16">
-                                    <button onClick={() => setStep('datos')} className="flex-1 border border-white/10 py-8 rounded-full font-black uppercase tracking-[0.5em] text-[10px] hover:bg-white/5 transition-all italic">Regresar</button>
+                                <div className="flex gap-4 mt-12">
+                                    <button onClick={() => setStep('datos')} className="flex-1 border border-white/10 py-5 rounded-full font-black uppercase tracking-[0.4em] text-[10px] hover:bg-white/10 transition-all text-white/50">Atrás</button>
                                     <button
                                         onClick={() => setStep('plan')}
                                         disabled={!canContinueServicio}
-                                        className="flex-[2] bg-white text-black py-8 rounded-full font-black uppercase tracking-[0.5em] text-[10px] hover:bg-zinc-200 transition-all duration-700 disabled:opacity-5 italic shadow-3xl"
+                                        className="flex-[2] bg-[#b8960c] text-[#0a0a0a] py-5 rounded-full font-black uppercase tracking-[0.4em] text-[10px] hover:bg-[#d4af37] transition-all disabled:opacity-30 shadow-lg shadow-[#b8960c]/20"
                                     >
-                                        Continuar al Tributo
+                                        Continuar
                                     </button>
                                 </div>
                             </div>
                         </div>
                     )}
 
-                    {/* PASO 3: PLAN */}
+                    {/* FASE 3: PLAN */}
                     {step === 'plan' && (
-                        <div>
-                            <header className="mb-16">
-                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 block mb-6 px-1">Fase 03</span>
-                                <h2 className="font-serif text-5xl italic tracking-tighter leading-none mb-10">Nivel de <br /><span className="text-white/30">Homenaje</span></h2>
+                        <div className="relative z-10">
+                            <header className="mb-12">
+                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#b8960c]/50 block mb-4 px-1">Paso 03</span>
+                                <h2 className="font-serif text-4xl md:text-5xl italic tracking-tighter leading-none mb-6">Plan de <br /><span className="text-white/30">Homenaje</span></h2>
                             </header>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 {PLANES.map(p => (
                                     <button
                                         key={p.id}
                                         onClick={() => update('plan', p.id)}
-                                        className={`p-10 rounded-[3.5rem] border text-center transition-all duration-1000 relative overflow-hidden group ${form.plan === p.id ? 'border-white bg-white text-black shadow-4xl scale-[1.02]' : 'border-white/5 bg-white/[0.01] hover:border-white/20'
-                                            }`}
+                                        className={`p-8 rounded-3xl border text-center transition-all duration-500 relative flex flex-col items-center justify-center gap-3 ${
+                                            form.plan === p.id ? 'border-[#b8960c] bg-[#b8960c]/10 scale-[1.02] shadow-xl shadow-[#b8960c]/10' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.05]'
+                                        }`}
                                     >
-                                        {p.popular && <span className={`text-[9px] font-black uppercase tracking-[0.5em] block mb-6 ${form.plan === p.id ? 'text-black/40' : 'text-amber-500/50'}`}>Recomendado VIP</span>}
-                                        <h4 className={`text-4xl font-serif mb-6 italic tracking-tighter ${form.plan === p.id ? 'text-black' : 'text-white'}`}>{p.nombre}</h4>
-                                        <p className={`text-[11px] font-black tracking-[0.3em] uppercase ${form.plan === p.id ? 'text-black/30' : 'text-white/10'}`}>{formatter.format(p.precio)}</p>
+                                        {p.popular && <span className="text-[8px] font-black uppercase tracking-[0.3em] bg-[#b8960c] text-[#0a0a0a] px-3 py-1 rounded-full absolute -top-3">Más Solicitado</span>}
+                                        <h4 className={`text-2xl font-serif italic tracking-tight ${form.plan === p.id ? 'text-[#b8960c]' : 'text-white'}`}>{p.nombre}</h4>
+                                        <p className="text-xs font-bold tracking-[0.2em] text-white/30">{formatter.format(p.precio)}</p>
                                     </button>
                                 ))}
                             </div>
-                            <div className="flex flex-col sm:flex-row gap-8 mt-20">
-                                <button onClick={() => setStep('servicio')} className="flex-1 border border-white/10 py-8 rounded-full font-black uppercase tracking-[0.5em] text-[10px] hover:bg-white/5 transition-all italic">Regresar</button>
+                            <div className="flex gap-4 mt-12">
+                                <button onClick={() => setStep('servicio')} className="flex-1 border border-white/10 py-5 rounded-full font-black uppercase tracking-[0.4em] text-[10px] hover:bg-white/10 transition-all text-white/50">Atrás</button>
                                 <button
                                     onClick={() => setStep('resumen')}
                                     disabled={!canContinuePlan}
-                                    className="flex-[2] bg-white text-black py-8 rounded-full font-black uppercase tracking-[0.5em] text-[10px] hover:bg-zinc-200 transition-all duration-700 disabled:opacity-5 italic shadow-3xl"
+                                    className="flex-[2] bg-[#b8960c] text-[#0a0a0a] py-5 rounded-full font-black uppercase tracking-[0.4em] text-[10px] hover:bg-[#d4af37] transition-all disabled:opacity-30 shadow-lg shadow-[#b8960c]/20"
                                 >
-                                    Generar Presupuesto
+                                    Ver Resumen
                                 </button>
                             </div>
                         </div>
                     )}
 
-                    {/* PASO 4: RESUMEN */}
+                    {/* FASE 4: RESUMEN */}
                     {step === 'resumen' && (
-                        <div>
-                            <header className="mb-16">
-                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-white/20 block mb-6 px-1">Fase 04</span>
-                                <h2 className="font-serif text-5xl italic tracking-tighter leading-none mb-10">Resumen <br /><span className="text-white/30">de Inversión</span></h2>
+                        <div className="relative z-10">
+                            <header className="mb-12">
+                                <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#b8960c]/50 block mb-4 px-1">Paso 04</span>
+                                <h2 className="font-serif text-4xl md:text-5xl italic tracking-tighter leading-none mb-6">Resumen <br /><span className="text-white/30">del Presupuesto</span></h2>
                             </header>
 
-                            <div className="space-y-12 mb-20">
-                                <div className="flex justify-between items-end border-b border-white/5 pb-12">
+                            <div className="bg-white/[0.02] rounded-3xl p-8 border border-white/5 mb-10 space-y-8">
+                                <div className="flex justify-between items-start border-b border-white/5 pb-6">
                                     <div>
-                                        <span className="text-[10px] font-black uppercase tracking-[0.5em] text-white/20 block mb-6">Selección Curada</span>
-                                        <p className="text-4xl font-serif italic mb-4 tracking-tighter">Plan {planSelected?.nombre}</p>
-                                        <p className="text-xl font-light italic text-white/40">{svcSelected?.titulo}</p>
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-[#b8960c] block mb-2">Plan Seleccionado</span>
+                                        <p className="text-3xl font-serif italic text-white tracking-tight">{planSelected?.nombre}</p>
                                     </div>
-                                    <div className="text-right">
-                                        <p className="text-4xl font-serif italic text-white tracking-tighter">{formatter.format(planSelected?.precio || 0)}</p>
-                                        <span className="text-[9px] font-black text-white/10 uppercase tracking-[0.3em]">Total Bruto</span>
+                                    <p className="text-2xl font-serif italic text-white">{formatter.format(planSelected?.precio || 0)}</p>
+                                </div>
+                                <div className="space-y-4">
+                                    <div className="flex justify-between text-sm italic text-white/40">
+                                        <span>Servicio</span>
+                                        <span className="text-white">{svcSelected?.titulo}</span>
+                                    </div>
+                                    <div className="flex justify-between text-sm italic text-white/40">
+                                        <span>IVA (19%)</span>
+                                        <span className="text-white">{formatter.format((planSelected?.precio || 0) * 0.19)}</span>
                                     </div>
                                 </div>
-
-                                <div className="space-y-8 px-4">
-                                    <div className="flex justify-between text-base font-light italic text-white/30">
-                                        <span>Valor Neto Base</span>
-                                        <span className="font-serif tracking-widest">{formatter.format((planSelected?.precio || 0) * 0.81)}</span>
-                                    </div>
-                                    <div className="flex justify-between text-base font-light italic text-white/30">
-                                        <span>Impuestos (IVA 19%)</span>
-                                        <span className="font-serif tracking-widest">{formatter.format((planSelected?.precio || 0) * 0.19)}</span>
-                                    </div>
-                                    <div className="pt-12 mt-12 border-t border-white/10 flex justify-between items-baseline">
-                                        <span className="text-2xl font-serif italic text-white/40">Inversión Final CLP</span>
-                                        <p className="text-7xl font-serif italic text-white tracking-tighter shadow-white/5 drop-shadow-2xl">{formatter.format(planSelected?.precio || 0)}</p>
-                                    </div>
+                                <div className="pt-6 border-t border-[#b8960c]/20 flex justify-between items-center">
+                                    <span className="text-lg font-serif italic text-[#b8960c]">Total Inversión</span>
+                                    <p className="text-5xl font-serif italic text-white tracking-tighter silver-text">{formatter.format(planSelected?.precio || 0)}</p>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-8">
+                            <div className="flex flex-col gap-4">
                                 <button
                                     onClick={handleSubmit}
                                     disabled={loading}
-                                    className="w-full bg-white text-black py-10 rounded-full font-black uppercase tracking-[0.8em] text-[11px] hover:bg-zinc-200 transition-all duration-1000 shadow-5xl group overflow-hidden relative"
+                                    className="w-full bg-[#b8960c] text-[#0a0a0a] py-8 rounded-full font-black uppercase tracking-[0.6em] text-[12px] hover:bg-[#d4af37] transition-all duration-300 shadow-2xl shadow-[#b8960c]/30 flex items-center justify-center gap-4 group"
                                 >
-                                    <div className="flex items-center justify-center gap-6 relative z-10">
-                                        <span className="italic">{loading ? 'Transmitiendo...' : 'Procesar Honor'}</span>
-                                        <span className="material-symbols-outlined text-base">arrow_forward</span>
-                                    </div>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                                    {loading ? 'Procesando...' : 'Confirmar Solicitud'}
+                                    <span className="material-symbols-outlined text-xl group-hover:translate-x-2 transition-transform">verified</span>
                                 </button>
-                                <button onClick={() => setStep('plan')} className="text-white/20 text-[10px] font-black uppercase tracking-[0.8em] hover:text-white transition-all py-4 italic">Editar Parámetros</button>
+                                <button onClick={() => setStep('plan')} className="text-white/20 text-[10px] font-black uppercase tracking-[0.5em] hover:text-[#b8960c] transition-all py-4">Editar Datos</button>
                             </div>
                         </div>
                     )}
 
                     {/* CONFIRMACIÓN */}
                     {step === 'enviado' && (
-                        <div className="text-center py-20">
-                            <div className="w-32 h-32 border border-white/10 rounded-full flex items-center justify-center mx-auto mb-16 relative group">
-                                <div className="absolute inset-[-15px] border border-white/5 rounded-full animate-ping-slow"></div>
-                                <span className="material-symbols-outlined text-7xl text-white group-hover:scale-110 transition-transform duration-1000">done_all</span>
+                        <div className="text-center py-10 relative z-10">
+                            <div className="w-24 h-24 bg-[#b8960c] rounded-full flex items-center justify-center mx-auto mb-10 shadow-2xl shadow-[#b8960c]/40">
+                                <span className="material-symbols-outlined text-5xl text-[#0a0a0a] font-bold">check</span>
                             </div>
-                            <h2 className="font-serif text-6xl mb-10 italic tracking-tighter">Paz Recibida</h2>
-                            <p className="text-2xl text-white/30 font-light leading-relaxed mb-20 italic px-10">
-                                "Su solicitud ha sido integrada a nuestro protocolo prioritario. Un asesor senior curará su caso y se comunicará a la brevedad."
+                            <h2 className="font-serif text-5xl mb-6 italic tracking-tighter silver-text">Solicitud Enviada</h2>
+                            <p className="text-lg text-white/40 font-light leading-relaxed mb-12 italic max-w-sm mx-auto">
+                                Hemos recibido su solicitud. Un asesor especializado la revisará de inmediato para brindarle la mejor atención.
                             </p>
 
-                            <div className="space-y-10 px-8">
+                            <div className="grid grid-cols-1 gap-5 max-w-sm mx-auto">
                                 <a
                                     href={`https://wa.me/${WA_NUMBER}?text=${buildWhatsAppMsg(form)}`}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="w-full bg-white text-black py-10 rounded-full font-black uppercase tracking-[0.8em] text-[11px] hover:bg-zinc-200 transition-all shadow-4xl flex items-center justify-center gap-6 group overflow-hidden relative"
+                                    className="w-full bg-[#25D366] text-white py-6 rounded-full font-black uppercase tracking-[0.4em] text-[11px] hover:brightness-110 transition-all flex items-center justify-center gap-4 shadow-xl"
                                 >
-                                    <span className="relative z-10">WhatsApp VIP</span>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                                    <i className="fab fa-whatsapp text-xl"></i>
+                                    Atención WhatsApp VIP
                                 </a>
                                 <Link
                                     href="/"
-                                    className="block text-white/20 text-[11px] font-black uppercase tracking-[0.8em] hover:text-white pt-10 transition-all italic underline decoration-white/5 underline-offset-[20px]"
+                                    className="block text-white/30 text-[10px] font-black uppercase tracking-[0.4em] hover:text-white transition-all py-4"
                                 >
-                                    Cerrar y Regresar
+                                    Volver al Inicio
                                 </Link>
                             </div>
                         </div>
                     )}
-
                 </div>
             </section>
-
         </main>
     );
 }
