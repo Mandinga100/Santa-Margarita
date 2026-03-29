@@ -80,10 +80,10 @@ export default function ServiciosPage() {
             {/* Hero Section - Immersive Editorial */}
             <section className="max-w-6xl mx-auto px-6 py-32 text-center servicios-header">
                 <span className="text-sm font-black uppercase tracking-[0.4em] text-black/50 block mb-10">Protocolos de Excelencia</span>
-                <h1 className="text-6xl md:text-9xl font-serif text-[#1A1A1A] mb-12 italic leading-[0.85] tracking-tighter">
+                <h1 className="text-6xl md:text-9xl font-serif text-[#1A1A1A] mb-12 italic leading-[0.85] tracking-tighter ceo-title-1">
                     Dignidad <br /> <span className="text-black/40">que Trasciende</span>
                 </h1>
-                <p className="text-2xl text-black/60 max-w-2xl mx-auto leading-relaxed font-light italic border-x border-black/10 px-10">
+                <p className="text-2xl text-black/60 max-w-2xl mx-auto leading-relaxed font-light italic border-x border-black/10 px-10 ceo-text-main">
                     "En los instantes de mayor fragilidad, transformamos el adiós en un tributo solemne a la grandeza de una vida extraordinaria."
                 </p>
                 <div className="w-24 h-px bg-black/10 mx-auto mt-24"></div>
@@ -138,8 +138,8 @@ export default function ServiciosPage() {
                         </div>
                         <div className="lg:w-1/2 p-24 lg:p-32 flex flex-col justify-center relative">
                             <span className="text-sm font-black uppercase tracking-widest text-black/50 mb-10">Curaduría Visual</span>
-                            <h3 className="text-5xl lg:text-7xl font-serif mb-12 italic leading-none tracking-tighter">Floristería <br /> <span className="text-black/40">de Autor</span></h3>
-                            <p className="text-2xl text-black/60 mb-16 font-light leading-relaxed italic border-l border-black/10 pl-10">
+                            <h3 className="text-5xl lg:text-7xl font-serif mb-12 italic leading-none tracking-tighter ceo-title-2">Floristería <br /> <span className="text-black/40">de Autor</span></h3>
+                            <p className="text-2xl text-black/60 mb-16 font-light leading-relaxed italic border-l border-black/10 pl-10 ceo-text-desc">
                                 Diseños florales curados que transmiten esperanza y consuelo. Utilizamos especies exclusivas para crear tributos visuales de inigualable elegancia y distinción.
                             </p>
                             <div className="grid grid-cols-2 gap-10">
@@ -162,8 +162,8 @@ export default function ServiciosPage() {
                     </div>
 
                     <div className="relative z-10">
-                        <h2 className="text-6xl md:text-8xl font-serif mb-12 italic leading-[0.9] tracking-tighter">Asistencia las <br /><span className="text-white/40">24 Horas</span></h2>
-                        <p className="text-2xl text-white/60 mb-20 font-light max-w-2xl mx-auto leading-relaxed italic">
+                        <h2 className="text-6xl md:text-8xl font-serif mb-12 italic leading-[0.9] tracking-tighter ceo-title-2">Asistencia las <br /><span className="text-white/40">24 Horas</span></h2>
+                        <p className="text-2xl text-white/60 mb-20 font-light max-w-2xl mx-auto leading-relaxed italic ceo-text-desc">
                             Nuestro protocolo de respuesta inmediata está activo para brindarle el apoyo compasivo que su familia requiere hoy.
                         </p>
                         <div className="flex flex-col sm:flex-row justify-center gap-10">

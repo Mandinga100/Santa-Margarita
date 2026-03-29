@@ -1,0 +1,195 @@
+﻿{
+  "auditReportVersion": 2,
+  "vulnerabilities": {
+    "flatted": {
+      "name": "flatted",
+      "severity": "high",
+      "isDirect": false,
+      "via": [
+        {
+          "source": 1114526,
+          "name": "flatted",
+          "dependency": "flatted",
+          "title": "flatted vulnerable to unbounded recursion DoS in parse() revive phase",
+          "url": "https://github.com/advisories/GHSA-25h7-pfq9-p65f",
+          "severity": "high",
+          "cwe": [
+            "CWE-674"
+          ],
+          "cvss": {
+            "score": 7.5,
+            "vectorString": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+          },
+          "range": "<3.4.0"
+        },
+        {
+          "source": 1114934,
+          "name": "flatted",
+          "dependency": "flatted",
+          "title": "Prototype Pollution via parse() in NodeJS flatted",
+          "url": "https://github.com/advisories/GHSA-rf6f-7fwh-wjgh",
+          "severity": "high",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": "<=3.4.1"
+        }
+      ],
+      "effects": [],
+      "range": "<=3.4.1",
+      "nodes": [
+        "node_modules/flatted"
+      ],
+      "fixAvailable": true
+    },
+    "next": {
+      "name": "next",
+      "severity": "moderate",
+      "isDirect": true,
+      "via": [
+        {
+          "source": 1114898,
+          "name": "next",
+          "dependency": "next",
+          "title": "Next.js: HTTP request smuggling in rewrites",
+          "url": "https://github.com/advisories/GHSA-ggv3-7p47-pfv8",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-444"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=16.0.0-beta.0 <16.1.7"
+        },
+        {
+          "source": 1114941,
+          "name": "next",
+          "dependency": "next",
+          "title": "Next.js: Unbounded next/image disk cache growth can exhaust storage",
+          "url": "https://github.com/advisories/GHSA-3x4c-7xq6-9pq8",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-400"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=16.0.0-beta.0 <16.1.7"
+        },
+        {
+          "source": 1114942,
+          "name": "next",
+          "dependency": "next",
+          "title": "Next.js: Unbounded postponed resume buffering can lead to DoS",
+          "url": "https://github.com/advisories/GHSA-h27x-g6w4-24gq",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-770"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=16.0.1 <16.1.7"
+        },
+        {
+          "source": 1114943,
+          "name": "next",
+          "dependency": "next",
+          "title": "Next.js: null origin can bypass Server Actions CSRF checks",
+          "url": "https://github.com/advisories/GHSA-mq59-m269-xvcx",
+          "severity": "moderate",
+          "cwe": [
+            "CWE-352"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=16.0.1 <16.1.7"
+        },
+        {
+          "source": 1114944,
+          "name": "next",
+          "dependency": "next",
+          "title": "Next.js: null origin can bypass dev HMR websocket CSRF checks",
+          "url": "https://github.com/advisories/GHSA-jcc7-9wpm-mj36",
+          "severity": "low",
+          "cwe": [
+            "CWE-1385"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=16.0.1 <16.1.7"
+        }
+      ],
+      "effects": [],
+      "range": "16.0.0-beta.0 - 16.1.6",
+      "nodes": [
+        "node_modules/next"
+      ],
+      "fixAvailable": true
+    },
+    "swiper": {
+      "name": "swiper",
+      "severity": "critical",
+      "isDirect": true,
+      "via": [
+        {
+          "source": 1113431,
+          "name": "swiper",
+          "dependency": "swiper",
+          "title": "Prototype pollution in swiper",
+          "url": "https://github.com/advisories/GHSA-hmx5-qpq5-p643",
+          "severity": "critical",
+          "cwe": [
+            "CWE-1321"
+          ],
+          "cvss": {
+            "score": 0,
+            "vectorString": null
+          },
+          "range": ">=6.5.1 <12.1.2"
+        }
+      ],
+      "effects": [],
+      "range": "6.5.1 - 12.1.1",
+      "nodes": [
+        "node_modules/swiper"
+      ],
+      "fixAvailable": {
+        "name": "swiper",
+        "version": "12.1.2",
+        "isSemVerMajor": true
+      }
+    }
+  },
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 1,
+      "high": 1,
+      "critical": 1,
+      "total": 3
+    },
+    "dependencies": {
+      "prod": 112,
+      "dev": 383,
+      "optional": 67,
+      "peer": 0,
+      "peerOptional": 0,
+      "total": 537
+    }
+  }
+}
+

@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<style>
+    #alum_mail {
+        text-transform: lowercase;
+    }
+
+    #alum_apo_mail {
+        text-transform: lowercase;
+    }
+
+    #alum_pad_mail {
+        text-transform: lowercase;
+    }
+
+    #alum_mad_mail {
+        text-transform: lowercase;
+    }
+
+    .card-foto {
+        min-height: 30vh;
+
+    }
+
+    .img-foto {
+        width: 80%;
+
+    }
+
+
+    .w-stamgta-01 {
+        width: 40%;
+
+    }
+
+</style>
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col_15">&ensp;Contratos</div>
+        <div class="col_30">
+            <div id="spinner" class="spinner-border oculto" role="status">
+                <span class="sr-only">Preparando...</span>
+            </div>
+        </div>
+
+        <div class="col_50"></div>
+        <div class="col_05">
+            <button type="button" class="btn btn-success" id="btn_nuevo" style="float: right"><i
+                    class="fa fa-user"></i>+</button>
+        </div>
+    </div>
+
+    <!--Modal -->
+    <div class="modal fade" id="modal_contrato">
+        <div class="modal-dialog modal-fullscreen bg-light border-0">
+
+            <div class="modal-content bg-light">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div id="ArtiTitle" class="modal-title h4 fw-semibold">Datos del Contrato</div>
+                    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+
+                    <form class="form-horizontal" id="form_contrato" method="GET" action="javascript:void(0);">
+                        <input type="number" id="IdContrato" class="jasashop-txt-01" name="IdContrato" hidden />
+                        <input type="number" id="IdUsuario" class="jasashop-txt-01" name="IdUsuario" hidden />
+
+                        <div class="accordion accordion-flush" id="accordionContrato">
+                            <div class="accordion-item">
+                                <div class="accordion-header" id="flush-headingContrato">
+                                    <button class="accordion-button collapsed generales h4" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOneContrato"
+                                        aria-expanded="false" aoria-controls="flush-collapseOneContrato">
+                                        Datos Generales
+                                    </button>
+                                </div>
+                                <div id="flush-collapseOneContrato" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingContrato">
+                                    <div class="accordion-body">
+                                        <div class="col-sm-6">
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text span-stmga"
+                                                        id="inputGroup-sizing-sm">Nro
+                                                        Contrato</span>
+                                                </div>
+                                                <input type="text" class="form-control entrada-valida" id="NroContrato"
+                                                    autofocus name="NroContrato" placeholder="Automático"
+                                                    aria-label="Small" aria-describedby="inputGroup-sizing-sm" readonly>
+
+                                            </div>
+                                            <small id="NroContrato_err" class="campo-valido"></small>
+
+
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Fecha
+                                                        Contrato</span>
+                                                </div>
+                                                <input type="datetime-local" class="form-control entrada-valida"
+                                                    id="CtoFechaHora" autofocus name="CtoFechaHora" aria-label="Small"
+                                                    aria-describedby="inputGroup-sizing-sm">
+
+                                            </div>
+                                            <small id="CtoFechaHora_err" class="campo-valido"></small>
+
+                                            <small id="CtoFechaHora_err" class="campo-valido"></small>
+
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Agente</label>
+
+                                                <select class="form-shop jasashop-txt-01" id="IdVendedor"
+                                                    name="IdVendedor" value="0">
+                                                </select>
+                                                <small id="IdVendedor_err" class="campo-valido"></small>
+
+                                            </div>
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Periodo</label>
+
+                                                <select class="form-shop jasashop-txt-01" id="IdAno" name="IdAno"
+                                                    value="0"></select>
+
+
+                                            </div>
+                                            <small id="IdAno_err" class="campo-valido"></small>
+
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Necesidad</label>
+                                                <select class="form-shop jasashop-txt-01" id="IdNecesidad"
+                                                    name="IdNecesidad" value="0">
+                                                </select>
+
+
+                                            </div> <small id="IdNecesidad_err" class="campo-valido"></small>
+
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Convenio</label>
+                                                <select class="form-shop jasashop-txt-01" id="IdConvenio"
+                                                    name="IdConvenio" value="0">
+                                                </select>
+
+                                            </div>
+                                            <small id="IdConvenio_err" class="campo-valido"></small>
+
+
+
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Estado</label>
+                                                <select class="form-shop jasashop-txt-01" id="IdEstado" name="IdEstado"
+                                                    value="0">
+                                                </select>
+
+                                            </div>
+                                            <small id="IdEstado_err" class="campo-valido"></small>
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Modificado
+                                                    </span>
+                                                </div>
+                                                <input type="date" class="form-control entrada-valida" id="Fecha"
+                                                    autofocus name="Fecha" aria-label="Small"
+                                                    aria-describedby="inputGroup-sizing-sm">
+                                                <small id="Fecha_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="flush-headingCliente">
+                                <button class="accordion-button collapsed  cliente" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseCliente"
+                                    aria-expanded="false" aoria-controls="flush-collapseCliente">
+                                    Datos del Cliente
+                                </button>
+                            </div>
+                            <div id="flush-collapseCliente" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingCliente">
+                                <div class="accordion-body">
+
+
+                                    <div class="row ms-1 ">
+                                        <div class="col-sm-6">
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text"
+                                                        id="inputGroup-sizing-sm">Nombre</span>
+                                                </div>
+                                                <input type="text" class="form-control entrada-valida" id="ClteNombre"
+                                                    autofocus name="ClteNombre" aria-label="Small" maxlength="50"
+                                                    aria-describedby="inputGroup-sizing-sm">
+
+                                            </div>
+                                            <small id="ClteNombre_err" class="campo-valido"></small>
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Rut</span>
+                                                </div>
+                                                <input type="text" class="form-control entrada-valida" id="ClteRut"
+                                                    autofocus name="ClteRut" aria-label="Small"
+                                                    aria-describedby="inputGroup-sizing-sm">
+
+                                            </div>
+                                            <small id="ClteRut_err" class="campo-valido"></small>
+
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Mail</span>
+                                                </div>
+                                                <input type="mail" class="form-control entrada-valida" id="ClteMail"
+                                                    autofocus name="ClteMail" aria-label="Small"
+                                                    aria-describedby="inputGroup-sizing-sm">
+                                            </div>
+                                            <small id="ClteMail_err" class="campo-valido"></small>
+
+
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text"
+                                                        id="inputGroup-sizing-sm">Fono1</span>
+                                                </div>
+                                                <input type="text" class="form-control entrada-valida" id="ClteFono1"
+                                                    autofocus name="ClteFono1" aria-label="Small"
+                                                    aria-describedby="inputGroup-sizing-sm">
+
+                                            </div>
+                                            <small id="ClteFono1_err" class="campo-valido"></small>
+
+
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text"
+                                                        id="inputGroup-sizing-sm">Fono2</span>
+                                                </div>
+                                                <input type="text" class="form-control entrada-valida" id="ClteFono2"
+                                                    autofocus name="ClteFono2" aria-label="Small"
+                                                    aria-describedby="inputGroup-sizing-sm">
+
+                                            </div>
+                                            <small id="ClteFono2_err" class="campo-valido"></small>
+
+
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text"
+                                                        id="inputGroup-sizing-sm">Direccion</span>
+                                                </div>
+                                                <input type="text" class="form-control entrada-valida"
+                                                    id="ClteDireccion" autofocus name="ClteDireccion" aria-label="Small"  maxlength="50"
+                                                    aria-describedby="inputGroup-sizing-sm">
+
+                                            </div>
+                                            <small id="ClteDireccion_err" class="campo-valido"></small>
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Parentesco</label>
+                                                <select class="form-shop entrada-valida" id="IdParentesco" autofocus
+                                                    name="IdParentesco"></select>
+                                            </div>
+                                            <small id="IdParentesco_err" class="campo-valido"></small>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item ">
+                            <div class="accordion-header " id="flush-headingTwo">
+                                <button class="accordion-button collapsed beneficiario" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseBeneficiario"
+                                    aria-expanded="false" aria-controls="flush-collapseBeneficiario">
+                                    Datos del Beneficiario
+                                </button>
+                            </div>
+                            <div id="flush-collapseBeneficiario" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingTwo">
+                                <div class="accordion-body">
+
+                                    <div class="row ms-1 ">
+                                        <div class="col-sm-6">
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text"
+                                                        id="inputGroup-sizing-sm">Nombre</span>
+                                                </div>
+                                                <input type="text" class="form-control entrada-valida" id="BenefNombre"
+                                                    autofocus name="BenefNombre" aria-label="Small"  maxlength="50"
+                                                    aria-describedby="inputGroup-sizing-sm">
+
+                                            </div> <small id="BenefRut_err" class="campo-valido"></small>
+
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Rut </span>
+                                                </div>
+                                                <input type="text" class="form-control entrada-valida" id="BenefRut"
+                                                    autofocus name="BenefRut" aria-label="Small"
+                                                    aria-describedby="inputGroup-sizing-sm">
+                                                <small id="BenefRut_err" class="campo-valido"></small>
+                                            </div>
+                                            <small id="BenefRut_err" class="campo-valido"></small>
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Nacionalidad</label>
+                                                <select class="form-shop entrada-valida" id="IdNacionalidad" name="IdNacionalidad" autofocus
+                                                    name="IdNacionalidad"></select>
+                                            </div>
+                                            <small id="IdNacionalidad_err" class="campo-valido"></small>
+
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Fecha
+                                                        Nacimiento</span>
+                                                </div>
+                                                <input type="date" class="form-control entrada-valida"
+                                                    id="BenefFechaNac" autofocus name="BenefFechaNac" aria-label="Small"
+                                                    aria-describedby="inputGroup-sizing-sm">
+
+                                            </div> <small id="BenefFechaNac_err" class="campo-valido"></small>
+
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Fecha
+                                                        Deceso</span>
+                                                </div>
+                                                <input type="datetime-local" class="form-control entrada-valida"
+                                                    id="BenefFechaDesc" autofocus name="BenefFechaDesc"
+                                                    aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+
+                                            </div>
+                                            <small id="BenefFechaDesc_err" class="campo-valido"></small>
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Estado
+                                                    Civil</label>
+                                                <select class="form-shop entrada-valida" id="IdEstCivil" autofocus
+                                                    name="IdEstCivil"></select>
+                                            </div>
+                                            <small id="IdEstCivil_err" class="campo-valido"></small>
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Ocupacion</label>
+                                                <select class="form-shop entrada-valida" id="IdOcupacion" autofocus
+                                                    name="IdOcupacion"></select>
+                                            </div>
+                                            <small id="IdOcupacion_err" class="campo-valido"></small>
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Nivel Estudios</label>
+                                                <select class="form-shop entrada-valida" id="IdEscolaridad" autofocus
+                                                    name="IdEscolaridad"></select>
+                                            </div>
+                                            <small id="IdEscolaridad_err" class="campo-valido"></small>
+                                            <div class="input-group mb-3">
+                                                <label class="input-group-text w-stamgta-01"
+                                                    for="inputGroupSelect01">Prevision</label>
+                                                <select class="form-shop entrada-valida" id="IdPrevision" autofocus
+                                                    name="IdPrevision"></select>
+                                            </div>
+                                            <small id="IdPrevision_err" class="campo-valido"></small>
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Direccion 
+                                                        Particular</span>
+                                                </div>
+                                                <input type="text" class="form-control entrada-valida" id="BenefDirDomi"
+                                                    autofocus name="BenefDirDomi" aria-label="Small"  maxlength="50"
+                                                    aria-describedby="inputGroup-sizing-sm">
+
+                                            </div>
+                                            <small id="BenefDirDomi_err" class="campo-valido"></small>
+
+
+                                            <div class="input-group input-group-sm mb-3">
+                                                <div class="input-group-prepend w-stamgta-01">
+                                                    <span class="input-group-text" id="inputGroup-sizing-sm">Direccion
+                                                        Deceso</span>
+                                                </div>
+                                                <input type="text" class="form-control entrada-valida" id="BenefDirDesc"
+                                                    autofocus name="BenefDirDesc" aria-label="Small"  maxlength="50"
+                                                    aria-describedby="inputGroup-sizing-sm">
+
+                                            </div>
+                                            <small id="BenefDirDesc_err" class="campo-valido"></small>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <br>
+
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="flush-headingServicio">
+                                <button class="accordion-button collapsed servicio" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseServicio"
+                                    aria-expanded="false" aria-controls="flush-collapseServicio">
+                                    Datos del Servicio</button>
+                            </div>
+                            <div id="flush-collapseServicio" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingServicio">
+                                <div class="accordion-body">
+                                    <div class="col-sm-6">
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Fecha Funeral
+                                                </span>
+                                            </div>
+                                            <input type="datetime-local" class="form-control entrada-valida" id="FechaFuneral"
+                                                autofocus name="FechaFuneral" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm">
+
+                                        </div>
+                                        <small id="FechaFuneral_err" class="campo-valido"></small>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Direccion
+                                                    Velorio</span>
+                                            </div>
+                                            <input type="text" class="form-control entrada-valida" id="DirVelorio"
+                                                autofocus name="DirVelorio" aria-label="Small"  maxlength="50"
+                                                aria-describedby="inputGroup-sizing-sm">
+
+                                        </div>
+                                        <small id="DirVelorio_err" class="campo-valido"></small>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Direccion
+                                                    Sepultacion</span>
+                                            </div>
+                                            <input type="text" class="form-control entrada-valida" id="DirSepul"
+                                                autofocus name="DirSepul" aria-label="Small"  maxlength="50"
+                                                aria-describedby="inputGroup-sizing-sm">
+
+                                        </div>
+                                        <small id="DirSepul_err" class="campo-valido"></small>
+
+
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01"
+                                                for="inputGroupSelect01">Cofre</label>
+                                            <select class="form-shop entrada-valida" id="IdCofre" autofocus
+                                                name="IdCofre"></select>
+
+                                        </div>
+                                        <small id="IdCofre_err" class="campo-valido"></small>
+
+
+                                        <small id="Ancho_err" class="campo-valido"></small>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Dimensiones
+                                                    (cms)</span>
+                                            </div>
+                                            <input type="text" class="form-control entrada-valida" id="Dimensiones"
+                                                autofocus name="Dimensiones" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm" readonly>
+
+                                        </div>
+                                        <small id="Dimensiones_err" class="campo-valido"></small>
+
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01"
+                                                for="inputGroupSelect01">Capilla</label>
+                                            <select class="form-shop entrada-valida" id="IdCapilla" autofocus
+                                                name="IdCapilla"></select>
+
+                                        </div>
+                                        <small id="IdCapilla_err" class="campo-valido"></small>
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01"
+                                                for="inputGroupSelect01">Carroza</label>
+                                            <select class="form-shop entrada-valida" id="IdCarroza" autofocus
+                                                name="IdCarroza"></select>
+                                        </div> <small id="IdCarroza_err" class="campo-valido"></small>
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01"
+                                                for="inputGroupSelect01">Automovil</label>
+                                            <select class="form-shop entrada-valida" id="IdAuto" autofocus
+                                                name="IdAuto"></select>
+                                        </div> <small id="IdAuto_err" class="campo-valido"></small>
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01"
+                                                for="inputGroupSelect01">Van</label>
+                                            <select class="form-shop entrada-valida" id="IdVan" autofocus
+                                                name="IdVan"></select>
+                                        </div> <small id="IdVan_err" class="campo-valido"></small>
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01"
+                                                for="inputGroupSelect01">Cruz</label>
+                                            <select class="form-shop entrada-valida" id="IdCruz" autofocus
+                                                name="IdCruz"></select>
+                                        </div> <small id="IdCruz_err" class="campo-valido"></small>
+
+
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01"
+                                                for="inputGroupSelect01">Tarjetero</label>
+                                            <select class="form-shop entrada-valida" id="IdTarjetero" autofocus
+                                                name="IdTarjetero"></select>
+                                        </div> <small id="IdTarjetero_err" class="campo-valido"></small>
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01" for="inputGroupSelect01">L.
+                                                Condolencias</label>
+                                            <select class="form-shop entrada-valida" id="IdLibroCond" autofocus
+                                                name="IdLibroCond"></select>
+                                        </div> <small id="IdLibroCond_err" class="campo-valido"></small>
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01" for="inputGroupSelect01">T.
+                                                Condolencias</label>
+                                            <select class="form-shop entrada-valida" id="IdTarjeCond" autofocus
+                                                name="IdTarjeCond"></select>
+                                        </div> <small id="IdTarjeCond_err" class="campo-valido"></small>
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01"
+                                                for="inputGroupSelect01">Arreglo
+                                                Urna</label>
+                                            <select class="form-shop entrada-valida" id="IdArreUrna" autofocus
+                                                name="IdArreUrna" value="0"></select>
+                                        </div> <small id="IdArreUrna_err" class="campo-valido"></small>
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01"
+                                                for="inputGroupSelect01">Arreglo Pie</label>
+                                            <select class="form-shop entrada-valida" id="IdArrePie" autofocus
+                                                name="IdArrePie" value="0"></select>
+                                        </div> <small id="IdArrePie_err" class="campo-valido"></small>
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01" for="inputGroupSelect01">T.
+                                                Reg.
+                                                Civil</label>
+                                            <select class="form-shop entrada-valida" id="IdTramRegCivl" autofocus
+                                                name="IdTramRegCivl"></select>
+                                        </div> <small id="IdTramRegCivl_err" class="campo-valido"></small>
+
+
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text w-stamgta-01"
+                                                for="inputGroupSelect01">C.Medico</label>
+                                            <select class="form-shop entrada-valida" id="IdCertMedico" autofocus
+                                                name="IdCertMedico"></select>
+                                        </div> <small id="IdCertMedico_err" class="campo-valido"></small>
+
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                            <br>
+
+                        </div>
+
+                        <div class="accordion-item">
+                            <div class="accordion-header" id="flush-headingValores">
+                                <button class="accordion-button collapsed valores" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#flush-collapseValores"
+                                    aria-expanded="false" aria-controls="flush-collapseValores">
+                                    Valores del Servicio
+                                </button>
+                            </div>
+                            <div id="flush-collapseValores" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingValores">
+                                <div class="accordion-body">
+                                    <div id="Montos" class="col-sm-4">
+
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Valor Cofre
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="ValorUrna" autofocus name="ValorUrna" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <small id="ValorUrna_err" class="campo-valido"></small>
+
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">% Descuento
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="PorceDescuento" autofocus name="PorceDescuento" aria-label="Small" 
+                                                aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Descuento Fijo
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="DescuentoFijo" autofocus name="DescuentoFijo" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Monto Descuento
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="MontoDescuento" autofocus name="MontoDescuento" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm" readonly>
+                                        </div>
+                                        <small id="MontoDescuento_err" class="campo-valido"></small>
+
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Servicios
+                                                    Adicionales
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="MontoAdicional" autofocus name="MontoAdicional" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <small id="MontoAdicional_err" class="campo-valido"></small>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Certificacion
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="MontoCertificacion" autofocus name="MontoCertificacion"
+                                                aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <small id="MontoCertificacion_err" class="campo-valido"></small>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Sub Total
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="Subtotal" autofocus name="Subtotal" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm" readonly>
+                                        </div>
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">A. Previsional
+
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="AportePrevisional" autofocus name="AportePrevisional"
+                                                aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <small id="AportePrevisional_err" class="campo-valido"></small>
+
+
+                                        <small id="AportePrevisional_err" class="campo-valido"></small>
+
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Total a Pagar
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="TotalPagar" autofocus name="TotalPagar" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm" readonly>
+                                        </div>
+                                        <small id="TotalPagar_err" class="campo-valido"></small>
+
+
+
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Transferencia
+
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="MontoTransferencia" autofocus name="MontoTransferencia"
+                                                aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <small id="MontoTransferencia_err" class="campo-valido"></small>
+
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Credito
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="MontoCredito" autofocus name="MontoCredito" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <small id="MontoCredito_err" class="campo-valido"></small>
+
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Debito
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="MontoDebito" autofocus name="MontoDebito" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <small id="MontoDebito_err" class="campo-valido"></small>
+
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Efectivo
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="MontoEfectivo" autofocus name="MontoEfectivo" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm">
+                                        </div>
+                                        <small id="MontoEfectivo_err" class="campo-valido"></small>
+
+                                        <div class="input-group input-group-sm mb-3">
+                                            <div class="input-group-prepend w-stamgta-01">
+                                                <span class="input-group-text" id="inputGroup-sizing-sm">Saldo Pendiente
+                                                </span>
+                                            </div>
+                                            <input type="text" value="0"
+                                                class="form-control entrada-valida number-separator align-num"
+                                                id="Cuadratura" autofocus name="Cuadratura" aria-label="Small"
+                                                aria-describedby="inputGroup-sizing-sm" readonly>
+                                        </div>
+                                        <small id="Cuadratura_err" class="campo-valido"></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                        </div>
+                </div>
+
+                <div class="d-flex justify-content-between bg-light">
+
+                    <div> <button type="button" class="btn btn-success m-3" id="btn_grabar">
+                            Guardar</button>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-success m-3" id="btn_cerrar">Cerrar</button>
+
+                    </div>
+                </div>
+            </div>
+
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="box-header">
+
+    <table id="tabla_contratos" class="table table-striped  table-bodered table-hover table-jasa" width="100%">
+
+    </table>
+
+</div>
+<div class="oculto">
+    <img id="img-impre" src="./images/logo_imprimir.jpg">
+    <img id="img-firma" src="./images/firmax.png">
+
+</div>
+
+<!-- Tabla End -->
+<script>
+    doc =""
+    IdContrato = 0;
+    autoriza = 'F'
+    modal_accion = ''
+    html_home = "selfungral.html";
+    html_volver = "selfungral.html";
+    datos = [];
+    rostro = "";
+    tabladesplegada = false;
+    pdfname="contrato"
+    if (localStorage.getItem("usuario") != null) {
+        var usuario = JSON.parse(window.atob(localStorage.getItem("usuario")));
+    }
+    else {
+        confirm("No es posible ejecutar esta aplicación sin autentificacion")
+        close();
+    }
+    if (localStorage.getItem("datospgm") != null) {
+        var datospgm = JSON.parse(window.atob(localStorage.getItem("datospgm")));
+    }
+    else {
+        confirm("No es posible ejecutar esta aplicación sin autentificacion")
+        close();
+    }
+
+    $('#header_jasa').empty().load("./htmls/header_01.html", function () {
+        appModulo = datospgm.Titulo;
+        cargaTitulo();
+        setTimeout(() => {
+
+            $('#btn_volver').click(function (event) {
+                $('#container_jasa').empty().load(html_volver);
+            });
+            $('#btn_home').click(function (event) {
+                $('#container_jasa').empty().load(html_home);
+            });
+            cargaContratos();
+
+        }, 100);
+
+    });
+    easyNumberSeparator({
+        selector: '.number-separator',
+    })
+
+    $('#ClteNombre').change(function () { validaCampoNombre('ClteNombre') });
+    $('#ClteRut').change(function () { validaCampoRut('ClteRut') });
+    $('#BenefNombre').change(function () { validaCampoNombre('BenefNombre') });
+    $('#BenefRut').change(function () { validaCampoRut('BenfeRut') });
+
+    $('#IdCofre').change(function () {
+        obj = obtenerReferenciaDatos($('#IdCofre').val())
+
+        $('#ValorUrna').val(obj.Num1)
+        $('#Dimensiones').val(obj.Text1)
+        calcularMontos()
+    });
+
+    $('#Montos').change(function () {
+        calcularMontos()
+    });
+
+
+    $("#form_contrato").change(function () {
+        resetErrores('form_contrato');
+    });
+
+    // BOTONES VARIOS
+
+    $('#btn_nuevo').click(function () {
+        if (datospgm.Mode == 'S') {
+
+            resetErrores('form_contrato');
+            iniciaFormulario('form_contrato');
+            $('#Fono1').val('+56 ')
+            $('#Fono2').val('+56 ')
+            cargaSelects()
+            accionActualizacion = "insert";
+            $('#modal_contrato').modal('show')
+        }
+        else {
+
+            $('#info_text1').text("No tiene acceso para agregar contratos")
+            $('#modal_info').modal('show');
+
+        }
+
+    });
+    $('#btn_cerrar').click(function () {
+        $('#modal_contrato').modal('hide');
+        cargaContratos();
+    });
+    $('#btn_grabar').click(function () {
+
+        //  desformatearNumerosAll()
+        let myform = document.getElementById("form_contrato");
+        let fd = new FormData(myform);
+        fd.append('IdContrato', IdContrato);
+        fd.append('Accion', accionActualizacion);
+
+        if (validarForm()) {
+            var url = "php/crud_contratos.php";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: fd,
+                async: false,
+                processData: false,
+                contentType: false,
+                dataType: "JSON",
+                success: function (data) {
+                    $('#info_text1').text(data.mensaje)
+                    //  $('#modal_contrato').modal('hide');
+                    $('#modal_info').modal('show');
+
+                    if (data.resultado == 0) {
+                        IdContrato = data.insertId;
+                        console.log(" iidcte " + IdContrato)
+                        Modificar(IdContrato)
+
+                    }
+
+                },
+                error: function (data) {
+                    $('#info_text1').text(data.mensaje)
+                    //   $('#modal_contrato').modal('hide');
+                    $('#modal_info').modal('show');
+                }
+            });
+
+
+        }
+        desformatearNumerosAll()
+
+        // else {
+
+        //     $('#info_text1').text("No tiene acceso para modificar datos")
+        //    $('#modal_contrato').modal('hide');
+        //     $('#modal_info').modal('show');
+
+        // }
+    });
+    // VALIDACION DEL FORMULARIO
+    function validarForm() {
+
+        retorno = true;
+        generales = true;
+        cliente = true;
+        beneficiario = true;
+        servicio = true;
+        valores = true;
+
+
+
+        if (!validaCampoSelect('IdVendedor')) { generales = false }
+        if (!validaCampoSelect('IdAno')) { generales = false }
+        if (!validaCampoSelect('IdNecesidad')) { generales = false }
+        if (!validaCampoSelect('IdConvenio')) { generales = false }
+        if (!validaCampoSelect('IdEstado')) { generales = false }
+
+        if (!generales) {
+            $('.generales').filter(".collapsed").click();
+        }
+
+        if (!validaCampoNombre('ClteNombre')) { cliente = false }
+        if (!validaCampoRut('ClteRut')) { cliente = false }
+        if (!validaCampoMail('ClteMail')) { cliente = false }
+        if (!validaCampoBlanco('ClteFono1')) { cliente = false }
+        if (!validaCampoBlanco('ClteDireccion')) { cliente = false }
+        if (!validaCampoSelect('IdParentesco')) { cliente = false }
+
+        if (!cliente) {
+            $('.cliente').filter(".collapsed").click();
+        }
+
+        if (!validaCampoNombre('BenefNombre')) { beneficiario = false }
+        if (!validaCampoRut('BenefRut')) { beneficiario = false }
+        if (!validaCampoSelect('IdNacionalidad')) { beneficiario = false }
+        if (!validaCampoSelect('IdEstCivil')) { beneficiario = false }
+        if (!validaCampoSelect('IdPrevision')) { beneficiario = false }
+        if (!validaCampoSelect('IdOcupacion')) { beneficiario = false }
+        if (!validaCampoSelect('IdEscolaridad')) { beneficiario = false }
+        if (!validaCampoBlanco('BenefDirDomi')) { beneficiario = false }
+        if (!validaCampoBlanco('BenefDirDesc')) { beneficiario = false }
+
+        if (!beneficiario) {
+            $('.beneficiario').filter(".collapsed").click();
+        }
+
+
+        if (!validaCampoBlanco('DirVelorio')) { servicio = false }
+        if (!validaCampoBlanco('DirSepul')) { servicio = false }
+        if (!validaCampoSelect('IdCofre')) { servicio = false }
+        if (!validaCampoSelect('IdArrePie')) { servicio = false }
+        if (!validaCampoSelect('IdArreUrna')) { servicio = false }
+        if (!validaCampoSelect('IdAuto')) { servicio = false }
+        if (!validaCampoSelect('IdVan')) { servicio = false }
+        if (!validaCampoSelect('IdCapilla')) { servicio = false }
+        if (!validaCampoSelect('IdCarroza')) { servicio = false }
+        if (!validaCampoSelect('IdCertMedico')) { servicio = false }
+        if (!validaCampoSelect('IdCruz')) { servicio = false }
+        if (!validaCampoSelect('IdLibroCond')) { servicio = false }
+        if (!validaCampoSelect('IdTarjeCond')) { servicio = false }
+        if (!validaCampoSelect('IdTarjetero')) { servicio = false }
+        if (!validaCampoSelect('IdTramRegCivl')) { servicio = false }
+
+
+
+        if (!servicio) {
+            $('.servicio').filter(".collapsed").click();
+        }
+
+
+
+
+
+        if (!valores) {
+            $('.valores').filter(".collapsed").click();
+        }
+        if (generales && cliente && beneficiario && servicio && valores) {
+            return true;
+        } else { return false }
+    };
+
+    function cargaContratos() {
+        d = [];
+        $("#spinner").removeClass('oculto')
+        setTimeout(() => {
+
+            $.ajax({
+                type: "POST",
+                url: 'php/crud_contratos.php',
+
+                data: { 'IdTipo': datospgm.IdTipo, 'Accion': "list" },
+                dataType: "JSON",
+                async: false,
+
+                success: function (data) {
+
+                    d = data.data;
+
+
+                    if (tabladesplegada) { $('#tabla_contratos').DataTable().clear().destroy(); }
+                    table = $('#tabla_contratos').DataTable({
+                        "language": {
+                            "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                        },
+                        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                        // dom: 'Bfrtip',
+                        // buttons: [
+                        //     'copy', 'csv', {
+                        //         extend: 'excel',
+                        //         text: 'Excel',
+                        //         titleAttr: 'excel',
+                        //         messageTop: 'Nomina Contratos'
+                        //      }, 'pdf', 'print'
+                        // ],
+                        "responsive": true,
+                        "fixedHeader": true,
+                        "paging": false,
+                        "info": false,
+                        "order": [[6, 'desc']],
+                        data: d,
+                        columnDefs: [
+                            { title: 'Acciones', data: 'Acciones', width: '10%', targets: 0, className: "text-left" },
+                            { title: 'Rut', data: 'ClteRut', width: '10%', targets: 1, className: "text-left" },
+                            { title: 'Nombre', data: 'ClteNombre', width: '15%', targets: 2, className: "text-left" },
+                            { title: 'Fecha', data: 'CtoFechaHora', width: '15%', targets: 3, className: "text-left" },
+                            { title: 'Beneficiario', data: 'BenefNombre', width: '20%', targets: 4, className: "text-left" },
+                            { title: 'Estado', data: 'Estado', width: '10%', targets: 5, className: "text-left" },
+                            { title: 'Numero', data: 'NroContrato', width: '10%', targets: 6, className: "text-left" },
+                        ]
+                    });
+
+                    tabladesplegada = true;
+                },
+            });
+            $("#spinner").addClass('oculto')
+        }, 200);
+
+
+    }
+    function consultaExiste(codigo) {
+        swcode = false
+        if (accionActualizacion == 'insert') {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "php/crud_contratos.php",
+                    data: { Code: $("#" + codigo).val(), Accion: 'getcode' },
+                    dataType: "JSON",
+                    async: false,
+
+                    success: function (dataRet) {
+                        if (dataRet.resultado == 0) {
+                            $("#" + codigo).removeClass('entrada-valida').addClass('entrada-invalida')
+                            $("#" + codigo + "_err").removeClass('campo-valido').addClass('campo-invalido').text("Código ya existe")
+                            swcode = true;
+                        } else {
+                            swcode = false;
+                        } actualizarImagen
+                    }
+                });
+        }
+        return swcode;
+    }
+
+    // ACCIONES EN LAS FILAS
+    function Modificar(Id) {
+        IdContrato = Id;
+        resetErrores('form_contrato')
+        iniciaFormulario('form_contrato');
+
+        cargaSelects()
+        accionActualizacion = "update";
+        $.ajax(
+            {
+                type: "POST",
+                url: "php/crud_contratos.php",
+                data: { IdContrato: IdContrato, Accion: 'get' },
+                dataType: "JSON",
+                async: false,
+
+                success: function (dataRet) {
+                    d = dataRet.data;
+                    $("form#form_contrato input[type=text]").each(function () {
+                        $(this).val(d[this.name])
+                    });
+                    $("form#form_contrato input[type=mail]").each(function () {
+                        $(this).val(d[this.name])
+                    });
+                    $("form#form_contrato input[type=date]").each(function () {
+                        $(this).val(d[this.name])
+                    });
+
+                    $("form#form_contrato select").each(function () {
+                        $(this).val(d[this.name])
+                    });
+                    $("form#form_contrato input[type=number]").each(function () {
+                        $(this).val(Number($(this).val()).toLocaleString('es-ES'))
+                    });
+                    formatearNumerosAll()
+                }
+            });
+
+        calcularMontos();
+        $('#modal_contrato').modal('show');
+
+    };
+
+
+    function Eliminar(Id) {
+        if (datospgm.Mode == 'S') {
+            modal_accion = 'Eliminar'
+            IdContrato = Id;
+            deplegarModalConsulta("¿Desea eliminar contrato  ?", "Sí", "No")
+        } else {
+
+            $('#info_text1').text("No tiene acceso para elminar datos")
+            $('#modal_contrato').modal('hide');
+            $('#modal_info').modal('show');
+
+        }
+
+    };
+
+
+    function Imprimir(Id) {
+        IdContrato = Id;
+        $.ajax(
+            {
+                type: "POST",
+                url: "php/crud_contratos.php",
+                data: { IdContrato: IdContrato, Accion: 'getcto' },
+                dataType: "JSON",
+                async: false,
+
+                success: function (dataRet) {
+                    CreateNewPDF("Ficha Contrato " + dataRet.data.NroContrato);
+                    CrearPdfContrato(dataRet);
+                    ImprimirContrato();
+                }
+            });
+    };
+
+    function Descargar(Id) {
+        IdContrato = Id;
+        $.ajax(
+            {
+                type: "POST",
+                url: "php/crud_contratos.php",
+                data: { IdContrato: IdContrato, Accion: 'getcto' },
+                dataType: "JSON",
+                async: false,
+
+                success: function (dataRet) {
+                    CreateNewPDF("Ficha Contrato " + dataRet.data.NroContrato);
+                    CrearPdfContrato(dataRet);
+                    DescargarContrato();
+                }
+            });
+    };
+
+
+
+
+    function CrearPdfContrato(dataRet) {
+        d = dataRet.data;
+        ypos = 10;
+        xpos = 20;
+
+        doc.setFontType('bold');
+        imgpdf = document.getElementById('img-impre')
+        doc.addImage(imgpdf, 'JPEG', 15, 5, 40, 20)
+
+        doc.setFontSize(8)
+
+        doc.text(110, ypos, webName, { align: 'center' });
+        ypos = ypos + 3;
+        doc.text(110, ypos, gbl_emp_direccion, { align: 'center' });
+        ypos = ypos + 3;
+        doc.text(110, ypos, gbl_emp_fonos, { align: 'center' });
+        ypos = ypos + 3;
+        doc.text(110, ypos, appMailContacto, { align: 'center' });
+        ypos = ypos + 3;
+        doc.text(110, ypos, gbl_emp_web, { align: 'center' });
+        ypos = ypos + 10;
+
+
+
+
+
+        doc.setFontSize(16)
+        doc.text(110, ypos, 'CONTRATO DE SERVICIOS FUNERARIOS', { align: 'center' });
+        ypos = ypos + 7
+        doc.text(110, ypos, 'NUMERO ' + d.Ano + '-' + d.NroContrato.padStart(5, '0'), { align: 'center' });
+        ypos = ypos + 10;
+        doc.setFontSize(10)
+        // 
+        pdfname = 'CTO NRO ' + d.Ano + '-' + d.NroContrato.padStart(5, '0')
+        doc.text(180, ypos, fechaLiteral(d.CtoFechaHora), { align: 'right' });
+
+        //   doc.text(xpos, 35, "AGENTE: "+d.Agente);
+
+        doc.setFontType('normal');
+
+        doc.setFontType('bold');
+        ypos = ypos + 15;
+        doc.text(xpos, ypos, '1. IDENTIFICACION DEL CLIENTE');
+        doc.setFontType('normal');
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Nombre: ' + d.ClteNombre);
+        doc.text(xpos + 80, ypos, 'Rut: ' + d.ClteRut);
+
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Correo: ' + d.ClteMail);
+        doc.text(xpos + 80, ypos, 'Telefono : ' + d.ClteFono1);
+        doc.text(xpos + 130, ypos, 'Telefono: ' + d.ClteFono2);
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Direccion: ' + d.ClteDireccion);
+    
+        doc.text(xpos + 130 , ypos, 'Parentesco: ' + d.Parentesco);
+        doc.setFontType('bold');
+        ypos = ypos + 10;
+
+
+        doc.text(xpos, ypos, '2. IDENTIFICACION DEL BENEFICIARIO');
+        doc.setFontType('normal');
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Nombre: ' + d.BenefNombre);
+        doc.text(xpos + 80, ypos, 'RUT: ' + d.BenefRut);
+        doc.text(xpos + 130, ypos, 'Nacionalidad: ' + d.Nacionalidad);
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Fecha  Nacimiento: ' + d.BenefFechaNac);
+        doc.text(xpos + 80, ypos, 'Fecha  Deceso: ' + d.BenefFechaDesc);
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Estado Civil: ' + d.EstCivil);
+        doc.text(xpos + 80, ypos, 'Nivel Estudios: ' + d.Escolaridad);
+        ypos = ypos + 5;
+        doc.text(xpos , ypos, 'Ocupacion: ' + d.Ocupacion);
+        doc.text(xpos + 80, ypos, 'Prevision: ' + d.Prevision);
+
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Direccion Particular: ' + d.BenefDirDomi);
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Direccion Deceso:    ' + d.BenefDirDesc);
+
+        doc.setFontType('bold');
+        ypos = ypos + 10;
+        doc.text(xpos, ypos, '3. DESCRIPCION DEL SERVICIO FUNERARIO');
+        doc.setFontType('normal');
+
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Necesidad: ' + d.Necesidad);
+        doc.text(xpos + 60, ypos, 'Convenio: ' + d.Convenio);
+
+
+
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Cofre: ' + d.Cofre);
+        doc.text(xpos + 60, ypos, 'Dimensiones: ' + d.Dimensiones);
+
+        ypos = ypos + 5;
+
+        doc.text(xpos, ypos, 'Carroza: ' + d.Carroza);
+        doc.text(xpos + 60, ypos, 'Auto: ' + d.Autox);
+        doc.text(xpos + 120, ypos, 'Van : ' + d.Van);
+
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Capilla: ' + d.Capilla);
+        doc.text(xpos + 60, ypos, 'Cruz : ' + d.Cruz);
+        doc.text(xpos + 120, ypos, 'Arreglo Urna ' + d.ArreUrna);
+        ypos = ypos + 5;
+
+        doc.text(xpos, ypos, 'Arreglo Pie: ' + d.ArrePie);
+        doc.text(xpos + 60, ypos, 'Libro Condolencias: ' + d.LibroCond);
+        doc.text(xpos + 120, ypos, 'Tarjetero: ' + d.Tarjetero);
+        ypos = ypos + 5;
+
+        doc.text(xpos, ypos, 'Tarjetas de Condolencias: ' + d.TarjeCond);
+        doc.text(xpos + 60, ypos, 'Certificado Médico: ' + d.CertMedico);
+        doc.text(xpos + 120, ypos, 'Tramite Registro Civil: ' + d.TramRegCivl);
+
+        doc.setFontType('bold');
+        ypos = ypos + 10;
+        doc.text(xpos, ypos, '4. DATOS ADICIONALES');
+        doc.setFontType('normal');
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Fecha y Hora Funeral: ' + d.FechaFuneral);
+
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Direccion Velorio: ' + d.DirVelorio);
+
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Direccion Sepultación: ' + d.DirSepul);
+
+        doc.setFontType('bold');
+        ypos = ypos + 10;
+        doc.text(xpos, ypos, '5. MONTOS DE LOS SERVICIOS');
+        doc.setFontType('normal');
+
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Valor Urna: ');
+
+        doc.text(xpos + 60, ypos, "$ " + parseInt(d.ValorUrna).toLocaleString("es-CL"), { align: 'right' });
+
+        doc.text(xpos + 70, ypos, " (+)", { align: 'right' });
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, '% Descuento: ');
+        doc.text(xpos + 60, ypos, parseInt(d.PorceDescuento).toLocaleString("es-CL") + " %", { align: 'right' });
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Descuento Fijo: ');
+        doc.text(xpos + 60, ypos, parseInt(d.DescuentoFijo).toLocaleString("es-CL"), { align: 'right' });
+
+        ypos = ypos + 5;
+        montodescuento = Math.round(parseInt(d.PorceDescuento) * parseInt(d.ValorUrna) / 100.0)
+        montodescuento = parseInt(d.DescuentoFijo) + montodescuento
+        doc.text(xpos, ypos, 'Monto Descuento: ');
+        doc.text(xpos + 60, ypos, "$ " + montodescuento.toLocaleString("es-CL"), { align: 'right' });
+        doc.text(xpos + 70, ypos, " (-)", { align: 'right' });
+        ypos = ypos + 5;
+        doc.line(xpos, ypos - 4, 80, ypos - 4);
+        doc.setFontType('bold');
+        doc.text(xpos, ypos, 'Sub Total: ');
+        doc.text(xpos + 60, ypos, "$ " + parseInt(d.Subtotal).toLocaleString("es-CL"), { align: 'right' });
+        doc.setFontType('normal');
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Servicio Traslado:');
+        doc.text(xpos + 60, ypos, "$ " + parseInt(d.MontoAdicional).toLocaleString("es-CL"), { align: 'right' });
+        doc.text(xpos + 70, ypos, " (+)", { align: 'right' });
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Certificado Médico: ');
+        doc.text(xpos + 60, ypos, "$ " + parseInt(d.MontoCertificacion).toLocaleString("es-CL"), { align: 'right' });
+        doc.text(xpos + 70, ypos, " (+)", { align: 'right' });
+
+        ypos = ypos + 5;
+
+        doc.text(xpos, ypos, 'Aporte Previsional: ');
+        doc.text(xpos + 60, ypos, "$ " + parseInt(d.AportePrevisional).toLocaleString("es-CL"), { align: 'right' });
+        doc.text(xpos + 70, ypos, " (-)", { align: 'right' });
+
+        ypos = ypos + 5;
+        doc.line(xpos, ypos - 4, 80, ypos - 4);
+        doc.setFontType('bold');
+        doc.text(xpos, ypos, 'Total a Pagar: ');
+        doc.text(xpos + 60, ypos, "$ " + parseInt(d.TotalPagar).toLocaleString("es-CL"), { align: 'right' });
+        ypos = ypos + 10;
+
+        doc.text(xpos, ypos, 'Son: ' + NumeroALetras(parseInt(d.TotalPagar)), { align: 'left' });
+
+        doc.setFontType('bold');
+        ypos = ypos - 50;
+        doc.text(xpos + 90, ypos, '6. MONTOS PAGADOS');
+        doc.setFontType('normal');
+
+        ypos = ypos + 5;
+
+        doc.text(xpos + 90, ypos, 'Monto Transferencia: ');
+        doc.text(xpos + 90 + 60, ypos, "$ " + parseInt(d.MontoTransferencia).toLocaleString("es-CL"), { align: 'right' });
+        ypos = ypos + 5;
+        doc.text(xpos + 90, ypos, 'Monto Efectivo: ');
+        doc.text(xpos + 90 + 60, ypos, "$ " + parseInt(d.MontoEfectivo).toLocaleString("es-CL"), { align: 'right' });
+        ypos = ypos + 5;
+        doc.text(xpos + 90, ypos, 'Monto Débito:');
+        doc.text(xpos + 90 + 60, ypos, "$ " + parseInt(d.MontoDebito).toLocaleString("es-CL"), { align: 'right' });
+        ypos = ypos + 5;
+        doc.text(xpos + 90, ypos, 'Monto Crédito: ');
+        doc.text(xpos + 90 + 60, ypos, "$ " + parseInt(d.MontoCredito).toLocaleString("es-CL"), { align: 'right' });
+
+        ypos = ypos + 20;
+        doc.line(xpos + 90, ypos - 4, xpos + 90 + 60, ypos - 4);
+        doc.setFontType('bold');
+        doc.text(xpos + 90, ypos, 'Pendiente de Pago: ');
+        doc.text(xpos + 90 + 60, ypos, "$ " + parseInt(d.Cuadratura).toLocaleString("es-CL"), { align: 'right' });
+
+        doc.setFontType('bold');
+        ypos = ypos + 20;
+        doc.text(xpos, ypos, '7. AGENTE');
+        doc.setFontType('normal');
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Nombre: ' + d.Agente);
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, 'Estado del Contrato: ' + d.Estado);
+
+
+        firma = document.getElementById('img-firma')
+        doc.addImage(firma, 'PNG', 110, ypos-7, 60, 60)
+        doc.setFontType('bold');
+
+        ypos = ypos + 20;
+        doc.text(xpos, ypos, 'FIRMAS:');
+
+        ypos = ypos + 20;
+
+
+
+
+
+        doc.line(30, ypos - 5, 90, ypos - 5);
+        doc.line(110, ypos - 5, 170, ypos - 5);
+        doc.text(60, ypos, d.ClteNombre.toUpperCase(), { align: 'center' });
+        ypos = ypos + 5
+
+        doc.text(140, ypos, 'FIRMA FUNERARIA', { align: 'center' });
+        doc.text(60, ypos, 'FIRMA CONTRATANTE', { align: 'center' });
+
+
+
+
+        ypos = ypos + 10;
+        doc.text(xpos, ypos, 'NOTAS:');
+        doc.setFontType('normal');
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, '1.Toda venta de servicios funerarios debe quedar cancelada en nuestra oficina antes de la salida del funeral al campo santo.');
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, '2. La funeraria no devolverá dineros una vez firmado el contrato de venta.');
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, '3. Todo cambio de horario, fecha de sepultación y otros deberá ser informado en un lapso de tiempo prudente donde la');
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, '    empresa pueda recoordinar el servicio . ');
+        ypos = ypos + 5;
+        doc.text(xpos, ypos, '4. Se da por aceptado lo anterior por parte del contratante. ');
+    //    ypos = ypos + 5;
+    //    doc.text(xpos, ypos, '5. Bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla :');
+
+      
+
+
+
+    }
+
+    function CreateNewPDF(titulo) {
+        doc = new jsPDF({
+            orientation: 'p',
+            unit: 'mm',
+            format: 'legal',
+            putOnlyUsedFonts: true,
+            floatPrecision: "smart" // or "smart", default is 16
+        });
+
+        doc.setProperties({
+            title: titulo,
+            subject: 'Contrato',
+            author: 'Jasa Services',
+            keywords: 'generated, javascript, web 2.0, ajax',
+            creator: 'JASA'
+        });
+    }
+
+    function ImprimirContrato() {
+        // doc.autoPrint();
+        doc.output('dataurlnewwindow');
+      
+    }
+    function DescargarContrato() {
+        // doc.autoPrint();
+      
+        doc.save(pdfname+".pdf")
+    }
+
+
+    function modalContinuar() {
+        modalCancelar();
+        switch (modal_accion) {
+
+            case 'Eliminar':
+                var url = "php/crud_contratos.php";
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: { IdContrato: IdContrato, Accion: 'delete' },
+                    dataType: "JSON",
+                    async: false,
+                    success: function (data) {
+
+                        $('#info_text1').text(data.mensaje)
+                        $('#modal_info').modal('show');
+                        if (data.resultado == 0) { cargaContratos(); }
+                    },
+                    error: function () {
+                        $('#info_text1').text(data.mensaje)
+                        $('#modal_info').modal('show');
+                    }
+                });
+
+
+                break;
+            default:
+                break;
+        }
+        modal_accion = "";
+    };
+    // CARGAR LOS SELECTS
+    function cargaSelects() {
+
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdNecesidad', 'NECESIDAD');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdEstCivil', 'ESTADOCIVIL');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdPrevision', 'PREVISION');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdOcupacion', 'OCUPACION');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdEscolaridad', 'ESTUDIOS');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdCofre', 'COFRES');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdCapilla', 'CAPILLA');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdCarroza', 'CARROZA');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdAuto', 'AUTO');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdVan', 'VAN');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdCruz', 'CRUZ');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdTarjetero', 'TARJETERO');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdLibroCond', 'LIBRO CONDO');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdTarjeCond', 'TARJETAS CONDO');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdArreUrna', 'ARREGLO URNA');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdArrePie', 'ARREGLO PIE');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdTramRegCivl', 'REGISTRO CIVIL');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdCertMedico', 'CERTIFICADO MEDICO');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdEstado', 'ESTADO CONTRATO');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdAno', 'ANOS');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdConvenio', 'CONVENIOS');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdNacionalidad', 'NACIONALIDAD');
+        cargaSeleccionesSelect(usuario.IdEmpresa, 'IdParentesco', 'PARENTESCO');
+
+
+        cargaSelectUsuarios('IdVendedor')
+    }
+
+    function fdma(fec) {
+        return fec.substring(8, 10) + "-" + fec.substring(5, 7) + "-" + fec.substring(0, 4)
+
+    }
+    function calcularMontos() {
+        desformatearNumeros("#Montos")
+        vurna = parseInt($('#ValorUrna').val());
+        pdescto = parseInt($('#PorceDescuento').val());
+        desctofijo = parseInt($('#DescuentoFijo').val());
+
+
+        vdescto = vurna * (pdescto / 100.0) + desctofijo
+        subtotal = vurna - vdescto
+
+        $('#MontoDescuento').val(vdescto);
+        $('#Subtotal').val(subtotal);
+
+
+        aprevi = parseInt($('#AportePrevisional').val());
+        madicio = parseInt($('#MontoAdicional').val());
+        mcerti = parseInt($('#MontoCertificacion').val());
+
+        totalpagar = subtotal + madicio + mcerti - aprevi
+
+
+        vtranfe = parseInt($('#MontoTransferencia').val());
+        vefecti = parseInt($('#MontoEfectivo').val());
+        vdebito = parseInt($('#MontoDebito').val());
+        vcredit = parseInt($('#MontoCredito').val());
+        totalpagado = vtranfe + vefecti + vdebito + vcredit
+
+
+        saldo = totalpagar - totalpagado
+
+        $('#TotalPagar').val(totalpagar);
+
+        $('#Cuadratura').val(saldo);
+
+
+
+        setTimeout(() => {
+            formatearNumeros("#Montos")
+        }, 300);
+
+
+
+    }
+</script>
+
+</html>

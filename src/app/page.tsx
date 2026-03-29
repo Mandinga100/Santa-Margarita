@@ -5,13 +5,16 @@ import Link from 'next/link';
 import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { planesData } from '../data/planes';
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
+import { Autoplay, EffectFade, Pagination, Navigation, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
+import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
@@ -19,6 +22,7 @@ export default function Home() {
   const planesRef = useRef<HTMLElement>(null);
 
   const [contactForm, setContactForm] = useState({ nombre: '', telefono: '', mensaje: '' });
+  const [openPlanIndex, setOpenPlanIndex] = useState<number | null>(null);
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -46,6 +50,21 @@ export default function Home() {
         },
       });
     }
+
+    // Generic Section Parallax
+    const parallaxBgs = gsap.utils.toArray<HTMLElement>('.section-parallax-bg');
+    parallaxBgs.forEach((bg) => {
+      gsap.to(bg, {
+        yPercent: 20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: bg.parentElement,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true,
+        },
+      });
+    });
 
     // Badge 24Hrs fade in
     gsap.fromTo('.badge-24hrs-hero',
@@ -254,20 +273,45 @@ export default function Home() {
           .hero-ctas-bottom a { width: 100%; text-align: center; }
         }
 
-        /* Plan Cards Uniforme */
-        .plan-card {
-          background: #F8F9FA;
-          border-radius: 20px;
-          box-shadow: 0 10px 40px rgba(0,0,0,0.10);
-          transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          overflow: hidden;
-          display: flex;
-          flex-direction: column;
+        /* Swiper Flechas Pasarela */
+        .swiper-button-next.custom-arrow,
+        .swiper-button-prev.custom-arrow {
+          background: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 4px solid rgba(255, 255, 255, 0.5);
+          color: white;
+          width: 80px;
+          height: 80px;
+          border-radius: 24px;
+          transition: all 0.5s ease;
+          opacity: 0.85;
+          z-index: 30;
         }
-        .plan-card:hover {
-          transform: translateY(-8px);
-          box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+        @media (max-width: 768px) {
+          .swiper-button-next.custom-arrow,
+          .swiper-button-prev.custom-arrow {
+            width: 50px;
+            height: 50px;
+            border-radius: 16px;
+          }
         }
+        .swiper-button-next.custom-arrow:hover,
+        .swiper-button-prev.custom-arrow:hover {
+          background: rgba(255, 255, 255, 0.2);
+          transform: scale(1.1);
+          opacity: 1;
+        }
+        .swiper-button-disabled.custom-arrow {
+          opacity: 0 !important;
+          pointer-events: none !important;
+        }
+
+        /* Swiper Paginación Planes - hidden for pasarela */
+        .planes-swiper .swiper-pagination {
+          display: none;
+        }
+
         .plan-card-img {
           height: 200px;
           position: relative;
@@ -291,6 +335,15 @@ export default function Home() {
           transition: background 0.3s;
         }
         .stat-card:hover { background: rgba(26,26,26,0.1); }
+
+        /* Removed gradient planes-section */
+        @keyframes fadeUp { 
+          from { opacity: 0; transform: translateY(30px); } 
+          to { opacity: 1; transform: translateY(0); } 
+        }
+        .animate-fade-up { 
+          animation: fadeUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; 
+        }
       `}</style>
 
       {/* ============================
@@ -302,7 +355,7 @@ export default function Home() {
         className="relative min-h-[100vh] w-full overflow-hidden flex items-center justify-center bg-[#0a0a0a]"
         aria-label="Inicio"
       >
-        {/* Carrusel + parallax GPU-acelerado (PASO 5) */}
+        {/* Carrusel + parallax GPU-acelerado */}
         <div className="absolute inset-0 z-0 hero-parallax-bg w-full h-[120%] -top-[10%] ken-burns-wrapper">
           <Swiper
             modules={[Autoplay, EffectFade, Pagination]}
@@ -341,7 +394,7 @@ export default function Home() {
           </Swiper>
         </div>
 
-        {/* Badge 24Hrs – Centrado arriba (PASO 1) */}
+        {/* Badge 24Hrs – Centrado arriba */}
         <div className="badge-24hrs-hero absolute top-[14%] left-[50%] -translate-x-1/2 z-30 flex items-center gap-2 px-5 py-2.5 cursor-default transition-all duration-300 whitespace-nowrap">
           <i className="fas fa-clock text-sm" />
           <span className="text-[11px] font-black uppercase tracking-widest">Atención Permanente 24Hrs</span>
@@ -361,7 +414,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* CTAs Hero Restaurados – Bottom Center (PASO 1) */}
+        {/* CTAs Hero Bottom Center */}
         <div className="hero-ctas-bottom">
           <Link
             href="/cotizacion"
@@ -381,120 +434,135 @@ export default function Home() {
       </section>
 
       {/* ============================
-          SECTION 2: PLANES FUNERARIOS → FONDO NEGRO (PASO 2)
+          SECTION 2: PLANES FUNERARIOS → FONDO NEGRO EXACTO
       ============================== */}
       <section
         id="planes"
         ref={planesRef}
-        className="py-32 relative bg-[#1A1A1A] text-white"
+        className="py-16 md:py-32 relative bg-[#1A1A1A] text-white overflow-hidden"
         aria-label="Planes Funerarios"
       >
-        <div className="max-w-7xl mx-auto px-6">
-          <header className="text-center mb-20">
-            <span className="badge-vidrio inline-block text-[9px] font-black uppercase tracking-[0.6em] text-white/50 px-5 py-2 mb-8">
-              Protocolos de Dignidad
-            </span>
-            <h2 className="font-serif text-5xl md:text-7xl italic mb-4 text-white">
-              Planes Funerarios
+        <div className="section-parallax-bg absolute z-0 inset-0 w-full h-[120%] -top-[10%] opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="container mx-auto px-4 relative z-10">
+          <header className="text-center mb-6 md:mb-12 relative z-10 animate-fade-up flex flex-col items-center">
+            <div className="inline-block border border-gray-600 rounded-full px-6 py-1 text-[11px] md:text-sm text-gray-400 mb-6 font-bold tracking-[0.3em] uppercase">
+              PROTOCOLOS DE DIGNIDAD
+            </div>
+            <h2 className="text-5xl md:text-7xl mb-4 font-serif italic text-white drop-shadow-2xl ceo-title-2">
+              <span translate="no" className="notranslate">Planes Funerarios</span>
             </h2>
-            <p className="text-white/50 text-lg font-light italic">Soluciones personalizadas según tus necesidades</p>
-            <div className="w-16 h-px bg-[#b8960c]/60 mx-auto mt-8" />
+            <p className="text-[#a1a1aa] text-lg md:text-xl font-light italic mb-8 max-w-2xl mx-auto ceo-text-desc">
+              Soluciones personalizadas según tus necesidades
+            </p>
+            <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-[#b8960c] to-transparent mx-auto" />
           </header>
 
-          {/* CARDS UNIFORMES (PASO 4) */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="swiper-carousel relative max-w-[1400px] mx-auto">
+            <Swiper
+              modules={[Autoplay, Navigation, EffectCoverflow]}
+              navigation={{
+                nextEl: '.swiper-button-next.custom-arrow',
+                prevEl: '.swiper-button-prev.custom-arrow',
+              }}
+              effect="coverflow"
+              onClick={(swiper) => {
+                if (swiper.clickedIndex === swiper.activeIndex + 1) {
+                  swiper.slideNext();
+                } else if (swiper.clickedIndex === swiper.activeIndex - 1) {
+                  swiper.slidePrev();
+                }
+              }}
+              coverflowEffect={{
+                rotate: 10,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: false,
+              }}
+              centeredSlides={true}
+              spaceBetween={16}
+              slidesPerView={1}
+              loop={false}
+              speed={800}
+              autoplay={{ delay: 10000, disableOnInteraction: false }}
+              breakpoints={{
+                640: { slidesPerView: 1.5, spaceBetween: 24 },
+                768: { slidesPerView: 2.2, spaceBetween: 24 },
+                1024: { slidesPerView: 3, spaceBetween: 24 },
+                1440: { slidesPerView: 3.5, spaceBetween: 24 }
+              }}
+              className="!pt-4 !pb-10 md:!py-8"
+            >
+              {planesData.map((plan, i) => (
+                <SwiperSlide key={i} className="flex justify-center px-4 md:p-4">
+                  <div className="plan-card relative w-full sm:max-w-sm h-[32rem] md:h-[36rem] lg:h-[40rem] bg-gradient-to-b from-black/95 to-gray-900 text-white rounded-3xl shadow-2xl overflow-hidden flex flex-col hover:shadow-3xl hover:-translate-y-2 transition-all duration-700 group cursor-pointer border border-white/5 mx-auto">
+                    
+                    {/* Hero Img Plan Exacta */}
+                    <div className="h-[40%] bg-cover bg-center relative group-hover:scale-110 transition-transform duration-700" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('${plan.img}')` }}>
+                      {i >= 5 && ( /* Raúl and Castaño are highlighted dynamically based on index for highest price tiers */
+                        <span className="absolute top-4 right-4 md:top-6 md:right-6 bg-gradient-to-r from-amber-500 to-yellow-400 md:bg-none md:bg-amber-400/90 text-[#1a1a1a] md:text-black px-3 py-1.5 md:px-4 md:py-2 rounded-full font-black md:font-bold text-[9px] md:text-sm shadow-xl md:shadow-2xl backdrop-blur-md md:backdrop-blur-sm uppercase tracking-[0.2em] md:tracking-wider z-10 flex items-center gap-1.5 md:gap-0 border border-amber-300/50 md:border-transparent transition-transform group-hover:scale-105">
+                          <span className="material-symbols-outlined text-[14px] md:hidden">star</span>
+                          <span className="md:ml-1">Destacado</span>
+                        </span>
+                      )}
+                    </div>
 
-            {/* PLAN ACACIA */}
-            <div className="card-plane plan-card">
-              <div className="plan-card-img">
-                <Image
-                  src="/assets/images/planes/plan-acacia.webp"
-                  alt="Plan Acacia – Urna"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-[2000ms]"
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-              <div className="plan-card-body">
-                <div>
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-serif text-2xl italic text-[#1a1a1a]">Plan Acacia</h3>
-                    <span className="text-[#8a6f09] font-black text-lg">$2.250.000</span>
+                    {/* Info Container */}
+                    <div className="p-5 md:p-8 flex flex-col justify-between flex-1 relative z-10 bg-transparent">
+                      <div className="text-center">
+                        <h3 className="text-[clamp(1.5rem,5vw,2.25rem)] md:text-4xl font-black mb-2 drop-shadow-xl font-serif italic">{plan.nombre}</h3>
+                        <div className="text-[clamp(1.25rem,4vw,2.25rem)] md:text-4xl font-black mb-4 md:mb-6 bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-2xl">{plan.precio}</div>
+                      </div>
+                      
+                      {/* Badges Top2 Servicios */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                        {plan.badges.map((badge, j) => (
+                          <div key={j} className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 py-3 px-4 rounded-xl font-bold text-[10px] md:text-xs shadow-xl backdrop-blur transition-all text-center flex items-center justify-center hover:bg-emerald-500/20">
+                            ✓ {badge.toUpperCase()}
+                          </div>
+                        ))}
+                      </div>
+
+                      {/* CTAs */}
+                      <div className="flex gap-3 pt-4 border-t border-white/10 mt-auto relative z-20">
+                        <button onClick={(e) => { e.stopPropagation(); setOpenPlanIndex(i); }} className="flex-1 bg-white/5 backdrop-blur border border-white/20 text-white py-3.5 px-4 rounded-xl font-bold text-[11px] md:text-sm hover:bg-white/10 transition-all shadow-xl text-center uppercase tracking-widest flex items-center justify-center">
+                          Ver Detalles
+                        </button>
+                        <a href="tel:+56964333760" className="flex-1 bg-gradient-to-r from-amber-400 to-orange-500 text-black py-3.5 px-4 rounded-xl font-bold text-[11px] md:text-sm hover:from-amber-500 hover:to-orange-600 transition-all shadow-xl text-center uppercase tracking-widest flex items-center justify-center">
+                          Llamar Ahora
+                        </a>
+                      </div>
+                    </div>
+
+                    {/* Tooltip Full Services - Acivated on Click */}
+                    <div className={`servicios-tooltip absolute inset-0 bg-[#0a0a0a]/95 backdrop-blur-2xl p-6 md:p-8 rounded-3xl transition-all duration-500 z-50 overflow-y-auto flex flex-col ${openPlanIndex === i ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-8 pointer-events-none'}`} style={{ scrollbarWidth: 'thin', scrollbarColor: '#b5900e transparent' }}>
+                      <div className="sticky top-0 bg-[#0a0a0a]/90 backdrop-blur-3xl pb-4 pt-2 border-b border-amber-400/30 mb-6 z-10 flex justify-between items-center">
+                         <h4 className="font-bold text-xl md:text-2xl text-amber-400 font-serif italic drop-shadow-lg">{plan.nombre}</h4>
+                         <button onClick={(e) => { e.stopPropagation(); setOpenPlanIndex(null); }} className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white border border-white/20 shadow-md">
+                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
+                         </button>
+                      </div>
+                      <ul className="list-none space-y-4 text-gray-200 pb-10">
+                        {plan.serviciosFull.map((s, idx) => (
+                          <li key={idx} className="flex gap-4 items-start text-sm md:text-[15px] leading-relaxed group/li transition-colors hover:text-white">
+                            <span className="text-amber-500 font-black shrink-0 mt-0.5 flex items-center justify-center bg-amber-500/10 w-5 h-5 md:w-6 md:h-6 rounded-full border border-amber-500/20 shadow-md group-hover/li:bg-amber-500 group-hover/li:text-black transition-colors">✓</span> 
+                            <span>{s}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
                   </div>
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    <span className="text-[10px] font-black uppercase bg-[#25D366]/15 text-[#178540] px-3 py-1 rounded-full"><i className="fas fa-check mr-1" /> Asesoría 24/7</span>
-                    <span className="text-[10px] font-black uppercase bg-[#25D366]/15 text-[#178540] px-3 py-1 rounded-full"><i className="fas fa-check mr-1" /> Urna Incluida</span>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-3 mt-auto">
-                  <Link href="/planes" className="text-center py-2.5 border border-[#1a1a1a]/30 text-[#1a1a1a] text-[9px] font-black uppercase tracking-wider hover:bg-[#1a1a1a] hover:text-white transition-all rounded-full">Detalles</Link>
-                  <a href="tel:+56964333760" className="text-center py-2.5 bg-[#b8960c] text-white text-[9px] font-black uppercase tracking-wider hover:bg-[#9a7d0a] transition-all rounded-full">Llamar</a>
-                </div>
-              </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            {/* Navigation Arrows Stitch-Exactas */}
+            <div className="swiper-button-prev custom-arrow absolute -left-4 md:-left-20 top-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 bg-black/60 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-2xl border-4 border-white/50 hover:bg-white/30 opacity-80 hover:opacity-100 transition-all z-20">
+              <svg className="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" strokeWidth="4" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" /></svg>
             </div>
-
-            {/* PLAN QUILLAY */}
-            <div className="card-plane plan-card">
-              <div className="plan-card-img">
-                <Image
-                  src="/assets/images/planes/plan-quillay.webp"
-                  alt="Plan Quillay – Urna"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-[2000ms]"
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-              <div className="plan-card-body">
-                <div>
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-serif text-2xl italic text-[#1a1a1a]">Plan Quillay</h3>
-                    <span className="text-[#8a6f09] font-black text-lg">$2.390.000</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    <span className="text-[10px] font-black uppercase bg-[#25D366]/15 text-[#178540] px-3 py-1 rounded-full"><i className="fas fa-check mr-1" /> Retiro 24h</span>
-                    <span className="text-[10px] font-black uppercase bg-[#25D366]/15 text-[#178540] px-3 py-1 rounded-full"><i className="fas fa-check mr-1" /> Capilla Velatoria</span>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-3 mt-auto">
-                  <Link href="/planes" className="text-center py-2.5 border border-[#1a1a1a]/30 text-[#1a1a1a] text-[9px] font-black uppercase tracking-wider hover:bg-[#1a1a1a] hover:text-white transition-all rounded-full">Detalles</Link>
-                  <a href="tel:+56964333760" className="text-center py-2.5 bg-[#b8960c] text-white text-[9px] font-black uppercase tracking-wider hover:bg-[#9a7d0a] transition-all rounded-full">Llamar</a>
-                </div>
-              </div>
-            </div>
-
-            {/* PLAN RAÚL */}
-            <div className="card-plane plan-card" style={{ background: '#1a1a1a', position: 'relative' }}>
-              <div className="absolute top-4 right-4 z-10">
-                <span className="text-[8px] font-black uppercase tracking-widest bg-[#b8960c] text-white px-3 py-1.5 rounded-full">Destacado</span>
-              </div>
-              <div className="plan-card-img">
-                <Image
-                  src="/assets/images/planes/plan-raul.webp"
-                  alt="Plan Raúl – Urna"
-                  fill
-                  className="object-cover hover:scale-105 transition-transform duration-[2000ms]"
-                  loading="lazy"
-                  sizes="(max-width: 768px) 100vw, 33vw"
-                />
-              </div>
-              <div className="plan-card-body" style={{ background: '#1a1a1a' }}>
-                <div>
-                  <div className="flex justify-between items-start mb-3">
-                    <h3 className="font-serif text-2xl italic text-white">Plan Raúl</h3>
-                    <span className="text-[#b8960c] font-black text-lg">$3.590.000</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mb-5">
-                    <span className="text-[10px] font-black uppercase bg-[#25D366]/20 text-[#25D366] px-3 py-1 rounded-full"><i className="fas fa-check mr-1" /> Carroza Mercedes</span>
-                    <span className="text-[10px] font-black uppercase bg-[#25D366]/20 text-[#25D366] px-3 py-1 rounded-full"><i className="fas fa-check mr-1" /> Coro Memorial</span>
-                  </div>
-                </div>
-                <div className="grid grid-cols-2 gap-3 mt-auto">
-                  <Link href="/planes" className="text-center py-2.5 border border-white/30 text-white text-[9px] font-black uppercase tracking-wider hover:bg-white hover:text-black transition-all rounded-full">Detalles</Link>
-                  <a href="tel:+56964333760" className="text-center py-2.5 bg-[#b8960c] text-white text-[9px] font-black uppercase tracking-wider hover:bg-[#d4af37] transition-all rounded-full">Llamar</a>
-                </div>
-              </div>
+            <div className="swiper-button-next custom-arrow absolute -right-4 md:-right-20 top-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 bg-black/60 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-2xl border-4 border-white/50 hover:bg-white/30 opacity-80 hover:opacity-100 transition-all z-20">
+               <svg className="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" strokeWidth="4" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </div>
           </div>
         </div>
@@ -505,19 +573,20 @@ export default function Home() {
       ============================== */}
       <section
         id="servicios"
-        className="py-32 relative bg-white text-[#1A1A1A]"
+        className="py-32 relative bg-white text-[#1A1A1A] overflow-hidden"
         aria-label="Servicios Funerarios"
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="section-parallax-bg absolute z-0 inset-0 w-full h-[120%] -top-[10%] opacity-[0.02] pointer-events-none" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
               <span className="badge-vidrio-dark inline-block text-[9px] font-black uppercase tracking-[0.6em] text-[#1a1a1a]/60 px-5 py-2 mb-10">
                 Acompañamiento Completo
               </span>
-              <h2 className="font-serif text-5xl lg:text-7xl italic mb-8 leading-tight text-[#1a1a1a]">
+              <h2 className="font-serif text-5xl lg:text-7xl italic mb-8 leading-tight text-[#1a1a1a] ceo-title-2">
                 Servicios<br />Funerarios
               </h2>
-              <p className="text-[#1a1a1a]/60 text-xl font-light italic mb-12 leading-relaxed">
+              <p className="text-[#1a1a1a]/60 text-xl font-light italic mb-12 leading-relaxed ceo-text-main">
                 Coordinamos cada detalle con discreción y profesionalismo para que su familia pueda enfocarse en el recuerdo.
               </p>
               <Link href="/servicios" className="inline-flex items-center gap-3 border-2 border-[#1a1a1a] text-[#1a1a1a] px-8 py-4 rounded-full text-[10px] font-black uppercase tracking-[0.4em] hover:bg-[#1a1a1a] hover:text-white transition-all duration-500">
@@ -550,17 +619,18 @@ export default function Home() {
       ============================== */}
       <section
         id="memoriales"
-        className="py-32 relative bg-[#1A1A1A] text-white"
+        className="py-32 relative bg-[#1A1A1A] text-white overflow-hidden"
         aria-label="Memoriales Digitales"
       >
-        <div className="max-w-7xl mx-auto px-6 text-center">
+        <div className="section-parallax-bg absolute z-0 inset-0 w-full h-[120%] -top-[10%] opacity-[0.03] pointer-events-none" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
           <span className="badge-vidrio inline-block text-[9px] font-black uppercase tracking-[0.6em] text-white/50 px-5 py-2 mb-10">
             Espacios del Recuerdo
           </span>
-          <h2 className="font-serif text-5xl md:text-7xl italic mb-6 text-white">
+          <h2 className="font-serif text-5xl md:text-7xl italic mb-6 text-white ceo-title-2">
             Memoriales
           </h2>
-          <p className="text-white/50 text-xl font-light italic max-w-3xl mx-auto mb-16">
+          <p className="text-white/50 text-xl font-light italic max-w-3xl mx-auto mb-16 ceo-text-main">
             Espacios diseñados para el recuerdo eterno. Honra la memoria de tus seres queridos con un memorial digital único.
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-16">
@@ -588,18 +658,19 @@ export default function Home() {
       ============================== */}
       <section
         id="nosotros"
-        className="py-32 relative bg-white text-[#1A1A1A]"
+        className="py-32 relative bg-white text-[#1A1A1A] overflow-hidden"
         aria-label="Sobre Nosotros"
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="section-parallax-bg absolute z-0 inset-0 w-full h-[120%] -top-[10%] opacity-[0.02] pointer-events-none" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <header className="text-center mb-20">
             <span className="badge-vidrio-dark inline-block text-[9px] font-black uppercase tracking-[0.6em] text-[#1a1a1a]/50 px-5 py-2 mb-8">
               Desde 1996
             </span>
-            <h2 className="font-serif text-5xl md:text-7xl italic mb-4 text-[#1a1a1a]">
+            <h2 className="font-serif text-5xl md:text-7xl italic mb-4 text-[#1a1a1a] ceo-title-2">
               Nuestro Legado
             </h2>
-            <p className="text-[#1a1a1a]/60 text-xl font-light italic max-w-3xl mx-auto">
+            <p className="text-[#1a1a1a]/60 text-xl font-light italic max-w-3xl mx-auto ceo-text-main">
               Custodiamos historias de vida con una veneración absoluta, uniendo la tradición más respetuosa con la innovación de vanguardia.
             </p>
             <div className="w-16 h-px bg-[#b8960c]/60 mx-auto mt-8" />
@@ -636,19 +707,19 @@ export default function Home() {
         className="py-32 relative bg-[#1A1A1A] text-white"
         aria-label="Previsión Familiar"
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="rounded-[2.5rem] p-10 md:p-20 border border-white/10 bg-white/[0.03] relative overflow-hidden">
-            <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div className="section-parallax-bg absolute z-0 inset-0 w-full h-[120%] -top-[10%] opacity-[0.04] pointer-events-none" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
               <div>
                 <span className="badge-vidrio inline-block text-[9px] font-black uppercase tracking-[0.6em] text-white/50 px-5 py-2 mb-8">
                   Protocolo Vitalicio
                 </span>
-                <h2 className="font-serif text-5xl md:text-7xl italic leading-none text-white mb-8">
+                <h2 className="font-serif text-5xl md:text-7xl italic leading-none text-white mb-8 ceo-title-2">
                   La Paz de <br /> Saber Decidir
                 </h2>
-                <p className="text-white/50 text-xl font-light italic mb-12 leading-relaxed">
+                <p className="text-white/50 text-xl font-light italic mb-12 leading-relaxed ceo-text-main">
                   &ldquo;Un legado se construye con amor, pero se protege con previsión.&rdquo;
                 </p>
                 <Link href="/prevision" className="inline-flex items-center gap-3 bg-[#b8960c] text-[#0a0a0a] px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.4em] hover:bg-[#d4af37] transition-all shadow-xl shadow-[#b8960c]/20">
@@ -684,12 +755,13 @@ export default function Home() {
       ============================== */}
       <section
         id="confianza"
-        className="py-32 relative bg-white text-[#1A1A1A]"
+        className="py-32 relative bg-white text-[#1A1A1A] overflow-hidden"
         aria-label="Confianza Comprobada"
       >
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="section-parallax-bg absolute z-0 inset-0 w-full h-[120%] -top-[10%] opacity-[0.02] pointer-events-none" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="max-w-7xl mx-auto px-6 relative z-10">
           <header className="text-center mb-20">
-            <h2 className="font-serif text-5xl md:text-7xl italic text-[#1a1a1a] mb-4">Confianza Comprobada</h2>
+            <h2 className="font-serif text-5xl md:text-7xl italic text-[#1a1a1a] mb-4 ceo-title-2">Confianza Comprobada</h2>
             <div className="w-16 h-px bg-[#b8960c]/60 mx-auto" />
           </header>
 
@@ -770,9 +842,9 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-6 relative z-10">
           <div className="rounded-[2.5rem] p-10 md:p-14 border border-white/10 bg-white/[0.03] relative overflow-hidden">
-            <div className="absolute inset-0 z-0 opacity-[0.04]" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div className="section-parallax-bg absolute z-0 inset-0 w-full h-[120%] -top-[10%] opacity-[0.04] pointer-events-none" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
             <div className="relative z-10">
               <h2 className="text-center text-2xl text-white font-serif italic mb-10">Asesoría Personalizada 24/7</h2>
               <form className="grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={handleContactSubmit} noValidate>

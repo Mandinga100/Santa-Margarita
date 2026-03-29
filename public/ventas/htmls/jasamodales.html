@@ -1,0 +1,195 @@
+
+
+
+<!-- /Modales multi avisos -->
+<!-- /.modal-para informacion  -->
+<div class="modal" tabindex="-1" role="dialog" id="modal_info" data-backdrop="static">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header"><i class="fa fa-info-circle" style="font-size:36px;color:blue"></i>
+                <h5 class="modal-title">&ensp;&ensp;Información</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="col-sm-12">
+                    <div id="info_text1"> </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="modal_continuar" onclick="modalContinuar()"
+                        data-bs-dismiss="modal">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal-para permisos texto  -->
+<div class="modal" tabindex="-1" role="dialog" id="modal_permisos" data-backdrop="static">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content"
+            style='border-style: solid; border-color:red;border-radius: 20px; width: 100%; border-width: 0.2em'>
+            <div class="modal-header"></div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <i class="fa fa-warning" style="font-size:36px;color:Red"></i>
+                    </div>
+                    <div class="col-sm-10">
+                        <div id="permisos_text1"> </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btn-permisos" onclick="modalContinuar()"
+                    data-bs-dismiss="modal">Entendido</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- /.modal-para alerta  -->
+<div class="modal" tabindex="-1" role="dialog" id="modal_alert">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header"><i class="fa fa-warning" style="font-size:36px;color:red"></i>
+                <h5 class="modal-title">&ensp;&ensp;Alerta</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form id="formulario-alerta">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div id="alert_text1"> </div>
+
+
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- /.modal-para consulta  -->
+<div class="modal" role="dialog" id="modal_consulta_evaluado" data-backdrop="static">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header"><i class="fa fa-television" style="font-size:36px;color:blue"></i>
+                <h5 class="modal-title">&ensp;&ensp;Información</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form id="formulario-22">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div id="consulta_evaluado_text1"> </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="modal_evaluado_continuar"
+                        onclick="modalContinuar()" data-bs-dismiss="modal">Continuar</button>
+                    <button type="button" class="btn btn-secondary" id="modal_evaluado_cancelar"
+                        onclick="modalCancelar()" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal-para cambio estado  -->
+<div class="modal" role="dialog" id="modal_activar" data-backdrop="static">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header"><i class="fa fa-info-circle" style="font-size:36px;color:blue"></i>
+                <h5 class="modal-title">&ensp;&ensp;Información</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <form id="formulario-activar">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div id="activar_text1"> </div>
+
+                                <select class="jasa-txt-01" id="modal_estado" name="modal_estado">
+                                    <option value="Activo">Activo</option>
+                                    <option value="Inactivo">Inactivo</option>
+
+                                </select>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="modal_continuar" onclick="modalContinuar()"
+                        data-bs-dismiss="modal">Continuar</button>
+                    <button type="button" class="btn btn-secondary" id="modal_cancelar"
+                        data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal-para barra de avance  -->
+<div class="modal" tabindex="-1" role="dialog" id="modal_avance" data-backdrop="static">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header"><i class="fa fa-refresh" style="font-size:36px;color:blue"></i>
+                <h5 class="modal-title">&ensp;&ensp;Importación</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Cerrar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        <div class="progress">
+                            <div class="progress-bar bar" id="bar-avance" role="progressbar" style="width: 0%"
+                                aria-valuenow="1" aria-valuemin="0" aria-valuemax="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-10">
+                        <div id='avance_text1'></div>
+                    </div>
+                    <div class="col-sm-1"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="modal_continuar" onclick="modalContinuar()"
+                        data-bs-dismiss="modal">Continuar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

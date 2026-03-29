@@ -1,0 +1,146 @@
+{
+  "version": "2026-03-20",
+  "source": "catalogo.pdf",
+  "planes": [
+    {
+      "nombre": "Margarita",
+      "precio": 1290000,
+      "fmt": "$1.290.000",
+      "img": "/imgs/planes/margarita.png",
+      "servicios": [
+        "Asesoría",
+        "Inscripción Registro Civil",
+        "Cobro de cuota mortuoria",
+        "Retiro y traslado en vehículo mortuorio hasta el lugar del velatorio",
+        "Carroza panorámica para el funeral",
+        "Vehículo de acompañamiento (10 personas)",
+        "Libro de condolencias",
+        "Cortesía de cafetería",
+        "50 tarjetas de condolencias"
+      ],
+      "urnas": ["Modelo Margarita"]
+    },
+    {
+      "nombre": "Azucena",
+      "precio": 1390000,
+      "fmt": "$1.390.000",
+      "img": "/imgs/planes/azucena.png",
+      "servicios": [
+        "Asesoría",
+        "Inscripción Registro Civil",
+        "Cobro de cuota mortuoria",
+        "Retiro y traslado en vehículo mortuorio hasta el lugar del velatorio",
+        "Carroza panorámica para el funeral",
+        "Vehículo de acompañamiento (10 personas)",
+        "Libro de condolencias",
+        "Cortesía de cafetería",
+        "Arreglo floral",
+        "50 tarjetas de condolencias"
+      ],
+      "urnas": ["Modelo Azucena"]
+    },
+    {
+      "nombre": "Acacia",
+      "precio": 1990000,
+      "fmt": "$1.990.000",
+      "img": "/imgs/planes/acacia.png",
+      "servicios": [
+        "Asesoría",
+        "Inscripción Registro Civil",
+        "Cobro de cuota mortuoria",
+        "Retiro y traslado en vehículo mortuorio hasta el lugar del velatorio",
+        "Carroza panorámica para el funeral",
+        "Vehículo de acompañamiento (10 personas)",
+        "Libro de condolencias",
+        "Cortesía de cafetería",
+        "Arreglo floral",
+        "50 tarjetas de condolencias"
+      ],
+      "urnas": ["Modelo Acacia"]
+    },
+    {
+      "nombre": "Orquidea",
+      "precio": 1990000,
+      "fmt": "$1.990.000",
+      "img": "/imgs/planes/orquidea.png",
+      "servicios": [
+        "Asesoría",
+        "Inscripción Registro Civil",
+        "Cobro de cuota mortuoria",
+        "Retiro y traslado en vehículo mortuorio hasta el lugar del velatorio",
+        "Carroza panorámica para el funeral",
+        "Vehículo de acompañamiento (10 personas)",
+        "Libro de condolencias",
+        "Cortesía de cafetería",
+        "Arreglo floral",
+        "50 tarjetas de condolencias"
+      ],
+      "urnas": ["Modelo Orquidea"]
+    },
+    {
+      "nombre": "Jazmin",
+      "precio": 2790000,
+      "fmt": "$2.790.000",
+      "img": "/imgs/planes/jazmin.png",
+      "servicios": [
+        "Asesoría",
+        "Inscripción Registro Civil",
+        "Cobro de cuota mortuoria",
+        "Retiro y traslado en vehículo mortuorio hasta el lugar del velatorio",
+        "Carroza panorámica para el funeral",
+        "Vehículo de acompañamiento (10 personas)",
+        "Libro de condolencias",
+        "Cortesía de cafetería",
+        "Arreglo floral",
+        "50 tarjetas de condolencias"
+      ],
+      "urnas": ["Modelo Jazmin"]
+    },
+    {
+      "nombre": "Castaño",
+      "precio": 3990000,
+      "fmt": "$3.990.000",
+      "img": "/imgs/planes/castano.png",
+      "servicios": [
+        "Asesoría",
+        "Inscripción Registro Civil",
+        "Cobro de cuota mortuoria",
+        "Tramitación para el traslado",
+        "Coordinación del servicio hasta el funeral",
+        "Certificación médica si lo requiere",
+        "Aviso de prensa",
+        "Retiro y traslado en vehículo mortuorio hasta el lugar del velatorio",
+        "Carroza panorámica hasta el cementerio",
+        "Vehículo de acompañamiento (10 personas)",
+        "Libro de condolencias",
+        "Cortesía de cafetería (50 personas)",
+        "2 arreglos florales",
+        "50 tarjetas de condolencias"
+      ],
+      "urnas": ["Modelo Castaño"]
+    },
+    {
+      "nombre": "Raulí",
+      "precio": 3990000,
+      "fmt": "$3.990.000",
+      "img": "/assets/images/planes/rauli.png",
+      "servicios": [
+        "Asesoría",
+        "Inscripción Registro Civil",
+        "Cobro de cuota mortuoria",
+        "Tramitación para el traslado",
+        "Coordinación del servicio hasta el funeral",
+        "Certificación médica si lo requiere",
+        "Aviso de prensa",
+        "Retiro y traslado en vehículo mortuorio hasta el lugar del velatorio",
+        "Carroza panorámica hasta el cementerio",
+        "Vehículo de acompañamiento (10 personas)",
+        "Libro de condolencias",
+        "Cortesía de cafetería (50 personas)",
+        "2 arreglos florales",
+        "50 tarjetas de condolencias"
+      ],
+      "urnas": ["Modelo Raulí"]
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+<html>
+
+<body>
+    <style>
+        .respo1 {
+            width: 100%;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
+
+    <br>
+    <br>
+
+
+    <div class="row">
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-10">
+            <button type="button" class="btn btn-success btn-lg w-100" id="btn_01" style="cursor:pointer">
+                Gestión de Contratos
+
+            </button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-10">
+            <button type="button" class="btn btn-success btn-lg w-100" id="btn_02" style="cursor:pointer">
+
+                Configuración del Sistema
+
+
+
+            </button>
+        </div>
+
+    </div>
+    <br>
+    <br>
+    <div class="row">
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-10">
+            <button type="button" class="btn btn-success btn-lg w-100" id="btn_03" style="cursor:pointer">
+
+                Dash Board de Gestión
+
+
+
+            </button>
+        </div>
+
+    </div>
+
+
+
+    <script id="erasableselfunadm">
+
+
+
+        $('#header_jasa').empty().load("./htmls/header_01.html", function () {
+
+
+            appModulo = 'Selección de áreas';
+            cargaTitulo();
+
+
+            if (window.matchMedia("(max-width: 768px)").matches) {
+                // The viewport is less than 768 pixels wide
+                $("*[class^='col']").each(function (index, element) {
+                    // element == this
+
+                    $(this).addClass("respo1")
+                    $(this).addClass("respo1")
+                });
+
+            }
+
+            $('#btn_volver').click(function (event) {
+                event.stopPropagation();
+                $('#btn_volver').unbind("click");
+                $('#btn_home').unbind("click");
+                $("#container_jasa").empty();
+                $('#container_jasa').load('login00.html');
+            });
+            $('#btn_home').click(function (event) {
+                event.stopPropagation();
+                $('#btn_volver').unbind("click");
+                $('#btn_home').unbind("click");
+                $("#container_jasa").empty();
+                $('#container_jasa').load('login00.html');
+            });
+            $('#btn_salir').click(function (event) {
+                event.stopPropagation();
+                $('#btn_volver').unbind("click");
+                $('#btn_home').unbind("click");
+                $("#container_jasa").empty();
+                $('#container_jasa').load('login00.html');
+            });
+        });
+        $('#btn_01').click(function () {
+            if (usuario.accesos[0] == 'S' || usuario.accesos[0] == 'R') {
+
+
+                datospgm = {
+                    Titulo: "Gestionar Contratos",
+                    IdTipo: usuario.accesos[0],
+                    Mode: usuario.accesos[0]
+                };
+                localStorage.setItem("datospgm", window.btoa(JSON.stringify(datospgm)))
+                $('#container_jasa').empty().load('listacontratos.html');
+            } else {
+                $("#acceso_text1").text('Ud. no tiene acceso a esta función.')
+                $('#modal_acceso').modal('show')
+            }
+
+        });
+
+
+
+        $('#btn_02').click(function () {
+
+
+            if (usuario.accesos[1] == 'S' || usuario.accesos[2] == 'R') {
+                $('#container_jasa').empty().load('selfunfun.html');
+            } else {
+                $("#acceso_text1").text('Ud. no tiene acceso a esta función.')
+                $('#modal_acceso').modal('show')
+            }
+        });
+        // document.getElementById('erasableselfunadm').innerHTML = "";
+
+        $('#btn_03').click(function () {
+            if (usuario.accesos[0] == 'S' || usuario.accesos[0] == 'R') {
+
+
+                datospgm = {
+                    Titulo: "Dash Board de Gestión",
+                    IdTipo: usuario.accesos[0],
+                    Mode: usuario.accesos[0]
+                };
+                localStorage.setItem("datospgm", window.btoa(JSON.stringify(datospgm)))
+                $('#container_jasa').empty().load('dashboard.html');
+            } else {
+                $("#acceso_text1").text('Ud. no tiene acceso a esta función.')
+                $('#modal_acceso').modal('show')
+            }
+
+        });
+    </script>
+
+</html>

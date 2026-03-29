@@ -97,8 +97,8 @@ export default function PlanesPage() {
                 {/* Hero Section - Editorial Aesthetic */}
                 <section className="text-center mb-48 planes-header">
                     <span className="text-base font-black uppercase tracking-[0.4em] text-white/50 block mb-12">Protocolos de Dignidad Suprema</span>
-                    <h1 className="font-serif text-6xl md:text-9xl mb-12 italic leading-[0.85] tracking-tighter">Nuestros <span className="text-white/40">Planes</span></h1>
-                    <p className="text-white/40 max-w-3xl mx-auto text-2xl font-light leading-relaxed italic border-x border-white/5 px-12">
+                    <h1 className="font-serif text-6xl md:text-9xl mb-12 italic leading-[0.85] tracking-tighter ceo-title-1">Nuestros <span translate="no" className="text-white/40 notranslate">Planes</span></h1>
+                    <p className="text-white/40 max-w-3xl mx-auto text-2xl font-light leading-relaxed italic border-x border-white/5 px-12 ceo-text-main">
                         "Cada vida es una obra maestra que merece ser honrada con la mayor solemnidad y excelencia posible."
                     </p>
                 </section>
@@ -209,8 +209,8 @@ export default function PlanesPage() {
 
                     <div className="relative z-10 max-w-4xl mx-auto">
                         <span className="material-symbols-outlined text-6xl mb-12 text-black/20">verified_user</span>
-                        <h3 className="font-serif text-6xl md:text-8xl mb-12 italic leading-[0.9] tracking-tighter">Asistencia las <span className="text-black/30">24 Horas</span></h3>
-                        <p className="text-black/50 text-2xl mb-24 max-w-2xl mx-auto font-light leading-relaxed italic border-l border-black/10 pl-10 text-left">
+                        <h3 className="font-serif text-6xl md:text-8xl mb-12 italic leading-[0.9] tracking-tighter ceo-title-2">Asistencia las <span className="text-black/30">24 Horas</span></h3>
+                        <p className="text-black/50 text-2xl mb-24 max-w-2xl mx-auto font-light leading-relaxed italic border-l border-black/10 pl-10 text-left ceo-text-desc">
                             "Nuestros directores de protocolo están listos para guiarle con la máxima distinción y empatía en cada paso del camino."
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-10">

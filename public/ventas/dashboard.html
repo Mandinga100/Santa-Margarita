@@ -1,0 +1,545 @@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sta Margarita</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="description" content="Descripcion de la aplicacion">
+    <meta name="keywords" content="Palabras claves para busqueda">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1">
+    <!-- Boostrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- JQuery-->
+
+    <script src="dist/jquery.min.js"></script>
+
+    <!-- Data Tablees -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.1/af-2.5.1/b-2.3.3/b-colvis-2.3.3/b-html5-2.3.3/b-print-2.3.3/cr-1.6.1/date-1.2.0/fc-4.2.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rg-1.3.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sp-2.1.0/sl-1.5.0/datatables.min.css" />
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.13.1/af-2.5.1/b-2.3.3/b-colvis-2.3.3/b-html5-2.3.3/b-print-2.3.3/cr-1.6.1/date-1.2.0/fc-4.2.1/fh-3.3.1/kt-2.8.0/r-2.4.0/rg-1.3.0/rr-1.3.1/sc-2.0.7/sb-1.4.0/sp-2.1.0/sl-1.5.0/datatables.min.js"></script>
+
+
+    <!-- Excel -->
+
+
+
+
+    <!-- Select 2 -->
+    <link href="css/select2.css" rel="stylesheet" />
+    <script src="js/select2.full.js"></script>
+    <!-- Propios-->
+
+    <!-- <script src="js/jasautils.js"></script> -->
+    <link rel="stylesheet" href="css/jasacss.css">
+
+
+
+
+
+    <!-- Otros-->
+    <script src="dist/purify.js"></script>
+
+
+    <script src="js/easy-number-separator.js"></script>
+
+
+
+</head>
+
+
+<div class="row">
+    <div class="col_02"></div>
+    <label for="year">Eliga el año :</label>
+    <select id="act_year" name="selectyear">
+        <option value="2023">2023</option>
+        <option value="2024">2024</option>
+        <option value="2025">2025</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+        <option value="2031">2031</option>
+        <option value="2032">2032</option>
+        <option value="2033">2033</option>
+        <option value="2034">2034</option>
+        <option value="2035">2035</option>
+    </select>
+</div>
+
+
+<button role="button" onclick="reload()">Reload</button>
+
+</div>
+<br>
+<div class="content-dash">
+    <div class="cont-dash-graph">
+        <div id="grafico-01" class="grafico-01">
+        </div>
+    </div>
+    <div class="cont-dash-graph">
+        <div id="grafico-02" class="grafico-02">
+        </div>
+    </div>
+    <div class="cont-dash-graph">
+        <div id="grafico-03" class="grafico-03">
+        </div>
+    </div>
+    <div class="cont-dash-graph">
+        <div id="grafico-04" class="grafico-04">
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+<script>
+    if (localStorage.getItem("usuario") != null) {
+        usuario = JSON.parse(window.atob(localStorage.getItem("usuario")));
+    }
+    else {
+        confirm("No es posible ejecutar esta aplicación sin autentificacion")
+        close();
+    }
+
+    year = document.getElementById("act_year")
+    year.value = new Date().getFullYear();
+    year.addEventListener("change", (event) => {
+        cargaDash()
+    }
+    );
+    cargaDash()
+    appModulo = 'Estado del Negocio';
+    //cargaTitulo();
+
+
+    function cargaDash() {
+        console.log("en carga dash")
+        datos = {
+            accion: "get_graphs",
+            year: year.value
+        }
+
+        $.ajax(
+            {
+                type: "POST",
+                url: "php/crud_dash.php",
+                data: JSON.stringify(datos),
+                dataType: "JSON",
+                async: false,
+
+                success: function (dataRet) {
+                    dat = dataRet;
+
+                    s11 = []
+                    s12 = []
+                    dat.datos1.forEach((item) => {
+                        s11.push(Number(item.montoact))
+                        s12.push(Number(item.montopre))
+
+                    });
+                    console.log(s11);
+                    console.log(s12);
+                    setTimeout(desplegarGrafico1(s11, s12), 6000);
+
+                 
+                }
+            });
+
+
+        // s21 = []
+        // s22 = []
+
+        // dat.datos2.forEach((item) => {
+        //     s21.push(Number(item.qtyact))
+        //     s22.push(Number(item.qtypre))
+
+        // });
+        // desplegarGrafico2(s21, s22)
+
+
+
+
+        // desplegarGrafico3(s1, s2)
+        // desplegarGrafico4(s1, s2)
+    }
+    function desplegarGrafico1(s1, s2) {
+
+        var charts = document.getElementById('grafico-01');
+
+        var options = {
+            series: [{
+                name: 'ANTERIOR',
+                data: s12
+            }, {
+                name: 'ACTUAL',
+                data: s11
+            }],
+            chart: {
+                height: 350,
+                type: 'bar',
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 0,
+                    dataLabels: {
+                        position: 'top', // top, center, bottom
+                    },
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                formatter: function (val) {
+                    return val + "";
+                },
+                offsetY: -20,
+                style: {
+                    fontSize: '12px',
+                    colors: ["#304758"]
+                }
+            },
+
+            xaxis: {
+                categories: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                position: 'bottom',
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+                crosshairs: {
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            colorFrom: '#D8E3F0',
+                            colorTo: '#BED1E6',
+                            stops: [0, 100],
+                            opacityFrom: 0.4,
+                            opacityTo: 0.5,
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                }
+            },
+            yaxis: {
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    show: true,
+                    formatter: function (val) {
+                        return val + "";
+                    }
+                }
+
+            },
+            title: {
+                text: 'VENTAS ANUALES POR MES (MM) 💰',
+                floating: true,
+                offsetY: 0,
+                align: 'center',
+                style: {
+                    color: '#444'
+                }
+            }
+        };
+
+        var chart = new ApexCharts(charts, options);
+        chart.render();
+    }
+
+    function desplegarGrafico2(s1, s2) {
+
+        var charts = document.getElementById('grafico-02');
+
+        var options = {
+            series: [{
+                name: 'ANTERIOR',
+                data: s2
+            }, {
+                name: 'ACTUAL',
+                data: s1
+            }],
+            chart: {
+                height: 350,
+                type: 'bar',
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 0,
+                    dataLabels: {
+                        position: 'top', // top, center, bottom
+                    },
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                formatter: function (val) {
+                    return val + "";
+                },
+                offsetY: -20,
+                style: {
+                    fontSize: '12px',
+                    colors: ["#304758"]
+                }
+            },
+
+            xaxis: {
+                categories: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                position: 'bottom',
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+                crosshairs: {
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            colorFrom: '#D8E3F0',
+                            colorTo: '#BED1E6',
+                            stops: [0, 100],
+                            opacityFrom: 0.4,
+                            opacityTo: 0.5,
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                }
+            },
+            yaxis: {
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    show: true,
+                    formatter: function (val) {
+                        return val + "";
+                    }
+                }
+
+            },
+            title: {
+                text: 'SERVICIOs POR MES (CU) ⛪',
+                floating: true,
+                offsetY: 0,
+                align: 'center',
+                style: {
+                    color: '#444'
+                }
+            }
+        };
+
+        var chart = new ApexCharts(charts, options);
+        chart.render();
+    }
+
+    function desplegarGrafico3(s1, s2) {
+
+        var charts = document.getElementById('grafico-03');
+
+        var options = {
+            series: [{
+                name: 'ANTERIOR',
+                data: s2
+            }, {
+                name: 'ACTUAL',
+                data: s1
+            }],
+            chart: {
+                height: 350,
+                type: 'bar',
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 0,
+                    dataLabels: {
+                        position: 'top', // top, center, bottom
+                    },
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                formatter: function (val) {
+                    return val + "";
+                },
+                offsetY: -20,
+                style: {
+                    fontSize: '12px',
+                    colors: ["#304758"]
+                }
+            },
+
+            xaxis: {
+                categories: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                position: 'top',
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+                crosshairs: {
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            colorFrom: '#D8E3F0',
+                            colorTo: '#BED1E6',
+                            stops: [0, 100],
+                            opacityFrom: 0.4,
+                            opacityTo: 0.5,
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                }
+            },
+            yaxis: {
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    show: true,
+                    formatter: function (val) {
+                        return val + "";
+                    }
+                }
+
+            },
+            title: {
+                text: 'VENTAS ANUALES POR MES (MM)✟',
+                floating: true,
+                offsetY: 0,
+                align: 'center',
+                style: {
+                    color: '#444'
+                }
+            }
+        };
+
+        var chart = new ApexCharts(charts, options);
+        chart.render();
+    }
+
+    function desplegarGrafico4(s2) {
+
+        var charts = document.getElementById('grafico-04');
+
+        var options = {
+            series: [{
+                name: 'ANTERIOR',
+                data: s2
+            }, {
+                name: 'ACTUAL',
+                data: s1
+            }],
+            chart: {
+                height: 350,
+                type: 'bar',
+            },
+            plotOptions: {
+                bar: {
+                    borderRadius: 0,
+                    dataLabels: {
+                        position: 'top', // top, center, bottom
+                    },
+                }
+            },
+            dataLabels: {
+                enabled: true,
+                formatter: function (val) {
+                    return val + "";
+                },
+                offsetY: -20,
+                style: {
+                    fontSize: '12px',
+                    colors: ["#304758"]
+                }
+            },
+
+            xaxis: {
+                categories: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
+                position: 'top',
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false
+                },
+                crosshairs: {
+                    fill: {
+                        type: 'gradient',
+                        gradient: {
+                            colorFrom: '#D8E3F0',
+                            colorTo: '#BED1E6',
+                            stops: [0, 100],
+                            opacityFrom: 0.4,
+                            opacityTo: 0.5,
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                }
+            },
+            yaxis: {
+                axisBorder: {
+                    show: false
+                },
+                axisTicks: {
+                    show: false,
+                },
+                labels: {
+                    show: true,
+                    formatter: function (val) {
+                        return val + "";
+                    }
+                }
+
+            },
+            title: {
+                text: 'VENTAS ANUALES POR MES (MM)',
+                floating: true,
+                offsetY: 0,
+                align: 'center',
+                style: {
+                    color: '#444'
+                }
+            }
+        };
+
+        var chart = new ApexCharts(charts, options);
+        chart.render();
+    }
+    function reload() {
+        window.open('dashboard.html', "_self")
+    }
+
+</script>

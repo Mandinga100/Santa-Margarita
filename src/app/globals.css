@@ -1,6 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 @layer base {
   :root {
@@ -14,6 +14,34 @@
     --max-width: 1440px;
     --header-height: 85px;
     --base-padding: 2rem;
+  }
+
+  /* --- BLOQUE GLOBAL INMUTABLE DE TIPOGRAFÍA (ORDEN CEO) --- */
+  .ceo-title-1 {
+    font-family: var(--font-playfair), serif !important;
+    font-size: clamp(2.5rem, 5vw + 1rem, 5.5rem) !important;
+    font-weight: 400 !important;
+    line-height: 1.1 !important;
+    letter-spacing: -0.01em !important;
+  }
+  .ceo-title-2 {
+    font-family: var(--font-playfair), serif !important;
+    font-size: clamp(2rem, 4vw + 1rem, 4.5rem) !important;
+    font-weight: 400 !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.01em !important;
+  }
+  .ceo-text-main {
+    font-family: var(--font-inter), sans-serif !important;
+    font-size: clamp(1rem, 1.5vw + 0.5rem, 1.25rem) !important;
+    font-weight: 300 !important;
+    line-height: 1.6 !important;
+  }
+  .ceo-text-desc {
+    font-family: var(--font-inter), sans-serif !important;
+    font-size: clamp(0.875rem, 1vw + 0.5rem, 1.125rem) !important;
+    font-weight: 300 !important;
+    line-height: 1.6 !important;
   }
 }
 

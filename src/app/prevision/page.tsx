@@ -145,10 +145,10 @@ export default function PrevisionPage() {
                     <div className="glass-badge mb-12">
                         <span className="badge-text block">Protocolo de Previsión Familiar</span>
                     </div>
-                    <h1 className="font-serif text-white text-6xl md:text-9xl mb-12 italic leading-[0.85] tracking-tighter fade-up-header">
+                    <h1 className="font-serif text-white text-6xl md:text-9xl mb-12 italic leading-[0.85] tracking-tighter fade-up-header ceo-title-1">
                         La Paz de <br /> <span className="text-white/40">Saber Decidir</span>
                     </h1>
-                    <p className="text-white/40 text-xl md:text-2xl font-light tracking-wide italic max-w-2xl mx-auto">
+                    <p className="text-white/40 text-xl md:text-2xl font-light tracking-wide italic max-w-2xl mx-auto ceo-text-main">
                         "Un legado se construye con amor, pero se protege con previsión."
                     </p>
                 </div>
@@ -188,9 +188,9 @@ export default function PrevisionPage() {
                     <header className="mb-32 text-center lg:text-left flex flex-col lg:flex-row items-end justify-between gap-12">
                         <div className="max-w-2xl">
                             <span className="text-sm md:text-base font-black uppercase tracking-widest text-white/40 block mb-6">Metodología</span>
-                            <h2 className="font-serif text-5xl md:text-7xl italic leading-none text-white fade-up-header">Protocolo de <br /> Activación Vitalicia</h2>
+                            <h2 className="font-serif text-5xl md:text-7xl italic leading-none text-white fade-up-header ceo-title-2">Protocolo de <br /> Activación Vitalicia</h2>
                         </div>
-                        <p className="text-white/30 text-xl font-light italic max-w-sm lg:text-right">
+                        <p className="text-white/30 text-xl font-light italic max-w-sm lg:text-right ceo-text-desc">
                             Un proceso diseñado para eliminar cualquier fricción en momentos complejos.
                         </p>
                     </header>
@@ -218,8 +218,8 @@ export default function PrevisionPage() {
                 <div className="bg-white p-24 md:p-40 rounded-[5rem] relative overflow-hidden group shadow-3xl">
                     <div className="relative z-10">
                         <span className="material-symbols-outlined text-6xl text-black/10 mb-12 block">verified_user</span>
-                        <h2 className="font-serif text-6xl md:text-8xl mb-12 italic text-black leading-none">Inicie su Blindaje.</h2>
-                        <p className="text-black/40 text-2xl mb-20 max-w-2xl mx-auto font-light leading-relaxed italic">
+                        <h2 className="font-serif text-6xl md:text-8xl mb-12 italic text-black leading-none ceo-title-2">Inicie su Blindaje.</h2>
+                        <p className="text-black/40 text-2xl mb-20 max-w-2xl mx-auto font-light leading-relaxed italic ceo-text-desc">
                             "Decidir hoy no es pensar en el final, es asegurar que el amor sea lo único que importe mañana."
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-10">

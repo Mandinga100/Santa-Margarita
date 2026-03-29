@@ -1,0 +1,89 @@
+<html>
+
+<body>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="row">
+        
+        <div class="col-sm-1"></div>
+       
+        <div class="col-sm-10">
+            <button  type="button" class="btn btn-success btn-lg w-100" id="btn_01" style="cursor:pointer">
+                Gestión de Configuraciones
+                           
+            </button>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+              
+        <div class="col-sm-1"></div>
+       
+        <div class="col-sm-10">
+            <button   type="button" class="btn btn-success btn-lg w-100" id="btn_02" style="cursor:pointer">
+
+                Gestion de Usuarios
+               
+              
+
+            </button>
+        </div>
+
+    </div>
+   
+    <br>
+ 
+</body>
+
+
+<script id="erasableselfunadm">
+    $('#header_jasa').empty().load("./htmls/header_01.html", function () {
+
+
+        appModulo = 'Selección Funcional';
+        cargaTitulo();
+
+        if (window.matchMedia("(max-width: 768px)").matches) {
+            // The viewport is less than 768 pixels wide
+            $("*[class^='col']").each(function (index, element) {
+                // element == this
+
+                $(this).addClass("respo1")
+                $(this).addClass("respo1")
+            });
+
+        }
+
+        $('#btn_volver').click(function (event) {
+            event.stopPropagation();
+            $('#btn_volver').unbind("click");
+            $('#btn_home').unbind("click");
+            $("#container_jasa").empty();
+            $('#container_jasa').load('selfungral.html');
+        });
+        $('#btn_home').click(function (event) {
+            event.stopPropagation();
+            $('#btn_volver').unbind("click");
+            $('#btn_home').unbind("click");
+            $("#container_jasa").empty();
+            $('#container_jasa').load('selfungral.html');
+        });
+    });
+
+    $('#btn_01').click(function () {
+        $('#container_jasa').empty().load('admreferencias.html');
+    });
+
+    $('#btn_02').click(function () {
+        $('#container_jasa').empty().load('admusua.html');
+    });
+   
+   
+   
+    document.getElementById('erasableselfunadm').innerHTML = "";
+</script>
+
+</html>

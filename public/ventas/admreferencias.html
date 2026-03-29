@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<div class="container-fluid">
+    <br>
+    <div class="row">
+        <div class="col_15">&ensp;Seleccione entidad:</div>
+        <div class="col_30">
+            <select class="jasa-txt-01" id="IdEntidadCab" name="IdEntidadCab" onchange="cargaSelecciones()">
+
+            </select>
+        </div>
+
+        <div class="col_45"></div>
+        <div class="col_05">
+            <button type="button" class="btn btn_jasa_01" id="btn_exportar" style="float: right"><i
+                    class="fa fa-file-excel-o"></i></button>
+        </div>
+        <div class="col_05">
+            <button type="button" class="btn btn_jasa_01" id="btn_nuevo" style="float: right"><i
+                    class="fa fa-user"></i>+</button>
+        </div>
+    </div>
+
+    <!--Modal -->
+    <div class="modal fade" id="modal_referencia">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Datos de la referencia</h4>
+                    <button type="button" class="btn-close" aria-label="Close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="jasa-big-box">
+                        <form class="form-horizontal" id="form_referencia" method="GET">
+                            <input type="number" id="IdEmpresa" name="IdEmpresa" hidden />
+                            <input type="number" id="IdEntidad" name="IdEntidad" hidden />
+                            <input type="number" id="IdReferencia" name="IdReferencia" hidden />
+                            <input type="number" id="IdUsuario" name="IdUsuario" hidden />
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Codigo">Codigo</label>
+                                        <div>
+                                            <input type="text" maxlength="20" class="entrada-valida jasa-txt-01"
+                                                id="Codigo" autofocus name="Codigo" placeholder="Código">
+                                            <div>
+                                                <small id="Codigo_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Secuencia">Secuencia</label>
+                                        <div>
+                                            <input type="number" class="entrada-valida jasa-txt-01" id="Secuencia"
+                                                autofocus name="Secuencia" size="2" step='1' value='0' min="0"
+                                                max="100">
+                                            <div>
+                                                <small id="Secuencia_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Nombre">Nombre
+                                        </label>
+                                        <div>
+                                            <input type="text" maxlength="50" id="Nombre" class="jasa-txt-01"
+                                                name="Nombre" placeholder="Nombre del tipo" />
+
+                                            <div>
+                                                <small id="Nombre_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Text1">Literal 1</label>
+                                        <div>
+                                            <input type="text" maxlength="40" class="entrada-valida jasa-txt-01 mayus"
+                                                id="Text1" autofocus name="Text1" placeholder="Texto ...">
+                                            <div>
+                                                <small id="Text1_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Text2">Literal 2</label>
+                                        <div>
+                                            <input type="text" maxlength="40" class="entrada-valida jasa-txt-01 mayus"
+                                                id="Text2" autofocus name="Text2" placeholder="Texto">
+                                            <div>
+                                                <small id="Text2_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Text2">Literal 3</label>
+                                        <div>
+                                            <input type="text" maxlength="40" class="entrada-valida jasa-txt-01 mayus"
+                                                id="Text3" autofocus name="Text3" placeholder="Texto">
+                                            <div>
+                                                <small id="Text3_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Text2">Literal 4</label>
+                                        <div>
+                                            <input type="text" maxlength="40" class="entrada-valida jasa-txt-01 mayus"
+                                                id="Text4" autofocus name="Text4" placeholder="Texto">
+                                            <div>
+                                                <small id="Text43_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Correlativo">Correlativo</label>
+                                        <div>
+                                            <input type="number" maxlength="10" class="entrada-valida jasa-txt-01 mayus"
+                                                id="Correlativo" autofocus name="Correlativo" placeholder="Correlativo">
+                                            <div>
+                                                <small id="Correlativo_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Num1">Numero 1</label>
+                                        <div>
+                                            <input type="number" class="entrada-valida jasa-txt-01" id="Num1" autofocus
+                                                name="Num1" size="10" step='1' value='0'>
+                                            <div>
+                                                <small id=" Num1_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Num2">Numero 2</label>
+                                        <div>
+                                            <input type="number" class="entrada-valida jasa-txt-01" id="Num2" autofocus
+                                                name="Num2" size="10" step='1' value='0'>
+                                            <div>
+                                                <small id="Num2_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Num2">Numero 3</label>
+                                        <div>
+                                            <input type="number" class="entrada-valida jasa-txt-01" id="Num3" autofocus
+                                                name="Num3" size="10" step='1' value='0'>
+                                            <div>
+                                                <small id="Num3_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Num2">Numero 4</label>
+                                        <div>
+                                            <input type="number" class="entrada-valida jasa-txt-01" id="Num4" autofocus
+                                                name="Num4" size="10" step='1' value='0'>
+                                            <div>
+                                                <small id="Num4_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Dec1">Decimal 1</label>
+                                        <div>
+                                            <input type="number" class="entrada-valida jasa-txt-01" id="Dec1" autofocus
+                                                name="Dec1" size="2" step='1' value='0'>
+                                            <div>
+                                                <small id="Dec1_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Dec2">Decimal 2</label>
+                                        <div>
+                                            <input type="number" class="entrada-valida jasa-txt-01" id="Dec2" autofocus
+                                                name="Dec2" size="2" step='1'>
+                                            <div>
+                                                <small id="Dec2_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Dec2">Fecha 1</label>
+                                        <div>
+                                            <input type="date" class="entrada-valida jasa-txt-01" id="Date1" autofocus
+                                                name="Date1" size="2" step='1'>
+                                            <div>
+                                                <small id="Date1_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Dec2">Fecha 2</label>
+                                        <div>
+                                            <input type="date" class="entrada-valida jasa-txt-01" id="Date2" autofocus
+                                                name="Date2" size="2" step='1'>
+                                            <div>
+                                                <small id="Date2_err" class="campo-valido"></small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><br>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="control-label" for="Estado">Estado
+                                        </label>
+                                        <div>
+                                            <select class="jasa-txt-01" id="Estado" name="Estado">
+                                                <option value="Activo" selected>Activo</option>
+                                                <option value="Bloqueado">Bloqueado</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label disabled class="control-label" for="Fecha">Fecha</label>
+                                        <div>
+                                            <input type="date" class="jasa-txt-01" id="Fecha" name="Fecha"
+                                                placeholder="dd/mm/aaaa" readonly />
+                                            <small id="date-err" class="campo-valido">
+                                            </small>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-sm-10">
+
+                                    <div class="form-group">
+
+                                        <button type="button" class="btn btn-outline-primary" id="btn_grabar"
+                                            style='float: left'>
+                                            <i class="fa fa-save"> </i> Guardar los
+                                            cambios</button>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-2">
+                                    <a type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
+                                        id="btn_cerrar" style='float: right;'>Cerrar</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box-header">
+    <div class="table-responsive">
+        <table id="tabla_referencias" class="table table-striped  table-bodered table-hover table-jasa" width="100%">
+            <thead>
+                <tr>
+                    <th>Acciones</th>
+                    <th>Referencia</th>
+                    <th>Código</th>
+                    <th>Nombre</th>
+                    <th>Secuencia</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                    <th>Gestor</th>
+
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    datos = "";
+    IdRef = 0;
+    IdEntidad = 0;
+    usuario = [];
+
+
+    autoriza = 'F'
+    modal_accion = ''
+    html_home = "selfunadm.html";
+    html_volver = "selfunfun.html";
+    datos = [];
+
+    table = $('#tabla_referencias').DataTable(
+
+        {
+            "scrollY": "310px",
+            "scrollCollapse": true,
+            "language": spanish,
+            "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+            columnDefs: [
+                { width: '15%', targets: 0, className: "text-left" },
+                { width: '20%', targets: 1, className: "text-left" },
+                { width: '20%', targets: 2, className: "text-left" },
+                { width: '10%', targets: 3, className: "text-left" },
+                { width: '10%', targets: 4, className: "text-left" },
+                { width: '10%', targets: 5, className: "text-left" },
+                { width: '15%', targets: 6, className: "text-left" },
+
+            ]
+        }
+    );
+
+
+
+    appModulo = 'Gestión de Selecciones';
+
+    if (localStorage.getItem("usuario") != null) {
+        usuario = JSON.parse(window.atob(localStorage.getItem("usuario")));
+    }
+    else {
+        confirm("No es posible ejecutar esta aplicación sin autentificacion")
+        close();
+    }
+
+    setTimeout(() => {
+        $("#btn_nuevo").hide()
+        $("#btn_exportar").hide()
+        $('#btn_volver').click(function (event) {
+            $('#jasa_container').empty().load(html_volver);
+        });
+        $('#btn_home').click(function (event) {
+            $('#jasa_container').empty().load(html_home);
+        });
+    }, 100);
+    cargaEntidades("IdEntidadCab")
+
+    $("#IdEmpresa").val(usuario.IdEmpresa);
+    $("#IdUsuario").val(usuario.IdUsuario);
+
+
+
+
+    cargaTitulo();
+
+    // BOTONES VARIOS
+    function Volver() {
+
+        $('#jasa_container').empty().load(html_volver);
+    }
+    function Home() {
+
+        $('#jasa_container').empty().load(html_home);
+    };
+    // CAMPOS A VALIDAR CUANDO CAMBIAN 
+
+    $('#Seleccion').change(function () { validaCampoBlanco('Seleccion') });
+    $('#Descripcion').change(function () { validaCampoBlanco('Descripcion') });
+
+    cargaSelecciones();
+
+
+
+
+    // BOTONES VARIOS
+
+
+    $('#btn_exportar').click(function () {
+        console.log('en exportar');
+        nombrehoja = "Selecciones_" + $("#IdEntidadCab").val() + "_" + hoydma();
+        tableToExcel('tabla_referencias', nombrehoja, 1)
+    });
+
+    $('#btn_nuevo').click(function () {
+        resetErrores('form_referencia');
+        iniciaFormulario('form_referencia');
+        //   cargaSeleccionesSelectPadre(usuario.IdEmpresa, 'IdSelPadre', $('#IdEntidadCab').find(":selected").text())
+
+        accionActualizacion = "insert";
+        $("#IdEmpresa").val(usuario.IdEmpresa);
+        $("#IdEntidad").val($("#IdEntidadCab").val());
+        $("#Estado").val("Activo");
+        $("#Fecha").val(hoy());
+        $("#IdUsuario").val(usuario.IdUsuario);
+        $('#modal_referencia').modal('show')
+    });
+    // INSERTA O ACTUALIZA REGISTRO
+
+    $('#btn_grabar').click(function () {
+        $("#Codigo").val(zanitize($("#Codigo").val()));
+        $("#Nombre").val(zanitize($("#Nombre").val()));
+        $("#IdUsuario").val(usuario.IdUsuario);
+        let myform = document.getElementById("form_referencia");
+        let fd = new FormData(myform);
+
+        fd.append('Accion', accionActualizacion);
+
+        if (validarForm()) {
+            var url = "php/crud_referencias.php";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: fd,
+                async: false,
+                processData: false,
+                contentType: false,
+                dataType: "JSON",
+                success: function (data) {
+                    $('#info_text1').text(data.mensaje)
+                    cargaSelecciones();
+                    cargaTablaSelecciones();
+                },
+                error: function () {
+                    $('#info_text1').text(data.mensaje)
+                }
+            });
+            $('#modal_referencia').modal('hide');
+            $('#modal_info').modal('show');
+
+        }
+    });
+    // VALIDACION DEL form_referencia
+    function validarForm() {
+        if (!validaCampoBlanco('Codigo')) { return false }
+        if (!validaCampoBlanco('Nombre')) { return false }
+        if (consultaExiste('Codigo')) { return false }
+
+        return true;
+    };
+    // MANEJO RESPUESTA MODAL
+
+
+    function cargaSelecciones() {
+
+
+        if ($("#IdEntidadCab").val() != 0) {
+
+            $("#btn_nuevo").show()
+            $("#btn_exportar").hide()
+            $.ajax({
+                type: "POST",
+                url: 'php/crud_referencias.php',
+
+                data: {
+
+                    'IdEntidad': $("#IdEntidadCab").val(),
+                    'IdEmpresa': usuario.IdEmpresa,
+                    'Accion': "list"
+                },
+                dataType: "JSON",
+                async: false,
+                cache: false,
+                success: function (data) {
+                    $('#tabla_referencias').DataTable().clear().draw();
+                    parsedData = data.data;
+                    $.each(parsedData, function (key, item) {
+                        $('#tabla_referencias').dataTable().fnAddData([
+                            item.Acciones,
+                            item.Entidad,
+                            item.Codigo,
+                            item.Nombre,
+                            item.Secuencia,
+                            item.Estado,
+                            item.Fecha,
+                            item.Usuario
+                        ]);
+                    });
+                },
+            });
+        } else {
+            $("#btn_nuevo").hide()
+            $("#btn_exportar").hide()
+        }
+    }
+
+
+    function consultaExiste(codigo) {
+        swcode = false
+        if (accionActualizacion == 'insert') {
+            $.ajax(
+                {
+                    type: "POST",
+                    url: "php/crud_referencias.php",
+                    data: { IdEmpresa: usuario.IdEmpresa, IdEntidad: $("#IdEntidadCab").val(), Code: $("#" + codigo).val(), Accion: 'getcode' },
+                    dataType: "JSON",
+                    async: false,
+
+                    success: function (dataRet) {
+                        if (dataRet.resultado == 0) {
+                            $("#" + codigo).removeClass('entrada-valida').addClass('entrada-invalida')
+                            $("#" + codigo + "_err").removeClass('campo-valido').addClass('campo-invalido').text("Código ya existe")
+                            swcode = true;
+                        } else {
+                            swcode = false;
+                        }
+                    }
+                });
+        }
+        return swcode;
+    }
+
+    function Modificar(IdRef) {
+        resetErrores('form_referencia')
+        iniciaFormulario('form_referencia');
+        //   cargaSeleccionesSelectPadre(usuario.IdEmpresa, 'IdSelPadre', $('#IdEntidadCab').find(":selected").text())
+
+        accionActualizacion = "update";
+        $.ajax(
+            {
+                type: "POST",
+                url: "php/crud_referencias.php",
+                data: { IdReferencia: IdRef, Accion: 'get' },
+                dataType: "JSON",
+                async: true,
+
+                success: function (dataRet) {
+                    d = dataRet.data;
+                    $("form#form_referencia input , form#form_referencia select").each(function () {
+                        $(this).val(d[this.name])
+                    });
+                    $("form#form_referencia input[type=number]").each(function () {
+                        $(this).val(Number($(this).val()).toLocaleString('es-ES'))
+                    });
+                    $('#modal_referencia').modal('show')
+                }
+            });
+
+
+    };
+    function Eliminar(Id) {
+        modal_accion = 'Eliminar'
+        IdRef = Id;
+        deplegarModalConsulta("¿Desea eliminar Selección  ?", "Sí", "No")
+
+    };
+    // Manejo respuesta modal
+
+    function modalContinuar() {
+
+        modalCancelar();
+        if (modal_accion == 'Eliminar') {
+            var url = "php/crud_referencias.php";
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: { IdReferencia: IdRef, Accion: 'delete' },
+                dataType: "JSON",
+                async: false,
+                success: function (dataRet) {
+                    $('#info_text1').text(dataRet.mensaje)
+                    cargaSelecciones()
+                },
+                error: function () {
+                    $('#info_text1').text(dataRet.mensaje)
+                    cargaSelecciones()
+                }
+            });
+            cargaTablaSelecciones();
+            $('#modal_info').modal('show');
+
+        }
+        modal_accion = "";
+    };
+
+
+
+</script>
+
+</html>
