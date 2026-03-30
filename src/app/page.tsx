@@ -678,7 +678,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
             {[
-              { icon: 'shrine', title: 'Dignidad', desc: 'Tratamos cada existencia con el honor supremo que merece, con solemnidad absoluta en cada detalle.' },
+              { icon: 'account_balance', title: 'Dignidad', desc: 'Tratamos cada existencia con el honor supremo que merece, con solemnidad absoluta en cada detalle.' },
               { icon: 'favorite', title: 'Respeto', desc: 'Entendemos la profundidad del duelo humano y actuamos con la máxima discreción y empatía.' },
               { icon: 'auto_awesome', title: 'Excelencia', desc: 'Buscamos la perfección estética y operativa en cada ceremonia que coordinamos.' },
             ].map((v, i) => (

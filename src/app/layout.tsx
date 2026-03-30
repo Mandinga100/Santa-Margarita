@@ -29,6 +29,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://funerariasantamargarita.cl'),
   title: "Funeraria Santa Margarita | Servicios Funerarios Premium 24/7",
   description: "Dignidad y paz en cada despedida. Planes funerarios integrales desde $1.360.000, memoriales exclusivos y atención compasiva las 24 horas en Chile.",
   keywords: "funeraria santiago, planes funerarios chile, servicio funerario premium, memoriales digitales, funeraria 24 horas",

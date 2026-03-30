@@ -31,7 +31,7 @@ const milestones = [
 
 const valores = [
     {
-        icon: 'shrine',
+        icon: 'account_balance',
         title: 'Dignidad',
         description: 'Tratamos cada existencia con el honor supremo que merece, custodiando cada detalle con una solemnidad absoluta y constante.'
     },

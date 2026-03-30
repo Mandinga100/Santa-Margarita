@@ -1,0 +1,46 @@
+.dignity-hero {
+  display: grid;
+  grid-template-columns: 1fr minmax(auto, 420px);
+  min-height: 80vh;
+  gap: clamp(1rem, 5vw, 3rem);
+  align-items: start;
+}
+.urnas-parallax {
+  position: sticky; 
+  top: 10vh;
+  height: clamp(350px, 45vw, 500px);
+  border-radius: 24px;
+  box-shadow: 0 32px 64px rgba(0,0,0,0.15);
+  overflow: hidden;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+}
+
+.urnas-parallax:hover {
+  transform: scale(1.02);
+  box-shadow: 0 40px 80px rgba(184, 150, 12, 0.2);
+}
+
+.feature-item {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideUpFade {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) { 
+  .dignity-hero {
+    grid-template-columns: 1fr; 
+  }
+  .urnas-parallax {
+    position: relative;
+    top: auto;
+    width: 100%;
+    height: clamp(300px, 50vw, 400px);
+  }
+}
