@@ -46,3 +46,10 @@ next-env.d.ts
 
 # project backups
 /backup/
+
+# large media files (>100MB - GitHub limit)
+*.mp4
+*.mov
+*.avi
+*.mkv
+/video/
