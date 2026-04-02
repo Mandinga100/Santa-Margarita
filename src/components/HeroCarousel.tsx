@@ -9,16 +9,25 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import PhotoModal from './PhotoModal';
 
-const images = [
-  { src: '/imgs/planes/rauli.png', alt: 'Urna 1 Margarita' },
-  { src: '/imgs/planes/orquidea.png', alt: 'Urna 2 Margarita' }
+interface HeroImage {
+  src: string;
+  alt: string;
+}
+
+const defaultImages: HeroImage[] = [
+  { src: '/imgs/planes/rauli.png', alt: 'Urna 1 Premium' },
+  { src: '/imgs/planes/orquidea.png', alt: 'Urna 2 Premium' }
 ];
 
-export default function HeroCarousel() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedImg, setSelectedImg] = useState(images[0]);
+interface HeroCarouselProps {
+  images?: HeroImage[];
+}
 
-  const handleImageClick = (img: typeof images[0]) => {
+export default function HeroCarousel({ images = defaultImages }: HeroCarouselProps) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedImg, setSelectedImg] = useState(images[0] || defaultImages[0]);
+
+  const handleImageClick = (img: HeroImage) => {
     setSelectedImg(img);
     setModalOpen(true);
   };

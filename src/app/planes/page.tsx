@@ -8,44 +8,37 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 // Fuente verdad: planes oficiales Funeraria Santa Margarita
 const planes = [
     {
-        id: 'raul-premium',
-        nombre: 'Raúl Premium',
+        id: 'rauli',
+        nombre: 'Plan Raulí',
         categoria: 'Elite VIP',
-        precio: '$3.590.000',
+        precio: '$3.990.000',
+        url: '/planes/rauli',
         descripcion: 'Excelencia y acompañamiento absoluto.',
         destacado: true,
         icon: 'workspace_premium',
-        incluye: ['Cofre Maderas Nobles VIP', 'Sala VIP Preferencial 24h', 'Coro en Ceremonia', 'Aviso Prensa Nacional', 'Mercedes Gala'],
+        incluye: ['Urna de Raulí Ministerial', 'Sala VIP Preferencial 24h', 'Aviso de Prensa Nacional', 'Cafetería 50 personas', '2 Arreglos Florales'],
     },
     {
-        id: 'queule',
-        nombre: 'Queule / Algarrobo',
+        id: 'acacia',
+        nombre: 'Plan Acacia',
         categoria: 'Superior',
-        precio: '$2.990.000',
+        precio: '$1.990.000',
+        url: '/planes/acacia',
         descripcion: 'Atención personalizada y solemne.',
         destacado: false,
         icon: 'verified',
-        incluye: ['Cofre Roble Nacional', 'Sala Velación 24h', 'Libro de Condolencias', 'Arreglos Florales Especiales', 'Carroza de Lujo'],
+        incluye: ['Urna Acacia Distinguida', 'Sala Velación 24h', 'Libro de Condolencias', 'Arreglo Floral Especial', '50 Tarjetas Recordatorias'],
     },
     {
-        id: 'quillay',
-        nombre: 'Quillay',
-        categoria: 'Estándar',
-        precio: '$2.390.000',
+        id: 'margarita',
+        nombre: 'Plan Margarita',
+        categoria: 'Esencial',
+        precio: '$1.490.000',
+        url: '/planes/margarita',
         descripcion: 'Dignidad y respeto esencial.',
         destacado: false,
-        icon: 'star',
-        incluye: ['Cofre Madera Barnizada', 'Sala Velación 12h', 'Trámites Legales Completos', 'Carroza Estándar', 'Asesoría Familiar'],
-    },
-    {
-        id: 'azucena',
-        nombre: 'Azucena',
-        categoria: 'Esencial',
-        precio: '$1.360.000',
-        descripcion: 'Calidad al alcance de todos.',
-        destacado: false,
         icon: 'eco',
-        incluye: ['Cofre Estándar Lineal', 'Traslado Local Inmediato', 'Capilla Pública / Domicilio', 'Apoyo en Trámites Civiles'],
+        incluye: ['Urna Margarita Barnizada', 'Traslado Local Inmediato', 'Gestión Civil Completa', 'Carroza Panorámica'],
     },
 ];
 
@@ -189,13 +182,23 @@ export default function PlanesPage() {
                             </ul>
 
                             <Link
-                                href="/cotizacion"
-                                className={`w-full text-center py-8 rounded-full font-black uppercase text-base tracking-widest transition-all duration-700 shadow-2xl ${plan.destacado
+                                href={plan.url || "/cotizacion"}
+                                className={`w-full text-center py-8 rounded-full font-black uppercase text-base tracking-widest transition-all duration-700 shadow-2xl mb-4 ${plan.destacado
                                     ? 'bg-black text-white hover:bg-zinc-800 shadow-black/20'
                                     : 'bg-white text-black hover:bg-zinc-200 shadow-white/5'
                                     }`}
                             >
-                                Iniciar Proceso
+                                Ver Detalles
+                            </Link>
+
+                            <Link
+                                href="/cotizacion"
+                                className={`w-full text-center py-4 rounded-full font-black uppercase text-[10px] tracking-[0.3em] transition-all duration-700 border ${plan.destacado
+                                    ? 'border-black/10 text-black/40 hover:bg-black/5'
+                                    : 'border-white/10 text-white/40 hover:bg-white/5'
+                                    }`}
+                            >
+                                Cotizar Ahora
                             </Link>
                         </article>
                     ))}

@@ -9,6 +9,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const routes = [
         '',
         '/planes',
+        '/planes/margarita',
+        '/planes/acacia',
+        '/planes/rauli',
         '/servicios',
         '/memoriales',
         '/nosotros',
