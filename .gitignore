@@ -53,3 +53,8 @@ next-env.d.ts
 *.avi
 *.mkv
 /video/
+
+# scraper output (datos generados en runtime, no versionar)
+obituarios_eticos.json
+scraper_etico.log
+audit_hash.txt

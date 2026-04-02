@@ -30,37 +30,31 @@ Este es un **Master Prompt de Alto Nivel** diseñado para ser copiado y pegado e
 
 ---
 
-## 🛠️ 3. STACK TÉCNICO & ESTRUCTURA
-> "El proyecto está basado en:
-> - **Core**: Next.js 16 (App Router), TypeScript, Tailwind CSS 3.4.
-> - **Animations**: GSAP 3 (ScrollTrigger) y Framer Motion (Transiciones).
-> - **UX**: Lenis (Smooth Scroll) y Swiper 11 (Sliders premium).
-> - **Backend**: Firebase 12 (Auth, Firestore, Hosting).
+## 🛠️ 3. REPOSITORIO & ESTRUCTURA TÉCNICA
+> **REPOSITORIO DE REFERENCIA (Fuente de Verdad):** `https://github.com/Mandinga100/Santa-Margarita`
 > 
-> **Tu Misión**: Debes heredar las estructuras en `src/components/NavbarPremium` y `src/components/FooterPremium` para asegurar consistencia global en todas las nuevas páginas."
+> **Tu Misión Inicial (Clonación Analítica):**
+> 1. Analiza profundamente todos los archivos adjuntos y el repositorio indicado.
+> 2. Realiza un 'Clon Funcional' de la estructura actual, heredando los componentes `NavbarPremium`, `FooterPremium`, y los hooks de animación (Framer/GSAP).
+> 3. El proyecto usa: **Next.js 16 (App Router), TypeScript, Tailwind CSS 3.4 e integración con Firebase.**
 
 ---
 
-## 🛣️ 4. OBJETIVOS DE DESARROLLO (ROADMAP CRÍTICO)
-> "Continúa la construcción enfocándote en los siguientes pilares (Funcionalidad 100%):
+## 🛣️ 4. OBJETIVOS DE DESARROLLO (FUNCIONALIDAD CRÍTICA)
 > 
-> ### 🚀 A. Landings de Planes de Servicio
-> - Replica la estructura premium de `/planes/margarita` para generar las landings de:
->   - **Plan Acacia** (Intermedio).
->   - **Plan Rauli** (Premium / Familiar).
-> - Incluye heros inmersivos, grids de beneficios iconográficos y tablas comparativas de transparencia.
+> ### 🚀 A. Sección /Planes (Finalización)
+> - Termina de hacer funcionales las rutas `/planes/margarita`, `/planes/acacia` y `/planes/rauli`.
+> - **Template Maestro**: Usa `src/app/planes/margarita/page.tsx` como el estándar de diseño (Hero Carousel inmersivo, tipografía serif solemne, botones dorados).
+> - Implementa la lógica de selección y redirección al checkout.
 > 
-> ### 💳 B. Pasarela de Pago & Checkout
-> - Implementa una sección de checkout funcional con **Stripe** o **Stripe-like UI** para pagos online.
-> - Debe permitir la selección de 'Plan de Previsión' o 'Necesidad Inmediata'.
+> ### 🕊️ B. Sección /Memoriales & Legado
+> - Desarrolla la arquitectura para `/memoriales`.
+> - Crea la vista dinámica `/memoriales/[id]` donde se visualice la biografía del fallecido, una galería de fotos y un **muro de condolencias funcional** conectado a Firebase.
+> - Añade el componente de 'Velas Virtuales' con persistencia de datos.
 > 
-> ### 🕯️ C. Memoriales Virtuales e Interactividad
-> - Transforma la vista estática de `/memoriales/[id]` en un sistema de legado vivo.
-> - Habilita una sección de 'Velas Virtuales' (con contador dinámico) y un formulario de condensolencias que guarde los mensajes en Firebase Firestore.
-> 
-> ### 📞 D. Formulario de Contacto Proactiva
-> - Conecta los formularios existentes con un backend (Firebase Functions/Servicio de Email).
-> - Inyecta **Contexto de Plan**: Si el usuario viene de 'Plan Rauli', el formulario debe pre-indicar este interés al administrador."
+> ### 💳 C. Checkout & Conversión
+> - Integra una pasarela de pago (Stripe/Transbank UI) 100% funcional en la ruta de compra.
+> - Asegura que los formularios de contacto capturen el contexto del plan interesado.
 
 ---
 
@@ -71,4 +65,27 @@ Este es un **Master Prompt de Alto Nivel** diseñado para ser copiado y pegado e
 > 4. **SEO**: Asegura un solo `<h1>` por página y añade metatítulos/descripciones descriptivas por cada ruta dinámica."
 
 ---
-**Instrucción Final**: "Comienza analizando la jerarquía de `src/app/planes/margarita/page.tsx` para usarla como template maestro. ¿Entendido?"
+
+## 🕵️ 6. MÓDULO DE SCRAPING ÉTICO (Obituarios → /Memoriales)
+> **Archivo**: `scripts/scraper_obituarios.py` | **Docs**: `docs/scraping-etico.md`
+>
+> Este módulo alimenta la sección `/memoriales` con datos reales de obituarios públicos.
+> **No lo reimplementes.** Conéctalo al flujo existente:
+>
+> ### Arquitectura de Integración:
+> ```
+> scraper_obituarios.py  (Python, cron diario)
+>   └── obituarios_eticos.json
+>       └── Firebase Function (ingest)
+>           └── Firestore /obituarios/{id}
+>               └── /memoriales → Next.js SSR
+> ```
+>
+> ### Tu tarea en este módulo:
+> 1. Crear la **Firebase Function** `ingestObituarios` que lee el JSON y escribe en Firestore.
+> 2. Construir la página `/memoriales` con una **grilla de tarjetas** que consulte Firestore en tiempo real.
+> 3. Implementar `/memoriales/[id]` con: biografía, galería, muro de condolencias y velas virtuales.
+> 4. La UI debe seguir la identidad visual: fondo `#191919`, texto `#FFFFFF`, acentos `#C5A059`.
+
+---
+**Instrucción Final**: "Comienza clonando el repositorio `https://github.com/Mandinga100/Santa-Margarita`, analiza todos los archivos adjuntos y la estructura completa. Luego ejecuta en este orden: (1) completa `/planes`, (2) implementa `/memoriales` con integración Firestore, (3) agrega el checkout. Usa `src/app/planes/margarita/page.tsx` como template maestro. ¿Entendido?"
