@@ -54,9 +54,10 @@ El diseño sigue una estética **Premium, Solemne y Minimalista**.
 -   **Smooth Scrolling**: Integración global con Lenis.
 -   **Landing "Plan Margarita"**: 100% funcional a nivel visual y de estructura UI.
 -   **WhatsApp Flotante**: Botón de contacto directo operativo.
+-   **Scraper Ético de Obituarios**: Módulo Python (`scripts/scraper_obituarios.py`) implementado con validación legal, ética y técnica (robots.txt, rate-limiting, audit-hash).
 
 ### ⚠️ Parcialmente Funcional
--   **Memoriales Virtuales**: Existe la estructura de rutas (`/memoriales/[id]`), pero falta la integración de base de datos para cargar mensajes dinámicos.
+-   **Memoriales Virtuales**: Arquitectura de rutas lista (`/memoriales/[id]`). Integración con scraper ético documentada y vinculada en el Master Prompt de Lovable. Falta habilitar la Firebase Function de ingesta masiva.
 -   **Formularios**: La interfaz de contacto y cotización está lista, pero la acción de envío (backend) está pendiente.
 
 ### ❌ Faltantes (Crítico)
@@ -68,17 +69,19 @@ El diseño sigue una estética **Premium, Solemne y Minimalista**.
 
 ## 🛣️ 4. Roadmap Actualizado (Abril 2026)
 
-**Progreso General: 45%**
+**Progreso General: 55%**
 
-### 🏗️ FASE 1: ARQUITECTURA (75%)
+### 🏗️ FASE 1: ARQUITECTURA (85%)
 1.  **[x] Integración de Stack Core** (Next.js, Tailwind, GSAP).
 2.  **[x] Diseño de Layout Maestro** (Stitch Standard).
-3.  **[ ] Despliegue de Landings Faltantes** (Raulí y Acacia).
+3.  **[x] Módulo de Backend (Scraping)**: Implementación de scraper ético.
+4.  **[ ] Despliegue de Landings Faltantes** (Raulí y Acacia).
 
-### ⚙️ FASE 2: FUNCIONALIDAD (20%)
+### ⚙️ FASE 2: FUNCIONALIDAD (35%)
 1.  **[ ] Pasarelas de Pago**: Desarrollo de sección de checkout seguro.
 2.  **[ ] Contacto 100% Funcional**: Conexión con servicios de correo y base de datos.
-3.  **[ ] Memoriales Interactivos**: Habilitar "Velas Virtuales" y "Condolencias" en tiempo real.
+3.  **[x] Integración de Datos (Memoriales)**: Estructura de ingesta de obituarios definida.
+4.  **[ ] Memoriales Interactivos**: Habilitar "Velas Virtuales" y "Condolencias" en tiempo real.
 
 ### 📈 FASE 3: OPTIMIZACIÓN (10%)
 1.  **[ ] SEO Semántico Avanzado**: Inyección de JSON-LD por cada plan.
