@@ -98,5 +98,29 @@ Para replicar la sección de **Planes** (Ejemplo Margarita):
 4.  **Cards**: Fondo gris muy claro (`#f8f8f8`) con bordes invisibles que se revelan al hacer hover.
 
 ---
+
+## 🛡️ 6. Políticas de Operación y Seguridad (Protocolo de Semáforo)
+
+El proyecto se rige por un sistema de cumplimiento ético y técnico obligatorio para asegurar la integridad de la marca y la seguridad de los usuarios.
+
+### 🔴 LUZ ROJA (ESTRICTAMENTE PROHIBIDO)
+Actividades que invalidan el despliegue o la certificación del proyecto:
+1.  **Extracción No Autorizada**: Scrapear sitios que prohíban explícitamente el acceso via `robots.txt` o términos de servicio.
+2.  **Manejo de Datos Sensibles**: Almacenar RUT/DNI, direcciones particulares o fotografías personales de fallecidos/familias sin consentimiento explícito y firmado.
+3.  **Inseguridad Financiera**: Procesar o almacenar datos de tarjetas de crédito en texto plano. El uso de **Tokens de Pasarelas Oficiales** (Stripe/PayPal) es obligatorio.
+4.  **Exposición de Secretos**: Hardcodear API Keys, credenciales de Firebase o tokens de Git en el código fuente. Uso mandatorio de `dotenv` y Secret Manager.
+5.  **Patrones Oscuros (UX)**: Implementar suscripciones "fantasma" o dificultades intencionales para la cancelación de servicios funerarios.
+
+### 🟡 LUZ AMARILLA (REQUIERE SUPERVISIÓN)
+1.  **Iteraciones de Diseño**: Cambios drásticos en la paleta de colores o tipografía configurada en el Brand Kit.
+2.  **Dependencias Externas**: Instalación de librerías de terceros que no hayan sido auditadas por rendimiento (bundle size) o seguridad.
+3.  **Uso de IA en Producción**: Generación de contenido dinámico (obituarios redactados por IA) sin revisión humana final.
+
+### 🟢 LUZ VERDE (ESTÁNDAR OPERATIVO)
+1.  **SEO por Diseño**: Un `<h1>` único, jerarquía semántica completa y optimización de imágenes mandatoria.
+2.  **Código Limpio**: Documentación de funciones complejas y mantenimiento de la estructura de carpetas definida.
+3.  **Accesibilidad**: Cumplimiento de estándares WCAG básicos para asegurar que las familias en duelo puedan navegar sin fricción.
+
+---
 **Última actualización**: 2 de abril de 2026
 **Generado por**: Antigravity (AI Coding Assistant)

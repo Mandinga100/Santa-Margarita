@@ -54,13 +54,30 @@ flowchart TD
 
 ## 🌐 Fuentes Configuradas
 
-| Sitio | URL | Estado |
-|-------|-----|--------|
-| Cementerio General | `cementeriogeneral.cl/obituarios/` | 🔍 Verificado en run |
-| EPSP | `epsp.cl/frmObit` | 🔍 Verificado en run |
-| Hogar de Cristo | `funerariahogardecristo.com/obituario/` | 🔍 Verificado en run |
-| Parque del Recuerdo | `parquedelrecuerdo.cl/busqueda/obituario` | 🔍 Verificado en run |
-| Emol Obituarios | `emol.com/obituario` | 🔍 Verificado en run |
+| Sitio | URL | Estado | Tipo |
+|-------|-----|--------|------|
+| **Parque del Recuerdo** | `parquedelrecuerdo.cl` | 🟢 **LUZ VERDE** | API JSON |
+| **EPSP Obituarios** | `epsp.cl/frmObit` | 🟢 **LUZ VERDE** | DOM (CSS) |
+| **Hogar de Cristo** | `funerariahogardecristo.com` | 🟡 **LUZ AMARILLA** | DOM (JS) |
+| **Emol Obituarios** | `emol.com/obituario` | 🔴 **LUZ ROJA** | Bloqueado |
+| **Cementerio General** | `cementeriogeneral.cl` | 🔴 **LUZ ROJA** | Bloqueado |
+
+---
+
+## 🚦 Resumen de Disponibilidad Diaria (Abril 2026)
+
+Basado en el último run de auditoría, este es el estatus de las fuentes para scraping automático diario:
+
+### 🟢 LUZ VERDE (Totalmente Seguro)
+- **Parque del Recuerdo**: Uso de API REST oficial. Altamente eficiente y ético. No interfiere con la UI del sitio.
+- **EPSP (Empresas Parque San Pedro)**: `robots.txt` permisivo. Datos públicos en carrusel frontal.
+
+### 🟡 LUZ AMARILLA (Precaución)
+- **Funeraria Hogar de Cristo**: Permitido legalmente por `robots.txt`, pero requiere renderización pesada. Obligatorio mantener Delays > 10s para evitar ser detectados como ataque DoS.
+
+### 🔴 LUZ ROJA (PROHIBIDO)
+- **Cementerio General**: Prohibido explícitamente en su política de robots. El scraper bloquea esta fuente automáticamente.
+- **Emol Obituarios**: Protección anti-bot activa y términos de uso restrictivos. **NO scrapear**.
 
 ---
 
@@ -151,3 +168,5 @@ Firebase Function (schedule)
 | Fecha | Cambio |
 |-------|--------|
 | 2026-04-02 | Implementación inicial completa (4 etapas) |
+| 2026-04-02 | Optimización v2.0: API Parque Recuerdo + Selectores EPSP |
+| 2026-04-02 | Documentación de Disponibilidad Diaria (Semáforo de legalidad) |
