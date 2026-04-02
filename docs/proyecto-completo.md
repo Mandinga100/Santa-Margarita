@@ -69,7 +69,7 @@ El diseño sigue una estética **Premium, Solemne y Minimalista**.
 
 ## 🛣️ 4. Roadmap Actualizado (Abril 2026)
 
-**Progreso General: 55%**
+**Progreso General: 60%**
 
 ### 🏗️ FASE 1: ARQUITECTURA (85%)
 1.  **[x] Integración de Stack Core** (Next.js, Tailwind, GSAP).
