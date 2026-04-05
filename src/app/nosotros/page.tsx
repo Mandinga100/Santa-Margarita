@@ -9,58 +9,58 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 const milestones = [
     {
         year: '1996',
-        title: 'La Fundación',
-        description: 'Se establecen los cimientos de Funeraria Santa Margarita con el compromiso inquebrantable de brindar un servicio digno y humano a la comunidad.'
+        title: 'El Origen del Compromiso',
+        description: 'Bajo la visión de ofrecer un refugio de dignidad ante la pérdida, Funeraria Santa Margarita abre sus puertas en Santiago, estableciendo un estándar de humanidad sin precedentes.'
     },
     {
         year: '2010',
-        title: 'Innovación y Expansión',
-        description: 'Apertura de nuestras modernas salas de velación VIP y expansión de servicios de previsión familiar con cobertura nacional integral.'
+        title: 'Evolución del Protocolo',
+        description: 'La inauguración de nuestros salones de velación de alta gama redefine el concepto de despedida en Chile, integrando la máxima sobriedad con el confort absoluto para las familias.'
     },
     {
         year: '2020',
-        title: 'Santuario Digital',
-        description: 'Lanzamiento pionero de memoriales digitales de alta fidelidad, uniendo familias a través de ceremonias en streaming de nivel mundial.'
+        title: 'Soberanía Digital',
+        description: 'Ante el desafío global, lideramos la creación de Santuarios Digitales, permitiendo que la honra y el recuerdo trasciendan las fronteras físicas mediante tecnología de alta deliberación ética.'
     },
     {
         year: '2024',
-        title: 'Excelencia Consolidada',
-        description: 'Consolidación como referentes de excelencia en el sector, manteniendo la esencia del respeto y la compasión en cada detalle operativo.'
+        title: 'Legado de Excelencia',
+        description: 'Consolidamos nuestra posición como referentes mundiales en la gestión del duelo, fusionando tres décadas de tradición con una visión de futuro basada en el respeto supremo.'
     }
 ];
 
 const valores = [
     {
         icon: 'account_balance',
-        title: 'Dignidad',
-        description: 'Tratamos cada existencia con el honor supremo que merece, custodiando cada detalle con una solemnidad absoluta y constante.'
+        title: 'Dignidad Rectora',
+        description: 'Consideramos cada existencia como un capítulo sagrado. Nuestra labor es custodiar ese relato con una solemnidad que honre la grandeza de cada vida.'
     },
     {
-        icon: 'favorite',
-        title: 'Respeto',
-        description: 'Entendemos la profundidad del duelo humano y actuamos con la máxima discreción, empatía y profesionalismo ético.'
+        icon: 'verified_user',
+        title: 'Integridad Ética',
+        description: 'Operamos bajo el más estricto rigor profesional, garantizando discreción absoluta y un cumplimiento normativo que protege la honra familiar por sobre todo.'
     },
     {
         icon: 'auto_awesome',
-        title: 'Excelencia',
-        description: 'Buscamos la perfección estética y operativa en cada ceremonia, desde la curaduría visual hasta la precisión logística impecable.'
+        title: 'Excelencia Estética',
+        description: 'Creemos que la belleza es una forma de consuelo. Cada detalle visual y operativo es curado para reflejar el respeto que nos define como institución.'
     }
 ];
 
 const lideres = [
     {
         name: 'Carlos Margarita',
-        role: 'Director General & Fundador',
+        role: 'Director General & Visionario Fundador',
         image: '/assets/images/equipo/director-general.webp'
     },
     {
         name: 'Elena Valdivia',
-        role: 'Directora de Protocolo & Operaciones',
+        role: 'Directora de Protocolo y Honor',
         image: '/assets/images/equipo/directora-operaciones.webp'
     },
     {
         name: 'Andrés Soto',
-        role: 'Director de Legado & Patrimonio',
+        role: 'Curador de Legado & Patrimonio Familiar',
         image: '/assets/images/equipo/director-patrimonio.webp'
     }
 ];
@@ -126,52 +126,51 @@ export default function NosotrosPage() {
     }, []);
 
     return (
-        <main ref={containerRef} className="min-h-screen bg-[#FFFFFF] text-[#1A1A1A] font-display pt-32 pb-48 selection:bg-black/10 antialiased overflow-x-hidden">
+        <main ref={containerRef} className="min-h-screen bg-[#191919] text-zinc-300 font-inter pt-32 pb-48 selection:bg-[#C5A059] selection:text-black antialiased overflow-x-hidden">
 
             {/* Hero Section - Editorial Depth */}
-            <section ref={heroRef} className="relative h-[75vh] flex items-center justify-center overflow-hidden mb-48 border-b border-black/5 shadow-md">
-                <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/80 to-white z-10"></div>
+            <section ref={heroRef} className="relative h-[75vh] flex items-center justify-center overflow-hidden mb-48 border-b border-zinc-800 bg-black/50">
+                <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-[#191919] z-10"></div>
                 <div className="absolute inset-0 hero-bg-parallax scale-110">
                     <Image
                         src="/assets/images/otros/memorial-sky.webp"
                         alt="Historia y Legado - Funeraria Santa Margarita"
                         fill
                         priority
-                        className="object-cover opacity-30 grayscale"
+                        className="object-cover opacity-20 grayscale"
                         sizes="100vw"
                     />
                 </div>
                 <div className="relative z-20 text-center px-6 max-w-6xl">
-                    <span className="text-sm font-black uppercase tracking-[0.4em] text-black/40 block mb-12">Desde 1996</span>
-                    <h1 className="font-serif text-[#1A1A1A] text-6xl md:text-9xl mb-12 italic leading-[0.8] tracking-tighter">
-                        Nuestro <br /> <span className="text-black/50">Legado Eterno</span>
+                    <span className="text-[10px] md:text-xs font-light uppercase tracking-[0.4em] text-[#C5A059] block mb-8">Nuestra Trayectoria desde 1996</span>
+                    <h1 className="font-serif text-white text-5xl md:text-8xl mb-12 italic leading-[1.1] tracking-tight">
+                        La Vanguardia del <br /> <span className="text-[#C5A059]/80">Respeto Eterno</span>
                     </h1>
-                    <div className="w-32 h-px bg-black/10 mx-auto mt-16 scale-x-150"></div>
+                    <div className="w-20 h-px bg-[#C5A059] mx-auto mt-12 opacity-50"></div>
                 </div>
             </section>
 
             {/* Manifest Focus - High Legibility Contrast */}
             <section className="max-w-4xl mx-auto px-6 mb-64 text-center">
                 <header className="mb-20">
-                    <h2 className="font-serif text-5xl md:text-7xl italic text-[#1A1A1A] leading-none tracking-tighter mb-10">Vocación de <br /> Servicio Trascendente</h2>
-                    <div className="w-12 h-px bg-amber-600/40 mx-auto"></div>
+                    <h2 className="font-serif text-4xl md:text-6xl italic text-white leading-tight tracking-tight mb-10">Vocación de <br /> Servicio Trascendente</h2>
+                    <div className="w-12 h-px bg-[#C5A059]/40 mx-auto"></div>
                 </header>
-                <div className="space-y-16 text-black/60 leading-[1.8] text-2xl font-light italic px-12 border-x border-black/10">
+                <div className="space-y-16 text-zinc-400 leading-[1.8] text-xl md:text-2xl font-light italic px-4 md:px-12">
                     <p>
-                        "En Funeraria Santa Margarita, no solo gestionamos despedidas; custodiamos historias de vida con una veneración absoluta."
+                        "En Funeraria Santa Margarita, comprendemos que honrar una vida es un acto de soberanía. No solo gestionamos despedidas; custodiamos el honor de su historia."
                     </p>
-                    <p className="text-black/80">
-                        Nuestra trayectoria de casi tres décadas se ha forjado en la intersección entre la tradición más respetuosa y la innovación tecnológica de vanguardia.
+                    <p className="text-zinc-500 text-lg md:text-xl not-italic font-sans">
+                        Nuestra trayectoria de tres décadas se ha forjado en la intersección entre la tradición más solemne y una infraestructura digital de estándar mundial.
                     </p>
                 </div>
             </section>
 
-            {/* Timeline - Premium Light Flow */}
-            <section className="py-64 bg-black/[0.01] mb-64 border-y border-black/5 timeline-section relative overflow-hidden">
-                <div className="absolute top-1/2 left-0 w-full h-[1000px] bg-black/[0.02] blur-[150px] -translate-y-1/2 pointer-events-none rounded-full"></div>
+            {/* Timeline - Premium Dark Flow */}
+            <section className="py-64 bg-black/30 mb-64 border-y border-zinc-800 timeline-section relative overflow-hidden">
                 <div className="max-w-6xl mx-auto px-6 relative">
                     <div className="relative">
-                        <div className="absolute left-1/2 -translate-x-1/2 h-full w-px bg-black/10 hidden md:block"></div>
+                        <div className="absolute left-1/2 -translate-x-1/2 h-full w-px bg-zinc-800 hidden md:block"></div>
 
                         {milestones.map((m, idx) => (
                             <div
@@ -179,11 +178,11 @@ export default function NosotrosPage() {
                                 className={`timeline-item relative flex flex-col md:flex-row items-center justify-between mb-48 last:mb-0 ${idx % 2 === 0 ? '' : 'md:flex-row-reverse'}`}
                             >
                                 <div className={`w-full md:w-[45%] ${idx % 2 === 0 ? 'md:text-right' : 'md:text-left'} mb-12 md:mb-0 group`}>
-                                    <span className="font-serif text-8xl text-black/[0.04] font-black italic block mb-6 group-hover:text-black/10 transition-colors duration-1000">{m.year}</span>
-                                    <h3 className="text-2xl font-black text-[#1A1A1A] uppercase tracking-[0.4em] leading-none mb-8">{m.title}</h3>
-                                    <p className="text-black/60 font-light leading-relaxed text-xl italic max-w-lg mx-auto md:ml-auto md:mr-0 group-hover:text-black/80 transition-colors duration-700">{m.description}</p>
+                                    <span className="font-serif text-7xl md:text-8xl text-white/5 font-black italic block mb-6 group-hover:text-[#C5A059]/10 transition-colors duration-1000">{m.year}</span>
+                                    <h3 className="text-xl md:text-2xl font-light text-white uppercase tracking-[0.3em] leading-none mb-6">{m.title}</h3>
+                                    <p className="text-zinc-500 font-light leading-relaxed text-lg italic max-w-lg mx-auto md:ml-auto md:mr-0 group-hover:text-zinc-300 transition-colors duration-700">{m.description}</p>
                                 </div>
-                                <div className="size-4 bg-black rounded-full relative z-10 border-[12px] border-white shadow-[0_0_30px_rgba(0,0,0,0.1)] hidden md:block scale-75 group-hover:scale-125 transition-all duration-1000"></div>
+                                <div className="size-3 bg-[#C5A059] rounded-full relative z-10 border-[8px] border-[#191919] shadow-[0_0_20px_rgba(197,160,89,0.3)] hidden md:block scale-100 group-hover:scale-150 transition-all duration-1000"></div>
                                 <div className="hidden md:block w-[45%]"></div>
                             </div>
                         ))}
@@ -196,14 +195,13 @@ export default function NosotrosPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-24">
                     {valores.map((v) => (
                         <article key={v.title} className="value-card text-center group">
-                            <div className="mb-16 flex justify-center relative">
-                                <span className="material-symbols-outlined text-7xl text-black/10 group-hover:text-amber-600 transition-all duration-1000 transform group-hover:scale-125 group-hover:rotate-6">
+                            <div className="mb-12 flex justify-center relative">
+                                <span className="material-symbols-outlined text-6xl text-[#C5A059]/20 group-hover:text-[#C5A059] transition-all duration-1000 transform group-hover:scale-110">
                                     {v.icon}
                                 </span>
-                                <div className="absolute inset-0 bg-black/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
                             </div>
-                            <h4 className="font-serif text-4xl mb-8 italic text-[#1A1A1A] tracking-tighter">{v.title}</h4>
-                            <p className="text-black/60 text-xl font-light leading-relaxed italic border-t border-black/10 pt-10 group-hover:text-black/80 transition-colors">
+                            <h4 className="font-serif text-3xl mb-8 italic text-white tracking-tight">{v.title}</h4>
+                            <p className="text-zinc-500 text-lg font-light leading-relaxed italic border-t border-zinc-800 pt-10 group-hover:text-zinc-300 transition-colors">
                                 {v.description}
                             </p>
                         </article>
@@ -214,25 +212,25 @@ export default function NosotrosPage() {
             {/* Leadership Section - High-End Portrait Gallery */}
             <section className="max-w-7xl mx-auto px-6 mb-64 leaders-grid">
                 <header className="text-center mb-32">
-                    <span className="text-sm font-black uppercase tracking-widest text-black/40 block mb-10">Alta Dirección</span>
-                    <h2 className="font-serif text-6xl md:text-8xl italic text-[#1A1A1A] tracking-tighter leading-none">Arquitectos de la <span className="text-black/50 underline decoration-black/10 underline-offset-[20px]">Memoria</span></h2>
+                    <span className="text-[10px] md:text-xs font-light uppercase tracking-widest text-[#C5A059] block mb-10">Dirección y Protocolo</span>
+                    <h2 className="font-serif text-5xl md:text-7xl italic text-white tracking-tight leading-none">Arquitectos de la <span className="text-[#C5A059]/50">Memoria</span></h2>
                 </header>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
                     {lideres.map((l) => (
                         <div key={l.name} className="leader-card flex flex-col items-center group">
-                            <div className="aspect-[4/5] w-full mb-12 overflow-hidden rounded-[4rem] shadow-2xl border border-black/5 relative bg-zinc-100">
+                            <div className="aspect-[4/5] w-full mb-12 overflow-hidden rounded-[3rem] shadow-2xl border border-zinc-800 relative bg-zinc-900">
                                 <Image
                                     src={l.image}
                                     alt={`Retrato de ${l.name}`}
                                     fill
-                                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] ease-in-out group-hover:scale-110"
+                                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] ease-in-out group-hover:scale-105"
                                     sizes="(max-width: 768px) 100vw, 33vw"
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-t from-white/60 via-transparent to-transparent opacity-80"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                             </div>
-                            <h3 className="font-serif text-4xl text-[#1A1A1A] italic tracking-tighter mb-4 group-hover:translate-y-[-5px] transition-transform duration-700">{l.name}</h3>
-                            <p className="text-xs md:text-sm uppercase tracking-widest text-black/50 font-black group-hover:tracking-[0.4em] transition-all duration-1000 text-center px-4">{l.role}</p>
+                            <h3 className="font-serif text-3xl text-white italic tracking-tight mb-4 group-hover:translate-y-[-5px] transition-transform duration-700">{l.name}</h3>
+                            <p className="text-[10px] uppercase tracking-[0.3em] text-[#C5A059] font-light text-center px-4">{l.role}</p>
                         </div>
                     ))}
                 </div>
@@ -240,20 +238,20 @@ export default function NosotrosPage() {
 
             {/* Final Professional Commitment */}
             <section className="max-w-5xl mx-auto px-6 text-center mt-32 relative">
-                <div className="w-32 h-px bg-black/10 mx-auto mb-20"></div>
-                <blockquote className="font-serif text-4xl md:text-6xl mb-24 italic text-[#1A1A1A]/80 leading-[1.3] font-light tracking-tighter max-w-3xl mx-auto">
+                <div className="w-20 h-px bg-[#C5A059]/20 mx-auto mb-20"></div>
+                <blockquote className="font-serif text-3xl md:text-5xl mb-24 italic text-zinc-400 leading-tight tracking-tight max-w-3xl mx-auto">
                     &quot;Honrar la vida es el primer paso para encontrar la paz en la despedida.&quot;
                 </blockquote>
                 <div className="flex justify-center">
                     <Link
                         href="/cotizacion"
-                        className="group relative inline-block bg-[#1A1A1A] text-white px-24 py-10 rounded-full font-black uppercase text-base tracking-widest hover:bg-black transition-all shadow-xl overflow-hidden"
+                        className="group relative inline-block border border-[#C5A059] text-[#C5A059] px-16 py-5 rounded-full font-light uppercase text-xs tracking-[0.4em] hover:bg-[#C5A059] hover:text-black transition-all duration-700 overflow-hidden"
                     >
-                        <span className="relative z-10 italic">Inicie un Dialogo</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                        <span className="relative z-10">Contáctenos</span>
                     </Link>
                 </div>
             </section>
+
         </main>
     );
 }

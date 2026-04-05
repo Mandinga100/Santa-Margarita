@@ -5,42 +5,7 @@ import Link from 'next/link';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
-// Fuente verdad: planes oficiales Funeraria Santa Margarita
-const planes = [
-    {
-        id: 'rauli',
-        nombre: 'Plan Raulí',
-        categoria: 'Elite VIP',
-        precio: '$3.990.000',
-        url: '/planes/rauli',
-        descripcion: 'Excelencia y acompañamiento absoluto.',
-        destacado: true,
-        icon: 'workspace_premium',
-        incluye: ['Urna de Raulí Ministerial', 'Sala VIP Preferencial 24h', 'Aviso de Prensa Nacional', 'Cafetería 50 personas', '2 Arreglos Florales'],
-    },
-    {
-        id: 'acacia',
-        nombre: 'Plan Acacia',
-        categoria: 'Superior',
-        precio: '$1.990.000',
-        url: '/planes/acacia',
-        descripcion: 'Atención personalizada y solemne.',
-        destacado: false,
-        icon: 'verified',
-        incluye: ['Urna Acacia Distinguida', 'Sala Velación 24h', 'Libro de Condolencias', 'Arreglo Floral Especial', '50 Tarjetas Recordatorias'],
-    },
-    {
-        id: 'margarita',
-        nombre: 'Plan Margarita',
-        categoria: 'Esencial',
-        precio: '$1.490.000',
-        url: '/planes/margarita',
-        descripcion: 'Dignidad y respeto esencial.',
-        destacado: false,
-        icon: 'eco',
-        incluye: ['Urna Margarita Barnizada', 'Traslado Local Inmediato', 'Gestión Civil Completa', 'Carroza Panorámica'],
-    },
-];
+import { planesData as planes } from '../../data/planes';
 
 export default function PlanesPage() {
     const containerRef = useRef<HTMLDivElement>(null);
@@ -167,7 +132,7 @@ export default function PlanesPage() {
 
                             <div className="mb-16 flex flex-col gap-2">
                                 <span className={`text-5xl font-serif italic tracking-tighter ${plan.destacado ? 'text-black' : 'text-white'}`}>
-                                    {plan.precio}
+                                    {plan.precioStr}
                                 </span>
                                 <span className={`text-sm font-black uppercase tracking-[0.4em] ${plan.destacado ? 'text-black/50' : 'text-white/40'}`}>Valor Liquidación</span>
                             </div>

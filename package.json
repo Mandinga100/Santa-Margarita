@@ -10,6 +10,7 @@
     "deploy:fast": "npm run build && firebase deploy --only hosting"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "firebase": "^12.9.0",
     "framer-motion": "^12.38.0",

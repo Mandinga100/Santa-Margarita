@@ -1,44 +1,44 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import styles from './PlanRauli.module.css';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import styles from './Plan.module.css';
 import HeroCarousel from '@/components/HeroCarousel';
+import { planesData } from '@/data/planes';
 
-export const metadata: Metadata = {
-  title: 'Plan Raulí - Distinción y Legado | Funeraria Santa Margarita',
-  description: 'Plan de lujo premium que ofrece urna de Raulí, servicios médicos, aviso de prensa y un acompañamiento de máxima excelencia.',
-};
+export function generateStaticParams() {
+  return planesData.map((plan) => ({
+    id: plan.id,
+  }));
+}
 
-export default function PlanRauliPage() {
-  const servicios = [
-    { icon: "support_agent", title: "Asesoría Profesional 24/7" },
-    { icon: "gavel", title: "Inscripción Registro Civil" },
-    { icon: "payments", title: "Cobro de Cuota Mortuoria" },
-    { icon: "task_alt", title: "Tramitación para el Traslado" },
-    { icon: "medical_services", title: "Certificación Médica" },
-    { icon: "newspaper", title: "Aviso de Prensa" },
-    { icon: "airport_shuttle", title: "Retiro y Traslado Inicial" },
-    { icon: "local_shipping", title: "Carroza Panorámica" },
-    { icon: "group", title: "Vehículo de Acompañamiento" },
-    { icon: "menu_book", title: "Libro de Condolencias" },
-    { icon: "coffee", title: "Cafetería (50 personas)" },
-    { icon: "local_florist", title: "2 Arreglos Florales" },
-    { icon: "mail", title: "50 Tarjetas Recordatorias" },
-  ];
+export function generateMetadata({ params }: { params: { id: string } }): Metadata {
+  const plan = planesData.find(p => p.id === params.id);
+  if (!plan) return { title: 'Plan no encontrado' };
 
-  const arcaImages = [
-    { src: '/imgs/planes/rauli.png', alt: 'Urna Raulí Premium' },
-    { src: '/imgs/planes/castano.png', alt: 'Urna Raulí Detalle' },
-  ];
+  return {
+    title: `${plan.nombre} - Elegancia en el Recuerdo | Funeraria Santa Margarita`,
+    description: plan.descripcion,
+  };
+}
+
+export default function PlanPage({ params }: { params: { id: string } }) {
+  const plan = planesData.find(p => p.id === params.id);
+  if (!plan) notFound();
+
+  const arcaImages = plan.badges.length > 0 ? 
+    plan.badges.map((badge, idx) => ({ src: plan.img, alt: `${plan.nombre} - ${badge} ${idx}` })) : 
+    [{ src: plan.img, alt: plan.nombre }];
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-[#b8960c]/30 font-sans">
       <section className="relative h-[95vh] w-full flex items-center justify-center overflow-hidden bg-black">
         <div className="absolute inset-0 z-0 scale-105">
           <Image
-            alt="Plan Raulí"
+            alt={plan.nombre}
             fill
             className="object-cover opacity-60"
-            src="/imgs/planes/rauli.png"
+            src={plan.img}
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/60 z-10" />
@@ -47,21 +47,20 @@ export default function PlanRauliPage() {
         <div className="relative z-30 text-center px-6 max-w-5xl mx-auto mt-20">
           <div className="flex flex-col items-center mb-10 translate-y-4 animate-in fade-in slide-in-from-bottom-5 duration-1000">
             <span className="text-[10px] font-black uppercase tracking-[0.8em] text-[#b8960c] bg-black/40 backdrop-blur-md px-6 py-2 rounded-full border border-[#b8960c]/10 mb-8 inline-block shadow-2xl">
-              Honra de Herencia
+              Distinción Funeraria
             </span>
             <h1 className="font-serif italic text-8xl md:text-[11rem] leading-[0.8] tracking-tighter text-white drop-shadow-[0_10px_45px_rgba(0,0,0,1)]">
-              Raulí
+              {plan.nombre.replace('Plan ', '')}
             </h1>
             <div className="h-[2px] w-32 bg-[#b8960c] mt-10 mb-10 shadow-[0_0_15px_#b8960c]" />
           </div>
           <p className="text-white/80 text-lg md:text-2xl font-light italic leading-relaxed max-w-3xl mx-auto mb-16 drop-shadow-lg">
-            “Un homenaje de máxima distinción, reservado para quienes merecen 
-            ser recordados con la nobleza del bosque nativo y la excelencia absoluta.”
+            {`“Una despedida con la elegancia y calidez que representa, brindando un homenaje respetuoso y completo en cada detalle.”`}
           </p>
           <div className="flex flex-col sm:flex-row gap-8 justify-center items-center">
-            <button className="w-full sm:w-auto bg-[#b8960c] text-black px-12 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.4em] hover:bg-[#d4af37] transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-[#b8960c]/30">
+            <Link href={`/cotizacion?plan=${plan.id}`} className="w-full sm:w-auto bg-[#b8960c] text-black px-12 py-5 rounded-full font-black text-[11px] uppercase tracking-[0.4em] hover:bg-[#d4af37] transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-[#b8960c]/30 text-center">
               Consultar Ahora
-            </button>
+            </Link>
             <a
               className="w-full sm:w-auto bg-white/5 backdrop-blur-lg border border-white/10 text-white/80 px-12 py-5 rounded-full font-black text-[9px] uppercase tracking-[0.4em] hover:bg-white/10 hover:text-white transition-all text-center"
               href="#arca"
@@ -82,36 +81,36 @@ export default function PlanRauliPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
             <div className="space-y-10 lg:sticky lg:top-32">
               <h2 className="font-serif text-5xl md:text-7xl italic leading-tight text-[#0a0a0a]">
-                Excelencia en <br />Máxima Expresión.
+                Elegancia en <br />el Recuerdo.
               </h2>
               <div className="pt-8 border-t border-black/10">
                 <div className="flex items-baseline gap-6 mb-4">
                   <span className="text-xs font-black uppercase tracking-[0.5em] text-[#b8960c]">
-                    Homenaje Premium
+                    Homenaje Completo
                   </span>
                   <span className="text-7xl font-serif text-[#0a0a0a]">
-                    $3.990.000
+                    {plan.precioStr}
                   </span>
                 </div>
                 <p className="text-sm text-black/50 font-normal leading-relaxed">
-                  Experiencia integral de lujo que cubre todas las necesidades,
-                  desde servicios médicos detallados hasta una despedida solemne en prensa.
+                  Sistema de acompañamiento distinguido que incluye una urna de alta calidad,
+                  arreglos florales y gestión legal completa.
                 </p>
               </div>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 gap-6">
-              {servicios.map((item, idx) => (
+              {plan.serviciosFull.map((title, idx) => (
                 <div
                   key={idx}
                   className="group bg-[#f8f8f8] p-8 rounded-3xl border border-transparent hover:border-[#b8960c]/20 hover:bg-white transition-all duration-500 shadow-sm hover:shadow-xl"
                 >
                   <div className="flex items-center gap-6">
                     <span className="material-symbols-outlined text-[#b8960c] text-3xl opacity-80 group-hover:opacity-100">
-                      {item.icon}
+                      diamond
                     </span>
                     <h4 className="font-black text-[10px] uppercase tracking-[0.3em] text-[#0a0a0a]">
-                      {item.title}
+                      {title}
                     </h4>
                   </div>
                 </div>
@@ -121,15 +120,14 @@ export default function PlanRauliPage() {
         </div>
       </section>
 
-      {/* SECCIÓN MODIFICADA: El Arca Raulí */}
       <section id="arca" className="py-32 bg-[#0a0a0a] border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <div className="mb-24">
             <h2 className="font-serif italic text-6xl text-white mb-6">
-              El Arca Raulí
+              El Arca {plan.nombre.replace('Plan ', '')}
             </h2>
             <p className="text-white/40 font-light tracking-[0.2em] uppercase text-[10px]">
-              Nobleza de Madera Nativa y Calidad Ministerial
+              Artesanía y Elegancia en cada detalle
             </p>
           </div>
           
@@ -146,16 +144,16 @@ export default function PlanRauliPage() {
             alt="Acompañamiento"
             fill
             className="object-cover blur-[10px]"
-            src="/imgs/planes/rauli.png"
+            src={plan.img}
           />
         </div>
         <div className="relative z-10 max-w-4xl px-6">
           <h2 className="font-serif italic text-6xl md:text-8xl text-white mb-16 leading-tight">
             No camina solo. <br />Permítanos ayudar.
           </h2>
-          <button className="bg-[#b8960c] text-black px-16 py-7 rounded-full font-black text-[12px] uppercase tracking-[0.5em] hover:scale-105 transition-all shadow-[0_20px_50px_rgba(184,150,12,0.3)]">
+          <Link href="/contacto" className="bg-[#b8960c] text-black px-16 py-7 rounded-full font-black text-[12px] uppercase tracking-[0.5em] hover:scale-105 transition-all shadow-[0_20px_50px_rgba(184,150,12,0.3)]">
             Atención Inmediata 24 Horas
-          </button>
+          </Link>
         </div>
       </section>
     </div>

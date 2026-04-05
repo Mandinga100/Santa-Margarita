@@ -6,6 +6,7 @@ import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { planesData } from '../data/planes';
+import { sendEmailWithTemplate } from '../lib/emailjs';
 
 // Swiper
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -23,15 +24,32 @@ export default function Home() {
 
   const [contactForm, setContactForm] = useState({ nombre: '', telefono: '', mensaje: '' });
   const [openPlanIndex, setOpenPlanIndex] = useState<number | null>(null);
+  const [isSendingContact, setIsSendingContact] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleContactSubmit = (e: React.FormEvent) => {
+  const handleContactSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { nombre, telefono, mensaje } = contactForm;
-    if (!nombre.trim() || !telefono.trim()) return;
-    const texto = encodeURIComponent(
-      `Hola, soy *${nombre}*. Mi teléfono: ${telefono}.\n\n${mensaje || 'Solicito asesoría funeral.'}`
-    );
-    window.open(`https://wa.me/56964333760?text=${texto}`, '_blank', 'noopener,noreferrer');
+    if (!nombre.trim() || !telefono.trim() || isSendingContact) return;
+    
+    setIsSendingContact(true);
+    try {
+      await sendEmailWithTemplate({
+        subject: 'Nuevo contacto desde Inicio',
+        user_name: nombre,
+        user_phone: telefono,
+        mensaje: mensaje || 'Solicito asesoría funeral.',
+        page_url: window.location.href,
+      });
+      setShowSuccess(true);
+      setContactForm({ nombre: '', telefono: '', mensaje: '' });
+      setTimeout(() => setShowSuccess(false), 5000);
+    } catch (error) {
+      console.error('Error enviando mensaje:', error);
+      alert('Hubo un error al enviar el mensaje. Por favor intente nuevamente.');
+    } finally {
+      setIsSendingContact(false);
+    }
   };
 
   useEffect(() => {
@@ -511,7 +529,7 @@ export default function Home() {
                     <div className="p-5 md:p-8 flex flex-col justify-between flex-1 relative z-10 bg-transparent">
                       <div className="text-center">
                         <h3 className="text-[clamp(1.5rem,5vw,2.25rem)] md:text-4xl font-black mb-2 drop-shadow-xl font-serif italic">{plan.nombre}</h3>
-                        <div className="text-[clamp(1.25rem,4vw,2.25rem)] md:text-4xl font-black mb-4 md:mb-6 bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-2xl">{plan.precio}</div>
+                        <div className="text-[clamp(1.25rem,4vw,2.25rem)] md:text-4xl font-black mb-4 md:mb-6 bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-2xl">{plan.precioStr}</div>
                       </div>
                       
                       {/* Badges Top2 Servicios */}
@@ -847,6 +865,14 @@ export default function Home() {
             <div className="section-parallax-bg absolute z-0 inset-0 w-full h-[120%] -top-[10%] opacity-[0.04] pointer-events-none" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
             <div className="relative z-10">
               <h2 className="text-center text-2xl text-white font-serif italic mb-10">Asesoría Personalizada 24/7</h2>
+              
+              {showSuccess ? (
+                <div className="text-center py-10 bg-[#b8960c]/10 border border-[#b8960c]/30 rounded-2xl">
+                  <span className="material-symbols-outlined text-4xl text-[#b8960c] mb-4">check_circle</span>
+                  <h3 className="text-xl text-white font-serif italic mb-2">Mensaje enviado exitosamente</h3>
+                  <p className="text-white/60 text-sm">Nos pondremos en contacto contigo a la brevedad.</p>
+                </div>
+              ) : (
               <form className="grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={handleContactSubmit} noValidate>
                 <input
                   type="text"
@@ -877,13 +903,18 @@ export default function Home() {
                   <button
                     type="submit"
                     className="inline-flex items-center justify-center gap-3 bg-[#b8960c] text-[#0a0a0a] px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.4em] hover:bg-[#d4af37] hover:scale-105 transition-all duration-300 shadow-xl shadow-[#b8960c]/20 disabled:opacity-70 disabled:hover:scale-100"
-                    disabled={!contactForm.nombre.trim() || !contactForm.telefono.trim()}
+                    disabled={!contactForm.nombre.trim() || !contactForm.telefono.trim() || isSendingContact}
                   >
-                    <i className="fab fa-whatsapp text-lg" />
-                    Contáctanos
+                    {isSendingContact ? (
+                      <span className="material-symbols-outlined animate-spin text-lg">sync</span>
+                    ) : (
+                      <span className="material-symbols-outlined text-lg">send</span>
+                    )}
+                    {isSendingContact ? 'Enviando...' : 'Contáctanos'}
                   </button>
                 </div>
               </form>
+              )}
             </div>
           </div>
         </div>

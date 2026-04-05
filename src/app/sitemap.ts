@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { planesData } from '@/data/planes';
 
 export const dynamic = 'force-static';
 
@@ -6,12 +7,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://funeraria-sm.web.app';
     const lastModified = new Date();
 
-    const routes = [
+    const planesRoutes = planesData.map(plan => `/planes/${plan.id}`);
+
+    const baseRoutes = [
         '',
         '/planes',
-        '/planes/margarita',
-        '/planes/acacia',
-        '/planes/rauli',
         '/servicios',
         '/memoriales',
         '/nosotros',
@@ -19,7 +19,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/contacto',
         '/cotizacion',
         '/blog',
-    ].map((route) => ({
+    ];
+
+    const routes = [...baseRoutes, ...planesRoutes].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified,
         changeFrequency: 'weekly' as const,

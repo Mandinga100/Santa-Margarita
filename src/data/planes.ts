@@ -1,9 +1,17 @@
 export const planesData = [
   {
+    id: "margarita",
     nombre: "Plan Margarita",
-    precio: "$1.290.000",
+    precioStr: "$1.290.000",
+    precio: 1290000,
+    categoria: "Esencial",
+    descripcion: "Dignidad y respeto esencial.",
+    destacado: false,
+    icon: "eco",
+    url: "/planes/margarita",
     img: "/imgs/planes/margarita.png",
     badges: ["Inscripción Registro Civil", "Vehículo Mortuorio"],
+    incluye: ["Urna Margarita Barnizada", "Traslado Local Inmediato", "Gestión Civil Completa", "Carroza Panorámica"],
     serviciosFull: [
       "Asesoría",
       "Inscripción Registro Civil",
@@ -17,10 +25,18 @@ export const planesData = [
     ]
   },
   {
+    id: "azucena",
     nombre: "Plan Azucena",
-    precio: "$1.390.000",
+    precioStr: "$1.390.000",
+    precio: 1390000,
+    categoria: "Básico",
+    descripcion: "Sencillez con detalles cálidos.",
+    destacado: false,
+    icon: "local_florist",
+    url: "/planes/azucena",
     img: "/imgs/planes/azucena.png",
     badges: ["Arreglo floral", "50 tarjetas"],
+    incluye: ["Urna Modelo Azucena", "Arreglo Floral", "50 Tarjetas de Condolencias", "Carroza Panorámica"],
     serviciosFull: [
       "Asesoría",
       "Inscripción Registro Civil",
@@ -35,10 +51,18 @@ export const planesData = [
     ]
   },
   {
+    id: "acacia",
     nombre: "Plan Acacia",
-    precio: "$1.990.000",
+    precioStr: "$1.990.000",
+    precio: 1990000,
+    categoria: "Superior",
+    descripcion: "Atención personalizada y solemne.",
+    destacado: false,
+    icon: "verified",
+    url: "/planes/acacia",
     img: "/imgs/planes/acacia.png",
     badges: ["Urna Modelo Acacia", "Arreglo Floral"],
+    incluye: ["Urna Acacia Distinguida", "Sala Velación 24h", "Libro de Condolencias", "Arreglo Floral Especial", "50 Tarjetas Recordatorias"],
     serviciosFull: [
       "Asesoría",
       "Inscripción Registro Civil",
@@ -53,10 +77,18 @@ export const planesData = [
     ]
   },
   {
+    id: "orquidea",
     nombre: "Plan Orquídea",
-    precio: "$1.990.000",
+    precioStr: "$1.990.000",
+    precio: 1990000,
+    categoria: "Superior Elegance",
+    descripcion: "Delicadeza y distinción.",
+    destacado: false,
+    icon: "spa",
+    url: "/planes/orquidea",
     img: "/imgs/planes/orquidea.png",
     badges: ["Urna Modelo Orquídea", "Arreglo Floral"],
+    incluye: ["Urna Modelo Orquídea", "Traslado VIP", "Libro de Condolencias", "Cortesía de cafetería"],
     serviciosFull: [
       "Asesoría",
       "Inscripción Registro Civil",
@@ -71,10 +103,18 @@ export const planesData = [
     ]
   },
   {
+    id: "jazmin",
     nombre: "Plan Jazmín",
-    precio: "$2.790.000",
+    precioStr: "$2.790.000",
+    precio: 2790000,
+    categoria: "Premium",
+    descripcion: "Homenaje exclusivo y premium.",
+    destacado: false,
+    icon: "diamond",
+    url: "/planes/jazmin",
     img: "/imgs/planes/jazmin.png",
     badges: ["Urna Modelo Jazmín", "Servicio Premium"],
+    incluye: ["Urna Modelo Jazmín", "Vehículo Acompañante 10p", "Arreglo floral premium", "Asistencia Completa"],
     serviciosFull: [
       "Asesoría",
       "Inscripción Registro Civil",
@@ -89,10 +129,18 @@ export const planesData = [
     ]
   },
   {
+    id: "castano",
     nombre: "Plan Castaño",
-    precio: "$3.990.000",
+    precioStr: "$3.990.000",
+    precio: 3990000,
+    categoria: "VIP Elite",
+    descripcion: "Ceremonial distinguido y memorable.",
+    destacado: true,
+    icon: "stars",
+    url: "/planes/castano",
     img: "/imgs/planes/castano.png",
     badges: ["2 Arreglos Florales", "Cafetería 50 personas"],
+    incluye: ["Urna Castaño Selecto", "Sala VIP 24h", "2 Arreglos Florales", "Aviso de Prensa", "Cafetería 50 personas"],
     serviciosFull: [
       "Asesoría",
       "Inscripción Registro Civil",
@@ -111,10 +159,18 @@ export const planesData = [
     ]
   },
   {
+    id: "rauli",
     nombre: "Plan Raulí",
-    precio: "$3.990.000",
+    precioStr: "$3.990.000",
+    precio: 3990000,
+    categoria: "Elite VIP",
+    descripcion: "Excelencia y acompañamiento absoluto.",
+    destacado: true,
+    icon: "workspace_premium",
+    url: "/planes/rauli",
     img: "/imgs/planes/rauli.png",
     badges: ["Certificación Médica", "Aviso de Prensa"],
+    incluye: ["Urna de Raulí Ministerial", "Sala VIP Preferencial 24h", "Aviso de Prensa Nacional", "Cafetería 50 personas", "2 Arreglos Florales"],
     serviciosFull: [
       "Asesoría",
       "Inscripción Registro Civil",

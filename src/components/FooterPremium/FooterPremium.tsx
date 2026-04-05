@@ -64,7 +64,7 @@ export default function FooterPremium() {
                         </li>
                         <li className="flex items-center gap-4 group">
                             <i className="fas fa-envelope text-white/50 group-hover:text-white transition-colors"></i>
-                            <a href="mailto:contacto@santamargarita.cl" className="hover:text-white transition-colors">contacto@santamargarita.cl</a>
+                            <a href="mailto:contacto@funerariasantamargarita.cl" className="hover:text-white transition-colors">contacto@funerariasantamargarita.cl</a>
                         </li>
                     </ul>
                 </div>

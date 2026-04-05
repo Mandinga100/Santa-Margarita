@@ -5,18 +5,11 @@ import { db } from '@/lib/firebase';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import Link from 'next/link';
 import gsap from 'gsap';
+import { sendEmailWithTemplate } from '@/lib/emailjs';
 
 const WA_NUMBER = process.env.NEXT_PUBLIC_WA_NUMBER || '56964333760';
 
-const PLANES = [
-    { id: 'margarita', nombre: 'Margarita', precio: 970000 },
-    { id: 'azucena', nombre: 'Azucena', precio: 1360000 },
-    { id: 'rosal', nombre: 'Rosal Abelia', precio: 1750000 },
-    { id: 'acacia', nombre: 'Acacia', precio: 2250000 },
-    { id: 'quillay', nombre: 'Quillay', precio: 2390000 },
-    { id: 'queule', nombre: 'Queule', precio: 2990000 },
-    { id: 'raul', nombre: 'Raúl', precio: 3590000, popular: true },
-];
+import { planesData as PLANES } from '@/data/planes';
 
 const SERVICIOS = [
     { id: 'inhumacion', icono: 'local_florist', titulo: 'Inhumación Tradicional', desc: 'Solemne despedida con los más altos honores y respeto.' },
@@ -94,6 +87,20 @@ export default function CotizacionPage() {
                 estado: 'pendiente',
                 createdAt: serverTimestamp(),
             });
+
+            // Notificación vía EmailJS al negocio
+            const plan = PLANES.find(p => p.id === form.plan);
+            const svc = SERVICIOS.find(s => s.id === form.servicio);
+            
+            await sendEmailWithTemplate({
+                subject: `Nueva Cotización Web - ${form.nombre}`,
+                user_name: form.nombre,
+                user_phone: form.telefono,
+                user_email: form.email,
+                mensaje: `Se ha recibido una nueva solicitud de cotización.\n\nComuna: ${form.comuna}\nServicio: ${svc?.titulo || form.servicio}\nPlan: ${plan?.nombre || form.plan}`,
+                page_url: window.location.href,
+            });
+
             setStep('enviado');
         } catch (err) {
             console.error(err);
@@ -278,7 +285,7 @@ export default function CotizacionPage() {
                                             form.plan === p.id ? 'border-[#b8960c] bg-[#b8960c]/10 scale-[1.02] shadow-xl shadow-[#b8960c]/10' : 'border-white/5 bg-white/[0.02] hover:bg-white/[0.05]'
                                         }`}
                                     >
-                                        {p.popular && <span className="text-[8px] font-black uppercase tracking-[0.3em] bg-[#b8960c] text-[#0a0a0a] px-3 py-1 rounded-full absolute -top-3">Más Solicitado</span>}
+                                        {p.destacado && <span className="text-[8px] font-black uppercase tracking-[0.3em] bg-[#b8960c] text-[#0a0a0a] px-3 py-1 rounded-full absolute -top-3">Más Solicitado</span>}
                                         <h4 className={`text-2xl font-serif italic tracking-tight ${form.plan === p.id ? 'text-[#b8960c]' : 'text-white'}`}>{p.nombre}</h4>
                                         <p className="text-xs font-bold tracking-[0.2em] text-white/30">{formatter.format(p.precio)}</p>
                                     </button>
@@ -362,7 +369,7 @@ export default function CotizacionPage() {
                                     className="w-full bg-[#25D366] text-white py-6 rounded-full font-black uppercase tracking-[0.4em] text-[11px] hover:brightness-110 transition-all flex items-center justify-center gap-4 shadow-xl"
                                 >
                                     <i className="fab fa-whatsapp text-xl"></i>
-                                    Atención WhatsApp VIP
+                                    Atención WhatsApp
                                 </a>
                                 <Link
                                     href="/"

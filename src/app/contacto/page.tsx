@@ -1,10 +1,14 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import { sendEmailWithTemplate } from '@/lib/emailjs';
 
 export default function ContactoPage() {
     const formRef = useRef<HTMLDivElement>(null);
+    const [formData, setFormData] = useState({ nombre: '', telefono: '', mensaje: '' });
+    const [isSending, setIsSending] = useState(false);
+    const [showSuccess, setShowSuccess] = useState(false);
 
     useEffect(() => {
         if (formRef.current) {
@@ -14,6 +18,30 @@ export default function ContactoPage() {
             );
         }
     }, []);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!formData.nombre.trim() || !formData.telefono.trim() || isSending) return;
+
+        setIsSending(true);
+        try {
+            await sendEmailWithTemplate({
+                subject: 'Asesoría Inmediata solicitada desde /contacto',
+                user_name: formData.nombre,
+                user_phone: formData.telefono,
+                mensaje: formData.mensaje || 'Solicito asesoría de urgencia.',
+                page_url: window.location.href,
+            });
+            setShowSuccess(true);
+            setFormData({ nombre: '', telefono: '', mensaje: '' });
+            setTimeout(() => setShowSuccess(false), 5000);
+        } catch (error) {
+            console.error('Error enviando mensaje:', error);
+            alert('Hubo un error al enviar el mensaje. Por favor intente nuevamente.');
+        } finally {
+            setIsSending(false);
+        }
+    };
 
     return (
         <main className="min-h-screen bg-[#1A1A1A] pt-40 pb-32 text-white font-display flex flex-col items-center justify-center selection:bg-white/10 relative overflow-hidden">
@@ -38,7 +66,14 @@ export default function ContactoPage() {
                     <h2 className="text-center text-3xl text-white font-serif italic mb-12 tracking-tighter">
                         Asesoría Personalizada 24/7
                     </h2>
-                    <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {showSuccess ? (
+                        <div className="text-center py-12 bg-[#b8960c]/10 border border-[#b8960c]/30 rounded-3xl mt-8">
+                            <span className="material-symbols-outlined text-5xl text-[#b8960c] mb-6 block drop-shadow-md">check_circle</span>
+                            <h3 className="text-2xl text-white font-serif italic mb-3">Mensaje enviado exitosamente</h3>
+                            <p className="text-white/60 text-base">Nos pondremos en contacto contigo a la brevedad.</p>
+                        </div>
+                    ) : (
+                    <form className="grid grid-cols-1 md:grid-cols-2 gap-6" onSubmit={handleSubmit}>
                         <div className="flex flex-col gap-2">
                             <label className="text-sm font-black uppercase tracking-widest text-white/50 pl-2">Razón Social o Nombre</label>
                             <input
@@ -46,6 +81,8 @@ export default function ContactoPage() {
                                 className="w-full px-6 py-5 rounded-2xl text-base bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-[#b8960c] focus:bg-white/10 transition-all shadow-inner"
                                 placeholder="Escriba su nombre completo"
                                 required
+                                value={formData.nombre}
+                                onChange={e => setFormData({ ...formData, nombre: e.target.value })}
                             />
                         </div>
                         <div className="flex flex-col gap-2">
@@ -55,6 +92,8 @@ export default function ContactoPage() {
                                 className="w-full px-6 py-5 rounded-2xl text-base bg-white/5 border border-white/10 text-white placeholder-white/20 focus:outline-none focus:border-[#b8960c] focus:bg-white/10 transition-all shadow-inner"
                                 placeholder="+56 9 XXXX XXXX"
                                 required
+                                value={formData.telefono}
+                                onChange={e => setFormData({ ...formData, telefono: e.target.value })}
                             />
                         </div>
                         <div className="md:col-span-2 flex flex-col gap-2 mt-2">
@@ -64,19 +103,27 @@ export default function ContactoPage() {
                                 rows={5}
                                 placeholder="Describa brevemente cómo podemos apoyarle..."
                                 required
+                                value={formData.mensaje}
+                                onChange={e => setFormData({ ...formData, mensaje: e.target.value })}
                             />
                         </div>
                         <div className="md:col-span-2 text-center mt-8">
                             <button
                                 type="submit"
-                                className="w-full md:w-auto bg-gradient-to-r from-[#b8960c] to-[#d4af37] text-[#0a0a0a] px-16 py-6 rounded-full font-black text-sm uppercase tracking-widest hover:brightness-110 hover:shadow-2xl hover:shadow-[#b8960c]/20 transition-all inline-flex justify-center items-center gap-4"
+                                disabled={isSending || !formData.nombre.trim() || !formData.telefono.trim()}
+                                className="w-full md:w-auto bg-gradient-to-r from-[#b8960c] to-[#d4af37] text-[#0a0a0a] px-16 py-6 rounded-full font-black text-sm uppercase tracking-widest hover:brightness-110 hover:shadow-2xl hover:shadow-[#b8960c]/20 transition-all inline-flex justify-center items-center gap-4 disabled:opacity-70"
                             >
-                                <i className="fab fa-whatsapp text-2xl" />
-                                <span>Recibir Asesoría Inmediata</span>
+                                {isSending ? (
+                                    <span className="material-symbols-outlined animate-spin text-2xl">sync</span>
+                                ) : (
+                                    <span className="material-symbols-outlined text-2xl">send</span>
+                                )}
+                                <span>{isSending ? 'Conectando...' : 'Recibir Asesoría Inmediata'}</span>
                             </button>
                             <p className="text-white/40 text-xs tracking-wider uppercase font-black italic mt-6">* Protocolo de confidencialidad absoluta activo.</p>
                         </div>
                     </form>
+                    )}
                 </div>
             </div>
         </main>

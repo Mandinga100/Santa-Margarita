@@ -1,6 +1,4 @@
 import React from 'react';
-import NavbarPremium from '@/components/NavbarPremium/NavbarPremium';
-import FooterPremium from '@/components/FooterPremium/FooterPremium';
 
 export const metadata = {
   title: 'Protocolo de Integridad y Privacidad | Funeraria Santa Margarita',
@@ -10,7 +8,6 @@ export const metadata = {
 const PoliticaPrivacidad = () => {
   return (
     <main className="bg-[#191919] min-h-screen text-zinc-300 font-inter selection:bg-[#C5A059] selection:text-black">
-      <NavbarPremium />
       
       {/* Header Section */}
       <section className="pt-48 pb-24 px-6 border-b border-zinc-800 bg-black/50">
@@ -120,7 +117,6 @@ const PoliticaPrivacidad = () => {
         </div>
       </section>
 
-      <FooterPremium />
     </main>
   );
 };

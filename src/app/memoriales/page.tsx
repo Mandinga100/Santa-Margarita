@@ -134,29 +134,30 @@ export default function MemorialesPage() {
     );
 
     return (
-        <main ref={containerRef} className="min-h-screen bg-[#1A1A1A] text-white font-display pt-32 pb-48 selection:bg-white/10 antialiased overflow-x-hidden">
+        <main ref={containerRef} className="min-h-screen bg-[#191919] text-zinc-300 font-inter pt-32 pb-48 selection:bg-[#C5A059] selection:text-black antialiased overflow-x-hidden">
+
             <div className="max-w-7xl mx-auto px-6">
 
-                {/* Header Seccion - Estilo Editorial */}
-                <header className="mb-32 text-center border-b border-white/5 pb-20 relative">
-                    <span className="text-sm md:text-base font-black uppercase tracking-widest text-white/50 block mb-10">Muro de la Memoria</span>
-                    <h1 className="font-serif text-7xl md:text-9xl mb-12 italic leading-none text-white tracking-tighter">
-                        Memoriales <br /> <span className="text-white/30">Eternos</span>
+                {/* Header Section - Editorial Depth */}
+                <header className="mb-32 text-center border-b border-zinc-800 pb-20 relative">
+                    <span className="text-[10px] md:text-xs font-light uppercase tracking-[0.4em] text-[#C5A059] block mb-10">Santuario de Memoria Digital</span>
+                    <h1 className="font-serif text-white text-5xl md:text-8xl mb-12 italic leading-tight tracking-tight">
+                        Memoriales <br /> <span className="text-[#C5A059]/30">Eternos</span>
                     </h1>
-                    <p className="text-white/40 max-w-2xl mx-auto text-2xl font-light italic leading-relaxed border-x border-white/5 px-12">
-                        "En cada historia reside un legado que trasciende el tiempo, habitando eternamente en la serenidad de nuestro recuerdo."
+                    <p className="text-zinc-400 max-w-2xl mx-auto text-xl md:text-2xl font-light italic leading-relaxed border-x border-zinc-800 px-12">
+                        &quot;En cada historia reside un legado que trasciende el tiempo, habitando eternamente en la serenidad de nuestra memoria compartida.&quot;
                     </p>
-                    <div className="w-24 h-px bg-white/10 mx-auto mt-24"></div>
+                    <div className="w-20 h-px bg-[#C5A059]/20 mx-auto mt-24"></div>
                 </header>
 
                 {/* Search Bar - Premium Glassmorphism */}
                 <div className="mb-24">
                     <div className="relative max-w-3xl mx-auto group">
-                        <div className="flex items-center bg-white/[0.01] rounded-[3rem] overflow-hidden p-4 border border-white/5 group-focus-within:border-white/20 group-focus-within:bg-white/[0.03] transition-all duration-1000 shadow-4xl backdrop-blur-3xl">
-                            <span className="material-symbols-outlined text-white/10 px-8 group-focus-within:text-white transition-all duration-700">search</span>
+                        <div className="flex items-center bg-black/40 rounded-full overflow-hidden p-4 border border-zinc-800 group-focus-within:border-[#C5A059]/40 transition-all duration-700 shadow-2xl backdrop-blur-md">
+                            <span className="material-symbols-outlined text-zinc-600 px-8">search</span>
                             <input
-                                className="w-full border-none focus:ring-0 text-2xl bg-transparent py-6 placeholder:text-white/5 font-light italic text-white selection:bg-white/10"
-                                placeholder="Buscar un legado..."
+                                className="w-full border-none focus:ring-0 text-xl bg-transparent py-4 placeholder:text-zinc-700 font-light italic text-white"
+                                placeholder="Encontrar un destello eterno..."
                                 type="text"
                                 value={search}
                                 onChange={(e) => setSearch(e.target.value)}
@@ -164,34 +165,28 @@ export default function MemorialesPage() {
                             {search && (
                                 <button
                                     onClick={() => setSearch('')}
-                                    className="px-8 text-white/20 hover:text-white transition-all transform hover:scale-110"
+                                    className="px-8 text-zinc-600 hover:text-white transition-all"
                                     aria-label="Limpiar búsqueda"
                                 >
-                                    <span className="material-symbols-outlined text-3xl">close</span>
+                                    <span className="material-symbols-outlined text-2xl">close</span>
                                 </button>
                             )}
                         </div>
-                        {search && (
-                            <p className="text-white/40 text-center mt-10 text-sm md:text-base font-black uppercase tracking-widest animate-pulse">
-                                {filtered.length} Destellos en la memoria
-                            </p>
-                        )}
                     </div>
                 </div>
 
-                {/* Premium Filters - Stitch Navigation */}
+                {/* Premium Filters */}
                 <nav className="flex flex-wrap items-center justify-center gap-6 mb-48" aria-label="Categorías de memoriales">
                     {['todos', 'hoy', 'reciente', 'cinerario'].map((t) => (
                         <button
                             key={t}
                             onClick={() => setFiltroTipo(t as Tipo)}
-                            className={`px-12 py-4 rounded-full text-xs md:text-sm font-black uppercase tracking-widest transition-all duration-1000 border relative group overflow-hidden ${filtroTipo === t
-                                ? 'bg-white text-black border-white shadow-5xl scale-105'
-                                : 'bg-black text-white/20 border-white/5 hover:border-white/20 hover:text-white'
+                            className={`px-10 py-3 rounded-full text-[10px] font-light uppercase tracking-[0.3em] transition-all duration-700 border ${filtroTipo === t
+                                ? 'bg-[#C5A059] text-black border-[#C5A059] shadow-[0_0_20px_rgba(197,160,89,0.3)]'
+                                : 'bg-transparent text-zinc-500 border-zinc-800 hover:border-zinc-600 hover:text-zinc-300'
                                 }`}
                         >
-                            <span className="relative z-10">{t === 'todos' ? 'Cronología Completa' : t === 'hoy' ? 'En Honor Hoy' : t}</span>
-                            {filtroTipo === t && <div className="absolute inset-0 bg-gradient-to-r from-transparent via-black/5 to-transparent -translate-x-full animate-shimmer"></div>}
+                            {t === 'todos' ? 'Legado Completo' : t === 'hoy' ? 'En Honor Hoy' : t === 'reciente' ? 'Memorias Recientes' : 'Cinerario Virtual'}
                         </button>
                     ))}
                 </nav>
@@ -199,7 +194,7 @@ export default function MemorialesPage() {
                 {/* Results Grid - Legacy Gallery */}
                 {loading ? (
                     <div className="flex justify-center py-64">
-                        <div className="w-20 h-20 border-2 border-white/5 border-t-white rounded-full animate-spin"></div>
+                        <div className="w-12 h-12 border border-zinc-800 border-t-[#C5A059] rounded-full animate-spin"></div>
                     </div>
                 ) : (
                     <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-20 md:gap-32">
@@ -210,42 +205,37 @@ export default function MemorialesPage() {
                                 className="memorial-card group flex flex-col items-center text-center transition-all duration-1000"
                             >
                                 <article className="w-full">
-                                    <div className="aspect-[4/5] mb-12 rounded-[4rem] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-[2s] relative shadow-4xl border border-white/5 group-hover:border-white/20">
+                                    <div className="aspect-[4/5] mb-12 rounded-[3rem] overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-[2s] relative shadow-2xl border border-zinc-800 group-hover:border-[#C5A059]/40">
                                         <Image
-                                            className="object-cover scale-110 group-hover:scale-100 transition-transform duration-[3s] ease-out"
+                                            className="object-cover scale-105 group-hover:scale-100 transition-transform duration-[3s] ease-out"
                                             src={m.imagen || '/assets/images/stitch/placeholder-memorial.webp'}
                                             alt={`Retrato de ${m.nombre}`}
                                             fill
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-[1.5s]"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"></div>
 
-                                        {/* Hover Overlay Detail */}
-                                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-[1s] bg-black/20 backdrop-blur-[2px]">
-                                            <span className="text-sm font-black uppercase tracking-widest text-white border border-white/20 px-10 py-4 rounded-full bg-black/40">Habitar su Legado</span>
+                                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-[1s] bg-black/40 backdrop-blur-[2px]">
+                                            <span className="text-[10px] font-light uppercase tracking-[0.4em] text-white border border-white/20 px-10 py-4 rounded-full bg-black/40">Habitar su Legado</span>
                                         </div>
                                     </div>
-                                    <h3 className="font-serif text-4xl md:text-5xl mb-6 text-white group-hover:italic transition-all duration-1000 tracking-tighter leading-none">{m.nombre}</h3>
-                                    <p className="text-white/40 font-display text-sm font-black tracking-widest mb-12 uppercase italic">{m.nacimiento} — {m.fallecimiento}</p>
+                                    <h3 className="font-serif text-3xl md:text-4xl mb-4 text-white group-hover:text-[#C5A059] transition-colors duration-700 tracking-tight leading-tight">{m.nombre}</h3>
+                                    <p className="text-zinc-500 font-inter text-[10px] font-light tracking-[0.3em] mb-12 uppercase italic">{m.nacimiento} — {m.fallecimiento}</p>
                                 </article>
                             </Link>
                         ))}
                     </div>
                 )}
 
-                {/* Pagination Stitch-Style */}
+                {/* Pagination */}
                 {!loading && filtered.length > 0 && (
-                    <nav className="mt-64 pt-24 border-t border-white/5 flex flex-col items-center gap-16" aria-label="Navegación de páginas">
-                        <div className="flex items-center gap-8">
-                            <button className="w-16 h-16 rounded-full bg-white text-black font-black text-xs shadow-5xl ring-1 ring-white/20 relative group overflow-hidden" aria-current="page">
-                                <span className="relative z-10">01</span>
-                                <div className="absolute inset-0 bg-zinc-200 translate-y-full group-hover:translate-y-0 transition-transform duration-500"></div>
-                            </button>
-                            <button className="w-16 h-16 rounded-full border border-white/5 text-white/10 font-black text-xs hover:border-white/20 hover:text-white transition-all duration-700">02</button>
-                            <button className="w-16 h-16 rounded-full border border-white/5 text-white/10 font-black text-xs hover:border-white/20 hover:text-white transition-all duration-700">03</button>
+                    <nav className="mt-64 pt-24 border-t border-zinc-800 flex flex-col items-center gap-16" aria-label="Navegación de páginas">
+                        <div className="flex items-center gap-6">
+                            <button className="w-12 h-12 rounded-full bg-[#C5A059] text-black font-light text-[10px] shadow-xl">01</button>
+                            <button className="w-12 h-12 rounded-full border border-zinc-800 text-zinc-600 font-light text-[10px] hover:border-zinc-600 hover:text-zinc-300 transition-all">02</button>
                         </div>
                         <div className="flex flex-col items-center gap-6">
-                            <div className="w-px h-24 bg-gradient-to-b from-white/20 to-transparent"></div>
-                            <span className="text-sm md:text-base font-black uppercase tracking-widest text-white/30 italic">Profundizar en la Memoria</span>
+                            <div className="w-px h-24 bg-gradient-to-b from-[#C5A059]/20 to-transparent"></div>
+                            <span className="text-[10px] font-light uppercase tracking-[0.4em] text-zinc-500 italic">Profundizar en la Memoria</span>
                         </div>
                     </nav>
                 )}
