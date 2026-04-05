@@ -21,6 +21,7 @@ export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const planesRef = useRef<HTMLElement>(null);
+  const swiperRef = useRef<any>(null);
 
   const [contactForm, setContactForm] = useState({ nombre: '', telefono: '', mensaje: '' });
   const [openPlanIndex, setOpenPlanIndex] = useState<number | null>(null);
@@ -51,6 +52,33 @@ export default function Home() {
       setIsSendingContact(false);
     }
   };
+
+  useEffect(() => {
+    if (swiperRef.current && swiperRef.current.autoplay) {
+      if (openPlanIndex !== null) {
+        swiperRef.current.autoplay.stop();
+      } else {
+        swiperRef.current.autoplay.start();
+      }
+    }
+  }, [openPlanIndex]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // Close if click is outside of the active plan card or swiper navigation
+      if (!target.closest('.plan-card') && !target.closest('.swiper-button-next') && !target.closest('.swiper-button-prev')) {
+        setOpenPlanIndex(null);
+      }
+    };
+    
+    if (openPlanIndex !== null) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [openPlanIndex]);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -477,6 +505,7 @@ export default function Home() {
 
           <div className="swiper-carousel relative max-w-[1400px] mx-auto">
             <Swiper
+              onSwiper={(swiper) => { swiperRef.current = swiper; }}
               modules={[Autoplay, Navigation, EffectCoverflow]}
               navigation={{
                 nextEl: '.swiper-button-next.custom-arrow',
@@ -509,68 +538,82 @@ export default function Home() {
                 1024: { slidesPerView: 3, spaceBetween: 24 },
                 1440: { slidesPerView: 3.5, spaceBetween: 24 }
               }}
+              onSlideChange={() => setOpenPlanIndex(null)}
               className="!pt-4 !pb-10 md:!py-8"
             >
               {planesData.map((plan, i) => (
                 <SwiperSlide key={i} className="flex justify-center px-4 md:p-4">
-                  <div className="plan-card relative w-full sm:max-w-sm h-[32rem] md:h-[36rem] lg:h-[40rem] bg-gradient-to-b from-black/95 to-gray-900 text-white rounded-3xl shadow-2xl overflow-hidden flex flex-col hover:shadow-3xl hover:-translate-y-2 transition-all duration-700 group cursor-pointer border border-white/5 mx-auto">
-                    
-                    {/* Hero Img Plan Exacta */}
-                    <div className="h-[40%] bg-cover bg-center relative group-hover:scale-110 transition-transform duration-700" style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url('${plan.img}')` }}>
+                  {({ isActive }) => (
+                    <div 
+                      className="plan-card relative w-full sm:max-w-sm h-[32rem] md:h-[36rem] lg:h-[40rem] bg-gradient-to-b from-black/95 to-gray-900 text-white rounded-3xl shadow-2xl overflow-hidden flex flex-col transition-all duration-700 group border border-white/5 mx-auto"
+                    >
+                      
+                      {/* Hero Img Plan Exacta */}
+                      <div className="h-[40%] bg-cover bg-center relative group-hover:scale-110 transition-transform duration-700" style={{ backgroundImage: `linear-gradient(${isActive ? 'rgba(0,0,0,0.1), rgba(0,0,0,0.4)' : 'rgba(0,0,0,0.5), rgba(0,0,0,0.8)'}), url('${plan.img}')` }}>
                       {i >= 5 && ( /* Raúl and Castaño are highlighted dynamically based on index for highest price tiers */
                         <span className="absolute top-4 right-4 md:top-6 md:right-6 bg-gradient-to-r from-amber-500 to-yellow-400 md:bg-none md:bg-amber-400/90 text-[#1a1a1a] md:text-black px-3 py-1.5 md:px-4 md:py-2 rounded-full font-black md:font-bold text-[9px] md:text-sm shadow-xl md:shadow-2xl backdrop-blur-md md:backdrop-blur-sm uppercase tracking-[0.2em] md:tracking-wider z-10 flex items-center gap-1.5 md:gap-0 border border-amber-300/50 md:border-transparent transition-transform group-hover:scale-105">
                           <span className="material-symbols-outlined text-[14px] md:hidden">star</span>
                           <span className="md:ml-1">Destacado</span>
                         </span>
                       )}
+                      </div>
+
+                      {/* Info Container */}
+                      <div className="p-5 md:p-8 flex flex-col justify-between flex-1 relative z-10 bg-transparent">
+                        <div className="text-center">
+                          <h3 className="text-[clamp(1.5rem,5vw,2.25rem)] md:text-4xl font-black mb-2 drop-shadow-xl font-serif italic">{plan.nombre}</h3>
+                          <div className="text-[clamp(1.25rem,4vw,2.25rem)] md:text-4xl font-black mb-4 md:mb-6 bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-2xl">{plan.precioStr}</div>
+                        </div>
+
+                        {/* Badges Top2 Servicios */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
+                          {plan.badges.map((badge, j) => (
+                            <div key={j} className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 py-3 px-4 rounded-xl font-bold text-[10px] md:text-xs shadow-xl backdrop-blur transition-all text-center flex items-center justify-center hover:bg-emerald-500/20">
+                              ✓ {badge.toUpperCase()}
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* CTAs */}
+                        <div className="flex gap-3 pt-4 border-t border-white/10 mt-auto relative z-20">
+                          <button onClick={(e) => { e.stopPropagation(); setOpenPlanIndex(i !== openPlanIndex ? i : null); }} className="flex-1 bg-white/5 backdrop-blur border border-white/20 text-white py-3.5 px-4 rounded-xl font-bold text-[11px] md:text-sm hover:bg-white/10 transition-all shadow-xl text-center uppercase tracking-widest flex items-center justify-center">
+                            Ver Detalles
+                          </button>
+                          <a href="tel:+56964333760" className="flex-1 bg-gradient-to-r from-amber-400 to-orange-500 text-black py-3.5 px-4 rounded-xl font-bold text-[11px] md:text-sm hover:from-amber-500 hover:to-orange-600 transition-all shadow-xl text-center uppercase tracking-widest flex items-center justify-center">
+                            Llamar Ahora
+                          </a>
+                        </div>
+                      </div>
+
+                      {/* Tooltip Full Services - Activated on Click */}
+                      <div
+                        onClick={(e) => e.stopPropagation()}
+                        onWheel={(e) => {
+                          const el = e.currentTarget;
+                          const canScroll = el.scrollHeight > el.clientHeight;
+                          if (canScroll) e.stopPropagation();
+                        }}
+                        className={`servicios-tooltip absolute inset-0 bg-[#0a0a0a]/95 backdrop-blur-2xl p-6 md:p-8 rounded-3xl transition-all duration-500 z-50 flex flex-col ${openPlanIndex === i ? 'opacity-100 visible translate-y-0 overflow-y-auto' : 'opacity-0 invisible translate-y-8 pointer-events-none overflow-hidden'}`}
+                        style={openPlanIndex === i ? { scrollbarWidth: 'thin', scrollbarColor: '#b5900e transparent' } : undefined}
+                      >
+                        <div className="sticky top-0 bg-[#0a0a0a]/90 backdrop-blur-3xl pb-4 pt-2 border-b border-amber-400/30 mb-6 z-10 flex justify-between items-center">
+                          <h4 className="font-bold text-xl md:text-2xl text-amber-400 font-serif italic drop-shadow-lg">{plan.nombre}</h4>
+                          <button onClick={(e) => { e.stopPropagation(); setOpenPlanIndex(null); }} className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white border border-white/20 shadow-md">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
+                          </button>
+                        </div>
+                        <ul className="list-none space-y-4 text-gray-200 pb-10">
+                          {plan.serviciosFull.map((s, idx) => (
+                            <li key={idx} className="flex gap-4 items-start text-sm md:text-[15px] leading-relaxed group/li transition-colors hover:text-white">
+                              <span className="text-amber-500 font-black shrink-0 mt-0.5 flex items-center justify-center bg-amber-500/10 w-5 h-5 md:w-6 md:h-6 rounded-full border border-amber-500/20 shadow-md group-hover/li:bg-amber-500 group-hover/li:text-black transition-colors">✓</span>
+                              <span>{s}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
                     </div>
-
-                    {/* Info Container */}
-                    <div className="p-5 md:p-8 flex flex-col justify-between flex-1 relative z-10 bg-transparent">
-                      <div className="text-center">
-                        <h3 className="text-[clamp(1.5rem,5vw,2.25rem)] md:text-4xl font-black mb-2 drop-shadow-xl font-serif italic">{plan.nombre}</h3>
-                        <div className="text-[clamp(1.25rem,4vw,2.25rem)] md:text-4xl font-black mb-4 md:mb-6 bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent drop-shadow-2xl">{plan.precioStr}</div>
-                      </div>
-                      
-                      {/* Badges Top2 Servicios */}
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-6">
-                        {plan.badges.map((badge, j) => (
-                          <div key={j} className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 py-3 px-4 rounded-xl font-bold text-[10px] md:text-xs shadow-xl backdrop-blur transition-all text-center flex items-center justify-center hover:bg-emerald-500/20">
-                            ✓ {badge.toUpperCase()}
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* CTAs */}
-                      <div className="flex gap-3 pt-4 border-t border-white/10 mt-auto relative z-20">
-                        <button onClick={(e) => { e.stopPropagation(); setOpenPlanIndex(i); }} className="flex-1 bg-white/5 backdrop-blur border border-white/20 text-white py-3.5 px-4 rounded-xl font-bold text-[11px] md:text-sm hover:bg-white/10 transition-all shadow-xl text-center uppercase tracking-widest flex items-center justify-center">
-                          Ver Detalles
-                        </button>
-                        <a href="tel:+56964333760" className="flex-1 bg-gradient-to-r from-amber-400 to-orange-500 text-black py-3.5 px-4 rounded-xl font-bold text-[11px] md:text-sm hover:from-amber-500 hover:to-orange-600 transition-all shadow-xl text-center uppercase tracking-widest flex items-center justify-center">
-                          Llamar Ahora
-                        </a>
-                      </div>
-                    </div>
-
-                    {/* Tooltip Full Services - Acivated on Click */}
-                    <div className={`servicios-tooltip absolute inset-0 bg-[#0a0a0a]/95 backdrop-blur-2xl p-6 md:p-8 rounded-3xl transition-all duration-500 z-50 overflow-y-auto flex flex-col ${openPlanIndex === i ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible translate-y-8 pointer-events-none'}`} style={{ scrollbarWidth: 'thin', scrollbarColor: '#b5900e transparent' }}>
-                      <div className="sticky top-0 bg-[#0a0a0a]/90 backdrop-blur-3xl pb-4 pt-2 border-b border-amber-400/30 mb-6 z-10 flex justify-between items-center">
-                         <h4 className="font-bold text-xl md:text-2xl text-amber-400 font-serif italic drop-shadow-lg">{plan.nombre}</h4>
-                         <button onClick={(e) => { e.stopPropagation(); setOpenPlanIndex(null); }} className="flex items-center justify-center w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white border border-white/20 shadow-md">
-                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12"></path></svg>
-                         </button>
-                      </div>
-                      <ul className="list-none space-y-4 text-gray-200 pb-10">
-                        {plan.serviciosFull.map((s, idx) => (
-                          <li key={idx} className="flex gap-4 items-start text-sm md:text-[15px] leading-relaxed group/li transition-colors hover:text-white">
-                            <span className="text-amber-500 font-black shrink-0 mt-0.5 flex items-center justify-center bg-amber-500/10 w-5 h-5 md:w-6 md:h-6 rounded-full border border-amber-500/20 shadow-md group-hover/li:bg-amber-500 group-hover/li:text-black transition-colors">✓</span> 
-                            <span>{s}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                  </div>
+                  )}
                 </SwiperSlide>
               ))}
             </Swiper>
@@ -582,6 +625,17 @@ export default function Home() {
             <div className="swiper-button-next custom-arrow absolute -right-4 md:-right-20 top-1/2 -translate-y-1/2 w-16 h-16 md:w-20 md:h-20 bg-black/60 backdrop-blur-xl rounded-2xl flex items-center justify-center shadow-2xl border-4 border-white/50 hover:bg-white/30 opacity-80 hover:opacity-100 transition-all z-20">
                <svg className="w-8 h-8 md:w-10 md:h-10 text-white" fill="none" stroke="currentColor" strokeWidth="4" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" /></svg>
             </div>
+          </div>
+
+          {/* CTA Ver todos los planes */}
+          <div className="mt-16 text-center relative z-20">
+            <Link
+              href="/planes"
+              className="inline-flex items-center justify-center gap-3 bg-transparent text-white border border-[#b8960c] px-8 py-4 md:px-12 md:py-5 rounded-full font-black text-xs md:text-[13px] uppercase tracking-[0.25em] hover:bg-[#b8960c] hover:text-[#0a0a0a] transition-all duration-500 shadow-2xl hover:shadow-[#b8960c]/40 hover:-translate-y-1"
+            >
+              <i className="fas fa-list-ul"></i>
+              Ver Todos los Planes Funerarios
+            </Link>
           </div>
         </div>
       </section>
