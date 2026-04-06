@@ -16,6 +16,162 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import PremiumContactForm from '../components/PremiumContactForm';
+
+const HeroCanvasEffects = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d', { alpha: true });
+    if (!ctx) return;
+
+    if (window.matchMedia("(hover: none) and (pointer: coarse)").matches) {
+       return; // Fallback mobile hardware acceleration fix (avoid loops)
+    }
+
+    let animationFrameId: number;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    
+    const mouse = { x: width / 2, y: height / 2, tx: width / 2, ty: height / 2 };
+    
+    interface TrailParticle {
+      x: number; y: number; vx: number; vy: number; life: number; maxLife: number; size: number;
+    }
+    const trailParticles: TrailParticle[] = [];
+
+    interface DustParticle {
+      x: number; y: number; vx: number; vy: number; size: number; opacity: number; phase: number;
+    }
+    const dustParticles: DustParticle[] = [];
+    const DUST_COUNT = 120; 
+    
+    const initSize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    };
+    
+    for (let i = 0; i < DUST_COUNT; i++) {
+      dustParticles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.15,
+        vy: - (Math.random() * 0.4 + 0.1),
+        size: Math.random() * 1.2 + 0.3,
+        opacity: Math.random() * 0.35 + 0.1, 
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+
+    const onMouseMove = (e: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const newX = e.clientX - rect.left;
+      const newY = e.clientY - rect.top;
+      
+      const dx = newX - mouse.x;
+      const dy = newY - mouse.y;
+      const speed = Math.sqrt(dx*dx + dy*dy);
+      
+      mouse.x = newX;
+      mouse.y = newY;
+      
+      if (speed > 1) {
+        const count = Math.min(Math.floor(speed / 4), 2);
+        for(let i=0; i<count; i++) {
+          trailParticles.push({
+            x: mouse.x + (Math.random() - 0.5) * 8,
+            y: mouse.y + (Math.random() - 0.5) * 8,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            life: 1,
+            maxLife: Math.random() * 60 + 40,
+            size: Math.random() * 1.5 + 0.5
+          });
+        }
+      }
+    };
+
+    window.addEventListener('resize', initSize);
+    window.addEventListener('mousemove', onMouseMove);
+    initSize();
+
+    const render = () => {
+      ctx.clearRect(0, 0, width, height);
+
+      mouse.tx += (mouse.x - mouse.tx) * 0.15;
+      mouse.ty += (mouse.y - mouse.ty) * 0.15;
+
+      const gradient = ctx.createRadialGradient(mouse.tx, mouse.ty, 0, mouse.tx, mouse.ty, 250);
+      gradient.addColorStop(0, 'rgba(255, 255, 255, 0.06)');
+      gradient.addColorStop(0.4, 'rgba(255, 255, 255, 0.015)');
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      
+      ctx.fillStyle = gradient;
+      ctx.beginPath();
+      ctx.arc(mouse.tx, mouse.ty, 250, 0, Math.PI * 2);
+      ctx.fill();
+
+      dustParticles.forEach(p => {
+        p.x += p.vx + Math.sin(p.phase) * 0.1;
+        p.y += p.vy;
+        p.phase += 0.01;
+
+        if (p.y < -10) {
+          p.y = height + 10;
+          p.x = Math.random() * width;
+        }
+        if (p.x < -10) p.x = width + 10;
+        if (p.x > width + 10) p.x = -10;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+        ctx.fill();
+      });
+
+      for (let i = trailParticles.length - 1; i >= 0; i--) {
+        const p = trailParticles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life++;
+        
+        const lifeRatio = 1 - (p.life / p.maxLife);
+        
+        if (lifeRatio <= 0) {
+          trailParticles.splice(i, 1);
+          continue;
+        }
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size * lifeRatio, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${lifeRatio * 0.4})`;
+        ctx.fill();
+      }
+
+      animationFrameId = requestAnimationFrame(render);
+    };
+
+    render();
+
+    return () => {
+      window.removeEventListener('resize', initSize);
+      window.removeEventListener('mousemove', onMouseMove);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return (
+    <canvas 
+      ref={canvasRef} 
+      className="absolute inset-0 w-full h-[100vh] pointer-events-none z-30" 
+      style={{ mixBlendMode: 'screen', opacity: 0.8 }} 
+    />
+  );
+};
 
 export default function Home() {
   const heroRef = useRef<HTMLElement>(null);
@@ -23,35 +179,9 @@ export default function Home() {
   const planesRef = useRef<HTMLElement>(null);
   const swiperRef = useRef<any>(null);
 
-  const [contactForm, setContactForm] = useState({ nombre: '', telefono: '', mensaje: '' });
   const [openPlanIndex, setOpenPlanIndex] = useState<number | null>(null);
-  const [isSendingContact, setIsSendingContact] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
 
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const { nombre, telefono, mensaje } = contactForm;
-    if (!nombre.trim() || !telefono.trim() || isSendingContact) return;
-    
-    setIsSendingContact(true);
-    try {
-      await sendEmailWithTemplate({
-        subject: 'Nuevo contacto desde Inicio',
-        user_name: nombre,
-        user_phone: telefono,
-        mensaje: mensaje || 'Solicito asesoría funeral.',
-        page_url: window.location.href,
-      });
-      setShowSuccess(true);
-      setContactForm({ nombre: '', telefono: '', mensaje: '' });
-      setTimeout(() => setShowSuccess(false), 5000);
-    } catch (error) {
-      console.error('Error enviando mensaje:', error);
-      alert('Hubo un error al enviar el mensaje. Por favor intente nuevamente.');
-    } finally {
-      setIsSendingContact(false);
-    }
-  };
+
 
   useEffect(() => {
     if (swiperRef.current && swiperRef.current.autoplay) {
@@ -179,10 +309,17 @@ export default function Home() {
       <style>{`
         /* ========= GLOBAL CSS ========= */
 
-        /* Ken Burns GPU */
-        .ken-burns-wrapper .swiper-slide-active img.ken-burns {
-          transform: scale(1.04) translateZ(0);
-          transition: transform 6s ease-out;
+        /* Ken Burns Cero-Jitter Bucle Infinito */
+        .ken-burns-wrapper img.ken-burns {
+          transform: scale(1.0) translateZ(0);
+          transition: none; /* Resetea saltando solo cuando es invisible / no activo */
+          will-change: transform;
+        }
+        .ken-burns-wrapper .swiper-slide-active img.ken-burns,
+        .ken-burns-wrapper .swiper-slide-prev img.ken-burns {
+          transform: scale(1.06) translateZ(0);
+          /* Delay (6s) + Speed (1.5s) = 7.5s. Movimiento lineal perfecto. */
+          transition: transform 7.5s linear;
         }
 
         /* Swiper bullets */
@@ -229,92 +366,58 @@ export default function Home() {
           box-shadow: 0 4px 20px rgba(0,0,0,0.08);
         }
 
-        /* Slogan plata brillante ANIMADO con borde negro y aura blanca dinámica */
-        .slogan-plata {
-          background: linear-gradient(
-            to right, 
-            #959595 0%, 
-            #e0e0e0 20%, 
-            #ffffff 45%, 
-            #ffffff 55%, 
-            #e0e0e0 80%, 
-            #959595 100%
-          );
-          background-size: 200% auto;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          animation: 
-            silverShimmer 12s linear infinite,
-            auraPulse 12s ease-in-out infinite;
-          
-          /* Borde negro para legibilidad + Glow inicial */
-          filter: 
-            drop-shadow(1px 1px 0px rgba(0,0,0,1))
-            drop-shadow(-1px -1px 0px rgba(0,0,0,1))
-            drop-shadow(1px -1px 0px rgba(0,0,0,1))
-            drop-shadow(-1px 1px 0px rgba(0,0,0,1))
-            drop-shadow(0 0 15px rgba(255,255,255,0.4));
-          
+        /* Título Institucional Funerario (Blanco Marfil + Brillo Sutil) */
+        .title-institutional {
+          position: relative;
+          color: #FAF9F6;
+          text-shadow: 0px 6px 20px rgba(0,0,0,0.95), 0px 2px 5px rgba(0,0,0,0.8);
+          animation: subtleGoldGlow 8s ease-in-out infinite;
           will-change: filter;
         }
 
-        @keyframes silverShimmer {
-          0% { background-position: 0% center; }
-          100% { background-position: 200% center; }
+
+
+        @media (hover: none) and (pointer: coarse) {
+          .title-institutional::after {
+            display: none;
+          }
         }
 
-        @keyframes auraPulse {
-          0%, 100% { 
-            filter: 
-              drop-shadow(1px 1px 0px rgba(0,0,0,1))
-              drop-shadow(-1px -1px 0px rgba(0,0,0,1))
-              drop-shadow(1px -1px 0px rgba(0,0,0,1))
-              drop-shadow(-1px 1px 0px rgba(0,0,0,1))
-              /* Brillo fino y definido */
-              drop-shadow(0 0 4px rgba(255,255,255,0.4))
-              drop-shadow(0 0 8px rgba(255,255,255,0.2));
+        /* Resplandor claro dorado pálido (solemne) */
+        @keyframes subtleGoldGlow {
+          0%, 100% {
+            filter: drop-shadow(0 0 5px rgba(255, 240, 200, 0.05)) drop-shadow(0 0 15px rgba(255, 240, 200, 0.05));
           }
-          50% { 
-            filter: 
-              drop-shadow(1px 1px 0px rgba(0,0,0,1))
-              drop-shadow(-1px -1px 0px rgba(0,0,0,1))
-              drop-shadow(1px -1px 0px rgba(0,0,0,1))
-              drop-shadow(-1px 1px 0px rgba(0,0,0,1))
-              /* Expansión controlada del destello periférico */
-              drop-shadow(0 0 6px rgba(255,255,255,0.6))
-              drop-shadow(0 0 12px rgba(255,255,255,0.3));
+          50% {
+            filter: drop-shadow(0 0 8px rgba(255, 240, 200, 0.3)) drop-shadow(0 0 25px rgba(255, 240, 200, 0.15));
           }
         }
 
         @media (max-width: 768px) {
-          .slogan-plata {
-            background-size: 150% auto;
-            animation: 
-              silverShimmer 10s linear infinite,
-              auraPulse 10s ease-in-out infinite;
+          .title-institutional {
+            text-shadow: 0px 3px 15px rgba(0,0,0,0.95), 0px 1px 3px rgba(0,0,0,0.9);
+            animation: subtleGoldGlowMobile 8s ease-in-out infinite;
           }
         }
+        @keyframes subtleGoldGlowMobile {
+          0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 240, 200, 0.05)); }
+          50% { filter: drop-shadow(0 0 12px rgba(255, 240, 200, 0.2)); }
+        }
 
-        /* CTAs Hero Bottom */
+        /* CTAs Hero Cercanos al Título */
         .hero-ctas-bottom {
-          position: absolute;
-          bottom: 8vh;
-          left: 50%;
-          transform: translateX(-50%);
           display: flex;
-          gap: 1rem;
-          z-index: 30;
+          justify-content: center;
+          gap: 1.5rem;
+          margin-top: 3.5rem;
           white-space: nowrap;
         }
         @media (max-width: 640px) {
           .hero-ctas-bottom {
             flex-direction: column;
-            gap: 0.75rem;
-            bottom: 12vh;
-            width: 90%;
-            left: 5%;
-            transform: none;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            width: 100%;
           }
           .hero-ctas-bottom a { width: 100%; text-align: center; }
         }
@@ -401,37 +504,46 @@ export default function Home() {
         className="relative min-h-[100vh] w-full overflow-hidden flex items-center justify-center bg-[#0a0a0a]"
         aria-label="Inicio"
       >
+        <HeroCanvasEffects />
         {/* Carrusel + parallax GPU-acelerado */}
-        <div className="absolute inset-0 z-0 hero-parallax-bg w-full h-[120%] -top-[10%] ken-burns-wrapper">
+        <div className="absolute inset-0 z-0 hero-parallax-bg w-full h-full ken-burns-wrapper">
           <Swiper
             modules={[Autoplay, EffectFade, Pagination]}
             effect="fade"
             fadeEffect={{ crossFade: true }}
-            speed={800}
-            autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
-            pagination={{ clickable: true }}
+            speed={1500}
+            autoplay={{ 
+              delay: 6000, 
+              disableOnInteraction: false, 
+              pauseOnMouseEnter: false,
+              stopOnLastSlide: false
+            }}
             loop={true}
+            observer={true}
+            observeParents={true}
+            pagination={{ clickable: true }}
             allowTouchMove={true}
             grabCursor={true}
             watchSlidesProgress={true}
             className="w-full h-full hero-swiper"
           >
             {[
-              { src: '/assets/images/ui/hero-bg.webp', alt: 'Funeraria Santa Margarita Fachada' },
-              { src: '/assets/images/otros/acacia1.webp', alt: 'Sala de Velatorio' },
-              { src: '/assets/images/otros/team1.webp', alt: 'Equipo de Atención' },
+              { src: '/imgs/hero/Acacia.webp', alt: 'Capilla Funeraria Santa Margarita' },
+              { src: '/imgs/hero/Algarrobo.webp', alt: 'Sala de Velatorio Santa Margarita' },
+              { src: '/imgs/hero/Quillay.webp', alt: 'Servicio Funerario Premium Santa Margarita' },
             ].map((img, i) => (
               <SwiperSlide key={i}>
                 <div className="relative w-full h-full">
-                  <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/60 via-[#0a0a0a]/30 to-[#0a0a0a]/90 z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/70 via-[#0a0a0a]/40 to-[#0a0a0a]/85 z-10" />
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
                     priority={i === 0}
                     fetchPriority={i === 0 ? 'high' : 'auto'}
-                    className="object-cover ken-burns"
+                    className="object-cover object-center ken-burns"
                     sizes="100vw"
+                    quality={90}
                     loading={i === 0 ? 'eager' : 'lazy'}
                   />
                 </div>
@@ -451,31 +563,31 @@ export default function Home() {
           ref={titleRef}
           className="hero-content relative z-20 text-center w-full max-w-5xl px-6"
         >
-          <h1 className="slogan-plata font-serif text-4xl md:text-7xl lg:text-8xl font-light mb-6 leading-tight tracking-tight drop-shadow-2xl">
+          <h1
+            className="title-institutional text-4xl md:text-7xl lg:text-8xl font-light leading-tight tracking-tight mb-0"
+            style={{ fontFamily: 'var(--font-cormorant), var(--font-playfair), Georgia, serif' }}
+          >
             Acompañamos con respeto,<br />
-            <span className="italic">despedimos con amor</span>
+            <span className="italic font-normal">despedimos con amor</span>
           </h1>
-          <p className="sub-slogan text-[#f5f0eb]/80 text-lg md:text-2xl font-light tracking-wide max-w-3xl mx-auto italic drop-shadow-lg">
-            &ldquo;Donde el respeto se encuentra con la excelencia, honramos cada vida con dignidad&rdquo;
-          </p>
-        </div>
 
-        {/* CTAs Hero Bottom Center */}
-        <div className="hero-ctas-bottom">
-          <Link
-            href="/cotizacion"
-            className="inline-flex items-center justify-center gap-2 bg-[#f5f0eb] text-[#0a0a0a] px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-[0.3em] hover:bg-white hover:scale-105 transition-all duration-300 shadow-2xl shadow-black/40"
-          >
-            <i className="fas fa-file-contract text-sm" />
-            Cotización Online
-          </Link>
-          <Link
-            href="/prevision"
-            className="inline-flex items-center justify-center gap-2 bg-[#b8960c] text-[#0a0a0a] px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-[0.3em] hover:bg-[#d4af37] hover:scale-105 transition-all duration-300 shadow-2xl shadow-[#b8960c]/30"
-          >
-            <i className="fas fa-shield-alt text-sm" />
-            Previsión Anticipada
-          </Link>
+          {/* CTAs Hero debajo del título */}
+          <div className="hero-ctas-bottom" style={{ fontFamily: 'var(--font-inter), sans-serif' }}>
+            <Link
+              href="/cotizacion"
+              className="inline-flex items-center justify-center gap-2 bg-[#f5f0eb] text-[#0a0a0a] px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-[0.3em] hover:bg-white hover:scale-105 transition-all duration-300 shadow-2xl"
+            >
+              <i className="fas fa-file-contract text-sm" />
+              Cotización Online
+            </Link>
+            <Link
+              href="/prevision"
+              className="inline-flex items-center justify-center gap-2 bg-[#b8960c] text-[#0a0a0a] px-8 py-4 rounded-full font-black text-[11px] uppercase tracking-[0.3em] hover:bg-[#d4af37] hover:scale-105 transition-all duration-300 shadow-2xl"
+            >
+              <i className="fas fa-shield-alt text-sm" />
+              Previsión Anticipada
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -908,69 +1020,18 @@ export default function Home() {
       >
         <div className="max-w-5xl mx-auto px-6 text-center text-[#f5f0eb] mb-16">
           <span className="material-symbols-outlined text-4xl text-[#b8960c] mb-4 block">contact_support</span>
-          <h2 className="font-serif text-5xl md:text-6xl italic mb-4 text-white">Estamos Contigo.</h2>
+          <h2 className="font-serif text-5xl md:text-6xl italic mb-4 text-white">Contáctanos</h2>
           <p className="text-white/50 text-lg font-light italic max-w-2xl mx-auto">
             Nuestro equipo aguarda para brindarle contención inmediata en este momento.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto px-6 relative z-10">
-          <div className="rounded-[2.5rem] p-10 md:p-14 border border-white/10 bg-white/[0.03] relative overflow-hidden">
-            <div className="section-parallax-bg absolute z-0 inset-0 w-full h-[120%] -top-[10%] opacity-[0.04] pointer-events-none" style={{ backgroundImage: "url('/assets/images/otros/clouds.webp')", backgroundSize: 'cover', backgroundPosition: 'center' }} />
-            <div className="relative z-10">
-              <h2 className="text-center text-2xl text-white font-serif italic mb-10">Asesoría Personalizada 24/7</h2>
-              
-              {showSuccess ? (
-                <div className="text-center py-10 bg-[#b8960c]/10 border border-[#b8960c]/30 rounded-2xl">
-                  <span className="material-symbols-outlined text-4xl text-[#b8960c] mb-4">check_circle</span>
-                  <h3 className="text-xl text-white font-serif italic mb-2">Mensaje enviado exitosamente</h3>
-                  <p className="text-white/60 text-sm">Nos pondremos en contacto contigo a la brevedad.</p>
-                </div>
-              ) : (
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-5" onSubmit={handleContactSubmit} noValidate>
-                <input
-                  type="text"
-                  className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
-                  placeholder="Nombre completo *"
-                  required
-                  value={contactForm.nombre}
-                  onChange={(e) => setContactForm(f => ({ ...f, nombre: e.target.value }))}
-                />
-                <input
-                  type="tel"
-                  className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
-                  placeholder="Teléfono WhatsApp *"
-                  required
-                  value={contactForm.telefono}
-                  onChange={(e) => setContactForm(f => ({ ...f, telefono: e.target.value }))}
-                />
-                <div className="md:col-span-2">
-                  <textarea
-                    className="w-full px-5 py-4 rounded-xl text-sm bg-white/5 border border-white/10 text-white placeholder-white/30 focus:outline-none focus:border-[#b8960c] transition-colors"
-                    rows={4}
-                    placeholder="Cuéntanos tu necesidad..."
-                    value={contactForm.mensaje}
-                    onChange={(e) => setContactForm(f => ({ ...f, mensaje: e.target.value }))}
-                  />
-                </div>
-                <div className="md:col-span-2 text-center">
-                  <button
-                    type="submit"
-                    className="inline-flex items-center justify-center gap-3 bg-[#b8960c] text-[#0a0a0a] px-10 py-4 rounded-full font-black text-[10px] uppercase tracking-[0.4em] hover:bg-[#d4af37] hover:scale-105 transition-all duration-300 shadow-xl shadow-[#b8960c]/20 disabled:opacity-70 disabled:hover:scale-100"
-                    disabled={!contactForm.nombre.trim() || !contactForm.telefono.trim() || isSendingContact}
-                  >
-                    {isSendingContact ? (
-                      <span className="material-symbols-outlined animate-spin text-lg">sync</span>
-                    ) : (
-                      <span className="material-symbols-outlined text-lg">send</span>
-                    )}
-                    {isSendingContact ? 'Enviando...' : 'Contáctanos'}
-                  </button>
-                </div>
-              </form>
-              )}
-            </div>
-          </div>
+        <div className="max-w-4xl mx-auto px-6 relative z-20">
+          <PremiumContactForm 
+            sourcePage="Inicio" 
+            title="Contáctanos"
+            subtitle="Asesoría personalizada inmediata las 24 horas del día."
+          />
         </div>
       </section>
     </div>

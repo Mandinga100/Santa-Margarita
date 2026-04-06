@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Playfair_Display } from 'next/font/google';
+import { Inter, Playfair_Display, Cormorant_Garamond } from 'next/font/google';
 // FontAwesome via npm — elimina dependencia CDN externo (XSS risk)
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import "./globals.css";
@@ -19,6 +19,14 @@ const inter = Inter({
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
+  display: 'swap',
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-cormorant',
+  weight: ['300', '400', '600'],
+  style: ['normal', 'italic'],
   display: 'swap',
 });
 
@@ -65,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
+    <html lang="es" className={`${inter.variable} ${playfair.variable} ${cormorant.variable} scroll-smooth`}>
       <head>
         <meta name="google" content="notranslate" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
